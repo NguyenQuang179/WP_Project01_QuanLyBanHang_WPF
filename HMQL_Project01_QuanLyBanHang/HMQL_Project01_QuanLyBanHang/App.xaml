@@ -1,0 +1,21 @@
+﻿<Application x:Class="HMQL_Project01_QuanLyBanHang.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang"
+             xmlns:view="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
+             xmlns:viewModel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Themes/SearchBarTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
