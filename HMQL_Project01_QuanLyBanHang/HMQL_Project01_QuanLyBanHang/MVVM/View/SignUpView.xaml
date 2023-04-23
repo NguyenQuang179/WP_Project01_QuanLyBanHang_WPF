@@ -1,0 +1,262 @@
+﻿<UserControl x:Class="HMQL_Project01_QuanLyBanHang.MVVM.View.SignUpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="568" d:DesignWidth="920">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Background Border-->
+        <Border Grid.ColumnSpan="2" Background="#FFF1F4FA"
+                CornerRadius="25"/>
+
+        <!--Left Container-->
+        <Border Background="#FFFFFFFF" CornerRadius="25 0 0 25"
+                BorderBrush="LightGray" BorderThickness="0 0 0.3 0">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <Image Source="../../Images/logo.png" Height="64" Width="64"
+                       Margin="0 0 0 0"
+                       HorizontalAlignment="Center"/>
+                <TextBlock Text="SIGN UP" FontSize="24" FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0 8 0 32"/>
+
+                <!--Login Field-->
+                <!--Fullname-->
+                <TextBlock Text="Fullname"
+                           FontSize="16" FontWeight="DemiBold"
+                           Margin="32 0 32 8"/>
+                <Border Background="#FFF1F4FA"
+                        Height="36"
+                        CornerRadius="8" BorderBrush="#44000000" BorderThickness="1"
+                        Margin="32 0 32 8">
+                    <TextBox HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border CornerRadius="8"
+                                                    Background="#FFF1F4FA"
+                                                    Width="216" Height="36">
+                                                <Grid>
+                                                    <Rectangle StrokeThickness="1"/>
+                                                    <TextBox Text=""
+                                                             FontSize="12" Margin="1" 
+                                                             BorderThickness="0" Background="Transparent"
+                                                             VerticalContentAlignment="Center" Foreground="Black" x:Name="InputField"/>
+                                                    <!--Placeholder-->
+                                                    <TextBlock IsHitTestVisible="False" Text="Fullname"
+                                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                               Margin="4 0 0 0" FontSize="12" Foreground="DarkGray"
+                                                               Grid.Column="1">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, ElementName = InputField}" Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </Border>
+
+                <!--Fullname-->
+                <TextBlock Text="Email"
+                           FontSize="16" FontWeight="DemiBold"
+                           Margin="32 0 32 8"/>
+                <Border Background="#FFF1F4FA"
+                        Height="36"
+                        CornerRadius="8" BorderBrush="#44000000" BorderThickness="1"
+                        Margin="32 0 32 8">
+                    <TextBox HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border CornerRadius="8"
+                                                    Background="#FFF1F4FA"
+                                                    Width="216" Height="36">
+                                                <Grid>
+                                                    <Rectangle StrokeThickness="1"/>
+                                                    <TextBox Text=""
+                                                             FontSize="12" Margin="1" 
+                                                             BorderThickness="0" Background="Transparent"
+                                                             VerticalContentAlignment="Center" Foreground="Black" x:Name="InputField"/>
+                                                    <!--Placeholder-->
+                                                    <TextBlock IsHitTestVisible="False" Text="Email"
+                                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                               Margin="4 0 0 0" FontSize="12" Foreground="DarkGray"
+                                                               Grid.Column="1">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, ElementName = InputField}" Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </Border>
+
+                <!--Username-->
+                <TextBlock Text="Username"
+                           FontSize="16" FontWeight="DemiBold"
+                           Margin="32 0 32 8"/>
+                <Border Background="#FFF1F4FA"
+                        Height="36"
+                        CornerRadius="8" BorderBrush="#44000000" BorderThickness="1"
+                        Margin="32 0 32 8">
+                    <TextBox HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border CornerRadius="8"
+                                                    Background="#FFF1F4FA"
+                                                    Width="216" Height="36">
+                                                <Grid>
+                                                    <Rectangle StrokeThickness="1"/>
+                                                    <TextBox Text=""
+                                                             FontSize="12" Margin="1" 
+                                                             BorderThickness="0" Background="Transparent"
+                                                             VerticalContentAlignment="Center" Foreground="Black" x:Name="InputField"/>
+                                                    <!--Placeholder-->
+                                                    <TextBlock IsHitTestVisible="False" Text="Username"
+                                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                               Margin="4 0 0 0" FontSize="12" Foreground="DarkGray"
+                                                               Grid.Column="1">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, ElementName = InputField}" Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </Border>
+
+                <!--Password-->
+                <TextBlock Text="Password"
+                           FontSize="16" FontWeight="DemiBold"
+                           Margin="32 0 32 8"/>
+                <Border Background="#FFF1F4FA"
+                        Height="36"
+                        CornerRadius="8" BorderBrush="#44000000" BorderThickness="1"
+                        Margin="32 0 32 0">
+                    <TextBox HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                            <Border CornerRadius="8"
+                                                    Background="#FFF1F4FA"
+                                                    Width="216" Height="36">
+                                                <Grid>
+                                                    <Rectangle StrokeThickness="1"/>
+                                                    <TextBox Text=""
+                                                             FontSize="12" Margin="1" 
+                                                             BorderThickness="0" Background="Transparent"
+                                                             VerticalContentAlignment="Center" Foreground="Black" x:Name="InputField"/>
+                                                    <!--Placeholder-->
+                                                    <TextBlock IsHitTestVisible="False" Text="Password"
+                                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                               Margin="4 0 0 0" FontSize="12" Foreground="DarkGray"
+                                                               Grid.Column="1">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Text, ElementName = InputField}" Value="">
+                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </Border>
+
+                <!--Sign In Button-->
+                <Border Height="40"
+                        Background="#FF3A36DB"
+                        CornerRadius="8"
+                        Margin="32 32 32 16">
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
+                    </Border.InputBindings>
+                    <TextBlock Text="Create Account" 
+                               FontSize="16" FontWeight="DemiBold" Foreground="White"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+
+                <!--Sign Up-->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="Already have an account?"
+                               Foreground="#FF788B9A" FontWeight="DemiBold"/>
+                    <TextBlock Text="Log In" Margin="8 0 0 0"
+                               Foreground="#FF3A36DB" FontWeight="DemiBold">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+        <!--Right Container-->
+        <Image Grid.Column="1" Source="../../Images/signup.png"
+                   Height="360" Width="360"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+    </Grid>
+</UserControl>

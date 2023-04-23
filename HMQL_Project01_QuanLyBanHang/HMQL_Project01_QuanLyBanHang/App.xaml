@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang"
              xmlns:view="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
              xmlns:viewModel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MVVM/View/AuthenticationWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,6 +14,18 @@
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                <view:LoginView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SignUpViewModel}">
+                <view:SignUpView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:RecoverPasswordViewModel}">
+                <view:RecoverPasswordView/>
             </DataTemplate>
 
         </ResourceDictionary>
