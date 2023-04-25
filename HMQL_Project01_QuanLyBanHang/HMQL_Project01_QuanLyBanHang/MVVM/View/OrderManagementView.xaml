@@ -36,7 +36,7 @@
                                     <SolidColorBrush Color="#2FE5A7"/>
                                 </Rectangle.Fill>
                                 <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="..\..\Images\OrderManagementSVG\calendar-solid.png"/>
+                                    <ImageBrush ImageSource="../../Images/OrderManagementSVG/truck-solid.png"/>
                                 </Rectangle.OpacityMask>
                             </Rectangle>
                         </Canvas>
