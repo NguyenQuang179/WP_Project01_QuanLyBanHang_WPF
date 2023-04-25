@@ -26,7 +26,10 @@
         <Border Grid.RowSpan="2" Background="#FFF1F4FA"
                 CornerRadius="25" MouseDown="Border_MouseDown"/>
 
-        <Border Background="White" CornerRadius="25 25 0 0" BorderBrush="LightGray" BorderThickness="0 0 0 1" MouseDown="Border_MouseDown">
+        <Border Background="White" CornerRadius="25 25 0 0" BorderBrush="LightGray" BorderThickness="0 0 0 1">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding DragWindowCommand}"/>
+            </Border.InputBindings>
             <Grid HorizontalAlignment="Stretch">
                 <TextBlock Text="Book Management Application" Padding="20 4 0 0"
                        FontSize="16" Foreground="#FF3A36DB"/>
@@ -37,19 +40,19 @@
                             Foreground="#FF3A36DB"
                             BorderBrush="#FF3A36DB"
                             BorderThickness="1"
-                            Background="Transparent" Click="ButtonMinimizedClick"></Button>
+                            Background="Transparent" Command="{Binding MinimizedWindowCommand}"></Button>
                     <Button Width="24" Height="24" Margin="0 0 8 0"
                             Content="□"
                             Foreground="#FF3A36DB"
                             BorderBrush="#FF3A36DB"
                             BorderThickness="1"
-                            Background="Transparent" Click="ButtonWindowStateClick"></Button>
+                            Background="Transparent" Command="{Binding WindowStateCommand}"></Button>
                     <Button Width="24" Height="24" Margin="0 0 8 0"
                             Content="⨉"
                             Foreground="#FF3A36DB"
                             BorderBrush="#FF3A36DB"
                             BorderThickness="1"
-                            Background="Transparent" Click="ButtonExitClick"></Button>
+                            Background="Transparent" Command="{Binding ExitWindowCommand}"></Button>
                 </StackPanel>
             </Grid>
         </Border>

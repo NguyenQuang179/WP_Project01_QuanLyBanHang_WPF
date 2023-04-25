@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HMQL_Project01_QuanLyBanHang
+namespace HMQL_Project01_QuanLyBanHang.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SalesReportView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SalesReportView : UserControl
     {
-        public MainWindow()
+        public SalesReportView()
         {
             InitializeComponent();
         }
