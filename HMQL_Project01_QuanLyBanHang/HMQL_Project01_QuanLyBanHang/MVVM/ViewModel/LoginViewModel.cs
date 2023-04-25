@@ -26,8 +26,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             LoginCommand = new RelayCommand(o => {
                 MessageBox.Show($"Username: {Username}\nPassword: {Password}");
-                Username = "";
-                Password = "";
+                Username = "none";
+                Password = "none";
 
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
