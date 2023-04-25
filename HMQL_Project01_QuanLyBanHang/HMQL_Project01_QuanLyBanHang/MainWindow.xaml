@@ -109,7 +109,7 @@
                     Height="50"
                     Foreground="Black" FontSize="16"
                     Style="{StaticResource MenuButtonTheme}"
-                    Command="{Binding }"/>
+                    Command="{Binding OrderManagementViewCommand}"/>
                 <RadioButton Content="Log Out"
                     Height="50"
                     Foreground="Black" FontSize="16"

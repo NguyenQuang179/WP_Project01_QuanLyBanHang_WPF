@@ -28,11 +28,15 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand LogOutCommand { get; set; }
 
+        public RelayCommand OrderManagementViewCommand { get; set; }   
+
         public HomeViewModel HomeVM { get; set; }
 
         public DashboardViewModel DashboardVM { get; set; }
 
         public SalesReportViewModel SalesReportVM { get; set; }
+
+        public OrderMangementViewModel OrderManagementVM { get; set; }
 
         private object _currentView;
 
@@ -53,7 +57,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             DashboardVM = new DashboardViewModel(this);
             
             SalesReportVM = new SalesReportViewModel();
-            
+
+            OrderManagementVM = new OrderMangementViewModel();
+
             CurrentView = DashboardVM;
 
             DragWindowCommand = new RelayCommand(o =>
@@ -94,6 +100,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             SalesReportViewCommand = new RelayCommand(o =>
             {
                 CurrentView = SalesReportVM;
+            });
+
+            OrderManagementViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = OrderManagementVM;
             });
 
             LogOutCommand = new RelayCommand(o =>

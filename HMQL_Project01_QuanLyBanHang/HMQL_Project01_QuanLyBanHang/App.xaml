@@ -35,6 +35,10 @@
             <DataTemplate DataType="{x:Type viewModel:SalesReportViewModel}">
                 <view:SalesReportView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:OrderMangementViewModel}">
+                <view:OrderManagementView/>
+            </DataTemplate>
             
         </ResourceDictionary>
     </Application.Resources>
