@@ -30,7 +30,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand LogOutCommand { get; set; }
 
-        public RelayCommand OrderManagementViewCommand { get; set; }   
+        public RelayCommand OrderManagementViewCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
 
@@ -111,6 +111,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             OrderManagementViewCommand = new RelayCommand(o =>
             {
                 CurrentView = OrderManagementVM;
+
+            });
             ProductListViewCommand = new RelayCommand(o =>
             {
                 CurrentView = ProductListVM;
@@ -123,5 +125,5 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 Application.Current.Windows[0].Close();
             });
         }
-    }
+    } 
 }

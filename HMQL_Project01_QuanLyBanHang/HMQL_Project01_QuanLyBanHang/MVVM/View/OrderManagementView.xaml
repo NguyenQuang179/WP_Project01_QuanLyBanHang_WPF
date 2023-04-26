@@ -5,13 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
-             xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel" 
-             d:DataContext="{d:DesignInstance Type=viewmodel:OrderMangementViewModel}"
+             xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="1544" d:DesignWidth="776">
-
-    
-    
+    <UserControl.DataContext>
+        <viewmodel:OrderMangementViewModel/>
+    </UserControl.DataContext>
     <Grid>
 
         <Border Background="#FFF1F4FA"
@@ -138,8 +137,10 @@
 
                     <DataGrid Grid.Row="10"  FontSize="12" FontWeight="SemiBold" 
                               GridLinesVisibility="None"
-                              HorizontalAlignment="Center" Margin="0 10 0 0" BorderThickness="0" 
-                              AlternatingRowBackground="#788B9A">
+                              HorizontalAlignment="Center" Margin="12" BorderThickness="0" 
+                              AlternatingRowBackground="#788B9A"
+                              AutoGenerateColumns="False"
+                              ItemsSource="{Binding Orders.listOfOrder}">
                         <DataGrid.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
                                 <Setter Property="Background" Value="#F1F1F1" />
@@ -148,38 +149,19 @@
                                 <Setter Property="Padding" Value="5" />
                             </Style>
                         </DataGrid.CellStyle>
-
-                        
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Order ID" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Customer" IsReadOnly="True" CanUserResize="False" Width="*"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Delivery Date" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Payment Type" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
-                            <DataGridTemplateColumn Header ="Status" IsReadOnly="True" CanUserResize="False" Width="auto">
-                                <DataGridTemplateColumn.CellTemplate >
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Border Width="80" Height="30" Margin="4 4 4 4"  CornerRadius="4" Background="#3A36DB">
-                                                <TextBlock Text="In Progress" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFFFFF"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Items Ordered" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Total Amount" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
-                            <DataGridTemplateColumn Header="" IsReadOnly="True" Width="auto">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Width="40" HorizontalAlignment="Center">
-                                                <Image Source="../../Images/OrderManagementSVG/trash-can-solid.png" Width="15" Height="15" 
-                                        VerticalAlignment="Center" Margin="0 0 0 0" HorizontalAlignment="Center" />
-                                            </Button>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Order ID" Binding="{Binding _id}"
+                                                IsReadOnly="True" CanUserResize="False" 
+                                                Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Date" Binding="{Binding date}" 
+                                                IsReadOnly="True" CanUserResize="False" 
+                                                Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Total Price" Binding="{Binding totalPrice}" 
+                                                IsReadOnly="True" CanUserResize="False" 
+                                                Width="1*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="" 
+                                                IsReadOnly="True" CanUserResize="False" 
+                                                Width="52"></DataGridTextColumn>
                         </DataGrid.Columns>
 
 

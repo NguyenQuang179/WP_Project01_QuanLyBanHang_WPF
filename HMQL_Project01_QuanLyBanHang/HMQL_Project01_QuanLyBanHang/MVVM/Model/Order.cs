@@ -6,25 +6,23 @@ using System.Threading.Tasks;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
 {
+    public class BookInOrder
+    {
+        public string _id {  get; set; }
+        public string book { get; set; }
+        public int quantity { get; set; }
+    }
+
     public class Order
     {
-        public int OrderId { get; set; }
-        public string Customer { get; set; }
-        public DateTime DeliveryDate { get; set; }
-        public string PaymentType { get; set; }
-        public string Status { get; set; }
-        public int ItemsOrdered { get; set; }
-        public decimal TotalAmount { get; set; }
+        public string _id { get; set; }
+        public string date { get; set; }
+        public List<BookInOrder> listOfBook { get; set; }
+        public long totalPrice { get; set; }
+    }
 
-        public Order(int orderId, string customer, DateTime deliveryDate, string paymentType, string status, int itemsOrdered, decimal totalAmount)
-        {
-            OrderId = orderId;
-            Customer = customer;
-            DeliveryDate = deliveryDate;
-            PaymentType = paymentType;
-            Status = status;
-            ItemsOrdered = itemsOrdered;
-            TotalAmount = totalAmount;
-        }
+    public class ListOfOrder
+    {
+        public List<Order> listOfOrder { get; set; }
     }
 }
