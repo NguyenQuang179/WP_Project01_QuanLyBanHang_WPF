@@ -90,3 +90,5 @@ D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_Qua
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\OrderCreateView.baml
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\CategoryManagementView.g.cs
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\CategoryManagementView.baml
+D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\ProductListView.g.cs
+D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\ProductListView.baml
