@@ -1,4 +1,9 @@
 ﻿using HMQL_Project01_QuanLyBanHang.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
@@ -52,13 +57,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 Application.Current.Windows[0].DragMove();
             });
 
-            MinimizedWindowCommand = new RelayCommand(o =>
-            {
+            MinimizedWindowCommand = new RelayCommand(o => {
                 Application.Current.Windows[0].WindowState = WindowState.Minimized;
             });
 
-            WindowStateCommand = new RelayCommand(o =>
-            {
+            WindowStateCommand = new RelayCommand(o => {
                 if (Application.Current.Windows[0].WindowState != WindowState.Maximized)
                 {
                     Application.Current.Windows[0].WindowState = WindowState.Maximized;
