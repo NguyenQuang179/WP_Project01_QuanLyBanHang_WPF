@@ -44,6 +44,13 @@
                 <view:OrderDetailView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:OrderCreateViewModel}">
+                <view:OrderCreateView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:CategoryManagementViewModel}">
+                <view:CategoryManagementView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

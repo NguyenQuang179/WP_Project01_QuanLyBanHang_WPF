@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace HMQL_Project01_QuanLyBanHang.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for OrderManagementView.xaml
+    /// Interaction logic for CategoryManagementView.xaml
     /// </summary>
-    public partial class OrderManagementView : UserControl
+    public partial class CategoryManagementView : UserControl
     {
-        public OrderManagementView()
+        public CategoryManagementView()
         {
             InitializeComponent();
         }
-
-      
     }
 }

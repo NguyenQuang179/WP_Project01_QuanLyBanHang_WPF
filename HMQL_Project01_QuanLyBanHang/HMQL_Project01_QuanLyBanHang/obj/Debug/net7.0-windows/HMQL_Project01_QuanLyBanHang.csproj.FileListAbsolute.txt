@@ -86,3 +86,7 @@ D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_Qua
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.pdb
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.genruntimeconfig.cache
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\ref\HMQL_Project01_QuanLyBanHang.dll
+D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\OrderCreateView.g.cs
+D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\OrderCreateView.baml
+D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\CategoryManagementView.g.cs
+D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\CategoryManagementView.baml

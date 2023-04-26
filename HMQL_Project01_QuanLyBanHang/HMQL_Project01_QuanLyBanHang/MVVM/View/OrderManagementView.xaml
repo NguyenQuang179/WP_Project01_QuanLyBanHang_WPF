@@ -28,6 +28,7 @@
                     BorderThickness="1"
                     BorderBrush="LightGray"
                     Margin="16" Width="277">
+                    
                     <DockPanel Margin="16">
                         <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
                             <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
@@ -51,9 +52,14 @@
                     </DockPanel>
                 </Border>
 
-                <WrapPanel  Margin=" 16 4 16 4">
+                <WrapPanel  Margin=" 16 4 16 4" HorizontalAlignment="Stretch">
                     <!--Search Textbox-->
-                    <Grid Width="300" HorizontalAlignment="Left">
+                    <Border>
+                        <Border.Effect>
+                            <DropShadowEffect Opacity="0.3" Direction="300" />
+                        </Border.Effect>
+                   
+                    <Grid Width="425" HorizontalAlignment="Left" Margin=" 0 0 0 0">
                         <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False" />
 
                         <TextBox Name="textBoxSearch"/>
@@ -61,22 +67,40 @@
                         <Image Source="../../Images/OrderManagementSVG/truck-solid.png" Width="15" Height="15" 
                                VerticalAlignment="Center" Margin="0 0 15 0" HorizontalAlignment="Right" />
                     </Grid>
+                    </Border>
                     <!--Filter by Status-->
                     <!--SelectionChanged=""-->
-                    <ComboBox 
-                       
+                    <Border>
+                        <Border.Effect>
+                            <DropShadowEffect  Opacity="0.3" Direction="300"  />
+                        </Border.Effect>
+                        <ComboBox 
+                       Margin=" 8 0 8 0"
                       x:Name="StatusTypeComboBox" 
-                      Width="100">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock><Run Text="{Binding Item1, Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding Item2, Mode=OneWay}"/></TextBlock>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                      Width="100" Height="30">
+                            <ComboBox.Background>
+                                <LinearGradientBrush EndPoint="0,1">
+                                    <GradientStop Color="#FFF0F0F0"/>
+                                    <GradientStop Color="#FFFFFCFC" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ComboBox.Background>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock><Run Text="{Binding Item1, Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding Item2, Mode=OneWay}"/></TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Border>
+                   
                     <!--Refresh Button-->
                     <Border
+                        Margin=" 8 0 8 0"
                         Background="#FFFFFF"
-                        CornerRadius="4">
+                        CornerRadius="4"
+                        Height="30" Width="80">
+                        <Border.Effect>
+                            <DropShadowEffect  Opacity="0.3" Direction="300" />
+                        </Border.Effect>
                         <Border.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
                         </Border.InputBindings>
@@ -85,10 +109,15 @@
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
 
-                    <!--Sign In Button-->
+                    <!--Add Order Button-->
                     <Border
+                        Margin=" 8 0 0 0"
                         Background="#FF3A36DB"
-                        CornerRadius="4">
+                        CornerRadius="4"
+                        Height="30" Width="80">
+                        <Border.Effect>
+                            <DropShadowEffect  Opacity="0.3" Direction="300" />
+                        </Border.Effect>
                         <Border.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
                         </Border.InputBindings>
@@ -107,8 +136,10 @@
                     BorderBrush="LightGray"
                     Margin="16">
 
-                    <DataGrid Grid.Row="10" SelectionChanged="DataGrid_SelectionChanged" FontSize="12" FontWeight="SemiBold" 
-                              HorizontalAlignment="Center" Margin="0 10 0 0" BorderThickness="0" AlternatingRowBackground="#788B9A">
+                    <DataGrid Grid.Row="10"  FontSize="12" FontWeight="SemiBold" 
+                              GridLinesVisibility="None"
+                              HorizontalAlignment="Center" Margin="0 10 0 0" BorderThickness="0" 
+                              AlternatingRowBackground="#788B9A">
                         <DataGrid.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
                                 <Setter Property="Background" Value="#F1F1F1" />
@@ -118,7 +149,7 @@
                             </Style>
                         </DataGrid.CellStyle>
 
-
+                        
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Order ID" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
                             <DataGridTextColumn Header="Customer" IsReadOnly="True" CanUserResize="False" Width="*"></DataGridTextColumn>
@@ -128,8 +159,8 @@
                                 <DataGridTemplateColumn.CellTemplate >
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Border Width="50" Height="25" CornerRadius="4" Margin="0 0 10 0" Background="Blue">
-                                                <TextBlock Text="In Progress" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            <Border Width="80" Height="30" Margin="4 4 4 4"  CornerRadius="4" Background="#3A36DB">
+                                                <TextBlock Text="In Progress" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFFFFF"/>
                                             </Border>
                                         </StackPanel>
                                     </DataTemplate>
@@ -137,13 +168,13 @@
                             </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Items Ordered" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
                             <DataGridTextColumn Header="Total Amount" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
-                            <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                            <DataGridTemplateColumn Header="" IsReadOnly="True" Width="auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button>
-                                                <Image Source="../../Images/OrderManagementSVG/truck-solid.png" Width="15" Height="15" 
-                                        VerticalAlignment="Center" Margin="0 0 15 0" HorizontalAlignment="Right" />
+                                            <Button Width="40" HorizontalAlignment="Center">
+                                                <Image Source="../../Images/OrderManagementSVG/trash-can-solid.png" Width="15" Height="15" 
+                                        VerticalAlignment="Center" Margin="0 0 0 0" HorizontalAlignment="Center" />
                                             </Button>
                                         </StackPanel>
                                     </DataTemplate>
@@ -152,44 +183,9 @@
                         </DataGrid.Columns>
 
 
-                        <DataGrid ItemsSource="{Binding orders}">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Order ID" Binding="{Binding OrderId}" />
-                                <DataGridTextColumn Header="Customer" Binding="{Binding Customer}" />
-                                <DataGridTextColumn Header="Delivery Date" Binding="{Binding DeliveryDate}" />
-                                <DataGridTextColumn Header="Payment Type" Binding="{Binding PaymentType}" />
-                                <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
-                                <DataGridTextColumn Header="Items Ordered" Binding="{Binding ItemsOrdered}" />
-                                <DataGridTextColumn Header="Total Amount" Binding="{Binding TotalAmount}" />
-                                
-                            </DataGrid.Columns>
-                            <DataGrid.RowDetailsTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding OrderDetails}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGrid.RowDetailsTemplate>
-                            <DataGrid.RowHeaderTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="+" Margin="0 0 4 0" />
-                                </DataTemplate>
-                            </DataGrid.RowHeaderTemplate>
-                            <DataGrid.RowStyle>
-                                <Style TargetType="DataGridRow">
-                                    <Setter Property="Background" Value="White" />
-                                    <Style.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="#FFF1F4FA" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </DataGrid.RowStyle>
+                       
 
-                        </DataGrid>
-
-                    </DataGrid
-                              >
+                    </DataGrid>
                 </Border>
                  
                     
