@@ -1,14 +1,11 @@
 ﻿using HMQL_Project01_QuanLyBanHang.Core;
-using LiveCharts.Wpf;
+using HMQL_Project01_QuanLyBanHang.MVVM.Model;
 using LiveCharts;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using HMQL_Project01_QuanLyBanHang.MVVM.Model;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
@@ -70,7 +67,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             Top5Books = origin.ToList();
 
-            ItemClickCommand = new RelayCommand((param) => {
+            ItemClickCommand = new RelayCommand((param) =>
+            {
                 string id = param.ToString();
                 MessageBox.Show($"Item Clicked {id}");
             });

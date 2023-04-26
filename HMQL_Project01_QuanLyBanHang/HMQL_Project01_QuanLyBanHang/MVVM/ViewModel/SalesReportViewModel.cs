@@ -1,12 +1,7 @@
 ﻿using HMQL_Project01_QuanLyBanHang.Core;
-using LiveCharts.Wpf;
 using LiveCharts;
+using LiveCharts.Wpf;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
@@ -22,7 +17,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public string[] ProductLabels { get; set; }
         public Func<double, string> ProductFormatter { get; set; }
 
-        public SalesReportViewModel() {
+        public SalesReportViewModel()
+        {
             SaleSeries = new SeriesCollection() { };
             SaleSeries.Add(new LineSeries
             {
