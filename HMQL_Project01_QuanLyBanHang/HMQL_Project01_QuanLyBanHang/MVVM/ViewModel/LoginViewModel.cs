@@ -10,7 +10,7 @@ using HMQL_Project01_QuanLyBanHang.MVVM.Model;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
-    class LoginViewModel : ObservableObject
+    internal class LoginViewModel : ObservableObject
     {
         private Account account;
 
@@ -24,7 +24,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         {
             account = new Account();
 
-            LoginCommand = new RelayCommand(o => {
+            LoginCommand = new RelayCommand(o =>
+            {
                 MessageBox.Show($"Username: {Username}\nPassword: {Password}");
                 Username = "none";
                 Password = "none";
@@ -54,6 +55,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(Username));
             }
         }
+
         public string Password
         {
             get => account.password;
@@ -63,6 +65,5 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(Password));
             }
         }
-
     }
 }
