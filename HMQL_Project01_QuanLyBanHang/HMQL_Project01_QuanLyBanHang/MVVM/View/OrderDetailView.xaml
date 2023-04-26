@@ -23,7 +23,7 @@
                        Margin="32 16 32 0"/>
                 <StackPanel DockPanel.Dock="Left">
 
-                    <Border Height="117"     
+                    <Border Height="100"     
                     HorizontalAlignment="Left"
                     Background="White"
                     CornerRadius="12"
@@ -44,12 +44,18 @@
                                 </Rectangle>
                             </Canvas>
 
-                            <TextBlock Text="20+"
-                               FontSize="22" FontWeight="DemiBold"
-                               Margin="0 16 0 0" DockPanel.Dock="Top"/>
-                            <TextBlock Text="Đơn hàng trong 1 tháng"
-                               FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
-                               Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
+                            <TextBlock Text="UnDeadCharger"
+                               FontSize="18" FontWeight="DemiBold"
+                               Margin="0 0 0 0" DockPanel.Dock="Top"/>
+                            <WrapPanel DockPanel.Dock="Bottom">
+                                <TextBlock Text="227 Đ. Nguyễn Văn Cừ, Phường 4, Quận 5, Thành phố Hồ Chí Minh"
+                               FontSize="12" FontWeight="SemiBold" Foreground="#788B9A"
+                               Margin="0 0 0 0" />
+                                <TextBlock Text="(+84) 964 978 361"
+                               FontSize="12" FontWeight="SemiBold" Foreground="#788B9A"
+                               Margin="0 0 0 0" />
+                            </WrapPanel>
+                            
                         </DockPanel>
                     </Border>
 
@@ -219,12 +225,12 @@
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Right">
                     <!--Status-->
-                    <Border Height="117"     
+                    <Border Height="100"     
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
                     BorderBrush="LightGray"
-                    Margin="16" Width="200">
+                    Margin="0 16 16 0" Width="225">
                         <DockPanel Margin="16">
                             <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
                                 <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
@@ -239,79 +245,78 @@
                                 </Rectangle>
                             </Canvas>
 
-                            <TextBlock Text="20+"
-                               FontSize="22" FontWeight="DemiBold"
-                               Margin="0 16 0 0" DockPanel.Dock="Top"/>
-                            <TextBlock Text="Đơn hàng trong 1 tháng"
-                               FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
+                            <TextBlock Text="In Progress"
+                               FontSize="18" FontWeight="DemiBold"
+                               Margin="0 12 0 0" DockPanel.Dock="Top"/>
+                            <TextBlock Text="Waiting for Payment"
+                               FontSize="12" FontWeight="SemiBold" Foreground="#788B9A"
                                Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
                         </DockPanel>
                     </Border>
                     <!--Date-->
-                    <Border Height="117"     
+                    <Border Height="100"     
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
                     BorderBrush="LightGray"
-                    Margin="16" Width="200">
+                    Margin="0 16 16 0" Width="225">
                         <DockPanel Margin="16">
                             <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
-                                <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
+                                <Ellipse Width="56" Height="56" Fill="#4DEDC85A"/>
 
                                 <Rectangle Width="20" Height="20" Canvas.Left="18" Canvas.Top="18">
                                     <Rectangle.Fill>
-                                        <SolidColorBrush Color="#2FE5A7"/>
+                                        <SolidColorBrush Color="#EDC85A"/>
                                     </Rectangle.Fill>
                                     <Rectangle.OpacityMask>
-                                        <ImageBrush ImageSource="../../Images/OrderManagementSVG/truck-solid.png"/>
+                                        <ImageBrush ImageSource="../../Images/OrderManagementSVG/calendar-solid.png"/>
                                     </Rectangle.OpacityMask>
                                 </Rectangle>
                             </Canvas>
 
-                            <TextBlock Text="20+"
-                               FontSize="22" FontWeight="DemiBold"
-                               Margin="0 16 0 0" DockPanel.Dock="Top"/>
-                            <TextBlock Text="Đơn hàng trong 1 tháng"
-                               FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
+                            <TextBlock Text="25-04-2023"
+                               FontSize="18" FontWeight="DemiBold"
+                               Margin="0 12 0 0" DockPanel.Dock="Top"/>
+                            <TextBlock Text="Deliver Date"
+                               FontSize="12" FontWeight="SemiBold" Foreground="#788B9A"
                                Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
                         </DockPanel>
                     </Border>
                     <!--Total Number-->
-                    <Border Height="117"     
+                    <Border Height="100"     
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
                     BorderBrush="LightGray"
-                    Margin="16" Width="200">
+                   Margin="0 16 16 0" Width="225">
                         <DockPanel Margin="16">
                             <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
-                                <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
+                                <Ellipse Width="56" Height="56" Fill="#4DFF69B4"/>
 
                                 <Rectangle Width="20" Height="20" Canvas.Left="18" Canvas.Top="18">
                                     <Rectangle.Fill>
-                                        <SolidColorBrush Color="#2FE5A7"/>
+                                        <SolidColorBrush Color="#FF69B4"/>
                                     </Rectangle.Fill>
                                     <Rectangle.OpacityMask>
-                                        <ImageBrush ImageSource="../../Images/OrderManagementSVG/truck-solid.png"/>
+                                        <ImageBrush ImageSource="../../Images/OrderManagementSVG/cart-shopping-solid.png"/>
                                     </Rectangle.OpacityMask>
                                 </Rectangle>
                             </Canvas>
 
-                            <TextBlock Text="20+"
-                               FontSize="22" FontWeight="DemiBold"
-                               Margin="0 16 0 0" DockPanel.Dock="Top"/>
-                            <TextBlock Text="Đơn hàng trong 1 tháng"
-                               FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
-                               Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
-                        </DockPanel>
+                            <TextBlock Text="10 Books"
+                               FontSize="18" FontWeight="DemiBold"
+                               Margin="0 12 0 0" DockPanel.Dock="Top"/>
+                            <TextBlock Text="Number Of Items"
+                               FontSize="12" FontWeight="SemiBold" Foreground="#788B9A"
+                               Margin="0 0 0 0" DockPanel.Dock="Bottom"/> </DockPanel>
                     </Border>
                     <!--Total Price-->
-                    <Border Height="117"     
+                    <Border Height="100"     
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
                     BorderBrush="LightGray"
-                    Margin="16" Width="200">
+                    Margin="0 16 16 0" Width="225">
                         <DockPanel Margin="16">
                             <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
                                 <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
@@ -321,39 +326,42 @@
                                         <SolidColorBrush Color="#2FE5A7"/>
                                     </Rectangle.Fill>
                                     <Rectangle.OpacityMask>
-                                        <ImageBrush ImageSource="../../Images/OrderManagementSVG/truck-solid.png"/>
+                                        <ImageBrush ImageSource="../../Images/OrderManagementSVG/money-bill-solid.png"/>
                                     </Rectangle.OpacityMask>
                                 </Rectangle>
                             </Canvas>
 
-                            <TextBlock Text="20+"
-                               FontSize="22" FontWeight="DemiBold"
-                               Margin="0 16 0 0" DockPanel.Dock="Top"/>
-                            <TextBlock Text="Đơn hàng trong 1 tháng"
-                               FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
+                            <TextBlock Text="1,000,000 VND"
+                               FontSize="18" FontWeight="DemiBold"
+                               Margin="0 12 0 0" DockPanel.Dock="Top"/>
+                            <TextBlock Text="Payment"
+                               FontSize="12" FontWeight="SemiBold" Foreground="#788B9A"
                                Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
+
                         </DockPanel>
                     </Border>
                     <!-- Cancel Change Button-->
                     <Border
-                        Background="#FF3A36DB"
-                        CornerRadius="4">
+                        Background="#FFFF69B4"
+                        CornerRadius="4"
+                        Margin="0 16 16 0" Width="225" Height="25">
                         <Border.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
                         </Border.InputBindings>
-                        <TextBlock Text="Add Order" 
-                               FontSize="12" FontWeight="DemiBold" Foreground="White"
+                        <TextBlock Text="Delete Changes" 
+                               FontSize="16" FontWeight="Bold" Foreground="White"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <!--Confirm Change Button-->
                     <Border
-                        Background="#FF3A36DB"
-                        CornerRadius="4">
+                        Background="#FF2FE5A7"
+                        CornerRadius="4"
+                        Margin="0 16 16 0" Width="225" Height="25">
                         <Border.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
                         </Border.InputBindings>
-                        <TextBlock Text="Add Order" 
-                               FontSize="12" FontWeight="DemiBold" Foreground="White"
+                        <TextBlock Text="Confirm Changes" 
+                               FontSize="16" FontWeight="Bold" Foreground="White"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </StackPanel>

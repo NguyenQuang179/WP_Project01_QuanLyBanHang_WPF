@@ -16,10 +16,12 @@
                 CornerRadius="24"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel >
-                <TextBlock Text="Order Management"
+                <TextBlock Text="Category Management"
                        FontSize="24" FontWeight="Bold" 
                        Margin="32 16 32 0"/>
-                <Border Height="117"     
+                <StackPanel Orientation="Horizontal">
+  
+                <Border Height="100"     
                     HorizontalAlignment="Left"
                     Background="White"
                     CornerRadius="12"
@@ -42,12 +44,45 @@
 
                         <TextBlock Text="20+"
                                FontSize="22" FontWeight="DemiBold"
-                               Margin="0 16 0 0" DockPanel.Dock="Top"/>
+                               Margin="0 12 0 0" DockPanel.Dock="Top"/>
                         <TextBlock Text="Đơn hàng trong 1 tháng"
                                FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
                                Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
                     </DockPanel>
                 </Border>
+
+                <Border Height="100"     
+                    HorizontalAlignment="Left"
+                    Background="White"
+                    CornerRadius="12"
+                    BorderThickness="1"
+                    BorderBrush="LightGray"
+                    Margin="16" Width="277">
+                    <DockPanel Margin="16">
+                        <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
+                            <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
+
+                            <Rectangle Width="20" Height="20" Canvas.Left="18" Canvas.Top="18">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="#2FE5A7"/>
+                                </Rectangle.Fill>
+                                <Rectangle.OpacityMask>
+                                    <ImageBrush ImageSource="../../Images/OrderManagementSVG/truck-solid.png"/>
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </Canvas>
+
+                        <TextBlock Text="20+"
+                               FontSize="22" FontWeight="DemiBold"
+                               Margin="0 12 0 0" DockPanel.Dock="Top"/>
+                        <TextBlock Text="Đơn hàng trong 1 tháng"
+                               FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
+                               Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                </Border>
+
+
+                </StackPanel>
 
                 <WrapPanel  Margin=" 16 4 16 4">
                     <!--Search Textbox-->
