@@ -107,7 +107,7 @@
                     Height="50"
                     Foreground="Black" FontSize="16"
                     Style="{StaticResource MenuButtonTheme}"
-                    Command="{Binding }" />
+                    Command="{Binding CategoryManagementViewCommand}" />
                 <RadioButton Content="Orders"
                     Height="50"
                     Foreground="Black" FontSize="16"
