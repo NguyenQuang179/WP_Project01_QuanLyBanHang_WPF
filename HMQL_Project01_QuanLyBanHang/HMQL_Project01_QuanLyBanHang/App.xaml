@@ -8,32 +8,36 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Themes/MenuButtonTheme.xaml"/>
-                <ResourceDictionary Source="Themes/SearchBarTheme.xaml"/>
+                <ResourceDictionary Source="Themes/MenuButtonTheme.xaml" />
+                <ResourceDictionary Source="Themes/SearchBarTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-                <view:HomeView/>
+                <view:HomeView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
-                <view:LoginView/>
+                <view:LoginView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:SignUpViewModel}">
-                <view:SignUpView/>
+                <view:SignUpView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:RecoverPasswordViewModel}">
-                <view:RecoverPasswordView/>
+                <view:RecoverPasswordView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
-                <view:DashboardView/>
+                <view:DashboardView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:SalesReportViewModel}">
-                <view:SalesReportView/>
+                <view:SalesReportView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ProductListViewModel}">
+                <view:ProductListView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:OrderMangementViewModel}">

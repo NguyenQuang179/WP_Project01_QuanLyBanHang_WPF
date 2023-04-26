@@ -14,32 +14,32 @@
         AllowsTransparency="True">
 
     <Window.DataContext>
-        <viewModel:MainViewModel/>
+        <viewModel:MainViewModel />
     </Window.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="32"/>
-            <RowDefinition/>
+            <RowDefinition Height="32" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Border Grid.ColumnSpan="2" Grid.RowSpan="2"
                 Background="#FFF1F4FA"
-                CornerRadius="20"/>
+                CornerRadius="20" />
 
         <Border BorderBrush="#FF3A36DB" BorderThickness="0 0 0 1"
                 Grid.ColumnSpan="2">
             <Border.InputBindings>
-                <MouseBinding MouseAction="LeftClick" Command="{Binding DragWindowCommand}"/>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding DragWindowCommand}" />
             </Border.InputBindings>
             <Grid HorizontalAlignment="Stretch">
                 <!--Row = 0, Column = 0-->
                 <Label Content="Book Management Application" Padding="20 4 0 0"
-                       FontSize="16" Foreground="#FF3A36DB" Width="920"/>
+                       FontSize="16" Foreground="#FF3A36DB" Width="920" />
                 <!--Row = 0, Column = 1-->
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal"
                             Margin="0 0 20 0">
@@ -70,41 +70,41 @@
                 BorderBrush="#883A36DB"
                 BorderThickness="0 0 1 0"
                 CornerRadius="0 8 8 0">
-            <StackPanel >
+            <StackPanel>
                 <Image Source="Images/logo.png"
                    Width="52"
                    Height="52"
-                   Margin="4"/>
+                   Margin="4" />
                 <TextBlock Text="HMQL Group" Foreground="#FF3A36DB"
                            FontSize="16" FontWeight="DemiBold"
                            HorizontalAlignment="Center"
-                           Margin="0 0 0 16"/>
+                           Margin="0 0 0 16" />
 
                 <RadioButton Content="Dashboard"
                              Height="50" FontSize="16"
                              Style="{StaticResource MenuButtonTheme}"
                              IsChecked="True"
-                             Command="{Binding DashboardViewCommand}"/>
+                             Command="{Binding DashboardViewCommand}" />
                 <RadioButton Content="Sales Report"
                              Height="50"
                              Foreground="Black" FontSize="16"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding SalesReportViewCommand}"/>
+                             Command="{Binding SalesReportViewCommand}" />
                 <RadioButton Content="Home"
                              Height="50"
                              Foreground="Black" FontSize="16"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding HomeViewCommand}"/>
+                             Command="{Binding HomeViewCommand}" />
                 <RadioButton Content="Products"
-                    Height="50"
-                    Foreground="Black" FontSize="16"
-                    Style="{StaticResource MenuButtonTheme}"
-                    Command="{Binding }"/>
+                             Height="50"
+                             Foreground="Black" FontSize="16"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding ProductListViewCommand}" />
                 <RadioButton Content="Categories"
                     Height="50"
                     Foreground="Black" FontSize="16"
                     Style="{StaticResource MenuButtonTheme}"
-                    Command="{Binding }"/>
+                    Command="{Binding }" />
                 <RadioButton Content="Orders"
                     Height="50"
                     Foreground="Black" FontSize="16"
@@ -114,7 +114,7 @@
                     Height="50"
                     Foreground="Black" FontSize="16"
                     Style="{StaticResource MenuButtonTheme}"
-                    Command="{Binding LogOutCommand}"/>
+                    Command="{Binding LogOutCommand}" />
             </StackPanel>
         </Border>
 
