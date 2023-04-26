@@ -90,6 +90,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(Username));
             }
         }
+
         public string Password
         {
             get => account.password;
@@ -99,6 +100,5 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(Password));
             }
         }
-
     }
 }
