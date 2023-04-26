@@ -81,26 +81,29 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\rexfu\\.nuget\\packages\\": {},
+    "D:\\Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\###NAM_3\\HK2\\LT_WINDOW\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj",
+      "projectUniqueName": "D:\\ASProject\\GitHub\\HMQL_Ebook\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj",
       "projectName": "HMQL_Project01_QuanLyBanHang",
-      "projectPath": "D:\\###NAM_3\\HK2\\LT_WINDOW\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\###NAM_3\\HK2\\LT_WINDOW\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\obj\\",
+      "projectPath": "D:\\ASProject\\GitHub\\HMQL_Ebook\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj",
+      "packagesPath": "C:\\Users\\rexfu\\.nuget\\packages\\",
+      "outputPath": "D:\\ASProject\\GitHub\\HMQL_Ebook\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\rexfu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "D:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
       ],
       "originalTargetFrameworks": [
         "net7.0-windows"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -143,7 +146,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "D:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   },
