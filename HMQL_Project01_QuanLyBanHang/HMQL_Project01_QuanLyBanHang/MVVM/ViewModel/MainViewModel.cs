@@ -123,6 +123,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             CategoryManagementViewCommand = new RelayCommand(o =>
             {
                 CurrentView = CategoryManagementVM;
+                
             });
             ProductListViewCommand = new RelayCommand(o =>
             {
@@ -136,5 +137,5 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 Application.Current.Windows[0].Close();
             });
         }
-    }
+    } 
 }

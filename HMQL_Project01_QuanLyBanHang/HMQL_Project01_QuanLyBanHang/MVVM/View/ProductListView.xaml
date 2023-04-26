@@ -6,7 +6,8 @@
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800" Loaded="Window_Loaded">
+             d:DesignHeight="450" d:DesignWidth="800" >
+    <!--Loaded="Window_Loaded"-->
     <!--<Window.Resources>
         <local:RelativeToAbsoluteConverter x:Key="absoluteConverter" />
     </Window.Resources>-->

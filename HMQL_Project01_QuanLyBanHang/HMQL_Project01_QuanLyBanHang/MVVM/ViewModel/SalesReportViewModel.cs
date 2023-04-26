@@ -7,30 +7,114 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using HMQL_Project01_QuanLyBanHang.MVVM.Model;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Windows;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
     class SalesReportViewModel : ObservableObject
     {
+        private RootObject data;
+        public RootObject Data
+        {
+            get => data;
+            set
+            {
+                data = value;
+                OnPropertyChanged(nameof(Data));
+            }
+        }
+        public RelayCommand CallData { get; set; }
+
         //Sale Series
-        public SeriesCollection SaleSeries { get; set; }
-        public string[] SaleLabels { get; set; }
-        public Func<double, string> SaleFormatter { get; set; }
+        private SeriesCollection saleSeries;
+        public SeriesCollection SaleSeries
+        {
+            get => saleSeries;
+            set
+            {
+                saleSeries = value;
+                OnPropertyChanged(nameof(SaleSeries));
+            }
+        }
+        private List<string> saleLabels;
+        public List<string> SaleLabels
+        {
+            get => saleLabels;
+            set
+            {
+                saleLabels = value;
+                OnPropertyChanged(nameof(SaleLabels));
+            }
+        }
+        private Func<double, string> saleFormatter;
+        public Func<double, string> SaleFormatter
+        {
+            get => saleFormatter;
+            set
+            {
+                saleFormatter = value;
+                OnPropertyChanged(nameof(SaleFormatter));
+            }
+        }
 
         //Product Series
         public SeriesCollection ProductSeries { get; set; }
         public string[] ProductLabels { get; set; }
         public Func<double, string> ProductFormatter { get; set; }
 
-        public SalesReportViewModel() {
-            SaleSeries = new SeriesCollection() { };
-            SaleSeries.Add(new LineSeries
+        public SalesReportViewModel()
+        {
+            CallData = new RelayCommand(async o =>
             {
-                Title = "Sales",
-                Values = new ChartValues<double> { 2, 4, 8, 1, 10 }
+                var uri = new Uri($"{ConnectionString.connectionString}/order/report?minDate=2023-03-27&maxDate=2023-05-02&mode=day");
+
+                try
+                {
+                    using var client = new HttpClient();
+                    var response = await client.GetAsync(uri);
+
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        Data = JsonConvert.DeserializeObject<RootObject>(json);
+                        // Handle the successful upload
+                        //MessageBox.Show($"Success Call Data {Data.incomeReport[0]._id.date}");
+                        SaleSeries = new SeriesCollection() { };
+                        SaleSeries.Add(new LineSeries
+                        {
+                            Title = "Doanh thu",
+                            Values = new ChartValues<double>()
+                        });
+                        SaleLabels = new List<string>();
+                        for (int i = 0; i < Data.incomeReport.Count; i++)
+                        {
+                            SaleSeries[0].Values.Add(Data.incomeReport[i].totalIncome);
+                            SaleLabels.Add(Data.incomeReport[i]._id.date);
+                        }
+                        SaleFormatter = value => value.ToString("N");
+                    }
+                    else { MessageBox.Show($"Fail To Call Data"); }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
-            SaleLabels = new[] { "01/04", "02/04", "03/04", "04/04", "05/04" };
-            SaleFormatter = value => value.ToString("N");
+
+            CallData.Execute(null);
+
+            //SaleSeries = new SeriesCollection() { };
+            //SaleSeries.Add(new LineSeries
+            //{
+            //    Title = "Doanh thu",
+            //    Values = new ChartValues<double> { 140000, 128000, 228000, 128000}
+            //});
+            //SaleLabels = new[] { "01/04", "02/04", "03/04", "04/04" };
+            //SaleFormatter = value => value.ToString("N");
 
             ProductSeries = new SeriesCollection() { };
             ProductSeries.Add(new RowSeries

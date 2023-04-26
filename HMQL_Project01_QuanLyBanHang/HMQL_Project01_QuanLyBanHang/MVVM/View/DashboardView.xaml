@@ -37,7 +37,7 @@
 
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <TextBlock Text="178"
+                                <TextBlock Text="{Binding Data.numOfBooks}" d:Text="187"
                                        Foreground="Black" FontSize="16" FontWeight="Bold"/>
                                 <TextBlock Text="Sản Phẩm"
                                        Foreground="#CC000000" FontSize="12" FontWeight="Medium"/>
@@ -49,6 +49,9 @@
                         CornerRadius="12"
                         Margin="0 0 32 0"
                         BorderBrush="LightGray" BorderThickness="1">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding OrderCardClickCommand}"/>
+                        </Border.InputBindings>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="4*"/>
@@ -60,10 +63,28 @@
 
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <TextBlock Text="30"
+                                <TextBlock Text="{Binding NumOrder}" d:Text="30"
                                        Foreground="Black" FontSize="16" FontWeight="Bold"/>
-                                <TextBlock Text="Đơn hàng"
+                                <TextBlock Text="Đơn hàng mới"
                                        Foreground="#CC000000" FontSize="12" FontWeight="Medium"/>
+                                <ComboBox Margin="0 0 32 0">
+                                    <ComboBox.Resources>
+                                        <Style TargetType="{x:Type ComboBoxItem}">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="BorderBrush" Value="Transparent"/>
+                                        </Style>
+                                    </ComboBox.Resources>
+                                    <ComboBoxItem Content="Tuần" IsSelected="{Binding WeekOrderIsSelected}">
+                                        <ComboBoxItem.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick" Command="{Binding ChooseWeek}"/>
+                                        </ComboBoxItem.InputBindings>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem Content="Tháng" IsSelected="{Binding MonthOrderIsSelected}">
+                                        <ComboBoxItem.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick" Command="{Binding ChooseMonth}"/>
+                                        </ComboBoxItem.InputBindings>
+                                    </ComboBoxItem>
+                                </ComboBox>
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -95,7 +116,7 @@
                 </StackPanel>
 
                 <!--Chart Section-->
-                <!--<Grid Height="280" Margin="0 32 0 0">
+                <Grid Height="280" Margin="0 32 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="6*"/>
                         <ColumnDefinition Width="4*"/>
@@ -106,10 +127,6 @@
                         BorderBrush="LightGray" BorderThickness="1"
                         Padding="12">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="199*"/>
-                                <ColumnDefinition Width="241*"/>
-                            </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="52"/>
                                 <RowDefinition/>
@@ -121,7 +138,7 @@
                             </StackPanel>
                             <lvc:CartesianChart Name="columnChart" Grid.Row="1"
                                     Series="{Binding SeriesCollection}" 
-                                    LegendLocation="Bottom" Grid.ColumnSpan="2">
+                                    LegendLocation="Bottom">
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Title="Dates" Labels="{Binding Labels}">
                                         <lvc:Axis.Separator>
@@ -136,7 +153,7 @@
 
                         </Grid>
                     </Border>
-                </Grid>-->
+                </Grid>
                 
                 <!--Top 5-->
                 <Border Background="White"
@@ -144,59 +161,91 @@
                         Margin="0 32 0 0"
                         Padding="16">
                     <StackPanel>
-                        <TextBlock Text="Top 5 Sản Phẩm Bán Chạy Nhất"
+                        <TextBlock Text="Top 5 Sản Phẩm Sắp Hết Hàng"
                                    Margin="0 0 0 16"
                                    FontSize="20"
                                    FontWeight="DemiBold"/>
                         <Border CornerRadius="12"
                                 BorderBrush="Gray"
                                 BorderThickness="1">
-                            <ListView Height="240" Margin="12"
+                            <StackPanel>
+                                <Grid Width="700"
+                                      Margin="16 12 16 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.ColumnSpan="4"
+                                            BorderBrush="LightGray"
+                                            BorderThickness="0 0 0 1"/>
+                                    <TextBlock Grid.Column="0"
+                                               Text="Book ID"
+                                               FontSize="16"
+                                               Padding="8"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Book Title"
+                                               FontSize="16"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2"
+                                               Text="Book Author"
+                                               FontSize="16"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Column="3"
+                                               Text="Stock"
+                                               FontSize="16"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                                <ListView Height="220" Margin="12 0 12 12"
                                       BorderBrush="Transparent"
                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                       ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                      ItemsSource="{Binding Top5Books}" d:ItemsSource="{d:SampleData ItemCount=5}">
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ListViewItem}">
-                                        <!--<EventSetter Event="MouseDoubleClick"
-                                                     Handler="viewDetail"/>-->
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Width="700"
+                                      ItemsSource="{Binding Data.listOfBookOutOfStock}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="700"
                                               Margin="0 0 0 -2"
                                               Background="Transparent">
-                                            <Grid.InputBindings>
-                                                <MouseBinding MouseAction="LeftClick" 
+                                                <Grid.InputBindings>
+                                                    <MouseBinding MouseAction="LeftClick" 
                                                               Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ItemClickCommand}"
-                                                              CommandParameter="{Binding id}"/>
-                                            </Grid.InputBindings>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="3*"/>
-                                                <ColumnDefinition Width="3*"/>
-                                                <ColumnDefinition Width="3*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Border Grid.ColumnSpan="4"
+                                                              CommandParameter="{Binding _id}"/>
+                                                </Grid.InputBindings>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Border Grid.ColumnSpan="4"
                                                     BorderBrush="Gray"
                                                     BorderThickness="0 0 0 0.5"/>
-                                            <TextBlock Text="{Binding id}" Padding="0 12"
+                                                <TextBlock Text="{Binding _id}" Padding="0 12"
                                                        Foreground="Blue"
                                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="1"
-                                                       Text="{Binding title}"
+                                                <TextBlock Grid.Column="1"
+                                                       Text="{Binding name}" Margin="32 0" TextWrapping="NoWrap"
+                                                       TextTrimming="CharacterEllipsis"
                                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="2"
-                                                       Text="{Binding author}"
+                                                <TextBlock Grid.Column="2"
+                                                       Text="{Binding author}" Margin="32 0" TextWrapping="NoWrap"
+                                                       TextTrimming="CharacterEllipsis"
                                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            <TextBlock Grid.Column="3"
-                                                       Text="{Binding stock}"
+                                                <TextBlock Grid.Column="3"
+                                                       Text="{Binding stock}" Margin="32 0" TextWrapping="NoWrap"
+                                                       TextTrimming="CharacterEllipsis"
                                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
                         </Border>
                     </StackPanel>
                 </Border>
