@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang"
         xmlns:viewModel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         Height="600" Width="920"
         Background="Transparent"
@@ -75,10 +76,12 @@
                    Width="52"
                    Height="52"
                    Margin="4"/>
-                <TextBlock Text="HMQL Group" Foreground="#FF3A36DB"
+                <TextBlock Foreground="#FF3A36DB"
                            FontSize="16" FontWeight="DemiBold"
                            HorizontalAlignment="Center"
-                           Margin="0 0 0 16"/>
+                           Margin="0 0 0 16">
+                    <Run Text="HMQL Group"/>
+                </TextBlock>
 
                 <RadioButton Content="Dashboard"
                              Height="50" FontSize="16"

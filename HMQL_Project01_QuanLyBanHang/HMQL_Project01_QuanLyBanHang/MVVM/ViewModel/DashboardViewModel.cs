@@ -10,34 +10,76 @@ using System.Threading.Tasks;
 using HMQL_Project01_QuanLyBanHang.MVVM.Model;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Runtime.CompilerServices;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
     class DashboardViewModel : ObservableObject
     {
-        private List<Top5Book> top5Books;
+        private DashboardDataModel data;
+        public DashboardDataModel Data
+        {
+            get => data;
+            set
+            {
+                data = value;
+                OnPropertyChanged(nameof(Data));
+            }
+        }
+
+        private bool monthOrderIsSelected;
+        public bool MonthOrderIsSelected
+        {
+            get => monthOrderIsSelected;
+            set
+            {
+                monthOrderIsSelected = value;
+                OnPropertyChanged(nameof(MonthOrderIsSelected));
+            }
+        }
+
+        private bool weekOrderIsSelected;
+        public bool WeekOrderIsSelected
+        {
+            get => weekOrderIsSelected;
+            set
+            {
+                weekOrderIsSelected = value;
+                OnPropertyChanged(nameof(WeekOrderIsSelected));
+            }
+        }
+
+        private int numOrder;
+        public int NumOrder
+        {
+            get => numOrder;
+            set
+            {
+                numOrder = value;
+                OnPropertyChanged(nameof(NumOrder));
+            }
+        }
+
+        public RelayCommand ChooseWeek { get; set; }
+        public RelayCommand ChooseMonth { get; set; }
+        public RelayCommand OrderCardClickCommand { get; set; }
 
         // COLUMN CHART
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
 
+        public RelayCommand CallData { get; set; }
+
         public RelayCommand SalesReportCommand { get; set; }
 
         public RelayCommand ItemClickCommand { get; set; }
 
-        public List<Top5Book> Top5Books
-        {
-            get => top5Books;
-            set
-            {
-                top5Books = value;
-                OnPropertyChanged(nameof(Top5Books));
-            }
-        }
-
         public DashboardViewModel(MainViewModel MainVM)
         {
+
             // COLUMN
             SeriesCollection = new SeriesCollection() { };
 
@@ -68,11 +110,63 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 new Top5Book() { id="010", title="Book 05", author="Author 05", stock=4 },
             };
 
-            Top5Books = origin.ToList();
+            //Top5Books = origin.ToList();
 
-            ItemClickCommand = new RelayCommand((param) => {
+            CallData = new RelayCommand(async o =>
+            {
+                var uri = new Uri($"{ConnectionString.connectionString}/dashboard");
+
+                try
+                {
+                    using var client = new HttpClient();
+                    var response = await client.GetAsync(uri);
+
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        Data = JsonConvert.DeserializeObject<DashboardDataModel>(json);
+                        ChooseWeek.Execute(null);
+                        // Handle the successful upload
+                        //MessageBox.Show($"Success Call Data {Data.listOfBookOutOfStock.Count}");
+                    }
+                    else { 
+                        //MessageBox.Show($"Fail To Call Data");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            });
+
+            CallData.Execute(null);
+
+            ChooseWeek = new RelayCommand(o =>
+            {
+                MonthOrderIsSelected = false;
+                WeekOrderIsSelected = true;
+                NumOrder = Data.numOfOrderThisWeek;
+                //MessageBox.Show("Đã cập nhật số đơn hàng trong tuần");
+            });
+
+            ChooseMonth = new RelayCommand(o =>
+            {
+                WeekOrderIsSelected = false;
+                MonthOrderIsSelected = true;
+                NumOrder = Data.numOfOrderThisMonth;
+                //MessageBox.Show("Đã cập nhật số đơn hàng trong tháng");
+            });
+
+            ItemClickCommand = new RelayCommand((param) =>
+            {
                 string id = param.ToString();
                 MessageBox.Show($"Item Clicked {id}");
+            });
+
+            OrderCardClickCommand = new RelayCommand(o => 
+            {
+                MessageBox.Show("Clicked On Order Card");
             });
 
             SalesReportCommand = new RelayCommand(o =>

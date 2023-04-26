@@ -24,7 +24,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.View
 
     public partial class DashboardView : UserControl
     {
-
         public DashboardView()
         {
             InitializeComponent();
