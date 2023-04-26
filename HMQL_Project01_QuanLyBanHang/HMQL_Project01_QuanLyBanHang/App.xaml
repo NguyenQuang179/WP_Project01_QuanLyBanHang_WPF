@@ -39,7 +39,11 @@
             <DataTemplate DataType="{x:Type viewModel:OrderMangementViewModel}">
                 <view:OrderManagementView/>
             </DataTemplate>
-            
+
+            <DataTemplate DataType="{x:Type viewModel:OrderDetailViewModel}">
+                <view:OrderDetailView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,33 +1,35 @@
-﻿<UserControl x:Class="HMQL_Project01_QuanLyBanHang.MVVM.View.OrderManagementView"
+﻿<UserControl x:Class="HMQL_Project01_QuanLyBanHang.MVVM.View.OrderDetailView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
-             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel" 
-             d:DataContext="{d:DesignInstance Type=viewmodel:OrderMangementViewModel}"
+             d:DataContext="{d:DesignInstance Type=viewmodel:DashboardViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="1544" d:DesignWidth="776">
 
-    
-    
+
+
     <Grid>
 
         <Border Background="#FFF1F4FA"
                 CornerRadius="24"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel >
-                <TextBlock Text="Order Management"
+            
+            <DockPanel>
+                <TextBlock DockPanel.Dock ="Top" Text="Order Management"
                        FontSize="24" FontWeight="Bold" 
                        Margin="32 16 32 0"/>
+                <StackPanel DockPanel.Dock="Left">
+              
                 <Border Height="117"     
                     HorizontalAlignment="Left"
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
                     BorderBrush="LightGray"
-                    Margin="16" Width="277">
+                    Margin="16" Width="500">
                     <DockPanel Margin="16">
                         <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
                             <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
@@ -107,7 +109,7 @@
                     BorderBrush="LightGray"
                     Margin="16">
 
-                    <DataGrid Grid.Row="10" SelectionChanged="DataGrid_SelectionChanged" FontSize="12" FontWeight="SemiBold" 
+                    <DataGrid Grid.Row="10"  FontSize="12" FontWeight="SemiBold" 
                               HorizontalAlignment="Center" Margin="0 10 0 0" BorderThickness="0" AlternatingRowBackground="#788B9A">
                         <DataGrid.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
@@ -161,7 +163,7 @@
                                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
                                 <DataGridTextColumn Header="Items Ordered" Binding="{Binding ItemsOrdered}" />
                                 <DataGridTextColumn Header="Total Amount" Binding="{Binding TotalAmount}" />
-                                
+
                             </DataGrid.Columns>
                             <DataGrid.RowDetailsTemplate>
                                 <DataTemplate>
@@ -191,8 +193,8 @@
                     </DataGrid
                               >
                 </Border>
-                 
-                    
+
+
                 <DockPanel>
                     <TextBlock x:Name="infoTextBlock" Text="1-10 of 100 pages." VerticalAlignment="Center"
                            DockPanel.Dock="Left"
@@ -214,10 +216,70 @@
                         </ComboBox>
                     </WrapPanel>
                 </DockPanel>
-                    
-               
+
+
             </StackPanel>
-            
+                <StackPanel DockPanel.Dock="Right">
+                    <!--Status-->
+                     <Border Height="117"     
+                    Background="White"
+                    CornerRadius="12"
+                    BorderThickness="1"
+                    BorderBrush="LightGray"
+                    Margin="16" Width="200">
+                    <DockPanel Margin="16">
+                        <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
+                            <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
+
+                            <Rectangle Width="20" Height="20" Canvas.Left="18" Canvas.Top="18">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="#2FE5A7"/>
+                                </Rectangle.Fill>
+                                <Rectangle.OpacityMask>
+                                    <ImageBrush ImageSource="../../Images/OrderManagementSVG/truck-solid.png"/>
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </Canvas>
+
+                        <TextBlock Text="20+"
+                               FontSize="22" FontWeight="DemiBold"
+                               Margin="0 16 0 0" DockPanel.Dock="Top"/>
+                        <TextBlock Text="Đơn hàng trong 1 tháng"
+                               FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
+                               Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                </Border>
+                    <!--Date-->
+                    <Border Height="117"     
+                    Background="White"
+                    CornerRadius="12"
+                    BorderThickness="1"
+                    BorderBrush="LightGray"
+                    Margin="16" Width="200">
+                        <DockPanel Margin="16">
+                            <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
+                                <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
+
+                                <Rectangle Width="20" Height="20" Canvas.Left="18" Canvas.Top="18">
+                                    <Rectangle.Fill>
+                                        <SolidColorBrush Color="#2FE5A7"/>
+                                    </Rectangle.Fill>
+                                    <Rectangle.OpacityMask>
+                                        <ImageBrush ImageSource="../../Images/OrderManagementSVG/truck-solid.png"/>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Canvas>
+
+                            <TextBlock Text="20+"
+                               FontSize="22" FontWeight="DemiBold"
+                               Margin="0 16 0 0" DockPanel.Dock="Top"/>
+                            <TextBlock Text="Đơn hàng trong 1 tháng"
+                               FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
+                               Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
+                        </DockPanel>
+                    </Border>
+                </StackPanel>
+            </DockPanel>
         </ScrollViewer>
     </Grid>
 </UserControl>

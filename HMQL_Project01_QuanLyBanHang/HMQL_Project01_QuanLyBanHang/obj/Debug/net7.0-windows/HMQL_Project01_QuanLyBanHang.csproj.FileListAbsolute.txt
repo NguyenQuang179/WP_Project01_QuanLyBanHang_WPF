@@ -55,6 +55,7 @@ D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_Qua
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\DashboardView.g.cs
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\HomeView.g.cs
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\LoginView.g.cs
+D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\OrderDetailView.g.cs
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\OrderManagementView.g.cs
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\RecoverPasswordView.g.cs
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\SalesReportView.g.cs
@@ -69,6 +70,7 @@ D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_Qua
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\DashboardView.baml
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\HomeView.baml
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\LoginView.baml
+D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\OrderDetailView.baml
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\OrderManagementView.baml
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\RecoverPasswordView.baml
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\SalesReportView.baml

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 D:\ASProject\GitHub\HMQL_Ebook\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\App.xaml
-111164942373
+13-325377439
 
-27-316306851
+30-2053595365
 200910006829
-MainWindow.xaml;MVVM\View\AuthenticationWindow.xaml;MVVM\View\DashboardView.xaml;MVVM\View\HomeView.xaml;MVVM\View\LoginView.xaml;MVVM\View\OrderManagementView.xaml;MVVM\View\RecoverPasswordView.xaml;MVVM\View\SalesReportView.xaml;MVVM\View\SignUpView.xaml;Themes\MenuButtonTheme.xaml;Themes\SearchBarTheme.xaml;
+MainWindow.xaml;MVVM\View\AuthenticationWindow.xaml;MVVM\View\DashboardView.xaml;MVVM\View\HomeView.xaml;MVVM\View\LoginView.xaml;MVVM\View\OrderCreateView.xaml;MVVM\View\OrderDetailView.xaml;MVVM\View\OrderManagementView.xaml;MVVM\View\RecoverPasswordView.xaml;MVVM\View\SalesReportView.xaml;MVVM\View\SignUpView.xaml;Themes\MenuButtonTheme.xaml;Themes\SearchBarTheme.xaml;
 
-False
+True
 

@@ -16,6 +16,9 @@
     <Compile Update="MVVM\View\LoginView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\OrderDetailView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\OrderManagementView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\LoginView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\OrderDetailView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\OrderManagementView.xaml">
