@@ -28,6 +28,17 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
         public RelayCommand CallData { get; set; }
 
+        private string searchValue;
+        public string SearchValue 
+        { 
+            get => searchValue;
+            set {
+                searchValue = value;
+                OnPropertyChanged(nameof(SearchValue));
+            }
+        }
+        public RelayCommand SearchCommand { get; set; }
+
         //Sale Series
         private SeriesCollection saleSeries;
         public SeriesCollection SaleSeries
@@ -107,14 +118,10 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             CallData.Execute(null);
 
-            //SaleSeries = new SeriesCollection() { };
-            //SaleSeries.Add(new LineSeries
-            //{
-            //    Title = "Doanh thu",
-            //    Values = new ChartValues<double> { 140000, 128000, 228000, 128000}
-            //});
-            //SaleLabels = new[] { "01/04", "02/04", "03/04", "04/04" };
-            //SaleFormatter = value => value.ToString("N");
+            SearchCommand = new RelayCommand(o =>
+            {
+                MessageBox.Show($"{SearchValue}");
+            });
 
             ProductSeries = new SeriesCollection() { };
             ProductSeries.Add(new RowSeries
@@ -124,6 +131,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             });
             ProductLabels = new[] { "New Book 1", "New Book 2", "New Book 3", "New Book 4", "New Book 5" };
             ProductFormatter = value => value.ToString("N");
+
+
         }
     }
 }

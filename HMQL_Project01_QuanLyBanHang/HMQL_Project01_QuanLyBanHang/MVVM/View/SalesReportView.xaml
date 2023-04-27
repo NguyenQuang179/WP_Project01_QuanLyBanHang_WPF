@@ -19,7 +19,7 @@
                 <TextBlock Text="Sales Report"
                        FontSize="24" FontWeight="Bold"
                        Margin="32 16 32 26"/>
-                <Border Height="320"
+                <!--<Border Height="320"
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
@@ -61,10 +61,10 @@
                             </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
                     </StackPanel>
-                </Border>
+                </Border>-->
 
                 <Border Background="White"
-                        Height="400"
+                        Height="440"
                         CornerRadius="12"
                         BorderThickness="1"
                         BorderBrush="LightGray"
@@ -74,8 +74,86 @@
                             <RowDefinition Height="52"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!--Search Bar-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox  Height="32" VerticalAlignment="Center"
+                                      VerticalContentAlignment="Center">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                                    <Border CornerRadius="8"
+                                                            Background="Transparent"
+                                                            BorderBrush="Black"
+                                                            BorderThickness="1"
+                                                            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                                                        <Grid>
+                                                            <Rectangle StrokeThickness="1"/>
+                                                            <TextBox Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"
+                                                             FontSize="12" Margin="8 0 8 0" 
+                                                             BorderThickness="0" Background="Transparent"
+                                                             VerticalContentAlignment="Center" Foreground="Black" x:Name="InputField">
+                                                                <TextBox.InputBindings>
+                                                                    <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
+                                                                </TextBox.InputBindings>
+                                                            </TextBox>
+                                                            <!--Placeholder-->
+                                                            <TextBlock IsHitTestVisible="False" Text="Search..."
+                                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                               Margin="10 0 8 0" FontSize="12" Foreground="DarkGray"
+                                                               Grid.Column="1">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Text, ElementName = InputField}" Value="">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Grid>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <ComboBox Grid.Column="1"
+                                      Margin="12"
+                                      VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                                <ComboBoxItem Content="Ngày" IsSelected="True"/>
+                                <ComboBoxItem Content="Tuần"/>
+                                <ComboBoxItem Content="Tháng"/>
+                                <ComboBoxItem Content="Năm"/>
+                            </ComboBox>
+                        </Grid>
                         <DataGrid Grid.Row="1"
-                                  Background="LightGray">
+                                  Background="LightGray"
+                                  ItemsSource="{Binding }">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Book ID"
+                                                    Binding="{Binding }"
+                                                    Width="3*"/>
+                                <DataGridTextColumn Header="Book Title" 
+                                                    Binding="{Binding }"
+                                                    Width="4*"/>
+                                <DataGridTextColumn Header="Sold Quantity" 
+                                                    Binding="{Binding }"
+                                                    Width="3*"/>
+                            </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
                 </Border>
