@@ -7,9 +7,6 @@
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800" Loaded="Window_Loaded">
-    <UserControl.DataContext>
-        <viewmodel:ProductListViewModel />
-    </UserControl.DataContext>
     <Grid>
 
         <Border Background="#FFF1F4FA"
@@ -59,7 +56,7 @@
                         Margin="10 16 32 0"
                         Grid.Column="1">
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding SearchCommand}" />
                         </Border.InputBindings>
                         <TextBlock
                             Margin="16 5 16 5"
@@ -92,13 +89,13 @@
                             Width="75"
                             Margin="10 0 10 0">
                             <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding AddBookCommand}" />
                             </Border.InputBindings>
                             <TextBlock
-                                Margin="16 5 16 5"
+                                Margin="26,0,0,0"
                                 Text="Add"
                                 FontSize="12" FontWeight="Bold" Foreground="White"
-                                HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </Border>
 
                         <Border
@@ -108,7 +105,7 @@
                             Width="75"
                             Margin="10 0 10 0">
                             <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding DeleteBookCommand}" />
                             </Border.InputBindings>
                             <TextBlock
                                 Margin="16 5 16 5"
@@ -121,8 +118,8 @@
                     <Grid
                     Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="530" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="7*" />
+                            <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
 
                         <Border
@@ -135,26 +132,41 @@
                             <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 Margin="16"
                                 BorderBrush="Transparent"
-                                x:Name="bookList">
+                                ItemsSource="{Binding Data.listOfBook}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Vertical" Width="200" Margin="0 0 10 10">
-                                            <Image
-                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                        Margin="0, 0, 5, 0"
-                                        Width="100" Height="100"
-                                        Source="{Binding Cover}" />
-
-                                            <TextBlock
-                                        TextWrapping="Wrap"
-                                        TextAlignment="Center"
-                                        Margin="0 10 0 0"><Run Text="{Binding Name}" Foreground="Red" /></TextBlock>
-
-                                            <TextBlock
-                                        TextWrapping="Wrap"
-                                        TextAlignment="Center"
-                                        Margin="0 10 0 0"><Run Text="Price" Foreground="Green" /></TextBlock>
-                                        </StackPanel>
+                                        <Grid Margin="0 0 0 -2"
+                                              Background="Transparent">
+                                            <Grid.InputBindings>
+                                                <MouseBinding MouseAction="LeftClick"
+                                                              Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ItemClickCommand}"
+                                                              CommandParameter="{Binding _id}" />
+                                            </Grid.InputBindings>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="3*" />
+                                                <ColumnDefinition Width="3*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.ColumnSpan="4"
+                                                    BorderBrush="Gray"
+                                                    BorderThickness="0 0 0 0.5" />
+                                            <TextBlock Text="{Binding _id}" Padding="0 8"
+                                                       Foreground="Blue" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
+                                                        VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding name}" Padding="32 0" TextWrapping="NoWrap"
+                                                       TextTrimming="CharacterEllipsis"
+                                                        VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="2"
+                                                       Text="{Binding author}" Padding="32 0" TextWrapping="NoWrap"
+                                                       TextTrimming="CharacterEllipsis"
+                                                        VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="3"
+                                                       Text="{Binding stock}" Padding="32 0" TextWrapping="NoWrap"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                                 <ListView.ItemsPanel>
@@ -237,7 +249,7 @@
                                     BorderBrush="LightGray"
                                     Grid.Column="1" Width="75">
                                     <Border.InputBindings>
-                                        <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding ApplySortCommand}" />
                                     </Border.InputBindings>
                                     <TextBlock
                                         Margin="16 5 16 5"
