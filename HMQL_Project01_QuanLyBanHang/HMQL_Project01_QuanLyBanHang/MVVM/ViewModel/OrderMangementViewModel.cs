@@ -56,16 +56,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             OrderDetailViewCommand = new RelayCommand((param) =>
             {
                 string id = param.ToString();
-                if (OrderDetailVM == null)
-                {
-                    MessageBox.Show("ID IS:" + id);
-                    OrderDetailVM = new OrderDetailViewModel(id);
-                }
- 
-                else
-                    MessageBox.Show("No Selected Order");
-                if(OrderDetailVM != null)
-                    MainVM.CurrentView = OrderDetailVM;
+                MessageBox.Show("ID IS:" + id);
+                OrderDetailVM = new OrderDetailViewModel(id);
+                //MessageBox.Show("No Selected Order");
+                
+                MainVM.CurrentView = OrderDetailVM;
 
             });
 
@@ -95,7 +90,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         for(int i = 0; i < Orders.listOfOrder.Count; i++)
                         {
                             datetime = DateTime.Parse(Orders.listOfOrder[i].date);
-                            newdate = datetime.ToString("dd/mm/y hh:mm tt");
+                            newdate = datetime.ToString("dd/MM/y hh:mm tt");
                             Orders.listOfOrder[i].date = newdate;
                         }
                         MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
