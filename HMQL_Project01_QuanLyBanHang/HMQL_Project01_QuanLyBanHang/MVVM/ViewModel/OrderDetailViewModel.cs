@@ -8,5 +8,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
     class OrderDetailViewModel
     {
+        public OrderDetailViewModel(String OrderID)
+        {
+        }
     }
 }

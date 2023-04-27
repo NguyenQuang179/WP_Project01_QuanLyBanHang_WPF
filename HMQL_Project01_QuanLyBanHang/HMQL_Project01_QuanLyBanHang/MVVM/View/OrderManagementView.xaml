@@ -5,12 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
-             xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
+             xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:OrderMangementViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="1544" d:DesignWidth="776">
-    <UserControl.DataContext>
-        <viewmodel:OrderMangementViewModel/>
-    </UserControl.DataContext>
     <Grid>
 
         <Border Background="#FFF1F4FA"
@@ -63,7 +60,7 @@
 
                         <TextBox Name="textBoxSearch"/>
 
-                        <Image Source="../../Images/OrderManagementSVG/truck-solid.png" Width="15" Height="15" 
+                        <Image Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png" Width="15" Height="15" 
                                VerticalAlignment="Center" Margin="0 0 15 0" HorizontalAlignment="Right" />
                     </Grid>
                     </Border>
@@ -73,22 +70,6 @@
                         <Border.Effect>
                             <DropShadowEffect  Opacity="0.3" Direction="300"  />
                         </Border.Effect>
-                        <ComboBox 
-                       Margin=" 8 0 8 0"
-                      x:Name="StatusTypeComboBox" 
-                      Width="100" Height="30">
-                            <ComboBox.Background>
-                                <LinearGradientBrush EndPoint="0,1">
-                                    <GradientStop Color="#FFF0F0F0"/>
-                                    <GradientStop Color="#FFFFFCFC" Offset="1"/>
-                                </LinearGradientBrush>
-                            </ComboBox.Background>
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock><Run Text="{Binding Item1, Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding Item2, Mode=OneWay}"/></TextBlock>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
                     </Border>
                    
                     <!--Refresh Button-->
@@ -118,7 +99,7 @@
                             <DropShadowEffect  Opacity="0.3" Direction="300" />
                         </Border.Effect>
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding OrderDetailViewCommand}"/>
                         </Border.InputBindings>
                         <TextBlock Text="Add Order" 
                                FontSize="12" FontWeight="DemiBold" Foreground="White"
@@ -135,37 +116,130 @@
                     BorderBrush="LightGray"
                     Margin="16">
 
-                    <DataGrid Grid.Row="10"  FontSize="12" FontWeight="SemiBold" 
-                              GridLinesVisibility="None"
+                    <DataGrid Grid.Row="10" x:Name="OrderDataGrid"
+                              GridLinesVisibility="None" 
+                              SelectedItem="{Binding SelectedOrder}"
                               HorizontalAlignment="Center" Margin="12" BorderThickness="0" 
-                              AlternatingRowBackground="#788B9A"
+                              AlternationCount="2" AlternatingRowBackground="#FFF1F4FA"
                               AutoGenerateColumns="False"
                               ItemsSource="{Binding Orders.listOfOrder}">
+                        <DataGrid.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" 
+                                          Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.OrderDetailViewCommand}"
+                                          CommandParameter="{Binding SelectedItem._id, ElementName=OrderDataGrid}"/>
+                        </DataGrid.InputBindings>
+            
                         <DataGrid.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
-                                <Setter Property="Background" Value="#F1F1F1" />
-                                <Setter Property="BorderBrush" Value="#E0E0E0" />
-                                <Setter Property="BorderThickness" Value="1" />
-                                <Setter Property="Padding" Value="5" />
+                                
                             </Style>
                         </DataGrid.CellStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Order ID" Binding="{Binding _id}"
                                                 IsReadOnly="True" CanUserResize="False" 
-                                                Width="1*"></DataGridTextColumn>
+                                                Width="1*">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="FontSize" Value="12" />
+                                        <Setter Property="FontWeight" Value="SemiBold" />
+
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Margin" Value="0 10 0 10"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                        <Setter Property="FontSize" Value="10" />
+                                        
+                                        <Setter Property="FontWeight" Value="DemiBold" />
+                                        <Setter Property="Foreground" Value="#788B9A"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
                             <DataGridTextColumn Header="Date" Binding="{Binding date}" 
                                                 IsReadOnly="True" CanUserResize="False" 
-                                                Width="1*"></DataGridTextColumn>
+                                                Width="1*">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="FontSize" Value="12" />
+                                        <Setter Property="FontWeight" Value="SemiBold" />
+
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Margin" Value="0 10 0 10"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                        <Setter Property="FontSize" Value="10" />
+
+                                        <Setter Property="FontWeight" Value="DemiBold" />
+                                        <Setter Property="Foreground" Value="#788B9A"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
                             <DataGridTextColumn Header="Total Price" Binding="{Binding totalPrice}" 
-                                                IsReadOnly="True" CanUserResize="False" 
-                                                Width="1*"></DataGridTextColumn>
-                            <DataGridTextColumn Header="" 
-                                                IsReadOnly="True" CanUserResize="False" 
-                                                Width="52"></DataGridTextColumn>
+                                                IsReadOnly="True" CanUserResize="False"
+                                                Width="1*">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="FontSize" Value="12" />
+                                        <Setter Property="FontWeight" Value="SemiBold" />
+
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Margin" Value="0 10 0 10"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
+                                        <Setter Property="FontSize" Value="10" />
+
+                                        <Setter Property="FontWeight" Value="DemiBold" />
+                                        <Setter Property="Foreground" Value="#788B9A"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                                
+                            <DataGridTemplateColumn Header="" IsReadOnly="True" Width="auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Width="20" Height="20" HorizontalAlignment="Center">
+                                                <Image Source="../../Images/OrderManagementSVG/trash-can-solid.png" Width="10" Height="10" 
+                                        VerticalAlignment="Center" Margin="0 0 0 0" HorizontalAlignment="Center" />
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
+                        <DataGrid.RowStyle>
+
+                            <Style TargetType="DataGridRow">
+                                
+                                <Style.Triggers>
+                                    <!--doesnt work-->
+                                    <Trigger Property="IsMouseOver"
+                           Value="True">
+                                        <Setter Property="FontWeight"
+                               Value="Bold" />
 
 
-                       
+                                    </Trigger>
+
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Foreground" Value="#FFFFFF"/>
+                                        <Setter Property="Background" Value="#3A36DB" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+
+                        </DataGrid.RowStyle>
+
+
 
                     </DataGrid>
                 </Border>

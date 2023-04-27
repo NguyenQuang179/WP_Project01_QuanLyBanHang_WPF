@@ -223,15 +223,15 @@
 
 
                 </StackPanel>
-                <StackPanel DockPanel.Dock="Right">
+                <StackPanel DockPanel.Dock="Right" >
                     <!--Status-->
-                    <Border Height="100"     
+                    <Border Height="100"  HorizontalAlignment="Left"   
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
                     BorderBrush="LightGray"
-                    Margin="0 16 16 0" Width="225">
-                        <DockPanel Margin="16">
+                    Margin="0 16 16 0" Width="210">
+                        <DockPanel Margin="12 16 8 16">
                             <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
                                 <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
 
@@ -254,13 +254,13 @@
                         </DockPanel>
                     </Border>
                     <!--Date-->
-                    <Border Height="100"     
+                    <Border Height="100" HorizontalAlignment="Left"
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
                     BorderBrush="LightGray"
-                    Margin="0 16 16 0" Width="225">
-                        <DockPanel Margin="16">
+                    Margin="0 16 16 0" Width="210">
+                        <DockPanel Margin="12 16 8 16 ">
                             <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
                                 <Ellipse Width="56" Height="56" Fill="#4DEDC85A"/>
 
@@ -283,13 +283,13 @@
                         </DockPanel>
                     </Border>
                     <!--Total Number-->
-                    <Border Height="100"     
+                    <Border Height="100"      HorizontalAlignment="Left"
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
                     BorderBrush="LightGray"
-                   Margin="0 16 16 0" Width="225">
-                        <DockPanel Margin="16">
+                   Margin="0 16 16 0" Width="210">
+                        <DockPanel Margin="8 16 8 16">
                             <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
                                 <Ellipse Width="56" Height="56" Fill="#4DFF69B4"/>
 
@@ -312,12 +312,12 @@
                     </Border>
                     <!--Total Price-->
                     <Border Height="100"     
-                    Background="White"
+                    Background="White" HorizontalAlignment="Left"
                     CornerRadius="12"
                     BorderThickness="1"
                     BorderBrush="LightGray"
-                    Margin="0 16 16 0" Width="225">
-                        <DockPanel Margin="16">
+                    Margin="0 16 16 0" Width="210">
+                        <DockPanel Margin="8 16 8 16">
                             <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
                                 <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
 
@@ -342,9 +342,9 @@
                     </Border>
                     <!-- Cancel Change Button-->
                     <Border
-                        Background="#FFFF69B4"
+                        Background="#FFFF69B4" HorizontalAlignment="Left"
                         CornerRadius="4"
-                        Margin="0 16 16 0" Width="225" Height="25">
+                        Margin="0 16 16 0" Width="210" Height="25">
                         <Border.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
                         </Border.InputBindings>
@@ -354,9 +354,9 @@
                     </Border>
                     <!--Confirm Change Button-->
                     <Border
-                        Background="#FF2FE5A7"
+                        Background="#FF2FE5A7" HorizontalAlignment="Left"
                         CornerRadius="4"
-                        Margin="0 16 16 0" Width="225" Height="25">
+                        Margin="0 16 16 0" Width="210" Height="25">
                         <Border.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
                         </Border.InputBindings>
