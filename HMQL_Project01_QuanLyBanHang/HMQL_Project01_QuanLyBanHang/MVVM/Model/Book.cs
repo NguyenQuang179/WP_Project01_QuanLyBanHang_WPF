@@ -17,6 +17,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
         public int price { get; set; }
         public int stock { get; set; }
         public string category { get; set; }
+        public string __v { get; set; }
+
     }
 }
 

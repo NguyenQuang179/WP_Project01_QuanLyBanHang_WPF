@@ -34,6 +34,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         
         public RelayCommand CategoryManagementViewCommand { get; set; }
 
+
         public HomeViewModel HomeVM { get; set; }
 
         public DashboardViewModel DashboardVM { get; set; }
@@ -65,7 +66,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             SalesReportVM = new SalesReportViewModel();
 
-            OrderManagementVM = new OrderMangementViewModel();
+            OrderManagementVM = new OrderMangementViewModel(this);
 
             CategoryManagementVM = new CategoryManagementViewModel();
 

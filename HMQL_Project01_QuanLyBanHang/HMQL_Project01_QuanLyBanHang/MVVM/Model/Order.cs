@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
 {
+    
     public class BookInOrder
     {
         public string _id {  get; set; }
