@@ -8,6 +8,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
 {
     internal class ProductListDataModel
     {
-        public List<Book> bookinshelf { get; set; }
+        public List<Book> listOfBook { get; set; }
     }
 }

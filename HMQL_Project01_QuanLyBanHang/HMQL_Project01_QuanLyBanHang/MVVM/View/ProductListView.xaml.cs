@@ -24,10 +24,10 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.View
     {
         //private ObservableCollection<Book> _book = null;
 
-        //public ProductListView()
-        //{
-        //    InitializeComponent();
-        //}
+        public ProductListView()
+        {
+            InitializeComponent();
+        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

@@ -18,12 +18,20 @@
             <StackPanel>
                 <StackPanel
                     Orientation="Horizontal">
-                    <TextBlock
-                    Margin="32 16 10 0"
-                    Grid.Row="0"
-                    Text="Product"
-                    FontSize="24" FontWeight="Bold"
-                    Width="95" />
+                    <Border
+                        HorizontalAlignment="Right"
+                        Background="Transparent"
+                        CornerRadius="12"
+                        Margin="32 16 10 0">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                        </Border.InputBindings>
+                        <TextBlock
+                            Text="&lt; Back"
+                            FontSize="24" FontWeight="Bold" Foreground="Black"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                        </TextBlock>
+                    </Border>
                 </StackPanel>
 
                 <Border
