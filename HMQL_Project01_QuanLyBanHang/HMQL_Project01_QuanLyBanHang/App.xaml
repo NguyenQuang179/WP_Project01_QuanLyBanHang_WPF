@@ -40,29 +40,28 @@
                 <view:ProductListView />
             </DataTemplate>
 
-
             <DataTemplate DataType="{x:Type viewModel:ProductViewModel}">
                 <view:ProductView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:ProductAddViewModel}">
                 <view:ProductAddView />
+            </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:OrderMangementViewModel}">
-                <view:OrderManagementView/>
+                <view:OrderManagementView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:OrderDetailViewModel}">
-                <view:OrderDetailView/>
+                <view:OrderDetailView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:OrderCreateViewModel}">
-                <view:OrderCreateView/>
+                <view:OrderCreateView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:CategoryManagementViewModel}">
-                <view:CategoryManagementView/>
-
+                <view:CategoryManagementView />
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
