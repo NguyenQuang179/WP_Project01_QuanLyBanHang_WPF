@@ -1,5 +1,4 @@
-﻿using BookDataBinding;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -23,12 +22,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.View
     /// </summary>
     public partial class ProductListView : UserControl
     {
-        private ObservableCollection<Book> _book = null;
+        //private ObservableCollection<Book> _book = null;
 
-        public ProductListView()
-        {
-            InitializeComponent();
-        }
+        //public ProductListView()
+        //{
+        //    InitializeComponent();
+        //}
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

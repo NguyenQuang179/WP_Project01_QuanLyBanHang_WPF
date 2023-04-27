@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Mime;
 using System.Security.Principal;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using HMQL_Project01_QuanLyBanHang.Core;
 using HMQL_Project01_QuanLyBanHang.MVVM.Model;
+using Newtonsoft.Json;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
-    internal class LoginViewModel : ObservableObject
+
+    class LoginViewModel : ObservableObject
     {
         private Account account;
 
@@ -24,15 +30,44 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         {
             account = new Account();
 
-            LoginCommand = new RelayCommand(o =>
+            LoginCommand = new RelayCommand(async o =>
             {
-                MessageBox.Show($"Username: {Username}\nPassword: {Password}");
-                Username = "none";
-                Password = "none";
+                //MessageBox.Show($"Username: {Username}\nPassword: {Password}");
+                //Username = "none";
+                //Password = "none";
 
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                Application.Current.Windows[0].Close();
+                var uri = new Uri($"{ConnectionString.connectionString}/dashboard");
+
+                try
+                {
+                    using var client = new HttpClient();
+                    //var jsonMsg = JsonConvert.SerializeObject(account);
+                    //var data = new StringContent(jsonMsg, Encoding.UTF8,"application/json");
+
+                    // Send the request and get the response
+                    //var response = await client.PostAsync(uri, data);
+                    var response = await client.GetAsync(uri);
+
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        // Handle the successful upload
+                        MessageBox.Show($"Success {json}");
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        Application.Current.Windows[0].Close();
+                    }
+                    else
+                    {
+                        // Handle the failed upload
+                        MessageBox.Show("Failed");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
 
             SignUpCommand = new RelayCommand(o =>

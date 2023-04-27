@@ -1,6 +1,4 @@
-﻿using LiveCharts;
-using LiveCharts.Wpf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,13 +16,11 @@ using System.Windows.Shapes;
 namespace HMQL_Project01_QuanLyBanHang.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for DashboardView.xaml
+    /// Interaction logic for OrderCreateView.xaml
     /// </summary>
-    /// 
-
-    public partial class DashboardView : UserControl
+    public partial class OrderCreateView : UserControl
     {
-        public DashboardView()
+        public OrderCreateView()
         {
             InitializeComponent();
         }
