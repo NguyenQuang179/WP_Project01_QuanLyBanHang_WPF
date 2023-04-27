@@ -19,6 +19,11 @@
     <Compile Update="MVVM\View\LoginView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+
+    <Compile Update="MVVM\View\ProductAddView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+
     <Compile Update="MVVM\View\OrderCreateView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,7 +33,11 @@
     <Compile Update="MVVM\View\OrderManagementView.xaml.cs">
     <SubType>Code</SubType>
     </Compile>
+
     <Compile Update="MVVM\View\ProductListView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\ProductView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\RecoverPasswordView.xaml.cs">
@@ -60,6 +69,11 @@
     <Page Update="MVVM\View\LoginView.xaml">
       <SubType>Designer</SubType>
     </Page>
+
+    <Page Update="MVVM\View\ProductAddView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+
     <Page Update="MVVM\View\OrderCreateView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -69,7 +83,11 @@
     <Page Update="MVVM\View\OrderManagementView.xaml">
      <SubType>Designer</SubType>
     </Page>
+
     <Page Update="MVVM\View\ProductListView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\ProductView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\RecoverPasswordView.xaml">
