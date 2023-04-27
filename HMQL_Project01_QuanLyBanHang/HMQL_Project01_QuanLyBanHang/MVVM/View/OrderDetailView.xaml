@@ -59,49 +59,63 @@
                         </DockPanel>
                     </Border>
 
-                    <WrapPanel  Margin=" 16 4 16 4">
+                    <WrapPanel  Margin=" 16 4 16 4" HorizontalAlignment="Stretch">
                         <!--Search Textbox-->
-                        <Grid Width="300" HorizontalAlignment="Left">
-                            <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False" />
+                        <Border>
+                            <Border.Effect>
+                                <DropShadowEffect Opacity="0.3" Direction="300" />
+                            </Border.Effect>
 
-                            <TextBox Name="textBoxSearch"/>
+                            <Grid Width="300" HorizontalAlignment="Left" Margin=" 0 0 0 0">
+                                <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False" />
 
-                            <Image Source="../../Images/OrderManagementSVG/truck-solid.png" Width="15" Height="15" 
+                                <TextBox Name="textBoxSearch"/>
+
+                                <Image Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png" Width="15" Height="15" 
                                VerticalAlignment="Center" Margin="0 0 15 0" HorizontalAlignment="Right" />
-                        </Grid>
+                            </Grid>
+                        </Border>
                         <!--Filter by Status-->
                         <!--SelectionChanged=""-->
-                        <ComboBox 
-                       
-                      x:Name="StatusTypeComboBox" 
-                      Width="100">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock><Run Text="{Binding Item1, Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding Item2, Mode=OneWay}"/></TextBlock>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
+                        <Border>
+                            <Border.Effect>
+                                <DropShadowEffect  Opacity="0.3" Direction="300"  />
+                            </Border.Effect>
+                        </Border>
+
                         <!--Refresh Button-->
                         <Border
+                        Margin=" 8 0 8 0"
                         Background="#FFFFFF"
-                        CornerRadius="4">
+                        CornerRadius="4"
+                        Height="30" Width="80">
+                            <Border.Effect>
+                                <DropShadowEffect  Opacity="0.3" Direction="300" />
+                            </Border.Effect>
                             <Border.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
                             </Border.InputBindings>
+                            <TextBlock Text="Refresh" 
+                               FontSize="12" FontWeight="DemiBold" Foreground="#000000"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
 
-                        <!--Sign In Button-->
+                        <!--Add Order Button-->
                         <Border
+                        Margin=" 8 0 0 0"
                         Background="#FF3A36DB"
-                        CornerRadius="4">
+                        CornerRadius="4"
+                        Height="30" Width="80">
+                            <Border.Effect>
+                                <DropShadowEffect  Opacity="0.3" Direction="300" />
+                            </Border.Effect>
                             <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding OrderDetailViewCommand}"/>
                             </Border.InputBindings>
                             <TextBlock Text="Add Order" 
                                FontSize="12" FontWeight="DemiBold" Foreground="White"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-
                     </WrapPanel>
 
 
@@ -116,7 +130,7 @@
                               GridLinesVisibility="None" 
                               SelectedItem="{Binding SelectedOrder}"
                               HorizontalAlignment="Center" Margin="12" BorderThickness="0" 
-                              AlternationCount="2" AlternatingRowBackground="#FFF1F4FA"
+                              AlternationCount="2"
                               AutoGenerateColumns="False"
                               ItemsSource="{Binding OrderD.order.listOfBook}">
                             <DataGrid.InputBindings>
@@ -133,7 +147,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Book ID" Binding="{Binding book._id}"
                                                 IsReadOnly="True" CanUserResize="False" 
-                                                Width="1*">
+                                                Width="1.5*">
                                     <DataGridTextColumn.HeaderStyle>
                                         <Style TargetType="DataGridColumnHeader">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -149,13 +163,13 @@
                                             <Setter Property="FontSize" Value="10" />
 
                                             <Setter Property="FontWeight" Value="DemiBold" />
-                                            <Setter Property="Foreground" Value="#788B9A"/>
+                                           
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
                                 <DataGridTextColumn Header="Book Name" Binding="{Binding book.name}"
                                                 IsReadOnly="True" CanUserResize="False" 
-                                                Width="1*">
+                                                Width="2*">
                                     <DataGridTextColumn.HeaderStyle>
                                         <Style TargetType="DataGridColumnHeader">
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -171,7 +185,7 @@
                                             <Setter Property="FontSize" Value="10" />
 
                                             <Setter Property="FontWeight" Value="DemiBold" />
-                                            <Setter Property="Foreground" Value="#788B9A"/>
+                                           
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -194,7 +208,7 @@
                                             <Setter Property="FontSize" Value="10" />
 
                                             <Setter Property="FontWeight" Value="DemiBold" />
-                                            <Setter Property="Foreground" Value="#788B9A"/>
+                                           
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -216,7 +230,7 @@
                                             <Setter Property="FontSize" Value="10" />
 
                                             <Setter Property="FontWeight" Value="DemiBold" />
-                                            <Setter Property="Foreground" Value="#788B9A"/>
+                                           
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -238,7 +252,7 @@
                                             <Setter Property="FontSize" Value="10" />
 
                                             <Setter Property="FontWeight" Value="DemiBold" />
-                                            <Setter Property="Foreground" Value="#788B9A"/>
+                                           
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>-->
@@ -258,23 +272,27 @@
                             </DataGrid.Columns>
                             <DataGrid.RowStyle>
 
-                                <Style TargetType="DataGridRow">
+                                <Style TargetType="{x:Type DataGridRow}">
 
                                     <Style.Triggers>
-                                        <!--doesnt work-->
-                                        <Trigger Property="IsMouseOver"
-                           Value="True">
-                                            <Setter Property="FontWeight"
-                               Value="Bold" />
 
+                                        <Trigger Property="AlternationIndex" Value="1">
+                                            <Setter Property="Background" Value="#F1F4FA"/>
+
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#000000"/>
 
                                         </Trigger>
 
                                         <Trigger Property="IsSelected" Value="True">
+
+                                            <Setter Property="Background" Value="#2E29ED"/>
                                             <Setter Property="Foreground" Value="#FFFFFF"/>
-                                            <Setter Property="Background" Value="#3A36DB" />
                                         </Trigger>
+
                                     </Style.Triggers>
+                                    <Setter Property="Foreground" Value="#788B9A"/>
                                 </Style>
 
                             </DataGrid.RowStyle>
@@ -420,7 +438,7 @@
                             <TextBlock Text="{Binding OrderD.order.totalPrice}"
                                FontSize="18" FontWeight="DemiBold"
                                Margin="0 12 0 0" DockPanel.Dock="Top"/>
-                            <TextBlock Text="Payment"
+                            <TextBlock Text="Payment (VND)"
                                FontSize="12" FontWeight="SemiBold" Foreground="#788B9A"
                                Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
 
