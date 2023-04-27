@@ -5,17 +5,19 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border CornerRadius="12"
-                            Background="#353340"
-                            Width="200" Height="40">
+                    <Border CornerRadius="8"
+                            Background="White"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
                         <Grid>
                             <Rectangle StrokeThickness="1"/>
-                            <TextBox FontSize="16" Margin="1" Text="{TemplateBinding Text}" BorderThickness="0" Background="Transparent"
-                                     VerticalContentAlignment="Center" Padding="5" Foreground="White" x:Name="SearchBar"/>
+                            <TextBox FontSize="12" Margin="1" Text="{TemplateBinding Text}" BorderThickness="0" Background="Transparent"
+                                     VerticalContentAlignment="Center" Padding="8 0 8 0" Foreground="Black" x:Name="SearchBar"/>
                             <!--Placeholder-->
-                            <TextBlock IsHitTestVisible="False" Text="Search"
+                            <TextBlock IsHitTestVisible="False" Text="Search..."
                                        VerticalAlignment="Center" HorizontalAlignment="Left"
-                                       Margin="10 0 0 0" FontSize="16" Foreground="DarkGray"
+                                       Margin="10 0 0 0" FontSize="12" Foreground="Gray"
                                        Grid.Column="1">
 
                                 <TextBlock.Style>
