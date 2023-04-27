@@ -40,13 +40,6 @@ D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Pro
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.pdb
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.genruntimeconfig.cache
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\ref\HMQL_Project01_QuanLyBanHang.dll
-D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.exe
-D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.deps.json
-D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.runtimeconfig.json
-D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.dll
-D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.pdb
-D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\LiveCharts.dll
-D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\LiveCharts.Wpf.dll
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.csproj.AssemblyReference.cache
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\Themes\MenuButtonTheme.baml
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\Themes\SearchBarTheme.baml
@@ -55,6 +48,7 @@ D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBa
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\DashboardView.g.cs
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\HomeView.g.cs
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\LoginView.g.cs
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\ProductListView.g.cs
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\RecoverPasswordView.g.cs
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\SalesReportView.g.cs
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\SignUpView.g.cs
@@ -62,12 +56,22 @@ D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBa
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang_MarkupCompile.cache
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang_MarkupCompile.lref
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\ProductView.g.cs
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.exe
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.deps.json
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.runtimeconfig.json
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.dll
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.pdb
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\LiveCharts.dll
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\LiveCharts.Wpf.dll
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\App.baml
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MainWindow.baml
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\AuthenticationWindow.baml
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\DashboardView.baml
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\HomeView.baml
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\LoginView.baml
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\ProductListView.baml
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\ProductView.baml
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\RecoverPasswordView.baml
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\SalesReportView.baml
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\SignUpView.baml
@@ -82,5 +86,5 @@ D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBa
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.pdb
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.genruntimeconfig.cache
 D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\ref\HMQL_Project01_QuanLyBanHang.dll
-D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\ProductListView.g.cs
-D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\ProductListView.baml
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\ProductAddView.g.cs
+D:\###NAM_3\HK2\LT_WINDOW\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\ProductAddView.baml

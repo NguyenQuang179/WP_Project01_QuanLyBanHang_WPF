@@ -29,11 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="BookImages\BookImage_01.jpg" />
-    <Resource Include="BookImages\BookImage_02.jpg" />
-    <Resource Include="BookImages\BookImage_03.jpg" />
-    <Resource Include="BookImages\BookImage_04.jpg" />
-    <Resource Include="BookImages\BookImage_05.jpg" />
     <Resource Include="Images\facebook.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

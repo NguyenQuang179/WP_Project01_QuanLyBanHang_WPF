@@ -1,0 +1,202 @@
+﻿<UserControl x:Class="HMQL_Project01_QuanLyBanHang.MVVM.View.ProductAddView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
+             xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodel:ProductAddViewModel />
+    </UserControl.DataContext>
+    <Grid>
+
+        <Border Background="#FFF1F4FA"
+                CornerRadius="24" Grid.ColumnSpan="2" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2">
+            <StackPanel>
+                <StackPanel
+                    Orientation="Horizontal">
+                    <TextBlock
+                    Margin="32 16 10 0"
+                    Grid.Row="0"
+                    Text="Product"
+                    FontSize="24" FontWeight="Bold"
+                    Width="95" />
+                </StackPanel>
+
+                <Border
+                    Grid.Column="0"
+                    Background="White"
+                    CornerRadius="12"
+                    BorderThickness="1"
+                    BorderBrush="LightGray"
+                    Margin="16" Grid.ColumnSpan="2" Height="342">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            Margin="26,60,26,60">
+                            <Image
+                            RenderOptions.BitmapScalingMode="HighQuality"
+                            Source="{Binding}" />
+                        </Border>
+
+                        <Border Height="30"
+                                Background="#FF3A36DB"
+                                CornerRadius="12"
+                                Margin="57,294,57,16" Width="86">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                            </Border.InputBindings>
+                            <TextBlock Text="Browse"
+                                FontSize="16" FontWeight="DemiBold" Foreground="White"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+
+                        <ListView
+                            Grid.Column="1"
+                            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            Margin="0 16 16 16"
+                            BorderBrush="Transparent"
+                            x:Name="BookDetail">
+
+                            <TextBlock
+                                Text="Name"
+                                FontWeight="Bold"
+                                FontSize="16">
+                            </TextBlock>
+
+                            <TextBox
+                                Name = "bookNameTextBlock"
+                                Width="300"
+                                FontSize="14" Height="Auto"
+                                TextWrapping="Wrap"
+                                Margin="10 0 0 0"
+                                BorderThickness="0 0 0 1"
+                                IsReadOnly="True">
+                            </TextBox>
+
+                            <TextBlock
+                                Text="Category"
+                                FontWeight="Bold"
+                                FontSize="16">
+                            </TextBlock>
+
+                            <TextBox
+                                Name = "bookCategoryTextBlock"
+                                Width="300"
+                                FontSize="14"
+                                TextWrapping="Wrap"
+                                Margin="10 0 0 0"
+                                BorderThickness="0 0 0 1"
+                                IsReadOnly="True">
+                            </TextBox>
+
+                            <TextBlock
+                                Text="Author"
+                                FontWeight="Bold"
+                                FontSize="16">
+                            </TextBlock>
+
+                            <TextBox
+                                Name = "bookAuthorTextBlock"
+                                Width="300"
+                                FontSize="14"
+                                TextWrapping="Wrap"
+                                Margin="10 0 0 0"
+                                BorderThickness="0 0 0 1"
+                                IsReadOnly="True">
+                            </TextBox>
+
+                            <TextBlock
+                                Text="Published year"
+                                FontWeight="Bold"
+                                FontSize="16">
+                            </TextBlock>
+
+                            <TextBox
+                                Name = "bookPYTextBlock"
+                                Width="300"
+                                FontSize="14"
+                                TextWrapping="Wrap"
+                                Margin="10 0 0 0"
+                                BorderThickness="0 0 0 1"
+                                IsReadOnly="True">
+                            </TextBox>
+
+                            <TextBlock
+                                Text="Price"
+                                FontWeight="Bold"
+                                FontSize="16">
+                            </TextBlock>
+
+                            <TextBox
+                                Name = "bookPriceTextBlock"
+                                Width="300"
+                                FontSize="14"
+                                TextWrapping="Wrap"
+                                Margin="10 0 0 0"
+                                BorderThickness="0 0 0 1"
+                                IsReadOnly="True">
+                            </TextBox>
+
+                            <TextBlock
+                                Text="Stock"
+                                FontWeight="Bold"
+                                FontSize="16">
+                            </TextBlock>
+
+                            <TextBox
+                                Name = "bookStockTextBlock"
+                                Width="300"
+                                FontSize="14"
+                                TextWrapping="Wrap"
+                                Margin="10 0 0 0"
+                                BorderThickness="0 0 0 1"
+                                IsReadOnly="True">
+                            </TextBox>
+                        </ListView>
+
+                        <StackPanel
+                            Grid.Column="2">
+                            <Border
+                                Height="30"
+                                HorizontalAlignment="Right"
+                                Background="#FF3A36DB"
+                                CornerRadius="12"
+                                Margin="10 16 10 0" Width="86">
+                                <Border.InputBindings>
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                </Border.InputBindings>
+                                <TextBlock Text="Save"
+                                FontSize="16" FontWeight="DemiBold" Foreground="White"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+
+                            <Border
+                                Height="30"
+                                HorizontalAlignment="Right"
+                                Background="#FF3A36DB"
+                                CornerRadius="12"
+                                Margin="10 16 10 0" Width="86">
+                                <Border.InputBindings>
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                </Border.InputBindings>
+                                <TextBlock Text="Cancel"
+                                FontSize="16" FontWeight="DemiBold" Foreground="White"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

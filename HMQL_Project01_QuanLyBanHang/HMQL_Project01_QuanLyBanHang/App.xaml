@@ -39,6 +39,14 @@
             <DataTemplate DataType="{x:Type viewModel:ProductListViewModel}">
                 <view:ProductListView />
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ProductViewModel}">
+                <view:ProductView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ProductAddViewModel}">
+                <view:ProductAddView />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
