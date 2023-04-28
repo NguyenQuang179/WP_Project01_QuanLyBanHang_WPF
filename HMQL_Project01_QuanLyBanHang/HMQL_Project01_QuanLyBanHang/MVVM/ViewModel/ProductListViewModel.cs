@@ -15,7 +15,7 @@ using System.Windows;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
-    class ProductListViewModel : ObservableObject
+    internal class ProductListViewModel : ObservableObject
     {
         public RelayCommand SearchCommand { get; set; }
         public RelayCommand ApplySortCommand { get; set; }
@@ -37,6 +37,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public RelayCommand CallDataCommand { get; set; }
 
         public RelayCommand ItemClickCommand { get; set; }
+
+        public ProductViewModel ProductViewVM { get; set; }
 
         public ProductListViewModel(MainViewModel mainVM)
         {
@@ -70,7 +72,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             ItemClickCommand = new RelayCommand((param) =>
             {
                 string id = param.ToString();
-                MessageBox.Show($"Item Clicked {id}");
+                //MessageBox.Show($"Item Clicked {id}");
+
+                //mainVM.ProductViewCommand.Execute(null);
+                //ProductViewVM.CallDataFromListView.Execute(id);
+                ProductViewVM = new ProductViewModel(mainVM, id);
+                mainVM.CurrentView = ProductViewVM;
             });
 
             AddBookCommand = new RelayCommand(o =>

@@ -20,18 +20,17 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
     class OrderMangementViewModel : ObservableObject
     {
-
         public string id { get; set; }
         public RelayCommand OrderDetailViewCommand { get; set; }
 
         public OrderDetailViewModel? OrderDetailVM { get; set; }
-
 
         public RelayCommand OrderCreateViewCommand { get; set; }
         public OrderCreateViewModel OrderCreateVM { get; set; }
 
         public String SelectedOrderID { get; set; }
         public Order SelectedOrder { get; set; }
+
         private ListOfOrder orders;
         public ListOfOrder Orders
         {
@@ -46,14 +45,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public RelayCommand CallOrderData;
         public RelayCommand DeleteOrderData;
 
-
         public OrderMangementViewModel(MainViewModel MainVM)
         {
             orders = new ListOfOrder();
 
             SelectedOrder = null;
             OrderDetailVM = null;
-
 
 
 
@@ -65,7 +62,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 //MessageBox.Show("No Selected Order");
 
                 MainVM.CurrentView = OrderDetailVM;
-
             });
 
             OrderCreateViewCommand = new RelayCommand(o =>
@@ -73,7 +69,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OrderCreateVM = new OrderCreateViewModel(MainVM);
                 MainVM.CurrentView = OrderCreateVM;
             });
-
 
             CallOrderData = new RelayCommand(async o =>
             {
@@ -83,7 +78,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     using var client = new HttpClient();
                     var response = await client.GetAsync(uri);
-
 
                     // Check if the upload was successful
                     if (response.IsSuccessStatusCode)
