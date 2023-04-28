@@ -51,7 +51,7 @@
                             Margin="26,60,26,60">
                             <Image
                             RenderOptions.BitmapScalingMode="HighQuality"
-                            Source="{Binding}" />
+                            Source="{Binding ImagePath}" />
                         </Border>
 
                         <Border Height="30"
@@ -59,7 +59,7 @@
                                 CornerRadius="12"
                                 Margin="57,294,57,16" Width="86">
                             <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding BrowseImageCommand}" />
                             </Border.InputBindings>
                             <TextBlock Text="Browse"
                                 FontSize="16" FontWeight="DemiBold" Foreground="White"
@@ -150,7 +150,7 @@
                                 Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
-                                TextWrapping="Wrap"/> -->
+                                TextWrapping="Wrap" /> -->
                             <Grid
                                 Margin="10 0 0 12"
                                 Width="300">
@@ -203,25 +203,11 @@
                                 HorizontalAlignment="Right"
                                 Background="#FF3A36DB"
                                 CornerRadius="12"
-                                Margin="10 16 20 0" Width="86">
+                                Margin="10 16 10 0" Width="86">
                                 <Border.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddBookToAPICommand}" />
                                 </Border.InputBindings>
                                 <TextBlock Text="Save"
-                                FontSize="16" FontWeight="DemiBold" Foreground="White"
-                                HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Border>
-
-                            <Border
-                                Height="30"
-                                HorizontalAlignment="Right"
-                                Background="#FF3A36DB"
-                                CornerRadius="12"
-                                Margin="10 16 10 0" Width="86">
-                                <Border.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding BackCommand}" />
-                                </Border.InputBindings>
-                                <TextBlock Text="Cancel"
                                 FontSize="16" FontWeight="DemiBold" Foreground="White"
                                 HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>

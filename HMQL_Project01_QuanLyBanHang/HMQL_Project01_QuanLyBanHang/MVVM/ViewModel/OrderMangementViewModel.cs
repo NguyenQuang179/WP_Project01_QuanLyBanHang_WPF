@@ -16,23 +16,23 @@ using HMQL_Project01_QuanLyBanHang.MVVM.View;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
-   
-    class OrderMangementViewModel : ObservableObject
+    internal class OrderMangementViewModel : ObservableObject
     {
-
         public string id { get; set; }
         public RelayCommand OrderDetailViewCommand { get; set; }
 
         public OrderDetailViewModel? OrderDetailVM { get; set; }
-
 
         public RelayCommand OrderCreateViewCommand { get; set; }
         public OrderCreateViewModel OrderCreateVM { get; set; }
 
         public String SelectedOrderID { get; set; }
         public Order SelectedOrder { get; set; }
+
         private ListOfOrder orders;
-        public ListOfOrder Orders {
+
+        public ListOfOrder Orders
+        {
             get => orders;
             set
             {
@@ -43,8 +43,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand CallOrderData;
 
-
-        public OrderMangementViewModel(MainViewModel MainVM) { 
+        public OrderMangementViewModel(MainViewModel MainVM)
+        {
             orders = new ListOfOrder();
 
             SelectedOrder = null;
@@ -52,23 +52,20 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             OrderCreateVM = new OrderCreateViewModel();
 
-
             OrderDetailViewCommand = new RelayCommand((param) =>
             {
                 id = param.ToString();
                 MessageBox.Show("ID IS:" + id);
                 OrderDetailVM = new OrderDetailViewModel(MainVM, id);
                 //MessageBox.Show("No Selected Order");
-                
-                MainVM.CurrentView = OrderDetailVM;
 
+                MainVM.CurrentView = OrderDetailVM;
             });
 
             OrderCreateViewCommand = new RelayCommand(o =>
             {
                 MainVM.CurrentView = OrderCreateVM;
             });
-
 
             CallOrderData = new RelayCommand(async o =>
             {
@@ -79,7 +76,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     using var client = new HttpClient();
                     var response = await client.GetAsync(uri);
 
-
                     // Check if the upload was successful
                     if (response.IsSuccessStatusCode)
                     {
@@ -87,7 +83,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         Orders = JsonConvert.DeserializeObject<ListOfOrder>(json);
                         string newdate = "";
                         DateTime datetime = DateTime.Now;
-                        for(int i = 0; i < Orders.listOfOrder.Count; i++)
+                        for (int i = 0; i < Orders.listOfOrder.Count; i++)
                         {
                             datetime = DateTime.Parse(Orders.listOfOrder[i].date);
                             newdate = datetime.ToString("dd/MM/y hh:mm tt");
