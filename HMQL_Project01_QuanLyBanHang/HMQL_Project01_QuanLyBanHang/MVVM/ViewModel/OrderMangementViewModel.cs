@@ -13,10 +13,12 @@ using System.Windows;
 using System.Collections.Specialized;
 using System.Windows.Controls;
 using HMQL_Project01_QuanLyBanHang.MVVM.View;
+using System.Security.Policy;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
-    internal class OrderMangementViewModel : ObservableObject
+
+    class OrderMangementViewModel : ObservableObject
     {
         public string id { get; set; }
         public RelayCommand OrderDetailViewCommand { get; set; }
@@ -30,7 +32,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public Order SelectedOrder { get; set; }
 
         private ListOfOrder orders;
-
         public ListOfOrder Orders
         {
             get => orders;
@@ -42,6 +43,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
 
         public RelayCommand CallOrderData;
+        public RelayCommand DeleteOrderData;
 
         public OrderMangementViewModel(MainViewModel MainVM)
         {
@@ -50,7 +52,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             SelectedOrder = null;
             OrderDetailVM = null;
 
-            OrderCreateVM = new OrderCreateViewModel();
+
 
             OrderDetailViewCommand = new RelayCommand((param) =>
             {
@@ -64,6 +66,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             OrderCreateViewCommand = new RelayCommand(o =>
             {
+                OrderCreateVM = new OrderCreateViewModel(MainVM);
                 MainVM.CurrentView = OrderCreateVM;
             });
 
@@ -96,6 +99,49 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+            });
+
+            DeleteOrderData = new RelayCommand(async (param) =>
+            {
+                MessageBox.Show("Hello");
+                List<Order> curList = Orders.listOfOrder;
+                // Find the index of the book to remove
+
+                string orderId = param as string;
+                if (orderId == null)
+                {
+                    //show error
+                    MessageBox.Show("Invalid Order ID");
+                    return;
+                }
+                // Find the index of the book to remove
+                int indexToRemove = curList.FindIndex(b => b._id == orderId);
+
+
+                if (indexToRemove != -1)
+                {
+                    // Remove the book from curList
+                    using var client = new HttpClient();
+                    var uri = new Uri($"{ConnectionString.connectionString}/order/delete/{orderId}");
+                    var response = await client.DeleteAsync(uri);
+
+
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show(json);
+                        //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
+                    }
+                    else { MessageBox.Show($"Fail To Delete Order"); }
+                    curList.RemoveAt(indexToRemove);
+
+                }
+                else
+                {
+                    //show error
+                    MessageBox.Show("No Order Selected");
                 }
             });
 

@@ -65,9 +65,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public ProductAddViewModel ProductAddVM { get; set; }
 
-        public ProductViewModel ProductViewVM { get; set; }
-
-        //public CategoryManagementViewModel CategoryManagementVM { get; set; }
 
         private object _currentView;
 
