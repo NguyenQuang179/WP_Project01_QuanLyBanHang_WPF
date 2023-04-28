@@ -101,7 +101,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             public RelayCommand ConfirmOrderDetailData { get; set; }
             public RelayCommand DeleteBookDetailData { get; set; }
-            public OrderDetailViewModel(MainViewModel MainVM, String OrderID)
+
+        public RelayCommand CancelCommand { get; set; }
+        public OrderDetailViewModel(MainViewModel MainVM, String OrderID)
             {
             //orders = new ListOfOrder();
 
@@ -184,7 +186,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     // Remove the book from curList
                     curList.RemoveAt(indexToRemove);
-                    
+                    MessageBox.Show("Book has been Deleted, Please Refresh");
                 }
                 else
                 {
@@ -198,6 +200,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 MainVM.OrderAddBookVM.IsAddBookForEditingOrder = true;
                 MainVM.OrderAddBookViewCommand.Execute(MainVM);
             });
+            CancelCommand = new RelayCommand(o => {
+                MainVM.OrderManagementVM.OrderCreateVM = null;
+                MainVM.CurrentView = MainVM.OrderManagementVM;
+            });
+
 
             CallOrderDetailData = new RelayCommand(async o =>
                 {

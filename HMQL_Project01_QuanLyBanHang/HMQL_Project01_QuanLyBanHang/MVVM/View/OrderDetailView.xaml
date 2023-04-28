@@ -443,9 +443,9 @@
                         CornerRadius="4"
                         Margin="0 16 16 0" Width="210" Height="25">
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding CancelCommand}"/>
                         </Border.InputBindings>
-                        <TextBlock Text="Delete Changes" 
+                        <TextBlock Text="Cancel" 
                                FontSize="16" FontWeight="Bold" Foreground="White"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>

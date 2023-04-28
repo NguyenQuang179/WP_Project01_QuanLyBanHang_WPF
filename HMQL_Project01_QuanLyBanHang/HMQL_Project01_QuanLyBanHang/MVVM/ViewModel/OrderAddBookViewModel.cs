@@ -83,6 +83,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public RelayCommand AddBookCommand { get; set; }
         public RelayCommand DeleteBookCommand { get; set; }
 
+        public RelayCommand CancelCommand { get; set;  }
+
         private ProductListDataModel data;
 
         public ProductListDataModel Data
@@ -163,6 +165,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 MainVM.ProductAddViewCommand.Execute(null);
             });
+
 
             ConfirmBookSelectionCommand = new RelayCommand(o =>
             {
