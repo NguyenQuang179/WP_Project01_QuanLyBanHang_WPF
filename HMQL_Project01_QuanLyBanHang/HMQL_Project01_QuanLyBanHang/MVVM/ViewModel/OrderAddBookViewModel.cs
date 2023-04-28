@@ -81,6 +81,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public RelayCommand SearchCommand { get; set; }
         public RelayCommand ApplySortCommand { get; set; }
         public RelayCommand AddBookCommand { get; set; }
+        public RelayCommand ReturnToViewCommand { get; private set; }
         public RelayCommand DeleteBookCommand { get; set; }
 
         public RelayCommand CancelCommand { get; set;  }
@@ -130,7 +131,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             
             CallDataCommand = new RelayCommand(async o =>
             {
-                var uri = new Uri($"{ConnectionString.connectionString}/book/search");
+                var uri = new Uri($"{ConnectionString.connectionString}/book/search?page=1&itemPerPage=10000000");
 
                 try
                 {
@@ -166,6 +167,32 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 MainVM.ProductAddViewCommand.Execute(null);
             });
 
+            ReturnToViewCommand = new RelayCommand(o => {
+                List<BookInOrderForDetails> curList;
+                long totalPrice;
+                Object lastView;
+                //Get Current Order Detail Book List
+                if (IsAddBookForEditingOrder)
+                {
+                    curList = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.listOfBook;
+                    totalPrice = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.totalPrice;
+                    lastView = MainVM.OrderManagementVM.OrderDetailVM;
+                }
+                else
+                {
+                    curList = MainVM.OrderManagementVM.OrderCreateVM.OrderD.order.listOfBook;
+                    totalPrice = MainVM.OrderManagementVM.OrderCreateVM.OrderD.order.totalPrice;
+                    lastView = MainVM.OrderManagementVM.OrderCreateVM;
+                }
+                foreach (var newBookOrder in bookOrderInfoList)
+                {
+                    newBookOrder.Quantity = 1;
+                    if (newBookOrder.IsSelected == false)
+                        continue;
+                    newBookOrder.IsSelected = false;
+                }
+                MainVM.CurrentView = lastView;
+            });
 
             ConfirmBookSelectionCommand = new RelayCommand(o =>
             {

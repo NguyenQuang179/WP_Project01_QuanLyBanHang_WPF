@@ -312,7 +312,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 //    }
                 //}
 
-                var uri = new Uri($"{ConnectionString.connectionString}/order/search?minDate={MinDate}&maxDate={MaxDate}&page={CurPage}&itemPerPage={RowPerPage}");
+                var uri = new Uri($"{ConnectionString.connectionString}/order/search?minDate={MinDate}&maxDate={MaxDate}&page={CurPage}&itemPerPage=10000000");
                 //int starIndex = (CurPage - 1) * RowPerPage;
                 //if (CurPage < TotalPage)
                 //{
@@ -352,8 +352,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     MessageBox.Show(ex.Message);
                 }
                 CurPage = 1;
-
-                TotalPage = Orders.listOfOrder.Count / RowPerPage + (TotalOrder % RowPerPage == 0 ? 0 : 1);
+                TotalOrder = Orders.listOfOrder.Count;
+                TotalPage = TotalOrder / RowPerPage + (TotalOrder % RowPerPage == 0 ? 0 : 1);
                 ListPagesSelectedIndex = CurPage - 1;
                 var pages = new List<int>();
                 for (int i = 1; i <= TotalPage; i++)

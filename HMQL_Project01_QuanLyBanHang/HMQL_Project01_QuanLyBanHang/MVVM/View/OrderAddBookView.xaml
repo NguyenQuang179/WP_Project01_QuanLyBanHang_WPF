@@ -109,11 +109,11 @@
                             Width="75"
                             Margin="10 0 10 0">
                             <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding DeleteBookCommand}" />
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding ReturnToViewCommand}" />
                             </Border.InputBindings>
                             <TextBlock
                                 Margin="16 5 16 5"
-                                Text="Delete"
+                                Text="Return"
                                 FontSize="12" FontWeight="Bold" Foreground="White"
                                 HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>

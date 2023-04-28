@@ -292,14 +292,14 @@
                     </Border>
 
 
-                    <!--Paging-->
+                    <!--Paging--><!--
                     <Grid Grid.Row="2" Margin="16 0 16 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*"/>
                             <ColumnDefinition Width="3*"/>
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
-                        <!--Row Per Page-->
+                        --><!--Row Per Page--><!--
                         <StackPanel Orientation="Horizontal" Grid.Column="0">
                             <TextBlock Text="Rows Per Page:"
                                            FontSize="12" FontWeight="DemiBold"
@@ -341,7 +341,7 @@
                                 </TextBox.Style>
                             </TextBox>
                         </StackPanel>
-                        <!--Paging Button-->
+                        --><!--Paging Button--><!--
                         <StackPanel Grid.Column="1"
                                         Orientation="Horizontal"
                                         Height="32"
@@ -390,7 +390,7 @@
                                            HorizontalAlignment="Center"/>
                             </Border>
                         </StackPanel>
-                        <!--Total Book Info-->
+                        --><!--Total Book Info--><!--
                         <TextBlock Grid.Column="2"
                                        FontSize="12" FontWeight="DemiBold"
                                        VerticalAlignment="Center"
@@ -399,7 +399,7 @@
                                 <Run Text="Total Book:"/>
                                 <Run Text="{Binding TotalOrder}"/>
                         </TextBlock>
-                    </Grid>
+                    </Grid>-->
 
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Right">
