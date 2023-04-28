@@ -14,8 +14,8 @@
                 CornerRadius="24"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-        <DockPanel>
-            <TextBlock DockPanel.Dock ="Top" Text="Order Detail"
+            <DockPanel>
+                <TextBlock DockPanel.Dock ="Top" Text="Order Detail"
                        FontSize="24" FontWeight="Bold" 
                        Margin="32 16 32 0"/>
                 <StackPanel DockPanel.Dock="Left">
@@ -116,7 +116,7 @@
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </WrapPanel>
-                  
+
 
 
                     <Border Height="320"
@@ -293,30 +293,30 @@
 
 
                     <DockPanel>
-                    <TextBlock x:Name="infoTextBlock" Text="1-10 of 100 pages." VerticalAlignment="Center"
+                        <TextBlock x:Name="infoTextBlock" Text="1-10 of 100 pages." VerticalAlignment="Center"
                            DockPanel.Dock="Left"
                        FontSize="16" FontWeight="SemiBold" 
                        Margin="16 0 0 0"/>
-                    <WrapPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Margin=" 4 4 16 4">
-                        <TextBlock Text="Current Page"
+                        <WrapPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Margin=" 4 4 16 4">
+                            <TextBlock Text="Current Page"
                        FontSize="20" FontWeight="SemiBold" 
                        Margin="0 0 8 0"/>
-                        <!--SelectionChanged=""-->
-                        <ComboBox  
+                            <!--SelectionChanged=""-->
+                            <ComboBox  
                       x:Name="currentPageComboBox" 
                       Width="50">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock><Run Text="{Binding Item1, Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding Item2, Mode=OneWay}"/></TextBlock>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </WrapPanel>
-                </DockPanel>
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock><Run Text="{Binding Item1, Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding Item2, Mode=OneWay}"/></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </WrapPanel>
+                    </DockPanel>
 
 
-            </StackPanel>
-            <StackPanel DockPanel.Dock="Right">
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Right">
                     <!--Status-->
                     <Border Height="100"     
                     Background="White"
@@ -451,15 +451,15 @@
                         CornerRadius="4"
                         Margin="0 16 16 0" Width="225" Height="25">
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding ConfirmOrderDetailData}"/>
                         </Border.InputBindings>
                         <TextBlock Text="Confirm Changes" 
                                FontSize="16" FontWeight="Bold" Foreground="White"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
-                 
-            </StackPanel>
-        </DockPanel>
+
+                </StackPanel>
+            </DockPanel>
         </ScrollViewer>
     </Grid>
 </UserControl>

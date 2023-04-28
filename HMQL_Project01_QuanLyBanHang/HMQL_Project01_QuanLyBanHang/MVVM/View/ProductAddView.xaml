@@ -6,7 +6,7 @@
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View" d:DataContext="{d:DesignInstance Type=viewmodel:ProductAddViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="544" d:DesignWidth="766">
 
     <Grid>
 
@@ -43,7 +43,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Border
                             BorderBrush="Black"
@@ -83,7 +83,7 @@
 
                             <TextBox
                                 Name = "bookNameTextBlock"
-                                Text="{Binding BookName}"
+                                Text="{Binding BookName, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14" Height="Auto"
                                 TextWrapping="Wrap"
@@ -99,7 +99,7 @@
 
                             <TextBox
                                 Name = "bookCategoryTextBlock"
-                                Text="{Binding Category}"
+                                Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
@@ -115,7 +115,7 @@
 
                             <TextBox
                                 Name = "bookAuthorTextBlock"
-                                Text="{Binding Author}"
+                                Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
@@ -131,7 +131,7 @@
 
                             <TextBox
                                 Name = "bookPYTextBlock"
-                                Text="{Binding PublishedYear}"
+                                Text="{Binding PublishedYear, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
@@ -145,15 +145,36 @@
                                 FontSize="12">
                             </TextBlock>
 
-                            <TextBox
+                            <!-- <TextBox
                                 Name = "bookPriceTextBlock"
-                                Text="{Binding Price}"
+                                Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
-                                TextWrapping="Wrap"
+                                TextWrapping="Wrap"/> -->
+                            <Grid
                                 Margin="10 0 0 12"
-                                BorderThickness="0 0 0 1">
-                            </TextBox>
+                                Width="300">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox
+                                    Name = "bookPriceTextBlock"
+                                    Text="{Binding Price}"
+                                    FontSize="14"
+                                    Margin="0 0 10 0"
+                                    TextWrapping="Wrap"
+                                    BorderThickness="0 0 0 1"
+                                    PreviewTextInput="PreviewTextInput"
+                                    DataObject.Pasting="TextBoxPasting">
+                                </TextBox>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Text="₫"
+                                    Margin="0,4,0,0"></TextBlock>
+                            </Grid>
 
                             <TextBlock
                                 Text="Stock"
@@ -164,12 +185,14 @@
 
                             <TextBox
                                 Name = "bookStockTextBlock"
-                                Text="{Binding Stock}"
+                                Text="{Binding Stock, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
                                 Margin="10 0 0 12"
-                                BorderThickness="0 0 0 1">
+                                BorderThickness="0 0 0 1"
+                                PreviewTextInput="PreviewTextInput"
+                                DataObject.Pasting="TextBoxPasting">
                             </TextBox>
                         </StackPanel>
 
@@ -180,7 +203,7 @@
                                 HorizontalAlignment="Right"
                                 Background="#FF3A36DB"
                                 CornerRadius="12"
-                                Margin="10 16 10 0" Width="86">
+                                Margin="10 16 20 0" Width="86">
                                 <Border.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddBookToAPICommand}" />
                                 </Border.InputBindings>
@@ -196,7 +219,7 @@
                                 CornerRadius="12"
                                 Margin="10 16 10 0" Width="86">
                                 <Border.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding BackCommand}" />
                                 </Border.InputBindings>
                                 <TextBlock Text="Cancel"
                                 FontSize="16" FontWeight="DemiBold" Foreground="White"
