@@ -83,7 +83,7 @@
 
                             <TextBox
                                 Name = "bookNameTextBlock"
-                                Text="{Binding BookName}"
+                                Text="{Binding BookName, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14" Height="Auto"
                                 TextWrapping="Wrap"
@@ -99,7 +99,7 @@
 
                             <TextBox
                                 Name = "bookCategoryTextBlock"
-                                Text="{Binding Category}"
+                                Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
@@ -115,7 +115,7 @@
 
                             <TextBox
                                 Name = "bookAuthorTextBlock"
-                                Text="{Binding Author}"
+                                Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
@@ -131,7 +131,7 @@
 
                             <TextBox
                                 Name = "bookPYTextBlock"
-                                Text="{Binding PublishedYear}"
+                                Text="{Binding PublishedYear, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
@@ -147,7 +147,7 @@
 
                             <TextBox
                                 Name = "bookPriceTextBlock"
-                                Text="{Binding Price}"
+                                Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
@@ -164,7 +164,7 @@
 
                             <TextBox
                                 Name = "bookStockTextBlock"
-                                Text="{Binding Stock}"
+                                Text="{Binding Stock, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
@@ -196,7 +196,7 @@
                                 CornerRadius="12"
                                 Margin="10 16 10 0" Width="86">
                                 <Border.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding BackCommand}" />
                                 </Border.InputBindings>
                                 <TextBlock Text="Cancel"
                                 FontSize="16" FontWeight="DemiBold" Foreground="White"

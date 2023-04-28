@@ -93,7 +93,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             newdate = datetime.ToString("dd/MM/y hh:mm tt");
                             Orders.listOfOrder[i].date = newdate;
                         }
-                        MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
+                        //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
                 }

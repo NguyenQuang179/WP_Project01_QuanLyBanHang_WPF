@@ -47,6 +47,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public SalesReportViewModel SalesReportVM { get; set; }
         //COrder
         public OrderMangementViewModel OrderManagementVM { get; set; }
+
         public OrderDetailViewModel ORderDetailVM { get; set; }
         public OrderAddBookViewModel OrderAddBookVM { get; set; }
         //Category
@@ -54,6 +55,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         //Product
         public ProductListViewModel ProductListVM { get; set; }
         public ProductAddViewModel ProductAddVM { get; set; }
+
+        public CategoryManagementViewModel CategoryManagementVM { get; set; }
+        
 
         private object _currentView;
 
@@ -121,6 +125,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             DashboardViewCommand = new RelayCommand(o =>
             {
                 CurrentView = DashboardVM;
+                DashboardVM.CallData.Execute(null);
             });
 
             SalesReportViewCommand = new RelayCommand(o =>
