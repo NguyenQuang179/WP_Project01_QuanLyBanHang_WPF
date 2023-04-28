@@ -103,6 +103,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             public RelayCommand DeleteBookDetailData { get; set; }
 
         public RelayCommand CancelCommand { get; set; }
+        public RelayCommand UpdatePageDataCommand { get; set; }
+
         public OrderDetailViewModel(MainViewModel MainVM, String OrderID)
             {
             //orders = new ListOfOrder();
@@ -151,7 +153,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         // Handle the successful upload
                         var json = await response.Content.ReadAsStringAsync();
+
                         MessageBox.Show(json);
+                        MainVM.OrderManagementVM.OrderDetailVM = null;
+                        MainVM.OrderManagementVM.UpdatePageDataCommand.Execute(null);
+                        MainVM.OrderManagementVM.TotalOrder++;
+                        MainVM.CurrentView = MainVM.OrderManagementVM;
                     }
                     else
                     {
@@ -246,7 +253,42 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             CallOrderDetailData.Execute(null);
 
+            UpdatePageDataCommand = new RelayCommand(async(o) =>
+            {
+                var uri = new Uri($"{ConnectionString.connectionString}/order//order/detail/" + OrderID);
+                //int starIndex = (CurPage - 1) * RowPerPage;
+                //if (CurPage < TotalPage)
+                //{
+                //    CurPageData = BookSales.GetRange(starIndex, RowPerPage);
+                //}
+                //else
+                //{
+                //    if (TotalBook == 0) CurPageData = BookSales.GetRange(starIndex, 0);
+                //    else CurPageData = BookSales.GetRange(starIndex, TotalBook - ((TotalPage - 1) * RowPerPage));
+                //}
+                //add count for page
+                try
+                {
+                    using var client = new HttpClient();
+                    var response = await client.GetAsync(uri);
 
+
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        OrderD = JsonConvert.DeserializeObject<OrderDetails>(json);
+                        string newdate = "";
+                        DateTime datetime = DateTime.Now;
+                        //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
+                    }
+                    else { MessageBox.Show($"Fail To Call Data"); }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            });
         }
 
 

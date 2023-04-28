@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
-             xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel" 
+             xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              d:DataContext="{d:DesignInstance Type=viewmodel:OrderCreateViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="1544" d:DesignWidth="776">
@@ -292,28 +292,114 @@
                     </Border>
 
 
-                    <DockPanel>
-                        <TextBlock x:Name="infoTextBlock" Text="1-10 of 100 pages." VerticalAlignment="Center"
-                           DockPanel.Dock="Left"
-                       FontSize="16" FontWeight="SemiBold" 
-                       Margin="16 0 0 0"/>
-                        <WrapPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Margin=" 4 4 16 4">
-                            <TextBlock Text="Current Page"
-                       FontSize="20" FontWeight="SemiBold" 
-                       Margin="0 0 8 0"/>
-                            <!--SelectionChanged=""-->
-                            <ComboBox  
-                      x:Name="currentPageComboBox" 
-                      Width="50">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock><Run Text="{Binding Item1, Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding Item2, Mode=OneWay}"/></TextBlock>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
+                    <!--Paging-->
+                    <Grid Grid.Row="2" Margin="16 0 16 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--Row Per Page-->
+                        <StackPanel Orientation="Horizontal" Grid.Column="0">
+                            <TextBlock Text="Rows Per Page:"
+                                           FontSize="12" FontWeight="DemiBold"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 8 0"/>
+                            <TextBox Height="32" Width="56" Margin="0 0 32 0"
+                                         FontWeight="DemiBold"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center"
+                                         Cursor="Hand">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                                    <Border CornerRadius="6"
+                                                            Background="Transparent"
+                                                            BorderBrush="Black"
+                                                            BorderThickness="1"
+                                                            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                                                        <Grid>
+                                                            <Rectangle StrokeThickness="1"/>
+                                                            <TextBox Text="{Binding RowPerPage, UpdateSourceTrigger=PropertyChanged}"
+                                                                         FontSize="12"
+                                                                         BorderThickness="0" Background="Transparent"
+                                                                         VerticalContentAlignment="Center"
+                                                                         HorizontalContentAlignment="Center"
+                                                                         Foreground="Black" x:Name="InputField">
+                                                                <TextBox.InputBindings>
+                                                                    <KeyBinding Key="Return" Command="{Binding UpdatePagingCommand}"/>
+                                                                </TextBox.InputBindings>
+                                                            </TextBox>
+                                                        </Grid>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </StackPanel>
+                        <!--Paging Button-->
+                        <StackPanel Grid.Column="1"
+                                        Orientation="Horizontal"
+                                        Height="32"
+                                        HorizontalAlignment="Center">
+                            <Border Width="56"
+                                    Background="#FF3A36DB"
+                                    CornerRadius="4"
+                                    Margin="0 0 8 0">
+                                <Border.InputBindings>
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding PrevPageCommand}"/>
+                                </Border.InputBindings>
+                                <TextBlock Text="Prev"
+                                           FontWeight="DemiBold"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                            </Border>
+                            <ComboBox Width="52" Margin="0 0 8 0"
+                                      ItemsSource="{Binding ListPages, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedIndex="{Binding ListPagesSelectedIndex, UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalContentAlignment="Center"
+                                      HorizontalContentAlignment="Center">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectedIndexChanged">
+                                        <i:InvokeCommandAction Command="{Binding PageComboboxChangeCommand}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ComboBox>
-                        </WrapPanel>
-                    </DockPanel>
-
+                            <TextBlock FontWeight="DemiBold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left">
+                                <Run Text="/"/>
+                                <Run Text="{Binding TotalPage}"/>
+                            </TextBlock>
+                            <Border Width="56"
+                                    Background="#FF3A36DB"
+                                    CornerRadius="4"
+                                    Margin="8 0 0 0">
+                                <Border.InputBindings>
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding NextPageCommand}"/>
+                                </Border.InputBindings>
+                                <TextBlock Text="Next"
+                                           FontWeight="DemiBold"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                        <!--Total Book Info-->
+                        <TextBlock Grid.Column="2"
+                                       FontSize="12" FontWeight="DemiBold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right"
+                                       Margin="0 0 16 0">
+                                <Run Text="Total Book:"/>
+                                <Run Text="{Binding TotalOrder}"/>
+                        </TextBlock>
+                    </Grid>
 
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Right">

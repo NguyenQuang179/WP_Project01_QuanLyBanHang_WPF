@@ -89,6 +89,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         // Handle the successful upload
                         var json = await response.Content.ReadAsStringAsync();
                         MessageBox.Show(json);
+
+                        MainVM.OrderManagementVM.OrderCreateVM = null;
+                        MainVM.OrderManagementVM.UpdatePageDataCommand.Execute(null);
+                        MainVM.OrderManagementVM.TotalOrder++;
+                        MainVM.CurrentView = MainVM.OrderManagementVM;
+                        //add count for page
+                       
                     }
                     else
                     {
@@ -140,6 +147,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             OrderAddBookCreateViewCommand = new RelayCommand(o =>
             {
                 MainVM.OrderAddBookVM.IsAddBookForEditingOrder = false;
+                
                 MainVM.OrderAddBookViewCommand.Execute(MainVM);
             });
 
