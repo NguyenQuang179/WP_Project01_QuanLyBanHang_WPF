@@ -32,7 +32,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(OrderD));
             }
         }
-
+        public RelayCommand CancelCommand { get; set; }
 
         public RelayCommand CallOrderDetailData { get; set; }
         public RelayCommand OrderAddBookCreateViewCommand { get; set; }
@@ -89,6 +89,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         // Handle the successful upload
                         var json = await response.Content.ReadAsStringAsync();
                         MessageBox.Show(json);
+
+                        MainVM.OrderManagementVM.OrderCreateVM = null;
+                        MainVM.OrderManagementVM.UpdatePageDataCommand.Execute(null);
+                        MainVM.OrderManagementVM.TotalOrder++;
+                        MainVM.CurrentView = MainVM.OrderManagementVM;
+                        //add count for page
+                       
                     }
                     else
                     {
@@ -101,6 +108,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     MessageBox.Show(ex.Message);
                 }
+            });
+
+            CancelCommand = new RelayCommand(o => {
+                MainVM.OrderManagementVM.OrderCreateVM = null;
+                MainVM.CurrentView = MainVM.OrderManagementVM;
             });
 
             DeleteBookDetailData = new RelayCommand((param) =>
@@ -135,6 +147,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             OrderAddBookCreateViewCommand = new RelayCommand(o =>
             {
                 MainVM.OrderAddBookVM.IsAddBookForEditingOrder = false;
+                
                 MainVM.OrderAddBookViewCommand.Execute(MainVM);
             });
 

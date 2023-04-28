@@ -296,7 +296,7 @@
                     </Border>
 
 
-                    <DockPanel>
+                    <!--<DockPanel>
                         <TextBlock x:Name="infoTextBlock" Text="1-10 of 100 pages." VerticalAlignment="Center"
                            DockPanel.Dock="Left"
                        FontSize="16" FontWeight="SemiBold" 
@@ -305,7 +305,7 @@
                             <TextBlock Text="Current Page"
                        FontSize="20" FontWeight="SemiBold" 
                        Margin="0 0 8 0"/>
-                            <!--SelectionChanged=""-->
+                            --><!--SelectionChanged=""--><!--
                             <ComboBox  
                       x:Name="currentPageComboBox" 
                       Width="50">
@@ -316,7 +316,7 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                         </WrapPanel>
-                    </DockPanel>
+                    </DockPanel>-->
 
 
                 </StackPanel>
@@ -443,9 +443,9 @@
                         CornerRadius="4"
                         Margin="0 16 16 0" Width="210" Height="25">
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding CancelCommand}"/>
                         </Border.InputBindings>
-                        <TextBlock Text="Delete Changes" 
+                        <TextBlock Text="Cancel" 
                                FontSize="16" FontWeight="Bold" Foreground="White"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
