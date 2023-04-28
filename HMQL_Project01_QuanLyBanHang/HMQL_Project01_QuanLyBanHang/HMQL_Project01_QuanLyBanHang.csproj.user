@@ -10,6 +10,12 @@
     <Compile Update="MVVM\View\AuthenticationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\CategoryCreateView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\CategoryDetailView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\CategoryManagementView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -55,6 +61,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\AuthenticationWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\CategoryCreateView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\CategoryDetailView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\CategoryManagementView.xaml">

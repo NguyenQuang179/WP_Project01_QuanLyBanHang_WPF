@@ -90,7 +90,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             OrderManagementVM = new OrderMangementViewModel(this);
             OrderAddBookVM = new OrderAddBookViewModel(this);
             //Category
-            CategoryManagementVM = new CategoryManagementViewModel();
+            CategoryManagementVM = new CategoryManagementViewModel(this);
             //Product
             ProductListVM = new ProductListViewModel(this);
 

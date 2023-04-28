@@ -64,7 +64,12 @@
             <DataTemplate DataType="{x:Type viewModel:CategoryManagementViewModel}">
                 <view:CategoryManagementView/>
             </DataTemplate>
-                
+            <DataTemplate DataType="{x:Type viewModel:CategoryDetailViewModel}">
+                <view:CategoryDetailView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CategoryCreateViewModel}">
+                <view:CategoryCreateView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

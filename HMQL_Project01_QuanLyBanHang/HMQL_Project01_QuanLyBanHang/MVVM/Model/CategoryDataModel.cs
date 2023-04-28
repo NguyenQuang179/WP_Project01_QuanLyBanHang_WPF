@@ -19,4 +19,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
         public int numOfCategory { get; set; }
         public int numOfPage { get; set; }
     }
+
+    class ListBookCategory
+    {
+        public List<BookDetail> listOfBook { get; set; }
+        public int numOfBooks { get; set; }
+        public int numOfPage { get; set; }
+    }
 }
