@@ -104,8 +104,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*";
                 if (openFileDialog.ShowDialog() == true)
                 {
-                    BookImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+                    //BookImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
                 }
             });
         }
     }
+}

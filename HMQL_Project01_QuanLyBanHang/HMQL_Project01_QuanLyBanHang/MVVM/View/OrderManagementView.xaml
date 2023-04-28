@@ -24,7 +24,7 @@
                     BorderThickness="1"
                     BorderBrush="LightGray"
                     Margin="16" Width="277">
-                    
+
                     <DockPanel Margin="16">
                         <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
                             <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
@@ -54,15 +54,15 @@
                         <Border.Effect>
                             <DropShadowEffect Opacity="0.3" Direction="300" />
                         </Border.Effect>
-                   
-                    <Grid Width="425" HorizontalAlignment="Left" Margin=" 0 0 0 0">
-                        <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False" />
 
-                        <TextBox Name="textBoxSearch"/>
+                        <Grid Width="425" HorizontalAlignment="Left" Margin=" 0 0 0 0">
+                            <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False" />
 
-                        <Image Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png" Width="15" Height="15" 
+                            <TextBox Name="textBoxSearch"/>
+
+                            <Image Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png" Width="15" Height="15" 
                                VerticalAlignment="Center" Margin="0 0 15 0" HorizontalAlignment="Right" />
-                    </Grid>
+                        </Grid>
                     </Border>
                     <!--Filter by Status-->
                     <!--SelectionChanged=""-->
@@ -71,7 +71,7 @@
                             <DropShadowEffect  Opacity="0.3" Direction="300"  />
                         </Border.Effect>
                     </Border>
-                   
+
                     <!--Refresh Button-->
                     <Border
                         Margin=" 8 0 8 0"
@@ -82,9 +82,10 @@
                             <DropShadowEffect  Opacity="0.3" Direction="300" />
                         </Border.Effect>
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding DeleteOrderData}"
+                                          CommandParameter="{Binding SelectedItem._id, ElementName=OrderDataGrid}"/>
                         </Border.InputBindings>
-                        <TextBlock Text="Refresh" 
+                        <TextBlock Text="Delete" 
                                FontSize="12" FontWeight="DemiBold" Foreground="#000000"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -128,10 +129,10 @@
                                           Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.OrderDetailViewCommand}"
                                           CommandParameter="{Binding SelectedItem._id, ElementName=OrderDataGrid}"/>
                         </DataGrid.InputBindings>
-            
+
                         <DataGrid.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
-                                
+
                             </Style>
                         </DataGrid.CellStyle>
                         <DataGrid.Columns>
@@ -151,9 +152,9 @@
                                         <Setter Property="Margin" Value="0 10 0 10"/>
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                         <Setter Property="FontSize" Value="10" />
-                                        
+
                                         <Setter Property="FontWeight" Value="DemiBold" />
-                                       
+
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
@@ -175,7 +176,7 @@
                                         <Setter Property="FontSize" Value="10" />
 
                                         <Setter Property="FontWeight" Value="DemiBold" />
-                                       
+
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
@@ -198,52 +199,52 @@
                                         <Setter Property="FontSize" Value="10" />
 
                                         <Setter Property="FontWeight" Value="DemiBold" />
-                                       
+
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                                
-                           
+
+
                         </DataGrid.Columns>
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">
 
                                 <Style.Triggers>
-                                    
+
                                     <Trigger Property="AlternationIndex" Value="1">
                                         <Setter Property="Background" Value="#F1F4FA"/>
 
                                     </Trigger>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Foreground" Value="#000000"/>
-                                
+
                                     </Trigger>
 
                                     <Trigger Property="IsSelected" Value="True">
-                                
+
                                         <Setter Property="Background" Value="#2E29ED"/>
                                         <Setter Property="Foreground" Value="#FFFFFF"/>
                                     </Trigger>
-                                    
-                                    
+
+
                                 </Style.Triggers>
-                            
-                            <Setter Property="Foreground" Value="#788B9A"/>
+
+                                <Setter Property="Foreground" Value="#788B9A"/>
                             </Style>
                         </DataGrid.RowStyle>
-                    
-                        
 
-                                    <!---->
-                            
-                    
+
+
+                        <!---->
+
+
 
 
 
                     </DataGrid>
                 </Border>
-                 
-                    
+
+
                 <DockPanel>
                     <TextBlock x:Name="infoTextBlock" Text="1-10 of 100 pages." VerticalAlignment="Center"
                            DockPanel.Dock="Left"
@@ -265,10 +266,10 @@
                         </ComboBox>
                     </WrapPanel>
                 </DockPanel>
-                    
-               
+
+
             </StackPanel>
-            
+
         </ScrollViewer>
     </Grid>
 </UserControl>
