@@ -6,7 +6,7 @@
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View" d:DataContext="{d:DesignInstance Type=viewmodel:ProductListViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="544" d:DesignWidth="766" Loaded="Window_Loaded">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="Window_Loaded">
     <Grid>
         <Border Background="#FFF1F4FA"
                 CornerRadius="24" Grid.ColumnSpan="2" />
@@ -22,33 +22,34 @@
                     CornerRadius="12"
                     BorderBrush="LightGray"
                     Margin="32 16 0 0">
-                        <StackPanel
-                            Orientation="Horizontal">
-                            <TextBox
+                        <DockPanel>
+                            <TextBox Grid.Column="0"
                                 x:Name="searchTextBox"
                                 Foreground="Black"
                                 BorderThickness="0"
                                 FontSize="14"
-                                Width="586"
+                                MouseDown="searchTextBox_MouseDown"
+                                HorizontalAlignment="Left"
+                                Width="570"
                                 Margin="16 0 0 0"
                                 RenderTransformOrigin="0.5,0.5" Canvas.Left="10" Canvas.Top="6" VerticalAlignment="Center" />
-                            <Border
+                            <Button
+                                DockPanel.Dock="Right"
+                                Grid.Column="1"
+                                x:Name="eraseButton"
                                 Background="Transparent"
-                                CornerRadius="12"
-                                Width="Auto">
-                                <Border.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding SearchCommand}" />
-                                </Border.InputBindings>
-                                <TextBlock
-                                Text="✕"
-                                FontSize="12" FontWeight="Bold" Foreground="Black"
-                                HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Border>
-                        </StackPanel>
+                                BorderBrush="Transparent"
+                                Content="X"
+                                Width="15"
+                                Click="eraseButton_Click"
+                                Canvas.Left="617" Canvas.Top="4"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center" />
+                        </DockPanel>
                     </Border>
 
                     <Border
-                        Background="#FF3A36DB"
+                        Background="Black"
                         CornerRadius="12"
                         BorderBrush="LightGray"
                         Margin="10 16 32 0"
@@ -68,8 +69,7 @@
                     Margin="16 10 16 0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="350" />
-                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="340" />
                     </Grid.RowDefinitions>
 
                     <StackPanel
@@ -82,9 +82,9 @@
                             Margin="16 0 0 0" />
 
                         <Border
-                            Background="#FF3A36DB"
+                            Background="Black"
                             CornerRadius="12"
-                            BorderBrush="Transparent"
+                            BorderBrush="LightGray"
                             Width="75"
                             Margin="10 0 10 0">
                             <Border.InputBindings>
@@ -96,13 +96,29 @@
                                 FontSize="12" FontWeight="Bold" Foreground="White"
                                 HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </Border>
+
+                        <Border
+                            Background="Black"
+                            CornerRadius="12"
+                            BorderBrush="LightGray"
+                            Width="75"
+                            Margin="10 0 10 0">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding DeleteBookCommand}" />
+                            </Border.InputBindings>
+                            <TextBlock
+                                Margin="16 5 16 5"
+                                Text="Delete"
+                                FontSize="12" FontWeight="Bold" Foreground="White"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
                     </StackPanel>
 
                     <Grid
                     Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="8*" />
-                            <ColumnDefinition Width="2.5*" />
+                            <ColumnDefinition Width="7*" />
+                            <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
 
                         <Border
@@ -112,161 +128,63 @@
                         BorderThickness="1"
                         BorderBrush="LightGray"
                         Margin=" 0 0 5 0">
-                            <!--<StackPanel
-                                Margin="16">
-                                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 Margin="16"
                                 BorderBrush="Transparent"
                                 ItemsSource="{Binding Data.listOfBook}">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Margin="0 0 0 0"
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0 0 0 -2"
                                               Background="Transparent">
-                                                <Grid.InputBindings>
-                                                    <MouseBinding MouseAction="LeftClick"
+                                            <Grid.InputBindings>
+                                                <MouseBinding MouseAction="LeftClick"
                                                               Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ItemClickCommand}"
                                                               CommandParameter="{Binding _id}" />
-                                                </Grid.InputBindings>
-
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="1*" />
-                                                    <ColumnDefinition Width="3*" />
-                                                    <ColumnDefinition Width="3*" />
-                                                    <ColumnDefinition Width="2*" />
-                                                </Grid.ColumnDefinitions>
-                                                <Border Grid.ColumnSpan="4"
+                                            </Grid.InputBindings>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*" />
+                                                <ColumnDefinition Width="3*" />
+                                                <ColumnDefinition Width="3*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.ColumnSpan="4"
                                                     BorderBrush="Gray"
                                                     BorderThickness="0 0 0 0.5" />
-                                                <TextBlock Text="{Binding _id}" Padding="0 8"
+                                            <TextBlock Text="{Binding _id}" Padding="0 8"
                                                        Foreground="Blue" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
                                                         VerticalAlignment="Center" />
-                                                <TextBlock Grid.Column="1"
+                                            <TextBlock Grid.Column="1"
                                                        Text="{Binding name}" Padding="32 0" TextWrapping="NoWrap"
                                                        TextTrimming="CharacterEllipsis"
                                                         VerticalAlignment="Center" />
-                                                <TextBlock Grid.Column="2"
+                                            <TextBlock Grid.Column="2"
                                                        Text="{Binding author}" Padding="32 0" TextWrapping="NoWrap"
                                                        TextTrimming="CharacterEllipsis"
                                                         VerticalAlignment="Center" />
-                                                <TextBlock Grid.Column="3"
+                                            <TextBlock Grid.Column="3"
                                                        Text="{Binding stock}" Padding="32 0" TextWrapping="NoWrap"
                                                        TextTrimming="CharacterEllipsis"
                                                        VerticalAlignment="Center" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                    <ListView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel />
-                                        </ItemsPanelTemplate>
-                                    </ListView.ItemsPanel>
-                                </ListView>
-
-                                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.ItemClickCommand}"
-                            </StackPanel>-->
-
-                            <DataGrid
-                                Margin="16"
-                                Name="BookDataGrid"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                ItemsSource="{Binding Data.listOfBook}"
-                                AutoGenerateColumns="False"
-                                GridLinesVisibility="None"
-                                AlternationCount="2">
-                                <DataGrid.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick"
-                                          Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.ItemClickCommand}"
-                                          CommandParameter="{Binding SelectedItem._id, ElementName=BookDataGrid}" />
-                                </DataGrid.InputBindings>
-
-                                <DataGrid.Resources>
-                                    <Style TargetType="{x:Type DataGridColumnHeader}">
-                                        <Setter Property="Background" Value="White" />
-                                        <Setter Property="FontWeight" Value="SemiBold" />
-                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                        <Setter Property="BorderThickness" Value="0 0 0 1" />
-                                        <Setter Property="BorderBrush" Value="Black" />
-                                        <Setter Property="Margin" Value="10 0 10 0" />
-                                        <Setter Property="Padding" Value="0 5 0 5" />
-                                    </Style>
-                                </DataGrid.Resources>
-
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ID" Binding="{Binding _id}" Width="*" CanUserResize="False" IsReadOnly="True">
-                                    </DataGridTextColumn>
-
-                                    <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*" CanUserResize="False" IsReadOnly="True">
-                                    </DataGridTextColumn>
-
-                                    <DataGridTextColumn Header="Author" Binding="{Binding author}" Width="*" CanUserResize="False" IsReadOnly="True">
-                                    </DataGridTextColumn>
-
-                                    <DataGridTextColumn Header="Stock" Binding="{Binding stock}" Width="*" CanUserResize="False" IsReadOnly="True">
-                                    </DataGridTextColumn>
-
-                                    <DataGridTemplateColumn Header="" IsReadOnly="True" Width="Auto">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Button Width="20" Height="20" HorizontalAlignment="Center">
-                                                        <Image Source="../../Images/OrderManagementSVG/trash-can-solid.png" Width="10" Height="10"
-                                        VerticalAlignment="Center" Margin="0 0 0 0" HorizontalAlignment="Center" />
-                                                    </Button>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                </DataGrid.Columns>
-
-                                <DataGrid.CellStyle>
-                                    <Style TargetType="{x:Type DataGridCell}">
-                                        <Setter Property="BorderBrush" Value="Transparent" />
-                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                        <Setter Property="Margin" Value="5 10 5 10" />
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
-                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsSelected" Value="True">
-                                                <Setter Property="Foreground" Value="Black" />
-                                                <Setter Property="Background" Value="LightBlue" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </DataGrid.CellStyle>
-
-                                <DataGrid.RowStyle>
-                                    <Style TargetType="{x:Type DataGridRow}">
-                                        <Setter Property="BorderBrush" Value="Transparent" />
-                                        <Setter Property="BorderThickness" Value="0" />
-                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                        <Style.Triggers>
-                                            <Trigger Property="IsSelected" Value="True">
-                                                <Setter Property="Background" Value="LightBlue" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </DataGrid.RowStyle>
-                            </DataGrid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel />
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                            </ListView>
                         </Border>
 
                         <Border
-
-                            Grid.Column="1"
-                            Background="White"
-                            CornerRadius="12"
-                            BorderThickness="1"
-                            BorderBrush="LightGray"
-                            Margin="5 0 0 0">
+                        Grid.Column="1"
+                        Background="White"
+                        CornerRadius="12"
+                        BorderThickness="1"
+                        BorderBrush="LightGray"
+                        Margin="5 0 0 0">
                             <StackPanel
-                            Margin="10 10 10 10">
+                            Margin="10 8 10 8">
                                 <TextBlock
                                 Text="Sorting Option"
                                 FontSize="18" FontWeight="Bold"
@@ -294,11 +212,10 @@
                                     Grid.Column="1"
                                     Name = "price_from_TextBox"
                                     HorizontalAlignment="Right"
-                                    Margin="5 0 5 0"
-                                    Width="100"
+                                    Margin="5 0 0 0"
+                                    Width="116"
                                     PreviewTextInput="PreviewTextInput"
                                     DataObject.Pasting="TextBoxPasting"
-                                    BorderThickness="0 0 0 1"
                                     ></TextBox>
                                     </Grid>
 
@@ -317,19 +234,18 @@
                                     Grid.Column="1"
                                     Name = "price_to_TextBox"
                                     HorizontalAlignment="Right"
-                                    Margin="5 0 5 0"
-                                    Width="100"
+                                    Margin="5 0 0 0"
+                                    Width="116"
                                     PreviewTextInput="PreviewTextInput"
                                     DataObject.Pasting="TextBoxPasting"
-                                    BorderThickness="0 0 0 1"
                                     ></TextBox>
                                     </Grid>
                                 </StackPanel>
 
                                 <Border
-                                    Background="#FF3A36DB"
+                                    Background="Black"
                                     CornerRadius="12"
-                                    BorderBrush="Transparent"
+                                    BorderBrush="LightGray"
                                     Grid.Column="1" Width="75">
                                     <Border.InputBindings>
                                         <MouseBinding MouseAction="LeftClick" Command="{Binding ApplySortCommand}" />
@@ -343,85 +259,8 @@
                             </StackPanel>
                         </Border>
                     </Grid>
-
-                    <StackPanel
-                        Grid.Row="2"
-                        Orientation="Horizontal"
-                        Margin="16 5 16 16">
-                        <TextBlock
-                            FontWeight="DemiBold"
-                            VerticalAlignment="Center">
-                            Rows per page:
-                        </TextBlock>
-
-                        <Border
-                            Margin="10 0 30 0"
-                            Padding="20 5 20 5"
-                            CornerRadius="7"
-                            BorderBrush="Black"
-                            BorderThickness="1"
-                            Background="White">
-
-                            <TextBox
-                                Width="20"
-                                MaxLength ="2"
-                                BorderBrush="Transparent"
-                                BorderThickness="0"
-                                Background="White"
-                                FontWeight="DemiBold"
-                                VerticalAlignment="Center"
-                                TextAlignment="Center"
-                                Text="10"
-                                PreviewTextInput="PreviewTextInput"
-                                    DataObject.Pasting="TextBoxPasting">
-                            </TextBox>
-                        </Border>
-
-                        <Border
-                            Margin="10 0 10 0"
-                            Padding="20 5 20 5"
-                            CornerRadius="7"
-                            BorderBrush="Transparent"
-                            BorderThickness="1"
-                            Background="#FF3A36DB">
-                            <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding PrevPageCommand}" />
-                            </Border.InputBindings>
-                            <TextBlock
-                                Text="Prev"
-                                FontSize="12" FontWeight="Bold" Foreground="White"
-                                HorizontalAlignment="Left" VerticalAlignment="Center" />
-                        </Border>
-
-                        <ComboBox Width="50" Margin="10 10 5 10">
-                        </ComboBox>
-
-                        <TextBlock
-                            Margin="0 0 10 0"
-                            FontWeight="DemiBold"
-                            VerticalAlignment="Center">
-                            / 2
-                        </TextBlock>
-
-                        <Border
-                            Margin="10 0 10 0"
-                            Padding="20 5 20 5"
-                            CornerRadius="7"
-                            BorderBrush="Transparent"
-                            BorderThickness="1"
-                            Background="#FF3A36DB">
-                            <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding NextPageCommand}" />
-                            </Border.InputBindings>
-                            <TextBlock
-                                Text="Next"
-                                FontSize="12" FontWeight="Bold" Foreground="White"
-                                HorizontalAlignment="Left" VerticalAlignment="Center" />
-                        </Border>
-                    </StackPanel>
                 </Grid>
             </StackPanel>
         </ScrollViewer>
-        <local:DashboardView HorizontalAlignment="Left" Margin="347,595,0,0" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

@@ -6,7 +6,7 @@
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View" d:DataContext="{d:DesignInstance Type=viewmodel:ProductAddViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="544" d:DesignWidth="766">
+             d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
 
@@ -43,7 +43,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Border
                             BorderBrush="Black"
@@ -145,36 +145,15 @@
                                 FontSize="12">
                             </TextBlock>
 
-                            <!-- <TextBox
+                            <TextBox
                                 Name = "bookPriceTextBlock"
                                 Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
                                 Width="300"
                                 FontSize="14"
-                                TextWrapping="Wrap"/> -->
-                            <Grid
+                                TextWrapping="Wrap"
                                 Margin="10 0 0 12"
-                                Width="300">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <TextBox
-                                    Name = "bookPriceTextBlock"
-                                    Text="{Binding Price}"
-                                    FontSize="14"
-                                    Margin="0 0 10 0"
-                                    TextWrapping="Wrap"
-                                    BorderThickness="0 0 0 1"
-                                    PreviewTextInput="PreviewTextInput"
-                                    DataObject.Pasting="TextBoxPasting">
-                                </TextBox>
-
-                                <TextBlock
-                                    Grid.Column="1"
-                                    Text="₫"
-                                    Margin="0,4,0,0"></TextBlock>
-                            </Grid>
+                                BorderThickness="0 0 0 1">
+                            </TextBox>
 
                             <TextBlock
                                 Text="Stock"
@@ -190,9 +169,7 @@
                                 FontSize="14"
                                 TextWrapping="Wrap"
                                 Margin="10 0 0 12"
-                                BorderThickness="0 0 0 1"
-                                PreviewTextInput="PreviewTextInput"
-                                DataObject.Pasting="TextBoxPasting">
+                                BorderThickness="0 0 0 1">
                             </TextBox>
                         </StackPanel>
 
@@ -203,7 +180,7 @@
                                 HorizontalAlignment="Right"
                                 Background="#FF3A36DB"
                                 CornerRadius="12"
-                                Margin="10 16 20 0" Width="86">
+                                Margin="10 16 10 0" Width="86">
                                 <Border.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddBookToAPICommand}" />
                                 </Border.InputBindings>

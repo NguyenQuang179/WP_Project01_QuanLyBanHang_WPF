@@ -31,6 +31,38 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.View
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //BookDAO bookDAO = new BookDAO();
+            //_book = bookDAO.GetAll();
+            //bookList.ItemsSource = _book;
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string searchTerm = searchTextBox.Text;
+            // Perform search logic here
+        }
+
+        private void searchTextBox_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            searchTextBox.Text = "";
+        }
+
+        private void searchTB_MouseEnter(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void searchTB_MouseLeave(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void eraseButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchTextBox.Text = "";
+            Keyboard.ClearFocus();
+        }
+
+        private void sortButton_Click(object sender, RoutedEventArgs e)
+        {
         }
 
         private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
