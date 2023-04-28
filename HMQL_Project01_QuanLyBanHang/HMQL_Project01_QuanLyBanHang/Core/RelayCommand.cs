@@ -12,6 +12,7 @@ namespace HMQL_Project01_QuanLyBanHang.Core
         private Action<object> _execute;
         private Func<object, bool> _canExecute;
         private Action<object> value;
+        private Action toggleSelected;
 
         public event EventHandler CanExecuteChanged
         {
@@ -23,6 +24,11 @@ namespace HMQL_Project01_QuanLyBanHang.Core
         {
             _execute = execute;
             _canExecute = canExecute;
+        }
+
+        public RelayCommand(Action toggleSelected)
+        {
+            this.toggleSelected = toggleSelected;
         }
 
         public bool CanExecute(object parameter) {

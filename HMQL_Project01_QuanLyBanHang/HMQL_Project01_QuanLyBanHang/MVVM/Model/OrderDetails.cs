@@ -8,9 +8,14 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
 {
     public class BookInOrderForDetails
     {
-        public string _id { get; set; }
+        public string? _id { get; set; }
         public Book book { get; set; }
         public int quantity { get; set; }
+    }
+
+    public class NewListOfBook
+    {
+        public List<BookInOrder> listOfBook = new List<BookInOrder>();
     }
 
     public class OrderForDetails

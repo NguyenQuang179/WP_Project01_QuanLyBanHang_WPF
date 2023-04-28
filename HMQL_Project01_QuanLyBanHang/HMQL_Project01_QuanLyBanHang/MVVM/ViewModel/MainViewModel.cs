@@ -30,10 +30,14 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand LogOutCommand { get; set; }
 
+        //Order
         public RelayCommand OrderManagementViewCommand { get; set; }
-
+        public RelayCommand OrderDetailViewCommand { get; set; }
+        public RelayCommand OrderAddBookViewCommand { get; set; }
+        public RelayCommand OrderAddViewCommand { get; set; }
+        //Category
         public RelayCommand CategoryManagementViewCommand { get; set; }
-
+        //Product
         public RelayCommand ProductAddViewCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
@@ -41,9 +45,14 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public DashboardViewModel DashboardVM { get; set; }
 
         public SalesReportViewModel SalesReportVM { get; set; }
-
+        //COrder
         public OrderMangementViewModel OrderManagementVM { get; set; }
 
+        public OrderDetailViewModel ORderDetailVM { get; set; }
+        public OrderAddBookViewModel OrderAddBookVM { get; set; }
+        //Category
+        public CategoryManagementViewModel CategoryManagementVM { get; set; }
+        //Product
         public ProductListViewModel ProductListVM { get; set; }
         public ProductAddViewModel ProductAddVM { get; set; }
 
@@ -69,11 +78,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             DashboardVM = new DashboardViewModel(this);
 
             SalesReportVM = new SalesReportViewModel();
-
+            //ORder
             OrderManagementVM = new OrderMangementViewModel(this);
-
+            OrderAddBookVM = new OrderAddBookViewModel(this);
+            //Category
             CategoryManagementVM = new CategoryManagementViewModel();
-
+            //Product
             ProductListVM = new ProductListViewModel(this);
 
             ProductAddVM = new ProductAddViewModel(this);
@@ -122,16 +132,21 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 CurrentView = SalesReportVM;
             });
-
+            //Order
             OrderManagementViewCommand = new RelayCommand(o =>
             {
                 CurrentView = OrderManagementVM;
             });
-
+            OrderAddBookViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = OrderAddBookVM;
+            });
+            //Category
             CategoryManagementViewCommand = new RelayCommand(o =>
             {
                 CurrentView = CategoryManagementVM;
             });
+            //Product
             ProductListViewCommand = new RelayCommand(o =>
             {
                 CurrentView = ProductListVM;

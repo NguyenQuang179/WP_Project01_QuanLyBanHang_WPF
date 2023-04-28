@@ -96,16 +96,6 @@
                     </Grid>
                     <!--Filter by Status-->
                     <!--SelectionChanged=""-->
-                    <ComboBox 
-                       
-                      x:Name="StatusTypeComboBox" 
-                      Width="100">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock><Run Text="{Binding Item1, Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding Item2, Mode=OneWay}"/></TextBlock>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
                     <!--Refresh Button-->
                     <Border
                         Background="#FFFFFF"

@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
 {
-    
+
     public class BookInOrder
     {
-        public string _id {  get; set; }
+
         public string book { get; set; }
         public int quantity { get; set; }
+
+        public BookInOrder(string book, int quantity)        {
+            this.book = book;
+            this.quantity = quantity;
+        }
+
     }
 
     public class Order

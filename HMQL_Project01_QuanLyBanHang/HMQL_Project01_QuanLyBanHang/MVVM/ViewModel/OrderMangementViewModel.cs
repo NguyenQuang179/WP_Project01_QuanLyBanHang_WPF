@@ -20,7 +20,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
     class OrderMangementViewModel : ObservableObject
     {
 
-        
+        public string id { get; set; }
         public RelayCommand OrderDetailViewCommand { get; set; }
 
         public OrderDetailViewModel? OrderDetailVM { get; set; }
@@ -55,9 +55,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             OrderDetailViewCommand = new RelayCommand((param) =>
             {
-                string id = param.ToString();
+                id = param.ToString();
                 MessageBox.Show("ID IS:" + id);
-                OrderDetailVM = new OrderDetailViewModel(id);
+                OrderDetailVM = new OrderDetailViewModel(MainVM, id);
                 //MessageBox.Show("No Selected Order");
                 
                 MainVM.CurrentView = OrderDetailVM;
