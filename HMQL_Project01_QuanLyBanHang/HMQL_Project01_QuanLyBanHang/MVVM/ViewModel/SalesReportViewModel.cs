@@ -4,14 +4,11 @@ using LiveCharts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
 using HMQL_Project01_QuanLyBanHang.MVVM.Model;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Windows;
-using System.Windows.Media.Media3D;
+
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
@@ -50,16 +47,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(ListBookReport));
             }
         }
-        private ListOfBookSalesWeek listBookReportWeek;
-        public ListOfBookSalesWeek ListBookReportWeek
-        {
-            get => listBookReportWeek;
-            set
-            {
-                listBookReportWeek = value;
-                OnPropertyChanged(nameof(ListBookReportWeek));
-            }
-        }
         private List<BookSales> bookSales;
         public List<BookSales> BookSales
         {
@@ -70,17 +57,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(BookSales));
             }
         }
-        private List<BookSalesWeek> bookSalesWeek;
-        public List<BookSalesWeek> BookSalesWeek
-        {
-            get => bookSalesWeek;
-            set
-            {
-                bookSalesWeek = value;
-                OnPropertyChanged(nameof(BookSalesWeek));
-            }
-        }
-
 
         // Relay Command To Call Data From API
         public RelayCommand CallData { get; set; }
@@ -96,14 +72,25 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(SearchValue));
             }
         }
-        private string listBookDataMode;
-        public string ListBookDataMode
+        private List<string> listDataMode;
+        public List<string> ListDataMode
         {
-            get => listBookDataMode;
+            get => listDataMode;
             set
             {
-                listBookDataMode = value;
-                OnPropertyChanged(nameof(ListBookDataMode));
+                listDataMode = value;
+                OnPropertyChanged(nameof(ListDataMode));
+            }
+        }
+        private int selectedModeIndex;
+        public int SelectedModeIndex
+        {
+            get => selectedModeIndex;
+            set
+            {
+                selectedModeIndex = value;
+                OnPropertyChanged(nameof(SelectedModeIndex));
+                if(CallData != null) CallData.Execute(null);
             }
         }
         private string minDate;
@@ -124,6 +111,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 maxDate = value;
                 OnPropertyChanged(nameof(MaxDate));
+
             }
         }
         // Paging 
@@ -187,6 +175,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 listPagesSelectedIndex = value;
                 OnPropertyChanged(nameof(ListPagesSelectedIndex));
+                if(BookSales != null) PageComboboxChangeCommand.Execute(null);
             }
         }
         private List<BookSales> curPageData;
@@ -258,15 +247,17 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             ListPages = new List<int>();
             CurPageData = new List<BookSales>();
             ListBookReport = new ListOfBookSales();
-            ListBookDataMode = "Week";
+            ListDataMode = new List<string> { "Day", "Week", "Month", "Year" };
+            SelectedModeIndex = 0;
             BookSales = new List<BookSales>();
-            BookSalesWeek = new List<BookSalesWeek>();
             SearchValue = "";
+            MinDate = "";
+            MaxDate = DateTime.Now.ToString("MM/dd/yyyy");
 
             CallData = new RelayCommand(async o =>
             {
                 var uri = new Uri($"{ConnectionString.connectionString}/order/report?minDate=2023-03-27&maxDate=2023-05-02&mode=day");
-                var salesReportUri = new Uri($"{ConnectionString.connectionString}/book/report?minDate=2023-03-27&maxDate=2023-05-02&mode={ListBookDataMode.ToLower()}");
+                var salesReportUri = new Uri($"{ConnectionString.connectionString}/book/report?minDate={MinDate}&maxDate={MaxDate}&mode={ListDataMode[selectedModeIndex].ToLower()}");
                 try
                 {
                     using var client = new HttpClient();
@@ -280,7 +271,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         var listBookJson = await listBookResponse.Content.ReadAsStringAsync();
                         Data = JsonConvert.DeserializeObject<RootObject>(json);
                         ListBookReport = JsonConvert.DeserializeObject<ListOfBookSales>(listBookJson);
-                        ListBookReportWeek = JsonConvert.DeserializeObject<ListOfBookSalesWeek>(listBookJson);
                         //MessageBox.Show($"{ListBookReport.saleReport.Count}");
 
                         // Update Paging
@@ -311,16 +301,24 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             UpdatePagingCommand = new RelayCommand(o =>
             {
-                BookSalesWeek = ListBookReportWeek.saleReport.Where(s => s._id.book[0].name.Contains(SearchValue)).ToList();
                 BookSales = ListBookReport.saleReport.Where(s => s._id.book[0].name.Contains(SearchValue)).ToList();
+                for(int i = 0; i < BookSales.Count; i++)
+                {
+                    if(BookSales[i]._id.date == null)
+                    {
+                        BookSales[i]._id.date = $"Week {BookSales[i]._id.week} - In {BookSales[i]._id.year}";
+                    }
+                }
+                CurPage = 1;
                 TotalBook = BookSales.Count;
                 TotalPage = TotalBook / RowPerPage + (TotalBook % RowPerPage == 0 ? 0 : 1);
-                ListPages = new List<int>();
+                ListPagesSelectedIndex = CurPage - 1;
+                var pages = new List<int>();
                 for (int i = 1; i <= TotalPage; i++)
                 {
-                    ListPages.Add(i);
+                    pages.Add(i);
                 }
-                ListPagesSelectedIndex = CurPage - 1;
+                ListPages = pages;
                 UpdatePageDataCommand.Execute(null);
             });
 
@@ -331,7 +329,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     CurPageData = BookSales.GetRange(starIndex, RowPerPage);
                 }
-                else CurPageData = BookSales.GetRange(starIndex, TotalBook - ((TotalPage - 1) * RowPerPage));
+                else
+                {
+                    if (TotalBook == 0) CurPageData = BookSales.GetRange(starIndex, 0);
+                    else CurPageData = BookSales.GetRange(starIndex, TotalBook - ((TotalPage - 1) * RowPerPage));
+                }
             });
 
             PageComboboxChangeCommand = new RelayCommand(o =>
@@ -344,7 +346,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 if(CurPage == TotalPage) { return; }
                 ListPagesSelectedIndex++;
-                CurPage++;
                 UpdatePageDataCommand.Execute(null);
             });
 
@@ -352,7 +353,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 if(CurPage == 1) { return; }
                 ListPagesSelectedIndex--;
-                CurPage--;
                 UpdatePageDataCommand.Execute(null);
             });
 
@@ -369,8 +369,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             });
             ProductLabels = new[] { "New Book 1", "New Book 2", "New Book 3", "New Book 4", "New Book 5" };
             ProductFormatter = value => value.ToString("N");
-
-
         }
     }
 }

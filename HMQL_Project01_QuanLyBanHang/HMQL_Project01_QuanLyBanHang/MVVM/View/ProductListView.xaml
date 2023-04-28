@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
-             xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
+             xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View" d:DataContext="{d:DesignInstance Type=viewmodel:ProductListViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800" Loaded="Window_Loaded">
     <Grid>

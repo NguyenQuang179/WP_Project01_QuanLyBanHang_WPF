@@ -56,7 +56,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         var json = await response.Content.ReadAsStringAsync();
                         Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
                         // Handle the successful upload
-                        MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
+                        //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
                 }

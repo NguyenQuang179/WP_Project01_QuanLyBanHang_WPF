@@ -19,6 +19,7 @@
     <None Remove="Images\logo.png" />
     <None Remove="Images\OrderManagementSVG\calendar-solid.png" />
     <None Remove="Images\OrderManagementSVG\cart-shopping-solid.png" />
+    <None Remove="Images\OrderManagementSVG\magnifying-glass-solid.png" />
     <None Remove="Images\OrderManagementSVG\money-bill-solid.png" />
     <None Remove="Images\OrderManagementSVG\plus-solid.png" />
     <None Remove="Images\OrderManagementSVG\rotate-right-solid.png" />
@@ -33,6 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
     <PackageReference Include="FontAwesome" Version="4.7.0" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -53,6 +56,7 @@
     </Resource>
     <Resource Include="Images\OrderManagementSVG\calendar-solid.png" />
     <Resource Include="Images\OrderManagementSVG\cart-shopping-solid.png" />
+    <Resource Include="Images\OrderManagementSVG\magnifying-glass-solid.png" />
     <Resource Include="Images\OrderManagementSVG\money-bill-solid.png" />
     <Resource Include="Images\OrderManagementSVG\plus-solid.png" />
     <Resource Include="Images\OrderManagementSVG\rotate-right-solid.png" />

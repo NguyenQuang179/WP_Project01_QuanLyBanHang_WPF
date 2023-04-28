@@ -137,14 +137,16 @@
                                             Background="#FF3A36DB"
                                             CornerRadius="6"
                                             Cursor="Hand"
-                                            Margin="4 0 0 0">
+                                            Margin="8 0 0 0">
+                                        <Image Height="16" Width="16"
+                                               Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png"/>
                                         <Border.InputBindings>
                                             <MouseBinding MouseAction="LeftClick" Command="{Binding UpdatePagingCommand}"/>
                                         </Border.InputBindings>
                                     </Border>
                                 </StackPanel>
                             </StackPanel>
-                            <StackPanel Margin="16 0 0 0">
+                            <StackPanel Margin="32 0 0 0">
                                 <TextBlock Text="Search Mode:"
                                            FontSize="16"
                                            FontWeight="DemiBold"
@@ -152,40 +154,58 @@
                                            Margin="0 0 0 8"/>
                                 <ComboBox Grid.Column="1"
                                       Height="32"
-                                      Padding="24 0"
+                                      Width="100" 
+                                      ItemsSource="{Binding ListDataMode, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedIndex="{Binding SelectedModeIndex, UpdateSourceTrigger=PropertyChanged}"
                                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-                                    <ComboBoxItem Content="Day" IsSelected="True"/>
-                                    <ComboBoxItem Content="Week"/>
-                                    <ComboBoxItem Content="Month"/>
-                                    <ComboBoxItem Content="Year"/>
                                 </ComboBox>
                             </StackPanel>
                             
                             <!--Min Date-->
-                            <StackPanel Margin="16 0 0 0">
+                            <StackPanel Margin="32 0 0 0">
                                 <TextBlock Text="Minimum Date:"
                                            FontSize="16"
                                            FontWeight="DemiBold"
                                            Margin="0 0 0 8"/>
-                                <DatePicker SelectedDateFormat="Short"></DatePicker>
+                                <DatePicker SelectedDateFormat="Short"
+                                            SelectedDate="{Binding MinDate, UpdateSourceTrigger=PropertyChanged}"
+                                            Height="32"
+                                            VerticalContentAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectedDateChanged">
+                                            <i:InvokeCommandAction Command="{Binding CallData}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </DatePicker>
                             </StackPanel>
 
                             <!--Max Date-->
-                            <StackPanel Margin="16 0 0 0">
+                            <StackPanel Margin="32 0 0 0">
                                 <TextBlock Text="Maximum Date:"
                                            FontSize="16"
                                            FontWeight="DemiBold"
                                            Margin="0 0 0 8"/>
                                 <DatePicker SelectedDateFormat="Short"
-                                            SelectedDate="04/20/2023"></DatePicker>
+                                            SelectedDate="{Binding MaxDate, UpdateSourceTrigger=PropertyChanged}"
+                                            Height="32"
+                                            VerticalContentAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectedDateChanged">
+                                            <i:InvokeCommandAction Command="{Binding CallData}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </DatePicker>
                             </StackPanel>
 
                         </StackPanel>
                         
                         <!--Data-->
                         <DataGrid Grid.Row="1"
-                                  Background="LightGray"
-                                  AutoGenerateColumns="False"
+                                  Background="Transparent"
+                                  AutoGenerateColumns="False" CanUserAddRows="False"
+                                  CanUserResizeColumns="False"
+                                  CanUserReorderColumns="False"
+                                  IsReadOnly="True"
                                   ItemsSource="{Binding CurPageData}"
                                   AlternationCount="{Binding CurPageData.Count}">
                             <DataGrid.Columns>
@@ -198,7 +218,7 @@
                                 <DataGridTextColumn Header="Book Title" 
                                                     Binding="{Binding _id.book[0].name}"
                                                     Width="3*"/>
-                                <DataGridTextColumn Header="Date" 
+                                <DataGridTextColumn Header="Time Period" 
                                                     Binding="{Binding _id.date}"
                                                     Width="2*"/>
                                 <DataGridTextColumn Header="Sold Quantity" 
@@ -208,11 +228,14 @@
                         </DataGrid>
                         
                         <!--Paging-->
-                        <StackPanel Grid.Row="2"
-                                    Orientation="Horizontal"
-                                    VerticalAlignment="Center">
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
                             <!--Row Per Page-->
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Grid.Column="0">
                                 <TextBlock Text="Rows Per Page:"
                                            FontSize="12" FontWeight="DemiBold"
                                            VerticalAlignment="Center"
@@ -254,9 +277,11 @@
                                 </TextBox>
                             </StackPanel>
                             <!--Paging Button-->
-                            <StackPanel Orientation="Horizontal"
-                                        Margin="32 0 0 0">
-                                <Border Width="52"
+                            <StackPanel Grid.Column="1"
+                                        Orientation="Horizontal"
+                                        Height="32"
+                                        HorizontalAlignment="Center">
+                                <Border Width="56"
                                     Background="#FF3A36DB"
                                     CornerRadius="4"
                                     Margin="0 0 8 0">
@@ -270,10 +295,15 @@
                                            HorizontalAlignment="Center"/>
                                 </Border>
                                 <ComboBox Width="52" Margin="0 0 8 0"
-                                      ItemsSource="{Binding ListPages}"
+                                      ItemsSource="{Binding ListPages, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedIndex="{Binding ListPagesSelectedIndex, UpdateSourceTrigger=PropertyChanged}"
                                       VerticalContentAlignment="Center"
                                       HorizontalContentAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectedIndexChanged">
+                                            <i:InvokeCommandAction Command="{Binding PageComboboxChangeCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                 </ComboBox>
                                 <TextBlock FontWeight="DemiBold"
                                        VerticalAlignment="Center"
@@ -281,7 +311,7 @@
                                 <Run Text="/"/>
                                 <Run Text="{Binding TotalPage}"/>
                                 </TextBlock>
-                                <Border Width="52"
+                                <Border Width="56"
                                     Background="#FF3A36DB"
                                     CornerRadius="4"
                                     Margin="8 0 0 0">
@@ -296,11 +326,15 @@
                                 </Border>
                             </StackPanel>
                             <!--Total Book Info-->
-                            <StackPanel Orientation="Horizontal"
-                                        Margin="32 0 0 0">
-                                <TextBlock/>
-                            </StackPanel>
-                        </StackPanel>
+                            <TextBlock Grid.Column="2"
+                                       FontSize="12" FontWeight="DemiBold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right"
+                                       Margin="0 0 16 0">
+                                <Run Text="Total Book:"/>
+                                <Run Text="{Binding TotalBook}"/>
+                            </TextBlock>
+                        </Grid>
                     </Grid>
                 </Border>
             </StackPanel>

@@ -128,7 +128,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         Data = JsonConvert.DeserializeObject<DashboardDataModel>(json);
                         ChooseWeek.Execute(null);
                         // Handle the successful upload
-                        MessageBox.Show($"Success Call Data {Data.listOfBookOutOfStock.Count}");
+                        //MessageBox.Show($"Success Call Data {Data.listOfBookOutOfStock.Count}");
                     }
                     else { 
                         //MessageBox.Show($"Fail To Call Data");
