@@ -21,6 +21,7 @@ using System.ComponentModel;
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
 
+    
     public class BookItemOrderInfo : Book, INotifyPropertyChanged
     {
         private bool isSelected;
@@ -72,6 +73,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
    
     internal class OrderAddBookViewModel : ObservableObject
     {
+        public bool IsAddBookForEditingOrder { get; set; }
+
         private OrderDetails orderD;
         
         public RelayCommand ConfirmBookSelectionCommand { get; set; }
@@ -186,27 +189,54 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
                 if (selectedBooks.Any())
                 {
-                  
+                    List<BookInOrderForDetails> curList;
+                    long totalPrice;
+                    Object lastView;
                     //Get Current Order Detail Book List
-                    List<BookInOrderForDetails> curList = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.listOfBook;
+                    if (IsAddBookForEditingOrder)
+                    {
+                        curList = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.listOfBook;
+                        totalPrice = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.totalPrice;
+                        lastView = MainVM.OrderManagementVM.OrderDetailVM;
+                    }
+                    else
+                    {
+                        curList = MainVM.OrderManagementVM.OrderCreateVM.OrderD.order.listOfBook;
+                        totalPrice = MainVM.OrderManagementVM.OrderCreateVM.OrderD.order.totalPrice;
+                        lastView = MainVM.OrderManagementVM.OrderCreateVM;
+                    }
 
+                    int tempPrice = 0;
                     foreach (var newBook in selectedBooks)
                     {
                         //Check if book._id of newBook already exist inCurList if yes then sum both new quantity
                         var existingBook = curList.FirstOrDefault(b => b.book._id == newBook.book._id);
                         if (existingBook != null)
                         {
+                            //
                             existingBook.quantity += newBook.quantity;
+                            newBook.quantity = 1;
+                            
                         }
                         else
                         {
                             // If book._id doesn't exist inCurList then add it into curList.
                             curList.Add(newBook);
                         }
+                        //Update total
+                        tempPrice += newBook.quantity * newBook.book.price;
+
                     }
-
-
-                    MainVM.CurrentView = MainVM.OrderManagementVM.OrderDetailVM;
+                    //SetAll Selected to false;
+                    foreach(var newBookOrder in bookOrderInfoList)
+                    {
+                        newBookOrder.Quantity = 1;
+                        if (newBookOrder.IsSelected == false)
+                            continue;
+                        newBookOrder.IsSelected = false;
+                    }
+                    totalPrice = tempPrice + totalPrice;
+                    MainVM.CurrentView = lastView;
 
                 }
             });

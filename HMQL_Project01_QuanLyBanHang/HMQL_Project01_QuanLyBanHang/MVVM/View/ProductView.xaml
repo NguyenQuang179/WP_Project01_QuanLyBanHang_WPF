@@ -6,10 +6,10 @@
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800" Loaded="Window_Loaded">
-    <UserControl.DataContext>
+             d:DesignHeight="544" d:DesignWidth="766" Loaded="Window_Loaded">
+    <!--<UserControl.DataContext>
         <viewmodel:ProductViewModel />
-    </UserControl.DataContext>
+    </UserControl.DataContext>-->
     <Grid>
 
         <Border Background="#FFF1F4FA"
@@ -24,7 +24,7 @@
                         CornerRadius="12"
                         Margin="32 16 10 0">
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding BackCommand}" />
                         </Border.InputBindings>
                         <TextBlock
                             Text="&lt; Back"
@@ -45,20 +45,26 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
                         </Grid.ColumnDefinitions>
                         <Image
-                                RenderOptions.BitmapScalingMode="HighQuality"
-                                Margin="26,60,26,60"
-                                Width="147" Height="221"
-                                Source="/BookImages/book1.jpg" />
+                            Name="BookImage"
+                            Source="{Binding ImagePath}"
+                            RenderOptions.BitmapScalingMode="HighQuality"
+                            Margin="26,60,26,60"
+                            Width="147" Height="221"
+                            d:Source="/BookImages/book1.jpg" />
 
                         <Border Height="30"
-                                Background="LightGray"
-                                CornerRadius="12"
-                                Margin="57,294,57,16" Width="86">
+
+                            IsEnabled="{Binding IsBrowseEnabled}"
+
+                            Background="{Binding BackGroundColorForUnusedButton}"
+                            d:Background="LightGray"
+                            CornerRadius="12"
+                            Margin="57,294,57,16" Width="86">
                             <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                <MouseBinding MouseAction="LeftClick"  Command="{Binding BrowseImageCommand}" />
                             </Border.InputBindings>
                             <TextBlock Text="Browse"
                                 FontSize="16" FontWeight="DemiBold" Foreground="White"
@@ -80,12 +86,13 @@
 
                             <TextBox
                                 Name = "bookNameTextBlock"
+                                Text="{Binding Data.book.name, UpdateSourceTrigger=PropertyChanged}"
+                                d:Text="Book Name 01"
                                 FontSize="14" Height="Auto"
                                 TextWrapping="Wrap"
                                 Margin="10 0 0 0"
                                 BorderThickness="0 0 0 1"
                                 IsReadOnly="True">
-                                Book Name 01
                             </TextBox>
 
                             <TextBlock
@@ -96,12 +103,13 @@
 
                             <TextBox
                                 Name = "bookCategoryTextBlock"
+                                Text="{Binding Data.book.category.name, UpdateSourceTrigger=PropertyChanged}"
+                                d:Text="Book Category 01"
                                 FontSize="14"
                                 TextWrapping="Wrap"
                                 Margin="10 0 0 0"
                                 BorderThickness="0 0 0 1"
                                 IsReadOnly="True">
-                                Book Category 01
                             </TextBox>
 
                             <TextBlock
@@ -112,12 +120,13 @@
 
                             <TextBox
                                 Name = "bookAuthorTextBlock"
+                                Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}"
+                                d:Text="Book Author 01"
                                 FontSize="14"
                                 TextWrapping="Wrap"
                                 Margin="10 0 0 0"
                                 BorderThickness="0 0 0 1"
                                 IsReadOnly="True">
-                                Book Author 01
                             </TextBox>
 
                             <TextBlock
@@ -128,12 +137,13 @@
 
                             <TextBox
                                 Name = "bookPYTextBlock"
+                                Text="{Binding Data.book.publishedYear, UpdateSourceTrigger=PropertyChanged}"
+                                d:Text="Book Author 01"
                                 FontSize="14"
                                 TextWrapping="Wrap"
                                 Margin="10 0 0 0"
                                 BorderThickness="0 0 0 1"
                                 IsReadOnly="True">
-                                Book Published Year 01
                             </TextBox>
 
                             <TextBlock
@@ -144,12 +154,13 @@
 
                             <TextBox
                                 Name = "bookPriceTextBlock"
+                                Text="{Binding Data.book.price, UpdateSourceTrigger=PropertyChanged}"
+                                d:Text="Book Price 01"
                                 FontSize="14"
                                 TextWrapping="Wrap"
                                 Margin="10 0 0 0"
                                 BorderThickness="0 0 0 1"
                                 IsReadOnly="True">
-                                Book Price 01
                             </TextBox>
 
                             <TextBlock
@@ -160,25 +171,30 @@
 
                             <TextBox
                                 Name = "bookStockTextBlock"
+                                Text="{Binding Data.book.stock, UpdateSourceTrigger=PropertyChanged}"
+                                d:Text="Book Stock 01"
                                 FontSize="14"
                                 TextWrapping="Wrap"
                                 Margin="10 0 0 0"
                                 BorderThickness="0 0 0 1"
                                 IsReadOnly="True">
-                                Book Stock 01
                             </TextBox>
                         </ListView>
 
                         <StackPanel
                             Grid.Column="2">
                             <Border
+
+                                IsEnabled="{Binding IsBrowseEnabled}"
+
                                 Height="30"
                                 HorizontalAlignment="Right"
-                                Background="LightGray"
+                                Background="{Binding BackGroundColorForUnusedButton}"
+                                d:Background="LightGray"
                                 CornerRadius="12"
                                 Margin="10 16 10 0" Width="86">
                                 <Border.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding SaveBookCommand}" />
                                 </Border.InputBindings>
                                 <TextBlock Text="Save"
                                 FontSize="16" FontWeight="DemiBold" Foreground="White"
@@ -192,7 +208,7 @@
                                 CornerRadius="12"
                                 Margin="10 16 10 0" Width="86">
                                 <Border.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding EditBookCommand}" />
                                 </Border.InputBindings>
                                 <TextBlock Text="Edit"
                                 FontSize="16" FontWeight="DemiBold" Foreground="White"
@@ -206,7 +222,7 @@
                                 CornerRadius="12"
                                 Margin="10 16 10 0" Width="86">
                                 <Border.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding DeleteBookCommand}" />
                                 </Border.InputBindings>
                                 <TextBlock Text="Delete"
                                 FontSize="16" FontWeight="DemiBold" Foreground="White"

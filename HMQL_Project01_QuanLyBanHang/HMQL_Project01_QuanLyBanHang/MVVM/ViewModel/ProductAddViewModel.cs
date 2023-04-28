@@ -11,11 +11,24 @@ using HMQL_Project01_QuanLyBanHang.MVVM.Model;
 using System.Net.Http;
 using System.IO;
 using System.Security.Policy;
+using Microsoft.Win32;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
     internal class ProductAddViewModel : ObservableObject
     {
+        private string _imagePath;
+
+        public string ImagePath
+        {
+            get { return _imagePath; }
+            set
+            {
+                _imagePath = value;
+                OnPropertyChanged(nameof(ImagePath));
+            }
+        }
+
         private string bookName;
 
         public string BookName
@@ -92,11 +105,31 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand AddBookToAPICommand { get; set; }
 
+        public RelayCommand BrowseImageCommand { get; set; }
+
+        private static string SelectImage()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg";
+            string ImagePath = "";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ImagePath = openFileDialog.FileName;
+            }
+
+            return ImagePath;
+        }
+
         public ProductAddViewModel(MainViewModel mainVM)
         {
             BackCommand = new RelayCommand(o =>
             {
                 mainVM.ProductListViewCommand.Execute(null);
+            });
+
+            BrowseImageCommand = new RelayCommand(o =>
+            {
+                ImagePath = SelectImage();
             });
 
             AddBookToAPICommand = new RelayCommand(async o =>

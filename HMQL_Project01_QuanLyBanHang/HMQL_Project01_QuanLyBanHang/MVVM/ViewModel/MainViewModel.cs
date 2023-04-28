@@ -32,28 +32,37 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         //Order
         public RelayCommand OrderManagementViewCommand { get; set; }
+
         public RelayCommand OrderDetailViewCommand { get; set; }
         public RelayCommand OrderAddBookViewCommand { get; set; }
         public RelayCommand OrderAddViewCommand { get; set; }
+
         //Category
         public RelayCommand CategoryManagementViewCommand { get; set; }
+
         //Product
         public RelayCommand ProductAddViewCommand { get; set; }
+
+        public RelayCommand ProductViewCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
 
         public DashboardViewModel DashboardVM { get; set; }
 
         public SalesReportViewModel SalesReportVM { get; set; }
+
         //COrder
         public OrderMangementViewModel OrderManagementVM { get; set; }
 
         public OrderDetailViewModel ORderDetailVM { get; set; }
         public OrderAddBookViewModel OrderAddBookVM { get; set; }
+
         //Category
         public CategoryManagementViewModel CategoryManagementVM { get; set; }
+
         //Product
         public ProductListViewModel ProductListVM { get; set; }
+
         public ProductAddViewModel ProductAddVM { get; set; }
 
         
@@ -86,6 +95,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             ProductListVM = new ProductListViewModel(this);
 
             ProductAddVM = new ProductAddViewModel(this);
+
+            //ProductViewVM = new ProductViewModel(this);
 
             CurrentView = DashboardVM;
 
@@ -155,6 +166,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 CurrentView = ProductAddVM;
             });
+
+            //ProductViewCommand = new RelayCommand(o =>
+            //{
+            //    CurrentView = ProductViewVM;
+            //});
 
             LogOutCommand = new RelayCommand(o =>
             {

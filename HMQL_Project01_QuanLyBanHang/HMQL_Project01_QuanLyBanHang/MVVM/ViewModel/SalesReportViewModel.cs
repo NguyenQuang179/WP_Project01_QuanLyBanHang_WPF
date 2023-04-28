@@ -1,4 +1,4 @@
-﻿using HMQL_Project01_QuanLyBanHang.Core;
+using HMQL_Project01_QuanLyBanHang.Core;
 using LiveCharts.Wpf;
 using LiveCharts;
 using System;
@@ -9,13 +9,13 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Windows;
 
-
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
-    class SalesReportViewModel : ObservableObject
+    internal class SalesReportViewModel : ObservableObject
     {
         //Data From API For Chart
         private RootObject data;
+
         public RootObject Data
         {
             get => data;
@@ -35,7 +35,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(DataMonthYear));
             }
         }
+
         private string dataMode;
+
         public string DataMode
         {
             get => dataMode;
@@ -48,6 +50,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         // Data From API For Data Grid
         private ListOfBookSales listBookReport;
+
         public ListOfBookSales ListBookReport
         {
             get => listBookReport;
@@ -57,7 +60,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(ListBookReport));
             }
         }
+
         private List<BookSales> bookSales;
+
         public List<BookSales> BookSales
         {
             get => bookSales;
@@ -70,9 +75,10 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         // Relay Command To Call Data From API
         public RelayCommand CallData { get; set; }
-        
+
         // Value For Search Bar
         private string searchValue;
+
         public string SearchValue
         {
             get => searchValue;
@@ -82,7 +88,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(SearchValue));
             }
         }
+
         private List<string> listDataMode;
+
         public List<string> ListDataMode
         {
             get => listDataMode;
@@ -92,7 +100,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(ListDataMode));
             }
         }
+
         private int selectedModeIndex;
+
         public int SelectedModeIndex
         {
             get => selectedModeIndex;
@@ -100,10 +110,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 selectedModeIndex = value;
                 OnPropertyChanged(nameof(SelectedModeIndex));
-                if(CallData != null) CallData.Execute(null);
+                if (CallData != null) CallData.Execute(null);
             }
         }
+
         private string minDate;
+
         public string MinDate
         {
             get => minDate;
@@ -113,7 +125,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(MinDate));
             }
         }
+
         private string maxDate;
+
         public string MaxDate
         {
             get => maxDate;
@@ -121,21 +135,24 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 maxDate = value;
                 OnPropertyChanged(nameof(MaxDate));
-
             }
         }
-        // Paging 
+
+        // Paging
         private int rowPerPage;
+
         public int RowPerPage
         {
             get => rowPerPage;
             set
             {
                 rowPerPage = value;
-               OnPropertyChanged(nameof(RowPerPage));
+                OnPropertyChanged(nameof(RowPerPage));
             }
         }
+
         private int totalPage;
+
         public int TotalPage
         {
             get => totalPage;
@@ -145,20 +162,24 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(TotalPage));
             }
         }
+
         private int curPage;
+
         public int CurPage
         {
-            get => curPage; 
+            get => curPage;
             set
             {
                 curPage = value;
                 OnPropertyChanged(nameof(CurPage));
             }
         }
+
         private int totalBook;
+
         public int TotalBook
         {
-            get => totalBook; 
+            get => totalBook;
             set
             {
                 totalBook = value;
@@ -168,6 +189,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         // Data For Paging Combobox
         private List<int> listPages;
+
         public List<int> ListPages
         {
             get => listPages;
@@ -177,7 +199,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(ListPages));
             }
         }
+
         private int listPagesSelectedIndex;
+
         public int ListPagesSelectedIndex
         {
             get => listPagesSelectedIndex;
@@ -185,10 +209,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 listPagesSelectedIndex = value;
                 OnPropertyChanged(nameof(ListPagesSelectedIndex));
-                if(BookSales != null) PageComboboxChangeCommand.Execute(null);
+                if (BookSales != null) PageComboboxChangeCommand.Execute(null);
             }
         }
+
         private List<BookSales> curPageData;
+
         public List<BookSales> CurPageData
         {
             get => curPageData;
@@ -201,7 +227,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         //Relay Command To Update Data When Changing Page
         public RelayCommand UpdatePagingCommand { get; set; }
-        public RelayCommand UpdatePageDataCommand { get; set; } 
+
+        public RelayCommand UpdatePageDataCommand { get; set; }
         public RelayCommand PageComboboxChangeCommand { get; set; }
         public RelayCommand NextPageCommand { get; set; }
         public RelayCommand PrevPageCommand { get; set; }
@@ -211,6 +238,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         //Sale Series
         private SeriesCollection saleSeries;
+
         public SeriesCollection SaleSeries
         {
             get => saleSeries;
@@ -220,7 +248,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(SaleSeries));
             }
         }
+
         private List<string> saleLabels;
+
         public List<string> SaleLabels
         {
             get => saleLabels;
@@ -230,7 +260,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(SaleLabels));
             }
         }
+
         private Func<double, string> saleFormatter;
+
         public Func<double, string> SaleFormatter
         {
             get => saleFormatter;
@@ -254,6 +286,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         //Product Series
         public SeriesCollection ProductSeries { get; set; }
+
         public string[] ProductLabels { get; set; }
         public Func<double, string> ProductFormatter { get; set; }
 
@@ -344,9 +377,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             UpdatePagingCommand = new RelayCommand(o =>
             {
                 BookSales = ListBookReport.saleReport.Where(s => s._id.book[0].name.Contains(SearchValue)).ToList();
-                for(int i = 0; i < BookSales.Count; i++)
+                for (int i = 0; i < BookSales.Count; i++)
                 {
-                    if(BookSales[i]._id.date == null)
+                    if (BookSales[i]._id.date == null)
                     {
                         BookSales[i]._id.date = $"Week {BookSales[i]._id.week} - In {BookSales[i]._id.year}";
                     }
@@ -386,14 +419,14 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             NextPageCommand = new RelayCommand(o =>
             {
-                if(CurPage == TotalPage) { return; }
+                if (CurPage == TotalPage) { return; }
                 ListPagesSelectedIndex++;
                 UpdatePageDataCommand.Execute(null);
             });
 
             PrevPageCommand = new RelayCommand(o =>
             {
-                if(CurPage == 1) { return; }
+                if (CurPage == 1) { return; }
                 ListPagesSelectedIndex--;
                 UpdatePageDataCommand.Execute(null);
             });
