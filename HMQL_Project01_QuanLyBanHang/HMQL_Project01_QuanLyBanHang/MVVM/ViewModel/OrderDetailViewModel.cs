@@ -14,6 +14,7 @@ using System.Collections.Specialized;
 using System.Windows.Controls;
 using HMQL_Project01_QuanLyBanHang.MVVM.View;
 using System.ComponentModel;
+using System.Windows.Data;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
@@ -94,10 +95,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             }
         }
 
+
             public RelayCommand CallOrderDetailData { get; set; }
             public RelayCommand OrderAddBookCreateViewCommand { get; set; }
 
             public RelayCommand ConfirmOrderDetailData { get; set; }
+            public RelayCommand DeleteBookDetailData { get; set; }
             public OrderDetailViewModel(MainViewModel MainVM, String OrderID)
             {
             //orders = new ListOfOrder();
@@ -124,7 +127,35 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 //Update Order Detail API
             });
-            
+
+            DeleteBookDetailData = new RelayCommand((param) =>
+            {
+                List<BookInOrderForDetails> curList = OrderD.order.listOfBook;
+                // Find the index of the book to remove
+
+                string bookId = param as string;
+                if (bookId == null)
+                {
+                    //show error
+                    MessageBox.Show("Invalid Book ID");
+                    return;
+                }
+                // Find the index of the book to remove
+                int indexToRemove = curList.FindIndex(b => b.book._id == bookId);
+
+
+                if (indexToRemove != -1)
+                {
+                    // Remove the book from curList
+                    curList.RemoveAt(indexToRemove);
+                    
+                }
+                else
+                {
+                    //show error
+                    MessageBox.Show("No Book Selected");
+                }
+            });
 
             OrderAddBookCreateViewCommand = new RelayCommand(o =>
             {

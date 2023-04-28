@@ -189,23 +189,36 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                   
                     //Get Current Order Detail Book List
                     List<BookInOrderForDetails> curList = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.listOfBook;
-
+                    int tempPrice = 0;
                     foreach (var newBook in selectedBooks)
                     {
                         //Check if book._id of newBook already exist inCurList if yes then sum both new quantity
                         var existingBook = curList.FirstOrDefault(b => b.book._id == newBook.book._id);
                         if (existingBook != null)
                         {
+                            //
                             existingBook.quantity += newBook.quantity;
+                            newBook.quantity = 1;
+                            
                         }
                         else
                         {
                             // If book._id doesn't exist inCurList then add it into curList.
                             curList.Add(newBook);
                         }
+                        //Update total
+                        tempPrice += newBook.quantity * newBook.book.price;
+
                     }
-
-
+                    //SetAll Selected to false;
+                    foreach(var newBookOrder in bookOrderInfoList)
+                    {
+                        newBookOrder.Quantity = 1;
+                        if (newBookOrder.IsSelected == false)
+                            continue;
+                        newBookOrder.IsSelected = false;
+                    }
+                    MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.totalPrice = tempPrice + MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.totalPrice;
                     MainVM.CurrentView = MainVM.OrderManagementVM.OrderDetailVM;
 
                 }
