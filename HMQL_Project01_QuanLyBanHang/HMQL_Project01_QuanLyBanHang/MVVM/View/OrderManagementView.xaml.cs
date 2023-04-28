@@ -25,6 +25,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.View
             InitializeComponent();
         }
 
-      
+
     }
 }

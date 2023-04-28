@@ -4,12 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
-             xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
+             xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View" d:DataContext="{d:DesignInstance Type=viewmodel:ProductAddViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <viewmodel:ProductAddViewModel />
-    </UserControl.DataContext>
+
     <Grid>
 
         <Border Background="#FFF1F4FA"
@@ -18,12 +16,20 @@
             <StackPanel>
                 <StackPanel
                     Orientation="Horizontal">
-                    <TextBlock
-                    Margin="32 16 10 0"
-                    Grid.Row="0"
-                    Text="Product"
-                    FontSize="24" FontWeight="Bold"
-                    Width="95" />
+                    <Border
+                        HorizontalAlignment="Right"
+                        Background="Transparent"
+                        CornerRadius="12"
+                        Margin="32 16 10 0">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding BackCommand}" />
+                        </Border.InputBindings>
+                        <TextBlock
+                            Text="&lt; Back"
+                            FontSize="20" FontWeight="DemiBold" Foreground="Black"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                        </TextBlock>
+                    </Border>
                 </StackPanel>
 
                 <Border
@@ -60,109 +66,112 @@
                                 HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
 
-                        <ListView
+                        <StackPanel
                             Grid.Column="1"
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                            Margin="0 16 16 16"
-                            BorderBrush="Transparent"
-                            x:Name="BookDetail">
-
+                            Margin="0 16 16 16">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Margin" Value="0 0 0 4" />
+                                </Style>
+                            </StackPanel.Resources>
                             <TextBlock
                                 Text="Name"
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="12">
                             </TextBlock>
 
                             <TextBox
                                 Name = "bookNameTextBlock"
+                                Text="{Binding BookName}"
                                 Width="300"
                                 FontSize="14" Height="Auto"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="10 0 0 12"
+                                BorderThickness="0 0 0 1">
                             </TextBox>
 
                             <TextBlock
                                 Text="Category"
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="12">
                             </TextBlock>
 
                             <TextBox
                                 Name = "bookCategoryTextBlock"
+                                Text="{Binding Category}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="10 0 0 12"
+                                BorderThickness="0 0 0 1">
                             </TextBox>
 
                             <TextBlock
                                 Text="Author"
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="12">
                             </TextBlock>
 
                             <TextBox
                                 Name = "bookAuthorTextBlock"
+                                Text="{Binding Author}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="10 0 0 12"
+                                BorderThickness="0 0 0 1">
                             </TextBox>
 
                             <TextBlock
                                 Text="Published year"
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="12">
                             </TextBlock>
 
                             <TextBox
                                 Name = "bookPYTextBlock"
+                                Text="{Binding PublishedYear}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="10 0 0 12"
+                                BorderThickness="0 0 0 1">
                             </TextBox>
 
                             <TextBlock
                                 Text="Price"
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="12">
                             </TextBlock>
 
                             <TextBox
                                 Name = "bookPriceTextBlock"
+                                Text="{Binding Price}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="10 0 0 12"
+                                BorderThickness="0 0 0 1">
                             </TextBox>
 
                             <TextBlock
                                 Text="Stock"
+
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="12">
                             </TextBlock>
 
                             <TextBox
                                 Name = "bookStockTextBlock"
+                                Text="{Binding Stock}"
                                 Width="300"
                                 FontSize="14"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="10 0 0 12"
+                                BorderThickness="0 0 0 1">
                             </TextBox>
-                        </ListView>
+                        </StackPanel>
 
                         <StackPanel
                             Grid.Column="2">
@@ -173,7 +182,7 @@
                                 CornerRadius="12"
                                 Margin="10 16 10 0" Width="86">
                                 <Border.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding}" />
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding AddBookToAPICommand}" />
                                 </Border.InputBindings>
                                 <TextBlock Text="Save"
                                 FontSize="16" FontWeight="DemiBold" Foreground="White"

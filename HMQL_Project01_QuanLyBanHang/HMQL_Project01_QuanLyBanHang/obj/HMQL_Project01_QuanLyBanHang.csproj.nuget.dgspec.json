@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Study\\3rd Year\\HK2\\Windows\\Project_01\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj": {}
+    "D:\\###NAM_3\\HK2\\LT_WINDOW\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj": {}
   },
   "projects": {
-    "D:\\Study\\3rd Year\\HK2\\Windows\\Project_01\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj": {
+    "D:\\###NAM_3\\HK2\\LT_WINDOW\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Study\\3rd Year\\HK2\\Windows\\Project_01\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj",
+        "projectUniqueName": "D:\\###NAM_3\\HK2\\LT_WINDOW\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj",
         "projectName": "HMQL_Project01_QuanLyBanHang",
-        "projectPath": "D:\\Study\\3rd Year\\HK2\\Windows\\Project_01\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj",
+        "projectPath": "D:\\###NAM_3\\HK2\\LT_WINDOW\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Study\\3rd Year\\HK2\\Windows\\Project_01\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\obj\\",
+        "outputPath": "D:\\###NAM_3\\HK2\\LT_WINDOW\\WP_Project01_QuanLyBanHang_WPF\\HMQL_Project01_QuanLyBanHang\\HMQL_Project01_QuanLyBanHang\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -77,7 +72,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
