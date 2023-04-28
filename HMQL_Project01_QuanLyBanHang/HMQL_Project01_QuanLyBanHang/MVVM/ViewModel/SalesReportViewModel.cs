@@ -25,6 +25,16 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(Data));
             }
         }
+        private RootObjectMonthYear dataMonthYear;
+        public RootObjectMonthYear DataMonthYear
+        {
+            get => dataMonthYear;
+            set
+            {
+                dataMonthYear = value;
+                OnPropertyChanged(nameof(DataMonthYear));
+            }
+        }
         private string dataMode;
         public string DataMode
         {
@@ -230,6 +240,17 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(SaleFormatter));
             }
         }
+        private int chartColumnSelectedModeIndex;
+        public int ChartColumnSelectedModeIndex
+        {
+            get => chartColumnSelectedModeIndex;
+            set
+            {
+                chartColumnSelectedModeIndex = value;
+                OnPropertyChanged(nameof(ChartColumnSelectedModeIndex));
+                if (CallData != null) CallData.Execute(null);
+            }
+        }
 
         //Product Series
         public SeriesCollection ProductSeries { get; set; }
@@ -249,6 +270,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             ListBookReport = new ListOfBookSales();
             ListDataMode = new List<string> { "Day", "Week", "Month", "Year" };
             SelectedModeIndex = 0;
+            ChartColumnSelectedModeIndex = 0;
             BookSales = new List<BookSales>();
             SearchValue = "";
             MinDate = "";
@@ -256,7 +278,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             CallData = new RelayCommand(async o =>
             {
-                var uri = new Uri($"{ConnectionString.connectionString}/order/report?minDate=2023-03-27&maxDate=2023-05-02&mode=day");
+                var uri = new Uri($"{ConnectionString.connectionString}/order/report?minDate={MinDate}&maxDate={MaxDate}&mode={ListDataMode[ChartColumnSelectedModeIndex].ToLower()}");
                 var salesReportUri = new Uri($"{ConnectionString.connectionString}/book/report?minDate={MinDate}&maxDate={MaxDate}&mode={ListDataMode[selectedModeIndex].ToLower()}");
                 try
                 {
@@ -269,25 +291,45 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         var json = await response.Content.ReadAsStringAsync();
                         var listBookJson = await listBookResponse.Content.ReadAsStringAsync();
-                        Data = JsonConvert.DeserializeObject<RootObject>(json);
+                        if(ChartColumnSelectedModeIndex == 0 || ChartColumnSelectedModeIndex == 1)
+                        {
+                            Data = JsonConvert.DeserializeObject<RootObject>(json);
+                            SaleSeries = new SeriesCollection() { };
+                            SaleSeries.Add(new ColumnSeries
+                            {
+                                Title = "Doanh thu",
+                                Values = new ChartValues<double>()
+                            });
+                            SaleLabels = new List<string>();
+                            for (int i = 0; i < Data.incomeReport.Count; i++)
+                            {
+                                SaleSeries[0].Values.Add(Data.incomeReport[i].totalIncome);
+                                if (ChartColumnSelectedModeIndex == 1) Data.incomeReport[i]._id.date = $"{Data.incomeReport[i]._id.week} - {Data.incomeReport[i]._id.year}";
+                                SaleLabels.Add(Data.incomeReport[i]._id.date);
+                            }
+                            SaleFormatter = value => value.ToString("N");
+                        } 
+                        else
+                        {
+                            DataMonthYear = JsonConvert.DeserializeObject<RootObjectMonthYear>(json);
+                            SaleSeries = new SeriesCollection() { };
+                            SaleSeries.Add(new ColumnSeries
+                            {
+                                Title = "Doanh thu",
+                                Values = new ChartValues<double>()
+                            });
+                            SaleLabels = new List<string>();
+                            for (int i = 0; i < DataMonthYear.incomeReport.Count; i++)
+                            {
+                                SaleSeries[0].Values.Add(DataMonthYear.incomeReport[i].totalIncome);
+                                SaleLabels.Add(DataMonthYear.incomeReport[i]._id);
+                            }
+                            SaleFormatter = value => value.ToString("N");
+                        }
                         ListBookReport = JsonConvert.DeserializeObject<ListOfBookSales>(listBookJson);
                         //MessageBox.Show($"{ListBookReport.saleReport.Count}");
-
                         // Update Paging
                         UpdatePagingCommand.Execute(null);
-                        SaleSeries = new SeriesCollection() { };
-                        SaleSeries.Add(new LineSeries
-                        {
-                            Title = "Doanh thu",
-                            Values = new ChartValues<double>()
-                        });
-                        SaleLabels = new List<string>();
-                        for (int i = 0; i < Data.incomeReport.Count; i++)
-                        {
-                            SaleSeries[0].Values.Add(Data.incomeReport[i].totalIncome);
-                            SaleLabels.Add(Data.incomeReport[i]._id.date);
-                        }
-                        SaleFormatter = value => value.ToString("N");
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
                 }
@@ -367,7 +409,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 Title = "Number of product",
                 Values = new ChartValues<double> { 2, 7, 12, 5, 8 }
             });
-            ProductLabels = new[] { "New Book 1", "New Book 2", "New Book 3", "New Book 4", "New Book 5" };
+            ProductLabels = new[] { "New Book 11", "New Book 2", "New Book 3", "New Book 4", "New Book 5" };
             ProductFormatter = value => value.ToString("N");
         }
     }
