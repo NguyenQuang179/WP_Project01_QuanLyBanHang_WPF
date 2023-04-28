@@ -37,16 +37,16 @@
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:ProductListViewModel}">
-                <view:ProductListView />
+                <view:ProductListView/>
             </DataTemplate>
-
 
             <DataTemplate DataType="{x:Type viewModel:ProductViewModel}">
                 <view:ProductView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:ProductAddViewModel}">
-                <view:ProductAddView />
+                <view:ProductAddView/>
+            </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:OrderMangementViewModel}">
                 <view:OrderManagementView/>
@@ -62,8 +62,8 @@
 
             <DataTemplate DataType="{x:Type viewModel:CategoryManagementViewModel}">
                 <view:CategoryManagementView/>
-
             </DataTemplate>
+                
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="544" d:DesignWidth="776">
     <UserControl.DataContext>
@@ -71,90 +72,235 @@
                         Margin="16">
                     <Grid Margin="16">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="52"/>
+                            <RowDefinition Height="80"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="52"/>
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="6*"/>
-                            <ColumnDefinition Width="5*"/>
-                        </Grid.ColumnDefinitions>
-                        
-                        <!--Search Bar-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="6*"/>
-                                <ColumnDefinition Width="4*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox  Height="32" VerticalAlignment="Center"
-                                      VerticalContentAlignment="Center">
-                                <TextBox.Style>
-                                    <Style TargetType="{x:Type TextBox}">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type TextBox}">
-                                                    <Border CornerRadius="8"
+
+                        <!--Search Bar & Combobox-->
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <TextBlock Text="Search:"
+                                           FontSize="16"
+                                           FontWeight="DemiBold"
+                                           Margin="0 0 0 8"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox  Width="200" Height="32" 
+                                              VerticalAlignment="Center"
+                                              VerticalContentAlignment="Center">
+                                        <TextBox.Style>
+                                            <Style TargetType="{x:Type TextBox}">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border CornerRadius="6"
                                                             Background="Transparent"
                                                             BorderBrush="Black"
                                                             BorderThickness="1"
                                                             Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
-                                                        <Grid>
-                                                            <Rectangle StrokeThickness="1"/>
-                                                            <TextBox Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"
+                                                                <Grid>
+                                                                    <Rectangle StrokeThickness="1"/>
+                                                                    <TextBox Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"
                                                              FontSize="12" Margin="8 0 8 0" 
                                                              BorderThickness="0" Background="Transparent"
                                                              VerticalContentAlignment="Center" Foreground="Black" x:Name="InputField">
-                                                                <TextBox.InputBindings>
-                                                                    <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
-                                                                </TextBox.InputBindings>
-                                                            </TextBox>
-                                                            <!--Placeholder-->
-                                                            <TextBlock IsHitTestVisible="False" Text="Search..."
+                                                                        <TextBox.InputBindings>
+                                                                            <KeyBinding Key="Return" Command="{Binding UpdatePagingCommand}"/>
+                                                                        </TextBox.InputBindings>
+                                                                    </TextBox>
+                                                                    <!--Placeholder-->
+                                                                    <TextBlock IsHitTestVisible="False" Text="Search book title"
                                                                VerticalAlignment="Center" HorizontalAlignment="Left"
                                                                Margin="10 0 8 0" FontSize="12" Foreground="DarkGray"
                                                                Grid.Column="1">
-                                                                <TextBlock.Style>
-                                                                    <Style TargetType="TextBlock">
-                                                                        <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding Text, ElementName = InputField}" Value="">
-                                                                                <Setter Property="Visibility" Value="Visible"/>
-                                                                            </DataTrigger>
-                                                                        </Style.Triggers>
-                                                                        <Setter Property="Visibility" Value="Hidden"/>
-                                                                    </Style>
-                                                                </TextBlock.Style>
-                                                            </TextBlock>
-                                                        </Grid>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-                            <ComboBox Grid.Column="1"
-                                      Margin="12"
+                                                                        <TextBlock.Style>
+                                                                            <Style TargetType="TextBlock">
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding Text, ElementName = InputField}" Value="">
+                                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                                            </Style>
+                                                                        </TextBlock.Style>
+                                                                    </TextBlock>
+                                                                </Grid>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                    <Border Height="32"
+                                            Width="32"
+                                            Background="#FF3A36DB"
+                                            CornerRadius="6"
+                                            Cursor="Hand"
+                                            Margin="4 0 0 0">
+                                        <Border.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick" Command="{Binding UpdatePagingCommand}"/>
+                                        </Border.InputBindings>
+                                    </Border>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Margin="16 0 0 0">
+                                <TextBlock Text="Search Mode:"
+                                           FontSize="16"
+                                           FontWeight="DemiBold"
+                                           HorizontalAlignment="Center"
+                                           Margin="0 0 0 8"/>
+                                <ComboBox Grid.Column="1"
+                                      Height="32"
+                                      Padding="24 0"
                                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-                                <ComboBoxItem Content="Ngày" IsSelected="True"/>
-                                <ComboBoxItem Content="Tuần"/>
-                                <ComboBoxItem Content="Tháng"/>
-                                <ComboBoxItem Content="Năm"/>
-                            </ComboBox>
-                        </Grid>
+                                    <ComboBoxItem Content="Day" IsSelected="True"/>
+                                    <ComboBoxItem Content="Week"/>
+                                    <ComboBoxItem Content="Month"/>
+                                    <ComboBoxItem Content="Year"/>
+                                </ComboBox>
+                            </StackPanel>
+                            
+                            <!--Min Date-->
+                            <StackPanel Margin="16 0 0 0">
+                                <TextBlock Text="Minimum Date:"
+                                           FontSize="16"
+                                           FontWeight="DemiBold"
+                                           Margin="0 0 0 8"/>
+                                <DatePicker SelectedDateFormat="Short"></DatePicker>
+                            </StackPanel>
+
+                            <!--Max Date-->
+                            <StackPanel Margin="16 0 0 0">
+                                <TextBlock Text="Maximum Date:"
+                                           FontSize="16"
+                                           FontWeight="DemiBold"
+                                           Margin="0 0 0 8"/>
+                                <DatePicker SelectedDateFormat="Short"
+                                            SelectedDate="04/20/2023"></DatePicker>
+                            </StackPanel>
+
+                        </StackPanel>
+                        
+                        <!--Data-->
                         <DataGrid Grid.Row="1"
                                   Background="LightGray"
-                                  ItemsSource="{Binding }">
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding CurPageData}"
+                                  AlternationCount="{Binding CurPageData.Count}">
                             <DataGrid.Columns>
+                                <DataGridTextColumn Header="Index" 
+                                                    Width="44"
+                                                    Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
                                 <DataGridTextColumn Header="Book ID"
-                                                    Binding="{Binding }"
+                                                    Binding="{Binding _id.book[0]._id}"
                                                     Width="3*"/>
                                 <DataGridTextColumn Header="Book Title" 
-                                                    Binding="{Binding }"
-                                                    Width="4*"/>
-                                <DataGridTextColumn Header="Sold Quantity" 
-                                                    Binding="{Binding }"
+                                                    Binding="{Binding _id.book[0].name}"
                                                     Width="3*"/>
+                                <DataGridTextColumn Header="Date" 
+                                                    Binding="{Binding _id.date}"
+                                                    Width="2*"/>
+                                <DataGridTextColumn Header="Sold Quantity" 
+                                                    Binding="{Binding totalQuantity}"
+                                                    Width="2*"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        
+                        <!--Paging-->
+                        <StackPanel Grid.Row="2"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <!--Row Per Page-->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Rows Per Page:"
+                                           FontSize="12" FontWeight="DemiBold"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 8 0"/>
+                                <TextBox Height="32" Width="56"
+                                         FontWeight="DemiBold"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center"
+                                         Cursor="Hand">
+                                    <TextBox.Style>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                                        <Border CornerRadius="6"
+                                                            Background="Transparent"
+                                                            BorderBrush="Black"
+                                                            BorderThickness="1"
+                                                            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                                                            <Grid>
+                                                                <Rectangle StrokeThickness="1"/>
+                                                                <TextBox Text="{Binding RowPerPage, UpdateSourceTrigger=PropertyChanged}"
+                                                                         FontSize="12"
+                                                                         BorderThickness="0" Background="Transparent"
+                                                                         VerticalContentAlignment="Center"
+                                                                         HorizontalContentAlignment="Center"
+                                                                         Foreground="Black" x:Name="InputField">
+                                                                    <TextBox.InputBindings>
+                                                                        <KeyBinding Key="Return" Command="{Binding UpdatePagingCommand}"/>
+                                                                    </TextBox.InputBindings>
+                                                                </TextBox>
+                                                            </Grid>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </StackPanel>
+                            <!--Paging Button-->
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="32 0 0 0">
+                                <Border Width="52"
+                                    Background="#FF3A36DB"
+                                    CornerRadius="4"
+                                    Margin="0 0 8 0">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding PrevPageCommand}"/>
+                                    </Border.InputBindings>
+                                    <TextBlock Text="Prev"
+                                           FontWeight="DemiBold"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                                </Border>
+                                <ComboBox Width="52" Margin="0 0 8 0"
+                                      ItemsSource="{Binding ListPages}"
+                                      SelectedIndex="{Binding ListPagesSelectedIndex, UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalContentAlignment="Center"
+                                      HorizontalContentAlignment="Center">
+                                </ComboBox>
+                                <TextBlock FontWeight="DemiBold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left">
+                                <Run Text="/"/>
+                                <Run Text="{Binding TotalPage}"/>
+                                </TextBlock>
+                                <Border Width="52"
+                                    Background="#FF3A36DB"
+                                    CornerRadius="4"
+                                    Margin="8 0 0 0">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding NextPageCommand}"/>
+                                    </Border.InputBindings>
+                                    <TextBlock Text="Next"
+                                           FontWeight="DemiBold"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                                </Border>
+                            </StackPanel>
+                            <!--Total Book Info-->
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="32 0 0 0">
+                                <TextBlock/>
+                            </StackPanel>
+                        </StackPanel>
                     </Grid>
                 </Border>
             </StackPanel>

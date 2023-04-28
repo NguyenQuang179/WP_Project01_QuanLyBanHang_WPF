@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
-    internal class ProductListViewModel : ObservableObject
+    class ProductListViewModel : ObservableObject
     {
         public ProductListViewModel()
         {

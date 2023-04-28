@@ -31,9 +31,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.View
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            BookDAO bookDAO = new BookDAO();
-            _book = bookDAO.GetAll();
-            bookList.ItemsSource = _book;
+            //BookDAO bookDAO = new BookDAO();
+            //_book = bookDAO.GetAll();
+            //bookList.ItemsSource = _book;
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
