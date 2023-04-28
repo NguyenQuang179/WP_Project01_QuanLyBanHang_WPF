@@ -20,7 +20,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
     class OrderMangementViewModel : ObservableObject
     {
-
         public string id { get; set; }
         public RelayCommand OrderDetailViewCommand { get; set; }
 
@@ -32,6 +31,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public String SelectedOrderID { get; set; }
         public Order SelectedOrder { get; set; }
+
         private ListOfOrder orders;
         public ListOfOrder Orders
         {
@@ -44,6 +44,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
 
         public RelayCommand CallOrderData;
+
 
 
         //Commanda Page
@@ -149,6 +150,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public RelayCommand PageComboboxChangeCommand { get; set; }
         public RelayCommand NextPageCommand { get; set; }
         public RelayCommand PrevPageCommand { get; set; }
+
         public OrderMangementViewModel(MainViewModel MainVM)
         {
             orders = new ListOfOrder();
@@ -197,7 +199,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     var uri = new Uri($"{ConnectionString.connectionString}/order/delete/{orderId}");
                     var response = await client.DeleteAsync(uri);
 
-
                     // Check if the upload was successful
                     if (response.IsSuccessStatusCode)
                     {
@@ -234,7 +235,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OrderCreateVM = new OrderCreateViewModel(MainVM);
                 MainVM.CurrentView = OrderCreateVM;
             });
-
 
             CallOrderData = new RelayCommand(async o =>
             {
@@ -328,7 +328,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     using var client = new HttpClient();
                     var response = await client.GetAsync(uri);
-
 
                     // Check if the upload was successful
                     if (response.IsSuccessStatusCode)

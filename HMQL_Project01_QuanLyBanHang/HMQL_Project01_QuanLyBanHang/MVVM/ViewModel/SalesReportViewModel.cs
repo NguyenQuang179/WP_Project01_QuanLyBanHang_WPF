@@ -1,4 +1,4 @@
-﻿using HMQL_Project01_QuanLyBanHang.Core;
+using HMQL_Project01_QuanLyBanHang.Core;
 using LiveCharts.Wpf;
 using LiveCharts;
 using System;
@@ -9,13 +9,13 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Windows;
 
-
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
-    class SalesReportViewModel : ObservableObject
+    internal class SalesReportViewModel : ObservableObject
     {
         //Data From API For Chart
         private RootObject data;
+
         public RootObject Data
         {
             get => data;
@@ -25,7 +25,19 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(Data));
             }
         }
+        private RootObjectMonthYear dataMonthYear;
+        public RootObjectMonthYear DataMonthYear
+        {
+            get => dataMonthYear;
+            set
+            {
+                dataMonthYear = value;
+                OnPropertyChanged(nameof(DataMonthYear));
+            }
+        }
+
         private string dataMode;
+
         public string DataMode
         {
             get => dataMode;
@@ -38,6 +50,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         // Data From API For Data Grid
         private ListOfBookSales listBookReport;
+
         public ListOfBookSales ListBookReport
         {
             get => listBookReport;
@@ -47,7 +60,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(ListBookReport));
             }
         }
+
         private List<BookSales> bookSales;
+
         public List<BookSales> BookSales
         {
             get => bookSales;
@@ -60,9 +75,10 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         // Relay Command To Call Data From API
         public RelayCommand CallData { get; set; }
-        
+
         // Value For Search Bar
         private string searchValue;
+
         public string SearchValue
         {
             get => searchValue;
@@ -72,7 +88,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(SearchValue));
             }
         }
+
         private List<string> listDataMode;
+
         public List<string> ListDataMode
         {
             get => listDataMode;
@@ -82,7 +100,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(ListDataMode));
             }
         }
+
         private int selectedModeIndex;
+
         public int SelectedModeIndex
         {
             get => selectedModeIndex;
@@ -90,10 +110,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 selectedModeIndex = value;
                 OnPropertyChanged(nameof(SelectedModeIndex));
-                if(CallData != null) CallData.Execute(null);
+                if (CallData != null) CallData.Execute(null);
             }
         }
+
         private string minDate;
+
         public string MinDate
         {
             get => minDate;
@@ -103,7 +125,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(MinDate));
             }
         }
+
         private string maxDate;
+
         public string MaxDate
         {
             get => maxDate;
@@ -111,21 +135,24 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 maxDate = value;
                 OnPropertyChanged(nameof(MaxDate));
-
             }
         }
-        // Paging 
+
+        // Paging
         private int rowPerPage;
+
         public int RowPerPage
         {
             get => rowPerPage;
             set
             {
                 rowPerPage = value;
-               OnPropertyChanged(nameof(RowPerPage));
+                OnPropertyChanged(nameof(RowPerPage));
             }
         }
+
         private int totalPage;
+
         public int TotalPage
         {
             get => totalPage;
@@ -135,20 +162,24 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(TotalPage));
             }
         }
+
         private int curPage;
+
         public int CurPage
         {
-            get => curPage; 
+            get => curPage;
             set
             {
                 curPage = value;
                 OnPropertyChanged(nameof(CurPage));
             }
         }
+
         private int totalBook;
+
         public int TotalBook
         {
-            get => totalBook; 
+            get => totalBook;
             set
             {
                 totalBook = value;
@@ -158,6 +189,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         // Data For Paging Combobox
         private List<int> listPages;
+
         public List<int> ListPages
         {
             get => listPages;
@@ -167,7 +199,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(ListPages));
             }
         }
+
         private int listPagesSelectedIndex;
+
         public int ListPagesSelectedIndex
         {
             get => listPagesSelectedIndex;
@@ -175,10 +209,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 listPagesSelectedIndex = value;
                 OnPropertyChanged(nameof(ListPagesSelectedIndex));
-                if(BookSales != null) PageComboboxChangeCommand.Execute(null);
+                if (BookSales != null) PageComboboxChangeCommand.Execute(null);
             }
         }
+
         private List<BookSales> curPageData;
+
         public List<BookSales> CurPageData
         {
             get => curPageData;
@@ -191,7 +227,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         //Relay Command To Update Data When Changing Page
         public RelayCommand UpdatePagingCommand { get; set; }
-        public RelayCommand UpdatePageDataCommand { get; set; } 
+
+        public RelayCommand UpdatePageDataCommand { get; set; }
         public RelayCommand PageComboboxChangeCommand { get; set; }
         public RelayCommand NextPageCommand { get; set; }
         public RelayCommand PrevPageCommand { get; set; }
@@ -201,6 +238,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         //Sale Series
         private SeriesCollection saleSeries;
+
         public SeriesCollection SaleSeries
         {
             get => saleSeries;
@@ -210,7 +248,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(SaleSeries));
             }
         }
+
         private List<string> saleLabels;
+
         public List<string> SaleLabels
         {
             get => saleLabels;
@@ -220,7 +260,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(SaleLabels));
             }
         }
+
         private Func<double, string> saleFormatter;
+
         public Func<double, string> SaleFormatter
         {
             get => saleFormatter;
@@ -230,9 +272,21 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(SaleFormatter));
             }
         }
+        private int chartColumnSelectedModeIndex;
+        public int ChartColumnSelectedModeIndex
+        {
+            get => chartColumnSelectedModeIndex;
+            set
+            {
+                chartColumnSelectedModeIndex = value;
+                OnPropertyChanged(nameof(ChartColumnSelectedModeIndex));
+                if (CallData != null) CallData.Execute(null);
+            }
+        }
 
         //Product Series
         public SeriesCollection ProductSeries { get; set; }
+
         public string[] ProductLabels { get; set; }
         public Func<double, string> ProductFormatter { get; set; }
 
@@ -249,6 +303,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             ListBookReport = new ListOfBookSales();
             ListDataMode = new List<string> { "Day", "Week", "Month", "Year" };
             SelectedModeIndex = 0;
+            ChartColumnSelectedModeIndex = 0;
             BookSales = new List<BookSales>();
             SearchValue = "";
             MinDate = "";
@@ -256,7 +311,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             CallData = new RelayCommand(async o =>
             {
-                var uri = new Uri($"{ConnectionString.connectionString}/order/report?minDate=2023-03-27&maxDate=2023-05-02&mode=day");
+                var uri = new Uri($"{ConnectionString.connectionString}/order/report?minDate={MinDate}&maxDate={MaxDate}&mode={ListDataMode[ChartColumnSelectedModeIndex].ToLower()}");
                 var salesReportUri = new Uri($"{ConnectionString.connectionString}/book/report?minDate={MinDate}&maxDate={MaxDate}&mode={ListDataMode[selectedModeIndex].ToLower()}");
                 try
                 {
@@ -269,25 +324,45 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         var json = await response.Content.ReadAsStringAsync();
                         var listBookJson = await listBookResponse.Content.ReadAsStringAsync();
-                        Data = JsonConvert.DeserializeObject<RootObject>(json);
+                        if(ChartColumnSelectedModeIndex == 0 || ChartColumnSelectedModeIndex == 1)
+                        {
+                            Data = JsonConvert.DeserializeObject<RootObject>(json);
+                            SaleSeries = new SeriesCollection() { };
+                            SaleSeries.Add(new ColumnSeries
+                            {
+                                Title = "Doanh thu",
+                                Values = new ChartValues<double>()
+                            });
+                            SaleLabels = new List<string>();
+                            for (int i = 0; i < Data.incomeReport.Count; i++)
+                            {
+                                SaleSeries[0].Values.Add(Data.incomeReport[i].totalIncome);
+                                if (ChartColumnSelectedModeIndex == 1) Data.incomeReport[i]._id.date = $"{Data.incomeReport[i]._id.week} - {Data.incomeReport[i]._id.year}";
+                                SaleLabels.Add(Data.incomeReport[i]._id.date);
+                            }
+                            SaleFormatter = value => value.ToString("N");
+                        } 
+                        else
+                        {
+                            DataMonthYear = JsonConvert.DeserializeObject<RootObjectMonthYear>(json);
+                            SaleSeries = new SeriesCollection() { };
+                            SaleSeries.Add(new ColumnSeries
+                            {
+                                Title = "Doanh thu",
+                                Values = new ChartValues<double>()
+                            });
+                            SaleLabels = new List<string>();
+                            for (int i = 0; i < DataMonthYear.incomeReport.Count; i++)
+                            {
+                                SaleSeries[0].Values.Add(DataMonthYear.incomeReport[i].totalIncome);
+                                SaleLabels.Add(DataMonthYear.incomeReport[i]._id);
+                            }
+                            SaleFormatter = value => value.ToString("N");
+                        }
                         ListBookReport = JsonConvert.DeserializeObject<ListOfBookSales>(listBookJson);
                         //MessageBox.Show($"{ListBookReport.saleReport.Count}");
-
                         // Update Paging
                         UpdatePagingCommand.Execute(null);
-                        SaleSeries = new SeriesCollection() { };
-                        SaleSeries.Add(new LineSeries
-                        {
-                            Title = "Doanh thu",
-                            Values = new ChartValues<double>()
-                        });
-                        SaleLabels = new List<string>();
-                        for (int i = 0; i < Data.incomeReport.Count; i++)
-                        {
-                            SaleSeries[0].Values.Add(Data.incomeReport[i].totalIncome);
-                            SaleLabels.Add(Data.incomeReport[i]._id.date);
-                        }
-                        SaleFormatter = value => value.ToString("N");
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
                 }
@@ -302,9 +377,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             UpdatePagingCommand = new RelayCommand(o =>
             {
                 BookSales = ListBookReport.saleReport.Where(s => s._id.book[0].name.Contains(SearchValue)).ToList();
-                for(int i = 0; i < BookSales.Count; i++)
+                for (int i = 0; i < BookSales.Count; i++)
                 {
-                    if(BookSales[i]._id.date == null)
+                    if (BookSales[i]._id.date == null)
                     {
                         BookSales[i]._id.date = $"Week {BookSales[i]._id.week} - In {BookSales[i]._id.year}";
                     }
@@ -344,14 +419,14 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             NextPageCommand = new RelayCommand(o =>
             {
-                if(CurPage == TotalPage) { return; }
+                if (CurPage == TotalPage) { return; }
                 ListPagesSelectedIndex++;
                 UpdatePageDataCommand.Execute(null);
             });
 
             PrevPageCommand = new RelayCommand(o =>
             {
-                if(CurPage == 1) { return; }
+                if (CurPage == 1) { return; }
                 ListPagesSelectedIndex--;
                 UpdatePageDataCommand.Execute(null);
             });
@@ -367,7 +442,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 Title = "Number of product",
                 Values = new ChartValues<double> { 2, 7, 12, 5, 8 }
             });
-            ProductLabels = new[] { "New Book 1", "New Book 2", "New Book 3", "New Book 4", "New Book 5" };
+            ProductLabels = new[] { "New Book 11", "New Book 2", "New Book 3", "New Book 4", "New Book 5" };
             ProductFormatter = value => value.ToString("N");
         }
     }

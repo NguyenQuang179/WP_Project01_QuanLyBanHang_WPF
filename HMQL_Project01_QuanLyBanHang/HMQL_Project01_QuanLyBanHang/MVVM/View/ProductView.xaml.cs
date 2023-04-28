@@ -27,7 +27,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.View
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }
