@@ -110,9 +110,9 @@
                                 <DropShadowEffect  Opacity="0.3" Direction="300" />
                             </Border.Effect>
                             <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding OrderDetailViewCommand}"/>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding OrderAddBookCreateViewCommand}"/>
                             </Border.InputBindings>
-                            <TextBlock Text="Add Order" 
+                            <TextBlock Text="Add Book" 
                                FontSize="12" FontWeight="DemiBold" Foreground="White"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
@@ -462,7 +462,7 @@
                         CornerRadius="4"
                         Margin="0 16 16 0" Width="210" Height="25">
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding ConfirmOrderDetailData}"/>
                         </Border.InputBindings>
                         <TextBlock Text="Confirm Changes" 
                                FontSize="16" FontWeight="Bold" Foreground="White"

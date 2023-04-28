@@ -95,34 +95,43 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
 
             public RelayCommand CallOrderDetailData { get; set; }
-            public OrderDetailViewModel(String OrderID)
+            public RelayCommand OrderAddBookCreateViewCommand { get; set; }
+
+            public RelayCommand ConfirmOrderDetailData { get; set; }
+            public OrderDetailViewModel(MainViewModel MainVM, String OrderID)
             {
-                //orders = new ListOfOrder();
+            //orders = new ListOfOrder();
 
-                //SelectedOrder = null;
-                //BookDetailVM = null;
+            //SelectedOrder = null;
+            //BookDetailVM = null;
 
-                //BookAddVM = new OrderCreateViewModel();
+            //BookAddVM = new OrderCreateViewModel();
 
 
-                //List<Book> ListOfBook;
-                //OrderDetailViewCommand = new RelayCommand((param) =>
-                //{
-                //    string id = param.ToString();
-                //    MessageBox.Show("ID IS:" + id);
-                //    OrderDetailVM = new OrderDetailViewModel(id);
-                //    MessageBox.Show("No Selected Order");
-                //    if (OrderDetailVM != null)
-                //        MainVM.CurrentView = OrderDetailVM;
+            //List<Book> ListOfBook;
+            //OrderDetailViewCommand = new RelayCommand((param) =>
+            //{
+            //    string id = param.ToString();
+            //    MessageBox.Show("ID IS:" + id);
+            //    OrderDetailVM = new OrderDetailViewModel(id);
+            //    MessageBox.Show("No Selected Order");
+            //    if (OrderDetailVM != null)
+            //        MainVM.CurrentView = OrderDetailVM;
 
-                //});
+            //});
 
-                //OrderCreateViewCommand = new RelayCommand(o =>
-                //{
-                //    MainVM.CurrentView = OrderCreateVM;
-                //});
+            ConfirmOrderDetailData = new RelayCommand(o =>
+            {
+                //Update Order Detail API
+            });
+            
 
-                CallOrderDetailData = new RelayCommand(async o =>
+            OrderAddBookCreateViewCommand = new RelayCommand(o =>
+            {
+                MainVM.OrderAddBookViewCommand.Execute(MainVM);
+            });
+
+            CallOrderDetailData = new RelayCommand(async o =>
                 {
                     var uri = new Uri($"{ConnectionString.connectionString}/order/detail/" + OrderID);
                     //add count for page
@@ -162,6 +171,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
                 CallOrderDetailData.Execute(null);
 
+                
             }
 
            
