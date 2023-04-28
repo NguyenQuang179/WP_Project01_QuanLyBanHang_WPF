@@ -195,6 +195,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             OrderAddBookCreateViewCommand = new RelayCommand(o =>
             {
+                MainVM.OrderAddBookVM.IsAddBookForEditingOrder = true;
                 MainVM.OrderAddBookViewCommand.Execute(MainVM);
             });
 

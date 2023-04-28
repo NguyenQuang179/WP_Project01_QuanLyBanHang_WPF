@@ -50,7 +50,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             SelectedOrder = null;
             OrderDetailVM = null;
 
-            OrderCreateVM = new OrderCreateViewModel();
+          
 
 
             OrderDetailViewCommand = new RelayCommand((param) =>
@@ -66,6 +66,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             OrderCreateViewCommand = new RelayCommand(o =>
             {
+                OrderCreateVM = new OrderCreateViewModel(MainVM);
                 MainVM.CurrentView = OrderCreateVM;
             });
 

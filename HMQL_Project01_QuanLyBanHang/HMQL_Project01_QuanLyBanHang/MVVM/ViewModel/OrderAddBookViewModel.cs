@@ -21,6 +21,7 @@ using System.ComponentModel;
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
 
+    
     public class BookItemOrderInfo : Book, INotifyPropertyChanged
     {
         private bool isSelected;
@@ -72,6 +73,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
    
     internal class OrderAddBookViewModel : ObservableObject
     {
+        public bool IsAddBookForEditingOrder { get; set; }
+
         private OrderDetails orderD;
         
         public RelayCommand ConfirmBookSelectionCommand { get; set; }
@@ -186,9 +189,23 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
                 if (selectedBooks.Any())
                 {
-                  
+                    List<BookInOrderForDetails> curList;
+                    long totalPrice;
+                    Object lastView;
                     //Get Current Order Detail Book List
-                    List<BookInOrderForDetails> curList = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.listOfBook;
+                    if (IsAddBookForEditingOrder)
+                    {
+                        curList = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.listOfBook;
+                        totalPrice = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.totalPrice;
+                        lastView = MainVM.OrderManagementVM.OrderDetailVM;
+                    }
+                    else
+                    {
+                        curList = MainVM.OrderManagementVM.OrderCreateVM.OrderD.order.listOfBook;
+                        totalPrice = MainVM.OrderManagementVM.OrderCreateVM.OrderD.order.totalPrice;
+                        lastView = MainVM.OrderManagementVM.OrderCreateVM;
+                    }
+
                     int tempPrice = 0;
                     foreach (var newBook in selectedBooks)
                     {
@@ -218,8 +235,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             continue;
                         newBookOrder.IsSelected = false;
                     }
-                    MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.totalPrice = tempPrice + MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.totalPrice;
-                    MainVM.CurrentView = MainVM.OrderManagementVM.OrderDetailVM;
+                    totalPrice = tempPrice + totalPrice;
+                    MainVM.CurrentView = lastView;
 
                 }
             });

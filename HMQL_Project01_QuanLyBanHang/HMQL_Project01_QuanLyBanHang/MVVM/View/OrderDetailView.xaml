@@ -261,18 +261,7 @@
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>-->
 
-                                <DataGridTemplateColumn Header="" IsReadOnly="True" Width="auto">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button Width="20" Height="20" HorizontalAlignment="Center">
-                                                    <Image Source="../../Images/OrderManagementSVG/trash-can-solid.png" Width="10" Height="10" 
-                                        VerticalAlignment="Center" Margin="0 0 0 0" HorizontalAlignment="Center" />
-                                                </Button>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                               
                             </DataGrid.Columns>
                             <DataGrid.RowStyle>
 
