@@ -6,20 +6,34 @@ using System.Threading.Tasks;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
 {
-    class SalesID
+    class RootObjectMonthYear
     {
-        public string date {  get; set; }
+        public List<SalesReportDataModelMonthYear> incomeReport { get; set; }
+    }
+
+    class SalesReportDataModelMonthYear
+    {
+        public string _id { get; set; }
+        public double totalIncome { get; set; }
     }
 
     class RootObject
     {
-       public List<SalesReportDataModel> incomeReport { get; set; }
+        public List<SalesReportDataModel> incomeReport { get; set; }
     }
+
 
     class SalesReportDataModel
     {
         public SalesID _id { get; set; }
         public double totalIncome { get; set; }
+    }
+
+    class SalesID
+    {
+        public string date { get; set; }
+        public string week { get; set; }
+        public string year { get; set; }
     }
 
     class BookSalesID
