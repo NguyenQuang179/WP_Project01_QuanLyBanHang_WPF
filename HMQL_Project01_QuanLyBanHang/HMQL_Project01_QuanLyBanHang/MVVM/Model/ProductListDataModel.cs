@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
 {
-    internal class ProductListDataModel
+    public class ProductListDataModel
     {
         public List<Book> listOfBook { get; set; }
+
+        public ProductListDataModel()
+        {
+          //Do nothing
+        }
+        public  ProductListDataModel(List<Book> listBook)
+        {
+            listOfBook = listBook;
+        }
     }
 }

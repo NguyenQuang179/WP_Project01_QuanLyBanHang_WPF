@@ -113,14 +113,14 @@
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
-                    BorderBrush="LightGray"
+                    BorderBrush="LightGray" 
                     Margin="16">
 
                     <DataGrid Grid.Row="10" x:Name="OrderDataGrid"
                               GridLinesVisibility="None" 
                               SelectedItem="{Binding SelectedOrder}"
                               HorizontalAlignment="Center" Margin="12" BorderThickness="0" 
-                              AlternationCount="2" AlternatingRowBackground="#FFF1F4FA"
+                              AlternationCount="2"
                               AutoGenerateColumns="False"
                               ItemsSource="{Binding Orders.listOfOrder}">
                         <DataGrid.InputBindings>
@@ -153,7 +153,7 @@
                                         <Setter Property="FontSize" Value="10" />
                                         
                                         <Setter Property="FontWeight" Value="DemiBold" />
-                                        <Setter Property="Foreground" Value="#788B9A"/>
+                                       
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
@@ -175,7 +175,7 @@
                                         <Setter Property="FontSize" Value="10" />
 
                                         <Setter Property="FontWeight" Value="DemiBold" />
-                                        <Setter Property="Foreground" Value="#788B9A"/>
+                                       
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
@@ -198,7 +198,7 @@
                                         <Setter Property="FontSize" Value="10" />
 
                                         <Setter Property="FontWeight" Value="DemiBold" />
-                                        <Setter Property="Foreground" Value="#788B9A"/>
+                                       
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
@@ -217,27 +217,37 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                         <DataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
 
-                            <Style TargetType="DataGridRow">
-                                
                                 <Style.Triggers>
-                                    <!--doesnt work-->
-                                    <Trigger Property="IsMouseOver"
-                           Value="True">
-                                        <Setter Property="FontWeight"
-                               Value="Bold" />
+                                    
+                                    <Trigger Property="AlternationIndex" Value="1">
+                                        <Setter Property="Background" Value="#F1F4FA"/>
 
-
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="#000000"/>
+                                
                                     </Trigger>
 
                                     <Trigger Property="IsSelected" Value="True">
+                                
+                                        <Setter Property="Background" Value="#2E29ED"/>
                                         <Setter Property="Foreground" Value="#FFFFFF"/>
-                                        <Setter Property="Background" Value="#3A36DB" />
                                     </Trigger>
+                                    
+                                    
                                 </Style.Triggers>
+                            
+                            <Setter Property="Foreground" Value="#788B9A"/>
                             </Style>
-
                         </DataGrid.RowStyle>
+                    
+                        
+
+                                    <!---->
+                            
+                    
 
 
 
