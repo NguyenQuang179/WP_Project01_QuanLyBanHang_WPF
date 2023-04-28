@@ -80,11 +80,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             }
         }
     }
-        class OrderDetailViewModel : ObservableObject
-        {
+    class OrderDetailViewModel : ObservableObject
+    {
 
-            private OrderDetails orderD;
-            public OrderDetails OrderD
+        private OrderDetails orderD;
+        public OrderDetails OrderD
         {
             get => orderD;
             set
@@ -94,12 +94,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             }
         }
 
-            public RelayCommand CallOrderDetailData { get; set; }
-            public RelayCommand OrderAddBookCreateViewCommand { get; set; }
+        public RelayCommand CallOrderDetailData { get; set; }
+        public RelayCommand OrderAddBookCreateViewCommand { get; set; }
 
-            public RelayCommand ConfirmOrderDetailData { get; set; }
-            public OrderDetailViewModel(MainViewModel MainVM, String OrderID)
-            {
+        public RelayCommand ConfirmOrderDetailData { get; set; }
+        public OrderDetailViewModel(MainViewModel MainVM, String OrderID)
+        {
             //orders = new ListOfOrder();
 
             //SelectedOrder = null;
@@ -120,11 +120,47 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             //});
 
-            ConfirmOrderDetailData = new RelayCommand(o =>
+            ConfirmOrderDetailData = new RelayCommand(async o =>
             {
                 //Update Order Detail API
+                MessageBox.Show(OrderD.order.listOfBook.Count.ToString());
+                NewListOfBook newListOfBook = new NewListOfBook();
+                foreach (var bookInfo in OrderD.order.listOfBook)
+                {
+                    newListOfBook.listOfBook.Add(new BookInOrder(bookInfo.book._id, bookInfo.quantity));
+                }
+                MessageBox.Show(newListOfBook.listOfBook.Count.ToString());
+
+
+                try
+                {
+                    var uri = new Uri($"{ConnectionString.connectionString}/order/update/{OrderD.order._id}");
+                    var client = new HttpClient();
+                    var jsonSended = JsonConvert.SerializeObject(newListOfBook);
+                    MessageBox.Show(jsonSended);
+                    var content = new StringContent(jsonSended, Encoding.UTF8, "application/json");
+                    // Send the request and get the response
+                    var response = await client.PutAsync(uri, content);
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Handle the successful upload
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show(json);
+                    }
+                    else
+                    {
+                        // Handle the failed upload
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show(json);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
-            
+
 
             OrderAddBookCreateViewCommand = new RelayCommand(o =>
             {
@@ -169,13 +205,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     }
                 });
 
-                CallOrderDetailData.Execute(null);
+            CallOrderDetailData.Execute(null);
 
-                
-            }
 
-           
         }
+
+
     }
+}
 
 
