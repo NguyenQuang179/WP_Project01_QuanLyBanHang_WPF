@@ -105,6 +105,10 @@
                                                    Foreground="White"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"/>
+                                        <Border.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick"
+                                                Command="{Binding CategoryCreateViewCommand}"/>
+                                        </Border.InputBindings>
                                     </Border>
                                     <Border Height="32" Width="120"
                                             Background="#FF3A36DB"
@@ -121,29 +125,136 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <!--Data-->
-                        <DataGrid Grid.Row="1"
-                                  Background="Transparent"
-                                  AutoGenerateColumns="False" CanUserAddRows="False"
-                                  CanUserResizeColumns="False"
+                        <!--Data AlternationCount="{Binding Data.listOfCategory.Count}">-->
+                        <DataGrid Grid.Row="1" x:Name="CategoryDataGrid"
+                                  Background="Transparent" GridLinesVisibility="None" 
+                                  AutoGenerateColumns="False" CanUserAddRows="False" SelectedItem="{Binding SelectedCategory}"
+                                  CanUserResizeColumns="False"  AlternationCount="2"
                                   CanUserReorderColumns="False"
                                   IsReadOnly="True"
-                                  ItemsSource="{Binding Data.listOfCategory}"
-                                  AlternationCount="{Binding Data.listOfCategory.Count}">
+                                  ItemsSource="{Binding Data.listOfCategory}">
+                            <DataGrid.InputBindings>
+                                <MouseBinding MouseAction="LeftClick"
+                                          Command="{Binding CategoryDetailViewCommand}"
+                                          CommandParameter="{Binding SelectedItem._id, ElementName=CategoryDataGrid}"/>
+                            </DataGrid.InputBindings>
+
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Index" 
+                                <!--<DataGridTextColumn Header="Index" 
                                                     Width="44"
-                                                    Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                                                    Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="10" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>-->
                                 <DataGridTextColumn Header="Category ID"
                                                     Binding="{Binding _id}"
-                                                    Width="3*"/>
+                                                    Width="3*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="10" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="Category Name" 
                                                     Binding="{Binding name}"
-                                                    Width="3*"/>
-                                <DataGridTextColumn Header="Number Of Books" 
+                                                    Width="3*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="10" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Number Of Books" 
                                                     Binding="{Binding listOfBook.Count}"
-                                                    Width="3*"/>
+                                                    Width="3*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="10" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
                             </DataGrid.Columns>
+                            <DataGrid.RowStyle>
+                                <Style TargetType="{x:Type DataGridRow}">
+
+                                    <Style.Triggers>
+
+                                        <Trigger Property="AlternationIndex" Value="1">
+                                            <Setter Property="Background" Value="#F1F4FA"/>
+
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#000000"/>
+
+                                        </Trigger>
+
+                                        <Trigger Property="IsSelected" Value="True">
+
+                                            <Setter Property="Background" Value="#2E29ED"/>
+                                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                                        </Trigger>
+
+
+                                    </Style.Triggers>
+
+                                    <Setter Property="Foreground" Value="#788B9A"/>
+                                </Style>
+                            </DataGrid.RowStyle>
                         </DataGrid>
 
                         <!--Paging-->

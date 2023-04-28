@@ -26,6 +26,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(SearchValue));
             }
         }
+        public Category SelectedCategory { get; set; }
+        public RelayCommand CategoryDetailViewCommand { get; set; }
+        public RelayCommand CategoryCreateViewCommand { get; set; }
 
         private ListCategory data;
         public ListCategory Data
@@ -94,6 +97,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
 
         private int listPagesSelectedIndex;
+        private string id;
+
         public int ListPagesSelectedIndex
         {
             get => listPagesSelectedIndex;
@@ -111,14 +116,36 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public RelayCommand PageComboboxChangeCommand { get; set; }
         public RelayCommand NextPageCommand { get; set; }
         public RelayCommand PrevPageCommand { get; set; }
+        public CategoryDetailViewModel CategoryDetailVM { get; set; }
+        public CategoryCreateViewModel CategoryCreateVM { get; private set; }
 
-        public CategoryManagementViewModel() {
+        public CategoryManagementViewModel(MainViewModel MainVM) {
             CurPage = 1;
             TotalPage = 1;
             ListPagesSelectedIndex = CurPage - 1;
             TotalCategory = 0;
             RowPerPage = 10;
             SearchValue = "";
+
+            //Open new window command
+            CategoryDetailViewCommand = new RelayCommand((param) =>
+            {
+                if (param != null)
+                {
+                    id = param.ToString();
+                    MessageBox.Show("ID IS:" + id);
+                    CategoryDetailVM = new CategoryDetailViewModel(MainVM, id);
+                    //MessageBox.Show("No Selected Order");
+                    MainVM.CurrentView = CategoryDetailVM;
+                }
+            });
+
+            CategoryCreateViewCommand = new RelayCommand(o =>
+            {
+                CategoryCreateVM = new CategoryCreateViewModel(MainVM);
+                MainVM.CurrentView = CategoryCreateVM;
+            });
+
             CallData = new RelayCommand(async o =>
             {
                 CurPage = 1;

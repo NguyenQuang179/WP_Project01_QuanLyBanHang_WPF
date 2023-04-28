@@ -243,7 +243,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             var responseImg = await client.GetAsync(image_uri);
                             var imageStream = await responseImg.Content.ReadAsStringAsync();
                             var dataImg = JsonConvert.DeserializeObject<Img>(imageStream);
-                            ImagePath = dataImg.data.data;
+                            //ImagePath = dataImg.data.data;
                         }
                         else
                         {
