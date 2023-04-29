@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_BBC2DD98F41E41488C5602AEB8D366C9"
+        "MsmKey" = "8:_AAA1345CE6FF48C3B1F6325B006E2693"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -37,6 +37,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -53,6 +69,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -141,7 +165,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup1"
         "ProductCode" = "8:{43E94111-7E5B-40DE-8AC6-0AEB6D8A2D2B}"
-        "PackageCode" = "8:{442FB1F5-913F-4879-9D4A-4B45D2A103BE}"
+        "PackageCode" = "8:{241DCDED-AEF8-4CFE-BF80-066401A7666F}"
         "UpgradeCode" = "8:{546D851A-F4F0-41CB-9014-E106FA73F2BF}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -261,30 +285,44 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_52FB1D5C3D514DB181EB358FBF60C885"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_2173C3AED55A4445B02A2730106883FE"
             {
-            "Name" = "8:HMQL_BookStore_Management"
+            "Name" = "8:HMQL_Bookstore_Management"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_BBC2DD98F41E41488C5602AEB8D366C9"
-            "Folder" = "8:_173B016F89524A738794CC4357D7FE67"
+            "Target" = "8:_AAA1345CE6FF48C3B1F6325B006E2693"
+            "Folder" = "8:_57B2AFE1720E429F80715A2F56878B5A"
             "WorkingFolder" = "8:_173B016F89524A738794CC4357D7FE67"
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_65EC50F0B1A6420699CBDD64813970F2"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A32B8134BD8548EB94D312CD0B3750C1"
             {
-            "Name" = "8:HMQL_BookStore_Management"
+            "Name" = "8:HMQL_Bookstore_Manager"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_BBC2DD98F41E41488C5602AEB8D366C9"
-            "Folder" = "8:_57B2AFE1720E429F80715A2F56878B5A"
+            "Target" = "8:_AAA1345CE6FF48C3B1F6325B006E2693"
+            "Folder" = "8:_2350EBC95B734B5998CB271142D87A7F"
+            "WorkingFolder" = "8:_173B016F89524A738794CC4357D7FE67"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E475E9D0247C4BE79C34A96078311288"
+            {
+            "Name" = "8:HMQL_Bookstore_Management"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_AAA1345CE6FF48C3B1F6325B006E2693"
+            "Folder" = "8:_173B016F89524A738794CC4357D7FE67"
             "WorkingFolder" = "8:_173B016F89524A738794CC4357D7FE67"
             "Icon" = "8:"
             "Feature" = "8:"
@@ -688,9 +726,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BBC2DD98F41E41488C5602AEB8D366C9"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_AAA1345CE6FF48C3B1F6325B006E2693"
             {
-            "SourcePath" = "8:..\\HMQL_Project01_QuanLyBanHang\\obj\\Debug\\net7.0-windows\\HMQL_Project01_QuanLyBanHang.dll"
+            "SourcePath" = "8:..\\HMQL_Project01_QuanLyBanHang\\obj\\Debug\\net7.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_173B016F89524A738794CC4357D7FE67"
@@ -709,7 +747,7 @@
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
+            "OutputGroupCanonicalName" = "8:PublishItems"
             "OutputProjectGuid" = "8:{65218E00-25DC-4367-874E-35D499F9815F}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
