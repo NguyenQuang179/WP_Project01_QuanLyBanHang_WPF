@@ -41,6 +41,16 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(CategoryName));
             }
         }
+        private string searchValue;
+        public string SearchValue
+        {
+            get => searchValue;
+            set
+            {
+                searchValue = value;
+                OnPropertyChanged(nameof(SearchValue));
+            }
+        }
         public RelayCommand CallOrderDetailData { get; set; }
         public RelayCommand OrderAddBookCreateViewCommand { get; set; }
 
@@ -166,7 +176,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             CallOrderDetailData = new RelayCommand(async o =>
             {
-                var uri = new Uri($"{ConnectionString.connectionString}/category/showbook/" + OrderID);
+                var uri = new Uri($"{ConnectionString.connectionString}/category/showbook/{OrderID}?name={SearchValue}");
                 //add count for page
                 try
                 {

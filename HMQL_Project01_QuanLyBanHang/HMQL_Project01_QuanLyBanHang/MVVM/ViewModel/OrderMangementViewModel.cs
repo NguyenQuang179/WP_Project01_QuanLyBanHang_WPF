@@ -177,7 +177,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             DeleteOrderDataCommand = new RelayCommand(async (param) =>
             {
-                MessageBox.Show("Hello");
                 List<Order> curList = Orders.listOfOrder;
                 // Find the index of the book to remove
 
@@ -203,7 +202,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     if (response.IsSuccessStatusCode)
                     {
                         var json = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show(json);
+                        MessageBox.Show("Delete Order Sucessfuly");
                         //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
                     }
                     else { MessageBox.Show($"Fail To Delete Order"); }
@@ -222,7 +221,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 if (param != null) { 
                     id = param.ToString();
-                MessageBox.Show("ID IS:" + id);
+                //MessageBox.Show("ID IS:" + id);
                 OrderDetailVM = new OrderDetailViewModel(MainVM, id);
                 //MessageBox.Show("No Selected Order");
 

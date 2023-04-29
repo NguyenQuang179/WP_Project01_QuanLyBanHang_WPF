@@ -150,7 +150,7 @@
                               GridLinesVisibility="None" 
                               SelectedItem="{Binding SelectedOrder}"
                               HorizontalAlignment="Center" Margin="12" BorderThickness="0" 
-                              AlternationCount="2"
+                              AlternationCount="2" CanUserAddRows="False" CanUserResizeColumns="False" CanUserReorderColumns="False"
                               AutoGenerateColumns="False"
                               ItemsSource="{Binding Orders.listOfOrder}">
                         <DataGrid.InputBindings>

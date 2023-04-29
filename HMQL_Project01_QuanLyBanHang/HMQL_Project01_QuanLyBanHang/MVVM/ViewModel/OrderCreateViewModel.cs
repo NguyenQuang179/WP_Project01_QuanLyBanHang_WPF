@@ -65,13 +65,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 //Create Order Detail API
 
-                MessageBox.Show(OrderD.order.listOfBook.Count.ToString());
+                //MessageBox.Show(OrderD.order.listOfBook.Count.ToString());
                 NewListOfBook newListOfBook = new NewListOfBook();
                 foreach (var bookInfo in OrderD.order.listOfBook)
                 {
                     newListOfBook.listOfBook.Add(new BookInOrder(bookInfo.book._id, bookInfo.quantity));
                 }
-                MessageBox.Show(newListOfBook.listOfBook.Count.ToString());
+                //MessageBox.Show(newListOfBook.listOfBook.Count.ToString());
 
 
                 try
@@ -79,7 +79,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     var uri = new Uri($"{ConnectionString.connectionString}/order/add/");
                     var client = new HttpClient();
                     var jsonSended = JsonConvert.SerializeObject(newListOfBook);
-                    MessageBox.Show(jsonSended);
+                    //MessageBox.Show(jsonSended);
                     var content = new StringContent(jsonSended, Encoding.UTF8, "application/json");
                     // Send the request and get the response
                     var response = await client.PostAsync(uri, content);
@@ -88,7 +88,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         // Handle the successful upload
                         var json = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show(json);
+                        MessageBox.Show("Order Create Successfully");
 
                         MainVM.OrderManagementVM.OrderCreateVM = null;
                         MainVM.OrderManagementVM.UpdatePageDataCommand.Execute(null);
