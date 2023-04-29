@@ -155,9 +155,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public bool isBackspaceProcessed = false;
 
-        private int rowPerPage;
+        private string rowPerPage;
 
-        public int RowPerPage
+        public string RowPerPage
         {
             get => rowPerPage;
             set
@@ -224,7 +224,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 listPagesSelectedIndex = value;
                 OnPropertyChanged(nameof(ListPagesSelectedIndex));
-                //if (BookSales != null) PageComboboxChangeCommand.Execute(null);
+                if (Data != null) PageComboboxChangeCommand.Execute(null);
             }
         }
 
@@ -258,7 +258,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         {
             CurPageData = new List<Book>();
             Data = new ProductListDataModel();
-            RowPerPage = 10;
+            RowPerPage = "10";
             CallDataCommand = new RelayCommand(async o =>
             {
                 var uri = new Uri($"{ConnectionString.connectionString}/book/search");
@@ -302,16 +302,131 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 CallDataCommand.Execute(null);
             });
 
-            PageComboboxChangeCommand = new RelayCommand(o =>
+            UpdatePagingCommand = new RelayCommand(async o =>
             {
-                MessageBox.Show($"Current page: {CurPage}");
-                CurPage = ListPagesSelectedIndex + 1;
-                UpdatePageDataCommand.Execute(null);
+                if (RowPerPage != "")
+                {
+                    string query_string = "";
+
+                    if (SearchValue == "")
+                    {
+                        if (PriceFrom != "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom != "" && PriceTo == "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom == "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?mmaxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (PriceFrom != "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom != "" && PriceTo == "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom == "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                    var uri = new Uri(query_string);
+
+                    try
+                    {
+                        using var client = new HttpClient();
+                        var response = await client.GetAsync(uri);
+
+                        // Check if the upload was successful
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var json = await response.Content.ReadAsStringAsync();
+                            Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
+                            // Handle the successful upload
+                            //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
+                            //UpdatePagingCommand.Execute(null);
+                            TotalPages = Data.numOfPage;
+                            TotalBook = Data.numOfBooks;
+                            var pages = new List<int>();
+                            for (int i = 1; i <= TotalPages; i++)
+                            {
+                                pages.Add(i);
+                            }
+                            ListPages = pages;
+                        }
+                        else { MessageBox.Show($"Fail To Call Data"); }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
             });
 
-            UpdatePageDataCommand = new RelayCommand(async o =>
+            PageComboboxChangeCommand = new RelayCommand(async o =>
             {
-                var uri = new Uri($"{ConnectionString.connectionString}/book/search?page={CurPage}");
+                CurPage = ListPagesSelectedIndex + 1;
+                //MessageBox.Show($"Current Page: {CurPage}");
+
+                string query_string = "";
+
+                if (SearchValue == "")
+                {
+                    if (PriceFrom != "" && PriceTo != "")
+                    {
+                        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                    }
+                    else if (PriceFrom != "" && PriceTo == "")
+                    {
+                        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
+                    }
+                    else if (PriceFrom == "" && PriceTo != "")
+                    {
+                        query_string = $"{ConnectionString.connectionString}/book/search?mmaxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    if (PriceFrom != "" && PriceTo != "")
+                    {
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                    }
+                    else if (PriceFrom != "" && PriceTo == "")
+                    {
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
+                    }
+                    else if (PriceFrom == "" && PriceTo != "")
+                    {
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                var uri = new Uri(query_string);
 
                 try
                 {
@@ -328,20 +443,185 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         //UpdatePagingCommand.Execute(null);
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
-
-                    CurPage = 1;
-                    TotalPages = Data.numOfPage;
-                    TotalBook = Data.numOfBooks;
-                    var pages = new List<int>();
-                    for (int i = 1; i <= TotalPages; i++)
-                    {
-                        pages.Add(i);
-                    }
-                    ListPages = pages;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+            });
+
+            //UpdatePageDataCommand = new RelayCommand(async o =>
+            //{
+            //    var uri = new Uri($"{ConnectionString.connectionString}/book/search?page={CurPage}&itemPerPage={RowPerPage}");
+
+            //    try
+            //    {
+            //        using var client = new HttpClient();
+            //        var response = await client.GetAsync(uri);
+
+            //        // Check if the upload was successful
+            //        if (response.IsSuccessStatusCode)
+            //        {
+            //            var json = await response.Content.ReadAsStringAsync();
+            //            Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
+            //            // Handle the successful upload
+            //            //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
+            //            //UpdatePagingCommand.Execute(null);
+            //        }
+            //        else { MessageBox.Show($"Fail To Call Data"); }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //});
+
+            PrevPageCommand = new RelayCommand(async o =>
+            {
+                //MessageBox.Show($"{ConnectionString.connectionString}/book/search?page={CurPage - 1}");
+                if (CurPage > 1)
+                {
+                    CurPage--;
+
+                    string query_string = "";
+
+                    if (SearchValue == "")
+                    {
+                        if (PriceFrom != "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom != "" && PriceTo == "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom == "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?mmaxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (PriceFrom != "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom != "" && PriceTo == "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom == "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                    var uri = new Uri(query_string);
+
+                    try
+                    {
+                        using var client = new HttpClient();
+                        var response = await client.GetAsync(uri);
+
+                        // Check if the upload was successful
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var json = await response.Content.ReadAsStringAsync();
+                            Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
+                            // Handle the successful upload
+                            //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
+                            //UpdatePagingCommand.Execute(null);
+                        }
+                        else { MessageBox.Show($"Fail To Call Data"); }
+                        ListPagesSelectedIndex--;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            });
+
+            NextPageCommand = new RelayCommand(async o =>
+            {
+                //MessageBox.Show($"{ConnectionString.connectionString}/book/search?page={CurPage + 1}");
+
+                if (CurPage < TotalPages)
+                {
+                    CurPage++;
+
+                    string query_string = "";
+
+                    if (SearchValue == "")
+                    {
+                        if (PriceFrom != "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom != "" && PriceTo == "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom == "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?mmaxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (PriceFrom != "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom != "" && PriceTo == "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else if (PriceFrom == "" && PriceTo != "")
+                        {
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                    var uri = new Uri(query_string);
+
+                    try
+                    {
+                        using var client = new HttpClient();
+                        var response = await client.GetAsync(uri);
+
+                        // Check if the upload was successful
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var json = await response.Content.ReadAsStringAsync();
+                            Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
+                            // Handle the successful upload
+                            //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
+                            //UpdatePagingCommand.Execute(null);
+                        }
+                        else { MessageBox.Show($"Fail To Call Data"); }
+                        ListPagesSelectedIndex++;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             });
 
@@ -367,15 +647,15 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     if (PriceFrom != "" && PriceTo != "")
                     {
-                        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&maxPrice={PriceTo}";
+                        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
                     }
                     else if (PriceFrom != "" && PriceTo == "")
                     {
-                        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}";
+                        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&itemPerPage={RowPerPage}";
                     }
                     else if (PriceFrom == "" && PriceTo != "")
                     {
-                        query_string = $"{ConnectionString.connectionString}/book/search?mmaxPrice={PriceTo}";
+                        query_string = $"{ConnectionString.connectionString}/book/search?mmaxPrice={PriceTo}&itemPerPage={RowPerPage}";
                     }
                     else
                     {
@@ -386,19 +666,19 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     if (PriceFrom != "" && PriceTo != "")
                     {
-                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}";
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
                     }
                     else if (PriceFrom != "" && PriceTo == "")
                     {
-                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}";
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&itemPerPage={RowPerPage}";
                     }
                     else if (PriceFrom == "" && PriceTo != "")
                     {
-                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}";
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
                     }
                     else
                     {
-                        return;
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
                     }
                 }
 
@@ -419,6 +699,15 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         //UpdatePagingCommand.Execute(null);
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
+                    ListPagesSelectedIndex = 0;
+                    TotalPages = Data.numOfPage;
+                    TotalBook = Data.numOfBooks;
+                    var pages = new List<int>();
+                    for (int i = 1; i <= TotalPages; i++)
+                    {
+                        pages.Add(i);
+                    }
+                    ListPages = pages;
                 }
                 catch (Exception ex)
                 {
@@ -469,19 +758,19 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
                     if (PriceFrom != "" && PriceTo != "")
                     {
-                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}";
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
                     }
                     else if (PriceFrom != "" && PriceTo == "")
                     {
-                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}";
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&itemPerPage={RowPerPage}";
                     }
                     else if (PriceFrom == "" && PriceTo != "")
                     {
-                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}";
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
                     }
                     else
                     {
-                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}";
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
                     }
 
                     var uri = new Uri(query_string);
@@ -502,6 +791,15 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             //UpdatePagingCommand.Execute(null);
                         }
                         else { MessageBox.Show($"Fail To Call Data"); }
+                        ListPagesSelectedIndex = 0;
+                        TotalPages = Data.numOfPage;
+                        TotalBook = Data.numOfBooks;
+                        var pages = new List<int>();
+                        for (int i = 1; i <= TotalPages; i++)
+                        {
+                            pages.Add(i);
+                        }
+                        ListPages = pages;
                     }
                     catch (Exception ex)
                     {
