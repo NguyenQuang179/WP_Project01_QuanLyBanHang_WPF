@@ -74,7 +74,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             ConfirmNewCategoryData = new RelayCommand(async o =>
             {
                 string name = CategoryName;
-                MessageBox.Show(CategoryName);
+                //MessageBox.Show(CategoryName);
                 if (CategoryName != null)
                 {
                     try
@@ -84,7 +84,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         CategoryName newCategory = new CategoryName();
                         newCategory.name = categoryName;
                         var jsonSended = JsonConvert.SerializeObject(newCategory);
-                        MessageBox.Show(jsonSended);
+                        //MessageBox.Show(jsonSended);
                         var content = new StringContent(jsonSended, Encoding.UTF8, "application/json");
                         // Send the request and get the response
                         var response = await client.PostAsync(uri, content);
@@ -93,7 +93,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         {
                             // Handle the successful upload
                             var json = await response.Content.ReadAsStringAsync();
-                            MessageBox.Show(json);
+                            MessageBox.Show("Category Created Successfully");
                             //add count for page
 
                         }
