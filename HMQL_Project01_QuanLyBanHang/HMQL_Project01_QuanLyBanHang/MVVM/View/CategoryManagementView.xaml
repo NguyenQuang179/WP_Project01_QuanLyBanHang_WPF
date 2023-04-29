@@ -90,9 +90,20 @@
                                             Background="#FF3A36DB"
                                             CornerRadius="6"
                                             Cursor="Hand"
-                                            Margin="8 0 0 0">   
-                                        <Image Height="16" Width="16"
-                                               Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png"/>
+                                            Margin="8 0 0 0">
+                                        <Canvas Width="16" Height="16" DockPanel.Dock="Left" Margin="0 0 16 0">
+                                          
+
+                                            <Rectangle Width="16" Height="16" Canvas.Left="8" Canvas.Top="0" >
+                                                <Rectangle.Fill>
+                                                    <SolidColorBrush Color="#FFFFFF"/>
+                                                </Rectangle.Fill>
+                                                <Rectangle.OpacityMask>
+                                                    <ImageBrush ImageSource="../../Images/OrderManagementSVG/magnifying-glass-solid.png"/>
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </Canvas>
+                                 
                                         <Border.InputBindings>
                                             <MouseBinding MouseAction="LeftClick" Command="{Binding CallData}"/>
                                         </Border.InputBindings>

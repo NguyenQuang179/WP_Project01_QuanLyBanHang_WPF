@@ -60,8 +60,7 @@
                     </Border>
 
 
-
-
+                   
                     <Border Height="320"
                     Background="White"
                     CornerRadius="12"
@@ -73,7 +72,7 @@
                               GridLinesVisibility="None" 
                               SelectedItem="{Binding SelectedOrder}"
                               HorizontalAlignment="Stretch" Margin="12" BorderThickness="0" 
-                              AlternationCount="2"
+                              AlternationCount="2" CanUserAddRows="False" CanUserResizeColumns="False" CanUserReorderColumns="False"
                               AutoGenerateColumns="False"
                               ItemsSource="{Binding CategoryD.listOfBook, UpdateSourceTrigger=PropertyChanged}">
                             <DataGrid.InputBindings>

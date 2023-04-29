@@ -15,76 +15,88 @@
                 CornerRadius="24" Grid.ColumnSpan="2" />
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2">
             <StackPanel>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Border
-                    Background="White"
-                    CornerRadius="12"
-                    BorderBrush="LightGray"
-                    Margin="32 16 0 0">
-                        <DockPanel>
 
-                            <TextBox Grid.Column="0"
-                                x:Name="searchTextBox"
-                                Foreground="Black"
-                                BorderThickness="0"
-                                FontSize="14"
-                                
-                                HorizontalAlignment="Left"
-                                Width="570"
-                                Margin="16 0 0 0"
-                                RenderTransformOrigin="0.5,0.5" Canvas.Left="10" Canvas.Top="6" VerticalAlignment="Center" />
-                            <Button
-                                DockPanel.Dock="Right"
-                                Grid.Column="1"
-                                x:Name="eraseButton"
-                                Background="Transparent"
-                                BorderBrush="Transparent"
-                                Content="X"
-                                Width="15"
-                               
-                                Canvas.Left="617" Canvas.Top="4"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center" />
-                        </DockPanel>
-                    </Border>
-
-                    <Border
-                        Background="Black"
-                        CornerRadius="12"
-                        BorderBrush="LightGray"
-                        Margin="10 16 32 0"
-                        Grid.Column="1">
-                        <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding SearchCommand}" />
-                        </Border.InputBindings>
-                        <TextBlock
-                            Margin="16 5 16 5"
-                            Text="Search"
-                            FontSize="12" FontWeight="Bold" Foreground="White"
-                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </Grid>
-
-                <Grid
-                    Margin="16 10 16 0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="340" />
-                    </Grid.RowDefinitions>
-
-                    <StackPanel
-                        Orientation="Horizontal"
-                        Grid.Row="0" Margin="0,0,0,10">
+                <StackPanel
+                        Orientation="Vertical" HorizontalAlignment="Left"
+                        Grid.Row="0">
                         <TextBlock
                             Text="Bookshelf"
-                            FontSize="24" FontWeight="Bold"
+                            FontSize="24" FontWeight="Bold" HorizontalAlignment="Left"
                             Width="130"
-                            Margin="16 0 0 0" />
+                            Margin="16" />
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="16 0 16 0" HorizontalAlignment="Center">
+                                <TextBox  Width="200" Height="32" 
+                                              VerticalAlignment="Center"
+                                              VerticalContentAlignment="Center">
+                                    <TextBox.Style>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                                        <Border CornerRadius="6"
+                                                            Background="Transparent"
+                                                            BorderBrush="Black"
+                                                            BorderThickness="1"
+                                                            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                                                            <Grid>
+                                                                <Rectangle StrokeThickness="1"/>
+                                                                <TextBox Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"
+                                                                             FontSize="12" Margin="8 0 8 0" 
+                                                                             BorderThickness="0" Background="Transparent"
+                                                                             VerticalContentAlignment="Center" Foreground="Black" x:Name="InputField">
+                                                                    <TextBox.InputBindings>
+                                                                        <KeyBinding Key="Return" Command="{Binding CallDataCommand}"/>
+                                                                    </TextBox.InputBindings>
+                                                                </TextBox>
+                                                                <!--Placeholder-->
+                                                                <TextBlock IsHitTestVisible="False" Text="Search book name"
+                                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                               Margin="10 0 8 0" FontSize="12" Foreground="DarkGray"
+                                                               Grid.Column="1">
+                                                                    <TextBlock.Style>
+                                                                        <Style TargetType="TextBlock">
+                                                                            <Style.Triggers>
+                                                                                <DataTrigger Binding="{Binding Text, ElementName = InputField}" Value="">
+                                                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                                                </DataTrigger>
+                                                                            </Style.Triggers>
+                                                                            <Setter Property="Visibility" Value="Hidden"/>
+                                                                        </Style>
+                                                                    </TextBlock.Style>
+                                                                </TextBlock>
+                                                            </Grid>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                                <Border Height="32" 
+                                            Width="32"
+                                            Background="#FF3A36DB"
+                                            CornerRadius="6"
+                                            Cursor="Hand"
+                                            Margin="8 0 0 0">
+                                    <Canvas Width="16" Height="16" DockPanel.Dock="Left" Margin="0 0 16 0">
 
+
+                                        <Rectangle Width="16" Height="16" Canvas.Left="8" Canvas.Top="0" >
+                                            <Rectangle.Fill>
+                                                <SolidColorBrush Color="#FFFFFF"/>
+                                            </Rectangle.Fill>
+                                            <Rectangle.OpacityMask>
+                                                <ImageBrush ImageSource="../../Images/OrderManagementSVG/magnifying-glass-solid.png"/>
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </Canvas>
+
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding CallDataCommand}"/>
+                                    </Border.InputBindings>
+                                </Border>
+                            </StackPanel>
                         <Border
                             Background="Black"
                             CornerRadius="12"
@@ -118,82 +130,80 @@
                                 HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                     </StackPanel>
+                       
+                    </StackPanel>
 
-                    <Grid
+                <Grid
                     Grid.Row="1">
-                        <!--<Grid.ColumnDefinitions>
+                    <!--<Grid.ColumnDefinitions>
                             <ColumnDefinition Width="7*" />
                             <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>-->
 
-                        <Border
+                    <Border
                         Grid.Column="0" 
                         Background="White"
                         CornerRadius="12"
                         BorderThickness="1"
                         BorderBrush="LightGray"
-                        Margin=" 0 0 5 0">
-                            <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        Margin="16" Height="400">
+                        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 Margin="16" Width="700" SelectionMode="Multiple"
-                                BorderBrush="Transparent" 
+                                BorderBrush="Transparent"  
                                 ItemsSource="{Binding bookOrderInfoList}">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Margin="0 0 0 0" 
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0 0 0 0" 
                                               Background="Transparent">
-                                            <Grid.InputBindings>
-                                                <MouseBinding MouseAction="LeftClick"
+                                        <Grid.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick"
                                                               Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ItemClickCommand}"
                                                               CommandParameter="{Binding _id}" />
-                                            </Grid.InputBindings>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="50"/>
-                                                <ColumnDefinition Width="175" />
-                                                <ColumnDefinition Width="175" />
-                                                <ColumnDefinition Width="150" />
-                                                <ColumnDefinition Width="50" />
-                                                <ColumnDefinition Width="50" />
-                                            </Grid.ColumnDefinitions>
-                                            <Border Grid.ColumnSpan="4"
+                                        </Grid.InputBindings>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="175" />
+                                            <ColumnDefinition Width="175" />
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="50" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.ColumnSpan="4"
                                                     BorderBrush="Gray"
                                                     BorderThickness="0 0 0 0.5" />
-                                            <CheckBox  Margin="0 0 0 0" Height="30"
+                                        <CheckBox  Margin="0 0 0 0" Height="30"
                                                 IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                            <TextBlock Grid.Column="1" Text="{Binding _id}"
+                                        <TextBlock Grid.Column="1" Text="{Binding _id}"
                                                        Foreground="Blue" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
                                                         VerticalAlignment="Center" />
-                                            <TextBlock Grid.Column="2"
+                                        <TextBlock Grid.Column="2"
                                                        Text="{Binding name}"  TextWrapping="NoWrap"
                                                        TextTrimming="CharacterEllipsis"
                                                         VerticalAlignment="Center" />
-                                            <TextBlock Grid.Column="3"
+                                        <TextBlock Grid.Column="3"
                                                        Text="{Binding author}"  TextWrapping="NoWrap"
                                                        TextTrimming="CharacterEllipsis"
                                                         VerticalAlignment="Center" />
-                                            <TextBlock Grid.Column="4"
+                                        <TextBlock Grid.Column="4"
                                                        Text="{Binding stock}"  TextWrapping="NoWrap"
                                                        TextTrimming="CharacterEllipsis"
                                                        VerticalAlignment="Center" />
-                                            <xctk:IntegerUpDown
+                                        <xctk:IntegerUpDown
                                                  Grid.Column="5" Width="50" VerticalAlignment="Center"
                                                 Minimum="0" Maximum="{Binding stock}" DefaultValue="1" Value="{Binding Quantity, Mode=TwoWay}" />
 
-                                           
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                                <ListView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel />
-                                    </ItemsPanelTemplate>
-                                </ListView.ItemsPanel>
-                            </ListView>
-                        </Border>
-                        
-                        
-                    </Grid>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                    </Border>
                 </Grid>
-               
             </StackPanel>
         </ScrollViewer>
     </Grid>
