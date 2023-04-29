@@ -182,8 +182,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         var json = await response.Content.ReadAsStringAsync();
                         CategoryD = JsonConvert.DeserializeObject<ListBookCategory>(json);
-                        if (CategoryD.listOfBook.Count > 0)
-                            CategoryName = CategoryD.listOfBook[0].category.name;
+                        CategoryName = CategoryD.categoryDetail.name;
+
                         //Process Price
                         //for (int i = 0; i < CategoryD.listOfBook.Count; i++)
                         //{
@@ -227,8 +227,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         var json = await response.Content.ReadAsStringAsync();
                         CategoryD = JsonConvert.DeserializeObject<ListBookCategory>(json);
-                        string newdate = "";
-                        DateTime datetime = DateTime.Now;
+                        CategoryName = CategoryD.categoryDetail.name;
+
                         //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
