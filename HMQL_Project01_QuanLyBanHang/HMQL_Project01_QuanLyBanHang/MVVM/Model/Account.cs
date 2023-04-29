@@ -11,4 +11,10 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
         public string username { get; set; }
         public string password { get; set; }
     }
+
+    class Token
+    {
+        public string token { get; set; }
+    }
+
 }

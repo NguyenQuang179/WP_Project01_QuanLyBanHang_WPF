@@ -24,7 +24,7 @@
                 <StackPanel DockPanel.Dock="Left">
 
                     <Border Height="100"     
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Center"
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
@@ -39,90 +39,28 @@
                                         <SolidColorBrush Color="#2FE5A7"/>
                                     </Rectangle.Fill>
                                     <Rectangle.OpacityMask>
-                                        <ImageBrush ImageSource="../../Images/OrderManagementSVG/truck-solid.png"/>
+                                        <ImageBrush ImageSource="../../Images/OrderManagementSVG/cart-shopping-solid.png"/>
                                     </Rectangle.OpacityMask>
                                 </Rectangle>
                             </Canvas>
 
-                            <TextBlock Text="{Binding CategoryD.listOfBook[0].category.name}"
+                            <TextBlock Text="Create New Category"
                                FontSize="18" FontWeight="DemiBold"
                                Margin="0 0 0 0" DockPanel.Dock="Top"/>
-                            <WrapPanel DockPanel.Dock="Bottom">
-                                <TextBlock Text="227 Đ. Nguyễn Văn Cừ, Phường 4, Quận 5, Thành phố Hồ Chí Minh"
+                            <WrapPanel DockPanel.Dock="Bottom" Orientation="Vertical">
+                                <TextBlock Text="Please Input its name"
                                FontSize="12" FontWeight="SemiBold" Foreground="#788B9A"
                                Margin="0 0 0 0" />
-                                <TextBlock Text="(+84) 964 978 361"
-                               FontSize="12" FontWeight="SemiBold" Foreground="#788B9A"
+                                <TextBox Text="{Binding CategoryName, UpdateSourceTrigger=PropertyChanged}" Width="300"
+                               FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
                                Margin="0 0 0 0" />
                             </WrapPanel>
 
                         </DockPanel>
                     </Border>
 
-                    <WrapPanel  Margin=" 16 4 16 4" HorizontalAlignment="Stretch">
-                        <!--Search Textbox-->
-                        <Border>
-                            <Border.Effect>
-                                <DropShadowEffect Opacity="0.3" Direction="300" />
-                            </Border.Effect>
 
-                            <Grid Width="300" HorizontalAlignment="Left" Margin=" 0 0 0 0">
-                                <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False" />
-
-                                <TextBox Name="textBoxSearch"/>
-
-                                <Image Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png" Width="15" Height="15" 
-                               VerticalAlignment="Center" Margin="0 0 15 0" HorizontalAlignment="Right" />
-                            </Grid>
-                        </Border>
-                        <!--Filter by Status-->
-                        <!--SelectionChanged=""-->
-                        <Border>
-                            <Border.Effect>
-                                <DropShadowEffect  Opacity="0.3" Direction="300"  />
-                            </Border.Effect>
-                        </Border>
-
-                        <!--Delete Selected Order Button-->
-                        <Border
-                        Margin=" 8 0 8 0"
-                        Background="#FFFFFF"
-                        CornerRadius="4"
-                        Height="30" Width="80">
-                            <Border.Effect>
-                                <DropShadowEffect  Opacity="0.3" Direction="300" />
-                            </Border.Effect>
-                            <Border.InputBindings>
-
-                                <MouseBinding MouseAction="LeftClick" 
-                                          Command="{Binding DeleteBookDetailData}"
-                                          CommandParameter="{Binding SelectedItem._id, ElementName=OrderDataGrid}"/>
-
-                            </Border.InputBindings>
-                            <TextBlock Text="Delete" 
-                               FontSize="12" FontWeight="DemiBold" Foreground="#000000"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-
-                        <!--Add Order Button-->
-                        <Border
-                        Margin=" 8 0 0 0"
-                        Background="#FF3A36DB"
-                        CornerRadius="4"
-                        Height="30" Width="80">
-                            <Border.Effect>
-                                <DropShadowEffect  Opacity="0.3" Direction="300" />
-                            </Border.Effect>
-                            <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding OrderAddBookCreateViewCommand}"/>
-                            </Border.InputBindings>
-                            <TextBlock Text="Add Book" 
-                               FontSize="12" FontWeight="DemiBold" Foreground="White"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </WrapPanel>
-
-
+                   
                     <Border Height="320"
                     Background="White"
                     CornerRadius="12"
@@ -134,7 +72,7 @@
                               GridLinesVisibility="None" 
                               SelectedItem="{Binding SelectedOrder}"
                               HorizontalAlignment="Stretch" Margin="12" BorderThickness="0" 
-                              AlternationCount="2"
+                              AlternationCount="2" CanUserAddRows="False" CanUserResizeColumns="False" CanUserReorderColumns="False"
                               AutoGenerateColumns="False"
                               ItemsSource="{Binding CategoryD.listOfBook, UpdateSourceTrigger=PropertyChanged}">
                             <DataGrid.InputBindings>
@@ -363,7 +301,7 @@
                         CornerRadius="4"
                         Margin="0 16 16 0" Width="210" Height="25">
                             <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding ConfirmOrderDetailData}"/>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding ConfirmCategoryDetailData}"/>
                             </Border.InputBindings>
                             <TextBlock Text="Confirm Changes" 
                                FontSize="16" FontWeight="Bold" Foreground="White"

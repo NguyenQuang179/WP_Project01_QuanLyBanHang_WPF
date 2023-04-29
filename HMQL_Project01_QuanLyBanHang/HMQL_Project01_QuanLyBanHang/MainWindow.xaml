@@ -73,9 +73,9 @@
                 CornerRadius="0 8 8 0">
             <StackPanel>
                 <Image Source="Images/logo.png"
-                   Width="52"
+                   Width="100"
                    Height="52"
-                   Margin="4"/>
+                   Margin="0 32 0 0"/>
                 <TextBlock Foreground="#FF3A36DB"
                            FontSize="16" FontWeight="DemiBold"
                            HorizontalAlignment="Center"

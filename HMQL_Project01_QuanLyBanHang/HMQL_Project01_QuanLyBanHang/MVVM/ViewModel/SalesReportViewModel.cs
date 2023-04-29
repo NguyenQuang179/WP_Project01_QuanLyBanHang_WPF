@@ -445,7 +445,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     pages.Add(i);
                 }
-                ListPages = pages;
+                if (pages.Count > 0)
+                {
+                    ListPages = pages;
+                }
+                else ListPages.Clear();
                 UpdatePageDataCommand.Execute(null);
             });
 

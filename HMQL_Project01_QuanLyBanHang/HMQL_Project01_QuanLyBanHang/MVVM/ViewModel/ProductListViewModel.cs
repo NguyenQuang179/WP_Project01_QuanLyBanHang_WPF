@@ -296,7 +296,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 }
             });
             CallDataCommand.Execute(null);
-
+            
             EraseCommand = new RelayCommand(o =>
             {
                 SearchValue = "";

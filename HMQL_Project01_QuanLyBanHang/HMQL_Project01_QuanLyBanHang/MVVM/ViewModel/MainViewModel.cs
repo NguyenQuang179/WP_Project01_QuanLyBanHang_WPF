@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -173,6 +174,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             LogOutCommand = new RelayCommand(o =>
             {
+                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["Token"].Value = "";
+                config.AppSettings.Settings["Username"].Value = "";
+                config.AppSettings.Settings["Password"].Value = "";
+                config.Save(ConfigurationSaveMode.Full);
+                ConfigurationManager.RefreshSection("appSettings");
                 AuthenticationWindow authenticationWindow = new AuthenticationWindow();
                 authenticationWindow.Show();
                 Application.Current.Windows[0].Close();

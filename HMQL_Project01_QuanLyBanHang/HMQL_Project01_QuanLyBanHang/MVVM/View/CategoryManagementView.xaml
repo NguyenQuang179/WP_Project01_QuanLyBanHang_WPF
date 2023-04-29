@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CategoryManagementViewModel}"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CategoryManagementViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="544" d:DesignWidth="776">
     
@@ -61,7 +62,7 @@
                                                                         </TextBox.InputBindings>
                                                                     </TextBox>
                                                                     <!--Placeholder-->
-                                                                    <TextBlock IsHitTestVisible="False" Text="Search book title"
+                                                                    <TextBlock IsHitTestVisible="False" Text="Search category name"
                                                                VerticalAlignment="Center" HorizontalAlignment="Left"
                                                                Margin="10 0 8 0" FontSize="12" Foreground="DarkGray"
                                                                Grid.Column="1">
@@ -90,8 +91,19 @@
                                             CornerRadius="6"
                                             Cursor="Hand"
                                             Margin="8 0 0 0">
-                                        <Image Height="16" Width="16"
-                                               Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png"/>
+                                        <Canvas Width="16" Height="16" DockPanel.Dock="Left" Margin="0 0 16 0">
+                                          
+
+                                            <Rectangle Width="16" Height="16" Canvas.Left="8" Canvas.Top="0" >
+                                                <Rectangle.Fill>
+                                                    <SolidColorBrush Color="#FFFFFF"/>
+                                                </Rectangle.Fill>
+                                                <Rectangle.OpacityMask>
+                                                    <ImageBrush ImageSource="../../Images/OrderManagementSVG/magnifying-glass-solid.png"/>
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </Canvas>
+                                 
                                         <Border.InputBindings>
                                             <MouseBinding MouseAction="LeftClick" Command="{Binding CallData}"/>
                                         </Border.InputBindings>
@@ -114,12 +126,17 @@
                                             Background="#FF3A36DB"
                                             CornerRadius="6"
                                             VerticalAlignment="Center"
-                                            Margin="16 0 0 0"
-                                            IsEnabled="False">
+                                            Margin="16 0 0 0">
                                         <TextBlock Text="Delete Category"
                                                    Foreground="White"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"/>
+                                        <Border.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick"
+                                                      Command="{Binding DeleteDataCommand}"
+                                                     CommandParameter="{Binding SelectedItem._id, ElementName=CategoryDataGrid}"/>
+                                        </Border.InputBindings>
+
                                     </Border>
                                 </StackPanel>
                             </StackPanel>

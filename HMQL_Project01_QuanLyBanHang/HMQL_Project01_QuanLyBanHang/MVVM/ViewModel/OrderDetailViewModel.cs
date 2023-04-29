@@ -130,13 +130,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             ConfirmOrderDetailData = new RelayCommand(async o =>
             {
                 //Update Order Detail API
-                MessageBox.Show(OrderD.order.listOfBook.Count.ToString());
+               // MessageBox.Show(OrderD.order.listOfBook.Count.ToString());
                 NewListOfBook newListOfBook = new NewListOfBook();
                 foreach (var bookInfo in OrderD.order.listOfBook)
                 {
                     newListOfBook.listOfBook.Add(new BookInOrder(bookInfo.book._id, bookInfo.quantity));
                 }
-                MessageBox.Show(newListOfBook.listOfBook.Count.ToString());
+                //MessageBox.Show(newListOfBook.listOfBook.Count.ToString());
 
 
                 try
@@ -144,7 +144,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     var uri = new Uri($"{ConnectionString.connectionString}/order/update/{OrderD.order._id}");
                     var client = new HttpClient();
                     var jsonSended = JsonConvert.SerializeObject(newListOfBook);
-                    MessageBox.Show(jsonSended);
+                    //MessageBox.Show(jsonSended);
                     var content = new StringContent(jsonSended, Encoding.UTF8, "application/json");
                     // Send the request and get the response
                     var response = await client.PutAsync(uri, content);
@@ -154,7 +154,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         // Handle the successful upload
                         var json = await response.Content.ReadAsStringAsync();
 
-                        MessageBox.Show(json);
+                        MessageBox.Show("Edit Changes Successfully");
                         MainVM.OrderManagementVM.OrderDetailVM = null;
                         MainVM.OrderManagementVM.UpdatePageDataCommand.Execute(null);
                         MainVM.OrderManagementVM.TotalOrder++;
@@ -233,7 +233,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             datetime = DateTime.Parse(OrderD.order.date);
                             newdate = datetime.ToString("dd/MM/y");
                             OrderD.order.date = newdate;
-                            MessageBox.Show($"{OrderD.order.date}");
+                            //MessageBox.Show($"{OrderD.order.date}");
 
                             //Process Price
                             //for (int i = 0; i < orderD.order.listOfBook.Count; i++)

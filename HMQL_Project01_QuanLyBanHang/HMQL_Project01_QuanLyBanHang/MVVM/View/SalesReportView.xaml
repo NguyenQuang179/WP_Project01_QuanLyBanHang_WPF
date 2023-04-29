@@ -19,8 +19,10 @@
             <StackPanel Margin="0 0 0 16">
                 <TextBlock Text="Sales Report"
                        FontSize="24" FontWeight="Bold"
-                       Margin="32 16 32 26" />
-                <!--<Border Height="320"
+
+                       Margin="32 16 32 16"/>
+                <!--Column Chart-->
+                <Border Height="420"
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
@@ -29,8 +31,63 @@
                     <StackPanel Margin="16">
                         <TextBlock Text="Báo Cáo Doanh Thu"
                                FontSize="20" FontWeight="DemiBold"
-                               Margin="0 0 0 16" />
-                        <lvc:CartesianChart Height="240"
+
+
+                               Margin="0 0 0 16"/>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="0 0 0 16">
+                            <StackPanel Margin="32 0 0 0">
+                                <TextBlock Text="Search Mode:"
+                                           FontSize="16"
+                                           FontWeight="DemiBold"
+                                           HorizontalAlignment="Center"
+                                           Margin="0 0 0 8"/>
+                                <ComboBox Grid.Column="1"
+                                      Height="32"
+                                      Width="100" 
+                                      ItemsSource="{Binding ListDataMode, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedIndex="{Binding ChartColumnSelectedModeIndex, UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Margin="32 0 0 0">
+                                <TextBlock Text="Minimum Date:"
+                                           FontSize="16"
+                                           FontWeight="DemiBold"
+                                           Margin="0 0 0 8"/>
+                                <DatePicker SelectedDateFormat="Short"
+                                            SelectedDate="{Binding MinDate, UpdateSourceTrigger=PropertyChanged}"
+                                            Height="32"
+                                            VerticalContentAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectedDateChanged">
+                                            <i:InvokeCommandAction Command="{Binding CallData}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </DatePicker>
+                            </StackPanel>
+                            <StackPanel Margin="32 0 0 0">
+                                <TextBlock Text="Maximum Date:"
+                                           FontSize="16"
+                                           FontWeight="DemiBold"
+                                           Margin="0 0 0 8"/>
+                                <DatePicker SelectedDateFormat="Short"
+                                            SelectedDate="{Binding MaxDate, UpdateSourceTrigger=PropertyChanged}"
+                                            Height="32"
+                                            VerticalContentAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectedDateChanged">
+                                            <i:InvokeCommandAction Command="{Binding CallData}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </DatePicker>
+                            </StackPanel>
+                        </StackPanel>
+                        <lvc:CartesianChart Height="260"
+
+
                                         Series="{Binding SaleSeries}">
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Title="Dates" Labels="{Binding SaleLabels}">
@@ -201,6 +258,7 @@
                         <!--Data-->
                         <DataGrid Grid.Row="1"
                                   Background="Transparent"
+                                  GridLinesVisibility="None" 
                                   AutoGenerateColumns="False" CanUserAddRows="False"
                                   CanUserResizeColumns="False"
                                   CanUserReorderColumns="False"
@@ -210,20 +268,136 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Index"
                                                     Width="44"
-                                                    Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}" />
+                                                    Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="Book ID"
                                                     Binding="{Binding _id.book[0]._id}"
-                                                    Width="3*" />
+                                                    Width="3*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="Book Title"
                                                     Binding="{Binding _id.book[0].name}"
-                                                    Width="3*" />
+                                                    Width="3*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="Time Period"
                                                     Binding="{Binding _id.date}"
-                                                    Width="2*" />
+                                                    Width="2*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
                                 <DataGridTextColumn Header="Sold Quantity"
                                                     Binding="{Binding totalQuantity}"
-                                                    Width="2*" />
+                                                    Width="2*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
                             </DataGrid.Columns>
+                            <DataGrid.RowStyle>
+                                <Style TargetType="{x:Type DataGridRow}">
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#000000"/>
+
+                                        </Trigger>
+
+                                        <Trigger Property="IsSelected" Value="True">
+
+                                            <Setter Property="Background" Value="#2E29ED"/>
+                                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                                        </Trigger>
+
+
+                                    </Style.Triggers>
+
+                                    <Setter Property="Foreground" Value="#788B9A"/>
+                                </Style>
+                            </DataGrid.RowStyle>
                         </DataGrid>
 
                         <!--Paging-->

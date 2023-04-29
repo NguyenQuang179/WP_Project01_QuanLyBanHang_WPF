@@ -30,11 +30,20 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             }
         }
 
-
+        private string categoryName;
+        public string CategoryName
+        {
+            get { return categoryName; }
+            set
+            {
+                categoryName = value;
+                OnPropertyChanged(nameof(CategoryName));
+            }
+        }
         public RelayCommand CallOrderDetailData { get; set; }
         public RelayCommand OrderAddBookCreateViewCommand { get; set; }
 
-        public RelayCommand ConfirmOrderDetailData { get; set; }
+        public RelayCommand ConfirmNewCategoryData { get; set; }
         public RelayCommand DeleteBookDetailData { get; set; }
 
         public RelayCommand CancelCommand { get; set; }
@@ -62,102 +71,76 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             //});
 
-            ConfirmOrderDetailData = new RelayCommand(async o =>
+            ConfirmNewCategoryData = new RelayCommand(async o =>
             {
-                ////Update Order Detail API
-                //MessageBox.Show(CategoryD.listOfBook.Count.ToString());
-                //NewListOfBook newListOfBook = new NewListOfBook();
-                //foreach (var bookInfo in CategoryD.listOfBook)
-                //{
-                //    newListOfBook.listOfBook.Add(new BookInOrder(bookInfo.book._id));
-                //}
-                //MessageBox.Show(newListOfBook.listOfBook.Count.ToString());
-
-
-                //try
-                //{
-                //    var uri = new Uri($"{ConnectionString.connectionString}/order/update/{CategoryD._id}");
-                //    var client = new HttpClient();
-                //    var jsonSended = JsonConvert.SerializeObject(newListOfBook);
-                //    MessageBox.Show(jsonSended);
-                //    var content = new StringContent(jsonSended, Encoding.UTF8, "application/json");
-                //    // Send the request and get the response
-                //    var response = await client.PutAsync(uri, content);
-                //    // Check if the upload was successful
-                //    if (response.IsSuccessStatusCode)
-                //    {
-                //        // Handle the successful upload
-                //        var json = await response.Content.ReadAsStringAsync();
-
-                //        MessageBox.Show(json);
-                //        MainVM.OrderManagementVM.OrderDetailVM = null;
-                //        MainVM.OrderManagementVM.UpdatePageDataCommand.Execute(null);
-                //        MainVM.OrderManagementVM.TotalOrder++;
-                //        MainVM.CurrentView = MainVM.OrderManagementVM;
-                //    }
-                //    else
-                //    {
-                //        // Handle the failed upload
-                //        var json = await response.Content.ReadAsStringAsync();
-                //        MessageBox.Show(json);
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show(ex.Message);
-                //}
-            });
-
-            DeleteBookDetailData = new RelayCommand((param) =>
-            {
-                List<BookDetail> curList = CategoryD.listOfBook;
-                // Find the index of the book to remove
-
-                string bookId = param as string;
-                if (bookId == null)
+                string name = CategoryName;
+                MessageBox.Show(CategoryName);
+                if (CategoryName != null)
                 {
-                    //show error
-                    MessageBox.Show("Invalid Book ID");
-                    return;
-                }
-                // Find the index of the book to remove
-                int indexToRemove = curList.FindIndex(b => b._id == bookId);
+                    try
+                    {
+                        var uri = new Uri($"{ConnectionString.connectionString}/category/add/");
+                        var client = new HttpClient();
+                        CategoryName newCategory = new CategoryName();
+                        newCategory.name = categoryName;
+                        var jsonSended = JsonConvert.SerializeObject(newCategory);
+                        MessageBox.Show(jsonSended);
+                        var content = new StringContent(jsonSended, Encoding.UTF8, "application/json");
+                        // Send the request and get the response
+                        var response = await client.PostAsync(uri, content);
+                        // Check if the upload was successful
+                        if (response.IsSuccessStatusCode)
+                        {
+                            // Handle the successful upload
+                            var json = await response.Content.ReadAsStringAsync();
+                            MessageBox.Show(json);
+                            //add count for page
 
-
-                if (indexToRemove != -1)
-                {
-                    // Remove the book from curList
-                    curList.RemoveAt(indexToRemove);
-                    MessageBox.Show("Book has been Deleted, Please Refresh");
+                        }
+                        else
+                        {
+                            // Handle the failed upload
+                            var json = await response.Content.ReadAsStringAsync();
+                            MessageBox.Show(json);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    MainVM.CategoryManagementVM.CallData.Execute(null);
+                    MainVM.CurrentView = MainVM.CategoryManagementVM;
                 }
                 else
                 {
-                    //show error
-                    MessageBox.Show("No Book Selected");
+                    MessageBox.Show("Bạn phải nhập tên thể loại.");
                 }
             });
 
-            OrderAddBookCreateViewCommand = new RelayCommand(o =>
+
+
+            //OrderAddBookCreateViewCommand = new RelayCommand(o =>
+            //{
+            //    MainVM.OrderAddBookVM.IsAddBookForEditingOrder = true;
+            //    MainVM.OrderAddBookViewCommand.Execute(MainVM);
+            //});
+            CancelCommand = new RelayCommand(o =>
             {
-                MainVM.OrderAddBookVM.IsAddBookForEditingOrder = true;
-                MainVM.OrderAddBookViewCommand.Execute(MainVM);
-            });
-            CancelCommand = new RelayCommand(o => {
-                MainVM.OrderManagementVM.OrderCreateVM = null;
-                MainVM.CurrentView = MainVM.OrderManagementVM;
+                MainVM.CategoryManagementVM.CategoryCreateVM = null;
+                MainVM.CurrentView = MainVM.CategoryManagementVM;
             });
 
 
             CallOrderDetailData = new RelayCommand(async o =>
             {
-              
+
             });
 
             CallOrderDetailData.Execute(null);
 
             UpdatePageDataCommand = new RelayCommand(async (o) =>
             {
-                
+
             });
         }
     }
