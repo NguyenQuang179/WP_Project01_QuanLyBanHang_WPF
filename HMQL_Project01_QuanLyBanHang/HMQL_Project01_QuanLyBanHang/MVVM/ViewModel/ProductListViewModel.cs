@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.Win32;
+using System.IO;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
@@ -296,7 +297,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 }
             });
             CallDataCommand.Execute(null);
-            
+
             EraseCommand = new RelayCommand(o =>
             {
                 SearchValue = "";
@@ -320,6 +321,43 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 }
 
                 FilePath = filepath;
+            });
+
+            UploadFileCommand = new RelayCommand(async o =>
+            {
+
+                var uri = new Uri($"{ConnectionString.connectionString}/uploadExcel");
+
+                try
+                {
+                    var client = new HttpClient();
+                    var formData = new MultipartFormDataContent();
+
+                    var fileStream = new FileStream(FilePath, FileMode.Open, FileAccess.Read);
+                    var fileName = System.IO.Path.GetFileName(FilePath);
+                    formData.Add(new StreamContent(fileStream), "file", fileName);
+
+                    // Send the request and get the response
+                    var response = await client.PostAsync(uri, formData);
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Handle the successful upload
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"Success {json}");
+                        CallDataCommand.Execute(null);
+                    }
+                    else
+                    {
+                        // Handle the failed upload
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"Failed {json}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Exceptions {ex.Message}");
+                }
             });
 
             ApplySortCommand = new RelayCommand(async o =>
