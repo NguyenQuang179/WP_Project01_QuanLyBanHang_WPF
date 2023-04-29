@@ -238,7 +238,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         //Sale Series
         private SeriesCollection saleSeries;
-
         public SeriesCollection SaleSeries
         {
             get => saleSeries;
@@ -250,7 +249,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
 
         private List<string> saleLabels;
-
         public List<string> SaleLabels
         {
             get => saleLabels;
@@ -262,7 +260,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
 
         private Func<double, string> saleFormatter;
-
         public Func<double, string> SaleFormatter
         {
             get => saleFormatter;
@@ -284,11 +281,50 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             }
         }
 
-        //Product Series
-        public SeriesCollection ProductSeries { get; set; }
+        private List<BookSales> top5Book;
+        public List <BookSales> Top5Book
+        {
+            get => top5Book;
+            set
+            {
+                top5Book = value;
+                OnPropertyChanged(nameof(Top5Book));
+            }
+        }
 
-        public string[] ProductLabels { get; set; }
-        public Func<double, string> ProductFormatter { get; set; }
+        //Product Series
+        private SeriesCollection productSeries;
+        public SeriesCollection ProductSeries 
+        { 
+            get => productSeries; 
+            set
+            {
+                productSeries = value;
+                OnPropertyChanged(nameof(ProductSeries));
+            } 
+        }
+
+        private List<string> productLabels;
+        public List<string> ProductLabels
+        {
+            get => productLabels;
+            set
+            {
+                productLabels = value;
+                OnPropertyChanged(nameof(ProductLabels));
+            }
+        }
+
+        private Func<double, string> productFormatter;
+        public Func<double, string> ProductFormatter 
+        {
+            get => productFormatter;
+            set
+            {
+                productFormatter = value;
+                OnPropertyChanged(nameof(ProductFormatter));
+            }
+        }
 
         public SalesReportViewModel()
         {
@@ -360,7 +396,23 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             SaleFormatter = value => value.ToString("N");
                         }
                         ListBookReport = JsonConvert.DeserializeObject<ListOfBookSales>(listBookJson);
-                        //MessageBox.Show($"{ListBookReport.saleReport.Count}");
+                        Top5Book = (from book in ListBookReport.saleReport
+                                    orderby book.totalQuantity descending
+                                    select book).Take(5).ToList<BookSales>();
+                        ProductSeries = new SeriesCollection() { };
+                        ProductSeries.Add(new RowSeries
+                        {
+                            Title = "Sold Quantity",
+                            Values = new ChartValues<double>()
+                        });
+                        ProductLabels = new List<string>();
+                        for(int i = 0; i < Top5Book.Count; i++)
+                        {
+                            ProductSeries[0].Values.Add((double)Top5Book[i].totalQuantity);
+                            ProductLabels.Add(Top5Book[i]._id.book[0].name);
+                        }
+                        ProductFormatter = value => value.ToString("N");
+
                         // Update Paging
                         UpdatePagingCommand.Execute(null);
                     }
@@ -435,15 +487,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 MessageBox.Show($"{SearchValue}");
             });
-
-            ProductSeries = new SeriesCollection() { };
-            ProductSeries.Add(new RowSeries
-            {
-                Title = "Number of product",
-                Values = new ChartValues<double> { 2, 7, 12, 5, 8 }
-            });
-            ProductLabels = new[] { "New Book 11", "New Book 2", "New Book 3", "New Book 4", "New Book 5" };
-            ProductFormatter = value => value.ToString("N");
         }
     }
 }

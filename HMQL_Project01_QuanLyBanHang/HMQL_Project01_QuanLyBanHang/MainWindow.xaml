@@ -88,31 +88,27 @@
                              Style="{StaticResource MenuButtonTheme}"
                              IsChecked="True"
                              Command="{Binding DashboardViewCommand}" />
-                <RadioButton Content="Sales Report"
-                             Height="50"
-                             Foreground="Black" FontSize="16"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding SalesReportViewCommand}" />
-                <RadioButton Content="Home"
-                             Height="50"
-                             Foreground="Black" FontSize="16"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding HomeViewCommand}" />
                 <RadioButton Content="Products"
                              Height="50"
                              Foreground="Black" FontSize="16"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding ProductListViewCommand}" />
                 <RadioButton Content="Categories"
-                    Height="50"
-                    Foreground="Black" FontSize="16"
-                    Style="{StaticResource MenuButtonTheme}"
-                    Command="{Binding CategoryManagementViewCommand}" />
+                             Height="50"
+                             Foreground="Black" FontSize="16"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding CategoryManagementViewCommand}" />
                 <RadioButton Content="Orders"
-                    Height="50"
-                    Foreground="Black" FontSize="16"
-                    Style="{StaticResource MenuButtonTheme}"
-                    Command="{Binding OrderManagementViewCommand}"/>
+                             Height="50"
+                             Foreground="Black" FontSize="16"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding OrderManagementViewCommand}"/>
+                <RadioButton Content="Sales Report"
+                             Height="50"
+                             Foreground="Black" FontSize="16"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding SalesReportViewCommand}" />
+
                 <RadioButton Content="Log Out"
                     Height="50"
                     Foreground="Black" FontSize="16"

@@ -99,6 +99,7 @@
                         </lvc:CartesianChart>
                     </StackPanel>
                 </Border>
+
                 <Border Height="320"
                     Background="White"
                     CornerRadius="12"
@@ -106,22 +107,20 @@
                     BorderBrush="LightGray"
                     Margin="16">
                     <StackPanel Margin="16">
-                        <TextBlock Text="Báo Cáo Số Lượng Sản Phẩm"
+                        <TextBlock Text="Top 5 Best Seller Book"
                                FontSize="20" FontWeight="DemiBold"
                                Margin="0 0 0 16"/>
                         <lvc:CartesianChart Height="240"
                                         Series="{Binding ProductSeries}">
                             <lvc:CartesianChart.AxisX>
-                                <lvc:Axis Title="Number Of Products" LabelFormatter="{Binding ProductFormatter}"></lvc:Axis>
+                                <lvc:Axis Title="Sold Quantity" LabelFormatter="{Binding ProductFormatter}"></lvc:Axis>
                             </lvc:CartesianChart.AxisX>
                             <lvc:CartesianChart.AxisY>
-                                <lvc:Axis Title="Product Name" Labels="{Binding ProductLabels}"></lvc:Axis>
+                                <lvc:Axis Title="Book Name" Labels="{Binding ProductLabels}"></lvc:Axis>
                             </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
                     </StackPanel>
                 </Border>
-
-                
 
                 <Border Background="White"
                         Height="440"

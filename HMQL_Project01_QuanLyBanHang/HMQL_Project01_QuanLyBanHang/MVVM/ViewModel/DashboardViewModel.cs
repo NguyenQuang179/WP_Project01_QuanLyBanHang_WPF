@@ -64,7 +64,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand ChooseWeek { get; set; }
         public RelayCommand ChooseMonth { get; set; }
-        public RelayCommand OrderCardClickCommand { get; set; }
+        public RelayCommand ProductViewCommand { get; set; }
+        public RelayCommand CategoryViewCommand { get; set; }
 
         // COLUMN CHART
         public SeriesCollection SeriesCollection { get; set; }
@@ -74,8 +75,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public RelayCommand CallData { get; set; }
 
         public RelayCommand SalesReportCommand { get; set; }
-
-        public RelayCommand ItemClickCommand { get; set; }
 
         public DashboardViewModel(MainViewModel MainVM)
         {
@@ -158,15 +157,14 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 //MessageBox.Show("Đã cập nhật số đơn hàng trong tháng");
             });
 
-            ItemClickCommand = new RelayCommand((param) =>
+            CategoryViewCommand = new RelayCommand(o => 
             {
-                string id = param.ToString();
-                MessageBox.Show($"Item Clicked {id}");
+                MainVM.CategoryManagementViewCommand.Execute(null);
             });
 
-            OrderCardClickCommand = new RelayCommand(o => 
+            ProductViewCommand = new RelayCommand(o =>
             {
-                MessageBox.Show("Clicked On Order Card");
+                MainVM.ProductListViewCommand.Execute(null);
             });
 
             SalesReportCommand = new RelayCommand(o =>
