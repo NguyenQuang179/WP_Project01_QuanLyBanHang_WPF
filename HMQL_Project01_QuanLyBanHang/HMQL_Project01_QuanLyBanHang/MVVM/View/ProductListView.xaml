@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
-             xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View" d:DataContext="{d:DesignInstance Type=viewmodel:ProductListViewModel}"
+             xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View" xmlns:i1="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core" d:DataContext="{d:DesignInstance Type=viewmodel:ProductListViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="544" d:DesignWidth="766" Loaded="Window_Loaded">
     <Grid>
@@ -457,7 +457,7 @@
                                        HorizontalAlignment="Left"
                                    Margin="0 0 10 0">
                                 <Run Text="/" />
-                                <Run Text="{Binding TotalPage}" />
+                                <Run Text="{Binding TotalPages}" />
                         </TextBlock>
 
                         <Border

@@ -238,7 +238,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 filePath = value;
                 OnPropertyChanged(nameof(FilePath));
-                //if (BookSales != null) PageComboboxChangeCommand.Execute(null);
             }
         }
 
