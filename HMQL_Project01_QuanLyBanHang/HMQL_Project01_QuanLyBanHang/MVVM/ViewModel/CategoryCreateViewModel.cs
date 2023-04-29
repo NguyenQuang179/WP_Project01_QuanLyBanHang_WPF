@@ -95,6 +95,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             var json = await response.Content.ReadAsStringAsync();
                             MessageBox.Show("Category Created Successfully");
                             //add count for page
+                            MainVM.CategoryManagementVM.CallData.Execute(null);
+                            MainVM.CurrentView = MainVM.CategoryManagementVM;
 
                         }
                         else
@@ -108,8 +110,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         MessageBox.Show(ex.Message);
                     }
-                    MainVM.CategoryManagementVM.CallData.Execute(null);
-                    MainVM.CurrentView = MainVM.CategoryManagementVM;
+                   
                 }
                 else
                 {
