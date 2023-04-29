@@ -30,11 +30,20 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             }
         }
 
-
+        private string categoryName;
+        public string CategoryName
+        {
+            get { return categoryName; }
+            set
+            {
+                categoryName = value;
+                OnPropertyChanged(nameof(CategoryName));
+            }
+        }
         public RelayCommand CallOrderDetailData { get; set; }
         public RelayCommand OrderAddBookCreateViewCommand { get; set; }
 
-        public RelayCommand ConfirmOrderDetailData { get; set; }
+        public RelayCommand ConfirmNewCategoryData { get; set; }
         public RelayCommand DeleteBookDetailData { get; set; }
 
         public RelayCommand CancelCommand { get; set; }
@@ -62,9 +71,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             //});
 
-            ConfirmOrderDetailData = new RelayCommand(async o =>
+            ConfirmNewCategoryData = new RelayCommand(async o =>
             {
-                ////Update Order Detail API
+                string name = CategoryName;
+                MessageBox.Show(CategoryName);
+                ////Create Category Detail API
                 //MessageBox.Show(CategoryD.listOfBook.Count.ToString());
                 //NewListOfBook newListOfBook = new NewListOfBook();
                 //foreach (var bookInfo in CategoryD.listOfBook)
@@ -106,45 +117,22 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 //{
                 //    MessageBox.Show(ex.Message);
                 //}
+
+                //Bỏ cái này vô sau khi chạy API thành công
+                MainVM.CategoryManagementVM.CallData.Execute(null);
+                MainVM.CurrentView = MainVM.CategoryManagementVM;
             });
 
-            DeleteBookDetailData = new RelayCommand((param) =>
-            {
-                List<BookDetail> curList = CategoryD.listOfBook;
-                // Find the index of the book to remove
+           
 
-                string bookId = param as string;
-                if (bookId == null)
-                {
-                    //show error
-                    MessageBox.Show("Invalid Book ID");
-                    return;
-                }
-                // Find the index of the book to remove
-                int indexToRemove = curList.FindIndex(b => b._id == bookId);
-
-
-                if (indexToRemove != -1)
-                {
-                    // Remove the book from curList
-                    curList.RemoveAt(indexToRemove);
-                    MessageBox.Show("Book has been Deleted, Please Refresh");
-                }
-                else
-                {
-                    //show error
-                    MessageBox.Show("No Book Selected");
-                }
-            });
-
-            OrderAddBookCreateViewCommand = new RelayCommand(o =>
-            {
-                MainVM.OrderAddBookVM.IsAddBookForEditingOrder = true;
-                MainVM.OrderAddBookViewCommand.Execute(MainVM);
-            });
+            //OrderAddBookCreateViewCommand = new RelayCommand(o =>
+            //{
+            //    MainVM.OrderAddBookVM.IsAddBookForEditingOrder = true;
+            //    MainVM.OrderAddBookViewCommand.Execute(MainVM);
+            //});
             CancelCommand = new RelayCommand(o => {
-                MainVM.OrderManagementVM.OrderCreateVM = null;
-                MainVM.CurrentView = MainVM.OrderManagementVM;
+                MainVM.CategoryManagementVM.CategoryCreateVM = null;
+                MainVM.CurrentView = MainVM.CategoryManagementVM;
             });
 
 

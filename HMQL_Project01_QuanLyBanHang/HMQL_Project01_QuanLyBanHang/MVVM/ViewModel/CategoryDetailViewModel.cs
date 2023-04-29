@@ -31,11 +31,20 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             }
         }
 
-
+        private string categoryName;
+        public string CategoryName
+        {
+            get { return categoryName; }
+            set
+            {
+                categoryName = value;
+                OnPropertyChanged(nameof(CategoryName));
+            }
+        }
         public RelayCommand CallOrderDetailData { get; set; }
         public RelayCommand OrderAddBookCreateViewCommand { get; set; }
 
-        public RelayCommand ConfirmOrderDetailData { get; set; }
+        public RelayCommand ConfirmCategoryDetailData { get; set; }
         public RelayCommand DeleteBookDetailData { get; set; }
 
         public RelayCommand CancelCommand { get; set; }
@@ -63,8 +72,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             //});
 
-            ConfirmOrderDetailData = new RelayCommand(async o =>
+            ConfirmCategoryDetailData = new RelayCommand(async o =>
             {
+                string name = CategoryName;
+                MessageBox.Show(CategoryName);
+
                 ////Update Order Detail API
                 //MessageBox.Show(CategoryD.listOfBook.Count.ToString());
                 //NewListOfBook newListOfBook = new NewListOfBook();
@@ -107,6 +119,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 //{
                 //    MessageBox.Show(ex.Message);
                 //}
+                //Bỏ cái này vô sau khi chạy API thành công
+                MainVM.CategoryManagementVM.CallData.Execute(null);
+                MainVM.CurrentView = MainVM.CategoryManagementVM;
             });
 
             DeleteBookDetailData = new RelayCommand((param) =>
@@ -144,8 +159,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 MainVM.OrderAddBookViewCommand.Execute(MainVM);
             });
             CancelCommand = new RelayCommand(o => {
-                MainVM.OrderManagementVM.OrderCreateVM = null;
-                MainVM.CurrentView = MainVM.OrderManagementVM;
+                MainVM.CategoryManagementVM.CategoryDetailVM = null;
+                MainVM.CurrentView = MainVM.CategoryManagementVM;
             });
 
 
@@ -164,6 +179,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         var json = await response.Content.ReadAsStringAsync();
                         CategoryD = JsonConvert.DeserializeObject<ListBookCategory>(json);
+                        if(CategoryD.listOfBook.Count > 0)
+                            CategoryName = CategoryD.listOfBook[0].category.name;
                         //Process Price
                         //for (int i = 0; i < CategoryD.listOfBook.Count; i++)
                         //{

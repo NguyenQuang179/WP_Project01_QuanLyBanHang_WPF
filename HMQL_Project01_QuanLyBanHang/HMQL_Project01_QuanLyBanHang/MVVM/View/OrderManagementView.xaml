@@ -17,69 +17,7 @@
                 <TextBlock Text="Order Management"
                        FontSize="24" FontWeight="Bold" 
                        Margin="32 16 32 0"/>
-                <Border Height="100"     
-                    HorizontalAlignment="Left"
-                    Background="White"
-                    CornerRadius="12"
-                    BorderThickness="1"
-                    BorderBrush="LightGray"
-                    Margin="16" >
-
-                    <WrapPanel Margin="16">
-
-                        <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 0 0">
-                            <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
-
-                            <Rectangle Width="20" Height="20" Canvas.Left="18" Canvas.Top="18">
-                                <Rectangle.Fill>
-                                    <SolidColorBrush Color="#2FE5A7"/>
-                                </Rectangle.Fill>
-                                <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="../../Images/OrderManagementSVG/truck-solid.png"/>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                        </Canvas>
-                        <!--Min Date-->
-                        <StackPanel Margin="32 0 0 0" >
-                            <TextBlock Text="Minimum Date:"
-                                           FontSize="16"
-                                           FontWeight="DemiBold"
-                                           Margin="0 0 0 8"/>
-                            <DatePicker SelectedDateFormat="Short"
-                                            SelectedDate="{Binding MinDate, UpdateSourceTrigger=PropertyChanged}"
-                                            Height="32" 
-                                            VerticalContentAlignment="Center">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="SelectedDateChanged">
-                                        <i:InvokeCommandAction Command="{Binding UpdatePagingBaseOnDateCommand}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </DatePicker>
-                        </StackPanel>
-
-                        <!--Max Date-->
-                        <StackPanel Margin="32 0 16 0" >
-                            <TextBlock Text="Maximum Date:"
-                                           FontSize="16"
-                                           FontWeight="DemiBold"
-                                           Margin="0 0 0 8"/>
-                            <DatePicker SelectedDateFormat="Short"
-                                            SelectedDate="{Binding MaxDate, UpdateSourceTrigger=PropertyChanged}"
-                                            Height="32"
-                                            VerticalContentAlignment="Center">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="SelectedDateChanged">
-                                        <i:InvokeCommandAction Command="{Binding UpdatePagingBaseOnDateCommand}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </DatePicker>
-                        </StackPanel>
-
-
-                    </WrapPanel>
-                    
-                    
-                </Border>
+                
 
                 <WrapPanel  Margin=" 16 4 16 4" HorizontalAlignment="Stretch">
                     <!--Search Textbox-->
@@ -88,14 +26,69 @@
                             <DropShadowEffect Opacity="0.3" Direction="300" />
                         </Border.Effect>
 
-                        <Grid Width="425" HorizontalAlignment="Left" Margin=" 0 0 0 0">
-                            <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False" />
+                        <Border Height="100"     
+                    HorizontalAlignment="Left"
+                    Background="White"
+                    CornerRadius="12"
+                    BorderThickness="1"
+                    BorderBrush="LightGray"
+                    Margin="0" >
 
-                            <TextBox Name="textBoxSearch"/>
+                            <WrapPanel Margin="16">
 
-                            <Image Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png" Width="15" Height="15" 
-                               VerticalAlignment="Center" Margin="0 0 15 0" HorizontalAlignment="Right" />
-                        </Grid>
+                                <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 0 0">
+                                    <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
+
+                                    <Rectangle Width="20" Height="20" Canvas.Left="18" Canvas.Top="18">
+                                        <Rectangle.Fill>
+                                            <SolidColorBrush Color="#2FE5A7"/>
+                                        </Rectangle.Fill>
+                                        <Rectangle.OpacityMask>
+                                            <ImageBrush ImageSource="../../Images/OrderManagementSVG/calendar-solid.png"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                </Canvas>
+                                <!--Min Date-->
+                                <StackPanel Margin="32 0 0 0" >
+                                    <TextBlock Text="Minimum Date:"
+                                           FontSize="16"
+                                           FontWeight="DemiBold"
+                                           Margin="0 0 0 8"/>
+                                    <DatePicker SelectedDateFormat="Short"
+                                            SelectedDate="{Binding MinDate, UpdateSourceTrigger=PropertyChanged}"
+                                            Height="32" 
+                                            VerticalContentAlignment="Center">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectedDateChanged">
+                                                <i:InvokeCommandAction Command="{Binding UpdatePagingBaseOnDateCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </DatePicker>
+                                </StackPanel>
+
+                                <!--Max Date-->
+                                <StackPanel Margin="32 0 16 0" >
+                                    <TextBlock Text="Maximum Date:"
+                                           FontSize="16"
+                                           FontWeight="DemiBold"
+                                           Margin="0 0 0 8"/>
+                                    <DatePicker SelectedDateFormat="Short"
+                                            SelectedDate="{Binding MaxDate, UpdateSourceTrigger=PropertyChanged}"
+                                            Height="32"
+                                            VerticalContentAlignment="Center">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectedDateChanged">
+                                                <i:InvokeCommandAction Command="{Binding UpdatePagingBaseOnDateCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </DatePicker>
+                                </StackPanel>
+
+
+                            </WrapPanel>
+
+
+                        </Border>
                     </Border>
                     <!--Filter by Status-->
                     <!--SelectionChanged=""-->
