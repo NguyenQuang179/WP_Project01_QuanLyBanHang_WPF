@@ -21,7 +21,7 @@
                 <TextBlock Text="Sales Report"
                        FontSize="24" FontWeight="Bold"
 
-                       Margin="32 16 32 16"/>
+                       Margin="32 16 32 16" />
                 <!--Column Chart-->
                 <Border Height="420"
                     Background="White"
@@ -33,8 +33,7 @@
                         <TextBlock Text="Báo Cáo Doanh Thu"
                                FontSize="20" FontWeight="DemiBold"
 
-
-                               Margin="0 0 0 16"/>
+                               Margin="0 0 0 16" />
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Center"
                                     Margin="0 0 0 16">
@@ -43,10 +42,10 @@
                                            FontSize="16"
                                            FontWeight="DemiBold"
                                            HorizontalAlignment="Center"
-                                           Margin="0 0 0 8"/>
+                                           Margin="0 0 0 8" />
                                 <ComboBox Grid.Column="1"
                                       Height="32"
-                                      Width="100" 
+                                      Width="100"
                                       ItemsSource="{Binding ListDataMode, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedIndex="{Binding ChartColumnSelectedModeIndex, UpdateSourceTrigger=PropertyChanged}"
                                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
@@ -57,14 +56,14 @@
                                 <TextBlock Text="Minimum Date:"
                                            FontSize="16"
                                            FontWeight="DemiBold"
-                                           Margin="0 0 0 8"/>
+                                           Margin="0 0 0 8" />
                                 <DatePicker SelectedDateFormat="Short"
                                             SelectedDate="{Binding MinDate, UpdateSourceTrigger=PropertyChanged}"
                                             Height="32"
                                             VerticalContentAlignment="Center">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectedDateChanged">
-                                            <i:InvokeCommandAction Command="{Binding CallData}"/>
+                                            <i:InvokeCommandAction Command="{Binding CallData}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </DatePicker>
@@ -73,21 +72,20 @@
                                 <TextBlock Text="Maximum Date:"
                                            FontSize="16"
                                            FontWeight="DemiBold"
-                                           Margin="0 0 0 8"/>
+                                           Margin="0 0 0 8" />
                                 <DatePicker SelectedDateFormat="Short"
                                             SelectedDate="{Binding MaxDate, UpdateSourceTrigger=PropertyChanged}"
                                             Height="32"
                                             VerticalContentAlignment="Center">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectedDateChanged">
-                                            <i:InvokeCommandAction Command="{Binding CallData}"/>
+                                            <i:InvokeCommandAction Command="{Binding CallData}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </DatePicker>
                             </StackPanel>
                         </StackPanel>
                         <lvc:CartesianChart Height="260"
-
 
                                         Series="{Binding SaleSeries}">
                             <lvc:CartesianChart.AxisX>
@@ -120,7 +118,7 @@
                             </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
                     </StackPanel>
-                </Border>-->
+                </Border>
 
                 <Border Background="White"
                         Height="440"
@@ -258,7 +256,7 @@
                         <!--Data-->
                         <DataGrid Grid.Row="1"
                                   Background="Transparent"
-                                  GridLinesVisibility="None" 
+                                  GridLinesVisibility="None"
                                   AutoGenerateColumns="False" CanUserAddRows="False"
                                   CanUserResizeColumns="False"
                                   CanUserReorderColumns="False"
@@ -274,17 +272,15 @@
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
                                             <Setter Property="FontSize" Value="12" />
                                             <Setter Property="FontWeight" Value="SemiBold" />
-
                                         </Style>
                                     </DataGridTextColumn.HeaderStyle>
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
-                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="Margin" Value="0 10 0 10" />
                                             <Setter Property="HorizontalAlignment" Value="Center" />
                                             <Setter Property="FontSize" Value="12" />
 
                                             <Setter Property="FontWeight" Value="DemiBold" />
-
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -296,17 +292,15 @@
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
                                             <Setter Property="FontSize" Value="12" />
                                             <Setter Property="FontWeight" Value="SemiBold" />
-
                                         </Style>
                                     </DataGridTextColumn.HeaderStyle>
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
-                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="Margin" Value="0 10 0 10" />
                                             <Setter Property="HorizontalAlignment" Value="Center" />
                                             <Setter Property="FontSize" Value="12" />
 
                                             <Setter Property="FontWeight" Value="DemiBold" />
-
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -318,17 +312,15 @@
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
                                             <Setter Property="FontSize" Value="12" />
                                             <Setter Property="FontWeight" Value="SemiBold" />
-
                                         </Style>
                                     </DataGridTextColumn.HeaderStyle>
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
-                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="Margin" Value="0 10 0 10" />
                                             <Setter Property="HorizontalAlignment" Value="Center" />
                                             <Setter Property="FontSize" Value="12" />
 
                                             <Setter Property="FontWeight" Value="DemiBold" />
-
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -340,17 +332,15 @@
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
                                             <Setter Property="FontSize" Value="12" />
                                             <Setter Property="FontWeight" Value="SemiBold" />
-
                                         </Style>
                                     </DataGridTextColumn.HeaderStyle>
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
-                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="Margin" Value="0 10 0 10" />
                                             <Setter Property="HorizontalAlignment" Value="Center" />
                                             <Setter Property="FontSize" Value="12" />
 
                                             <Setter Property="FontWeight" Value="DemiBold" />
-
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -362,17 +352,15 @@
                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
                                             <Setter Property="FontSize" Value="12" />
                                             <Setter Property="FontWeight" Value="SemiBold" />
-
                                         </Style>
                                     </DataGridTextColumn.HeaderStyle>
                                     <DataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
-                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="Margin" Value="0 10 0 10" />
                                             <Setter Property="HorizontalAlignment" Value="Center" />
                                             <Setter Property="FontSize" Value="12" />
 
                                             <Setter Property="FontWeight" Value="DemiBold" />
-
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -382,20 +370,17 @@
 
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Foreground" Value="#000000"/>
-
+                                            <Setter Property="Foreground" Value="#000000" />
                                         </Trigger>
 
                                         <Trigger Property="IsSelected" Value="True">
 
-                                            <Setter Property="Background" Value="#2E29ED"/>
-                                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                                            <Setter Property="Background" Value="#2E29ED" />
+                                            <Setter Property="Foreground" Value="#FFFFFF" />
                                         </Trigger>
-
-
                                     </Style.Triggers>
 
-                                    <Setter Property="Foreground" Value="#788B9A"/>
+                                    <Setter Property="Foreground" Value="#788B9A" />
                                 </Style>
                             </DataGrid.RowStyle>
                         </DataGrid>
