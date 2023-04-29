@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
+             xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View" xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:LoginViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="568" d:DesignWidth="920">
     <Grid>
@@ -20,48 +20,13 @@
         <Border Background="#FFFFFFFF" CornerRadius="25 0 0 25"
                 BorderBrush="LightGray" BorderThickness="0 0 0.3 0">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                <Image Source="../../Images/logo.png" Height="64" Width="64"
+                <Image Source="../../Images/logo.png" Height="80" Width="160"
                        Margin="0 0 0 0"
+                       Stretch="Uniform"
                        HorizontalAlignment="Center"/>
                 <TextBlock Text="SIGN IN" FontSize="24" FontWeight="Bold"
                            HorizontalAlignment="Center"
-                           Margin="0 16 0 48"/>
-                <!--External Login-->
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center">
-                    <Border Height="36" Width="100"
-                            Background="#FFF1F4FA"
-                            CornerRadius="8"
-                            Margin="0 0 16 0"
-                            Padding="8 4 8 4">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Image Source="../../Images/google.png" Width="12" Height="12"/>
-                            <TextBlock Text="Google"
-                                       FontSize="12" FontWeight="DemiBold"
-                                       VerticalAlignment="Center"
-                                       Margin="8 0 0 0"/>
-                        </StackPanel>
-                    </Border>
-                    <Border Height="36" Width="100"
-                            Background="#FFF1F4FA"
-                            CornerRadius="8"
-                            Margin="26 0 0 0"
-                            Padding="8 4 8 4">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Image Source="../../Images/facebook.png" Width="12" Height="12"/>
-                            <TextBlock Text="Facebook"
-                                       FontSize="12" FontWeight="DemiBold"
-                                       VerticalAlignment="Center"
-                                       Margin="8 0 0 0"/>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-
-                <!--"OR"-->
-                <TextBlock Text="Or"
-                           HorizontalAlignment="Center"
-                           Foreground="#FF788B9A"
-                           Margin="0 16 0 16"/>
+                           Margin="0 32 0 48"/>
 
                 <!--Login Field-->
                 <!--Username-->
@@ -161,22 +126,18 @@
                         </TextBox.Style>
                     </TextBox>
                 </Border>
-
-                <!--Reset Password-->
-                <TextBlock Text="Reset Password?" HorizontalAlignment="Right"
-                           Foreground="#FF3A36DB"
-                           Margin="0 16 32 16">
-                    <TextBlock.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" 
-                                      Command="{Binding RecoverPassCommand}"/>
-                    </TextBlock.InputBindings>
-                </TextBlock>
+                
+                <!--Remember Checkbox-->
+                <CheckBox Content="Remember Account"
+                          HorizontalAlignment="Center"
+                          IsChecked="{Binding RememberCheckboxSelected}"
+                          Margin="0 16 0 0"/>
 
                 <!--Sign In Button-->
                 <Border Height="40"
                         Background="#FF3A36DB"
                         CornerRadius="8"
-                        Margin="32 8 32 16">
+                        Margin="32 32 32 16">
                     <Border.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
                     </Border.InputBindings>
@@ -185,24 +146,11 @@
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
 
-                <!--Sign Up-->
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center">
-                    <TextBlock Text="Don't have account yet?"
-                               Foreground="#FF788B9A" FontWeight="DemiBold"/>
-                    <TextBlock Text="New Account" Margin="8 0 0 0"
-                               Foreground="#FF3A36DB" FontWeight="DemiBold">
-                        <TextBlock.InputBindings>
-                            <MouseBinding Command="{Binding SignUpCommand}" MouseAction="LeftClick"/>
-                        </TextBlock.InputBindings>
-                    </TextBlock>
-                </StackPanel>
-
             </StackPanel>
         </Border>
 
         <!--Right Container-->
-        <Image Grid.Column="1" Source="../../Images/login.png"
+        <Image Grid.Column="1" Source="../../Images/login.jpg"
                    Height="360" Width="360"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"/>

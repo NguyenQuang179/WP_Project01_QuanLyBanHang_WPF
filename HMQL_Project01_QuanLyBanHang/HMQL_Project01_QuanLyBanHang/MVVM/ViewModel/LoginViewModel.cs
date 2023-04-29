@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -20,6 +21,28 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
     {
         private Account account;
 
+        private Token userToken;
+        public Token UserToken
+        {
+           get { return userToken; }
+           set
+            {
+                userToken = value;
+                OnPropertyChanged(nameof(UserToken));
+            }
+        }
+
+        private bool rememberCheckboxSelected;
+        public bool RememberCheckboxSelected
+        {
+            get => rememberCheckboxSelected;
+            set
+            {
+                rememberCheckboxSelected = value;
+                OnPropertyChanged(nameof(RememberCheckboxSelected));
+            }
+        }
+
         public RelayCommand LoginCommand { get; set; }
 
         public RelayCommand SignUpCommand { get; set; }
@@ -28,41 +51,59 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public LoginViewModel(AuthenticationViewModel authenticationVM)
         {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             account = new Account();
+            UserToken = new Token();
+            RememberCheckboxSelected = false;
+            UserToken.token = ConfigurationManager.AppSettings["Token"];
+            Username = ConfigurationManager.AppSettings["Username"];
+            Password = ConfigurationManager.AppSettings["Password"];
 
             LoginCommand = new RelayCommand(async o =>
             {
-                //MessageBox.Show($"Username: {Username}\nPassword: {Password}");
-                //Username = "none";
-                //Password = "none";
-
-                var uri = new Uri($"{ConnectionString.connectionString}/dashboard");
-
+                if (UserToken.token != "")
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    Application.Current.Windows[0].Close();
+                    return;
+                }  
+                var uri = new Uri($"{ConnectionString.connectionString}/user/login");
                 try
                 {
                     using var client = new HttpClient();
-                    //var jsonMsg = JsonConvert.SerializeObject(account);
-                    //var data = new StringContent(jsonMsg, Encoding.UTF8,"application/json");
+                    var jsonMsg = JsonConvert.SerializeObject(account);
+                    var data = new StringContent(jsonMsg, Encoding.UTF8, "application/json");
 
                     // Send the request and get the response
-                    //var response = await client.PostAsync(uri, data);
-                    var response = await client.GetAsync(uri);
+                    var response = await client.PostAsync(uri, data);
+                    //var response = await client.GetAsync(uri);
 
                     // Check if the upload was successful
                     if (response.IsSuccessStatusCode)
                     {
                         var json = await response.Content.ReadAsStringAsync();
+                        UserToken = JsonConvert.DeserializeObject<Token>(json);
                         // Handle the successful upload
-                        MessageBox.Show($"Success {json}");
+                        if(RememberCheckboxSelected)
+                        {
+                            config.AppSettings.Settings["Username"].Value = Username;
+                            config.AppSettings.Settings["Password"].Value = Password;
+                            config.AppSettings.Settings["Token"].Value = UserToken.token;
+                        }
+                        config.Save(ConfigurationSaveMode.Full);
+                        ConfigurationManager.RefreshSection("appSettings");
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.Show();
                         Application.Current.Windows[0].Close();
                     }
                     else
                     {
-                        // Handle the failed upload
-                        MessageBox.Show("Failed");
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"Fail: {json}");
                     }
+                    Username = "";
+                    Password = "";
                 }
                 catch (Exception ex)
                 {

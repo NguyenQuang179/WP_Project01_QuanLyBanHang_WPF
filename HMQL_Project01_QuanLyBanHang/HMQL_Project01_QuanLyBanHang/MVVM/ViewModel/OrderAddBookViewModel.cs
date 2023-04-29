@@ -155,7 +155,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
                         // Handle the successful upload
                         bookOrderInfoList = Data.listOfBook.Select(book => new BookItemOrderInfo(book)).ToList();
-                        //System.Windows.MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
                     }
                     else { System.Windows.MessageBox.Show($"Fail To Call Data"); }
                 }

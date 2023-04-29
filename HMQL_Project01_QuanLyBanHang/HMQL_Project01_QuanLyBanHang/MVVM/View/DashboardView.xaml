@@ -11,20 +11,20 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <Grid>
-            <Border Grid.ColumnSpan="2" Background="Transparent"
-                CornerRadius="0" />
+            <Border Background="#FFF1F4FA"
+                CornerRadius="24" />
             <StackPanel>
                 <!--Title-->
                 <TextBlock Text="Dashboard"
-                       FontSize="24" FontWeight="DemiBold"
-                       Margin="32 0 0 32" />
+                            FontSize="24" FontWeight="Bold"
+                            Margin="32 16 32 16"/>
 
                 <!--2 Tag-->
                 <StackPanel Orientation="Horizontal">
                     <Border Height="88" Width="200"
                         Background="White"
                         CornerRadius="12"
-                        Margin="0 0 32 0"
+                        Margin="16 0 32 0"
                         BorderBrush="LightGray" BorderThickness="1">
                         <Border.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding ProductViewCommand}" />
@@ -109,7 +109,7 @@
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <TextBlock Text="Sales Report" TextWrapping="Wrap" Padding="0 0 8 0"
-                                       Foreground="Black" FontSize="16" FontWeight="Bold" />
+                                       Foreground="Black" FontSize="16" FontWeight="DemiBold" />
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -118,10 +118,10 @@
                 <!--Top 5-->
                 <Border Background="White"
                         CornerRadius="12"
-                        Margin="0 32 0 0"
+                        Margin="16 32 16 16"
                         Padding="16">
                     <StackPanel>
-                        <TextBlock Text="Top 5 Sản Phẩm Sắp Hết Hàng"
+                        <TextBlock Text="About To Runout"
                                    Margin="0 0 0 16"
                                    FontSize="20"
                                    FontWeight="DemiBold" />
