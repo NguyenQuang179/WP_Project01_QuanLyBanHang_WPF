@@ -299,9 +299,51 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 }
             });
 
-            DeleteBookCommand = new RelayCommand(o =>
+            DeleteBookCommand = new RelayCommand(async o =>
             {
-                MessageBox.Show($"Delete Button Click");
+                //MessageBox.Show($"Delete Button Click");
+
+                MessageBox.Show($"{BookName} {Author} {Price} {Stock}");
+                var uri = new Uri($"{ConnectionString.connectionString}/book/delete/{book_id}");
+
+                try
+                {
+                    var client = new HttpClient();
+                    var formData = new MultipartFormDataContent();
+
+                    //var fileStream = new FileStream(Image_path, FileMode.Open, FileAccess.Read);
+                    //var fileName = System.IO.Path.GetFileName(Image_path);
+                    //formData.Add(new StreamContent(fileStream), "file", fileName);
+
+                    //formData.Add(new StringContent(BookName), "name");
+                    //formData.Add(new StringContent(Author), "author");
+                    //formData.Add(new StringContent(Category), "category_Name");
+                    //formData.Add(new StringContent(PublishedYear), "publishedYear");
+                    //formData.Add(new StringContent(Price.ToString()), "price");
+                    //formData.Add(new StringContent(Stock.ToString()), "stock");
+                    // Send the request and get the response
+                    var response = await client.DeleteAsync(uri);
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Handle the successful upload
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"Success {json}");
+                    }
+                    else
+                    {
+                        // Handle the failed upload
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"Failed {json}");
+                    }
+
+                    productlistVM.CallDataCommand.Execute(null);
+                    mainVM.ProductListViewCommand.Execute(null);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"exceptions {ex.Message}");
+                }
             });
 
             CallDataCommand = new RelayCommand(async o =>

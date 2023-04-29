@@ -237,7 +237,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 filePath = value;
                 OnPropertyChanged(nameof(FilePath));
-                //if (BookSales != null) PageComboboxChangeCommand.Execute(null);
             }
         }
 
@@ -296,7 +295,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 }
             });
             CallDataCommand.Execute(null);
-            
+
             EraseCommand = new RelayCommand(o =>
             {
                 SearchValue = "";
