@@ -83,45 +83,45 @@
                     <Run Text="HMQL Group"/>
                 </TextBlock>
 
-                <RadioButton Name="Home"
-                             Content="Dashboard"
+                <RadioButton Name="Dashboard"
+                             Content="&#xf015;"
                              Height="50" FontSize="12"
                              Style="{StaticResource MenuButtonTheme}"
                              IsChecked="{Binding DashboardIsSelected}"
                              Command="{Binding DashboardViewCommand}">
                 </RadioButton>
-                <RadioButton Name="Book"
-                             Content="Products"
+                <RadioButton Name="Products"
+                             Content="&#xf02d;"
                              Height="50"
                              IsChecked="{Binding ProductIsSelected}"
                              Foreground="Black" FontSize="12"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding ProductListViewCommand}">
                 </RadioButton>
-                <RadioButton Name="Tags"
-                             Content="Categories"
+                <RadioButton Name="Categories"
+                             Content="&#xf02c;"
                              Height="50"
                              IsChecked="{Binding CategoryIsSelected}"
                              Foreground="Black" FontSize="12"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding CategoryManagementViewCommand}" />
-                <RadioButton Name="thlist"
-                             Content="Orders"
+                <RadioButton Name="Orders"
+                             Content="&#xf07a;"
                              Height="50"
                              IsChecked="{Binding OrderIsSelected}"
                              Foreground="Black" FontSize="12"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding OrderManagementViewCommand}"/>
-                <RadioButton Name="barchart"
-                             Content="Sales Report"
+                <RadioButton Name="Statistical"
+                             Content="&#xf080;"
                              Height="50"
                              IsChecked="{Binding SalesReportIsSelected}"
                              Foreground="Black" FontSize="12"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding SalesReportViewCommand}" />
 
-                <RadioButton Name="SignOut"
-                             Content="Log Out"
+                <RadioButton Name="Logout"
+                             Content="&#xf2f5;"
                              Height="50"
                              Foreground="Black" FontSize="12"
                              Style="{StaticResource MenuButtonTheme}"

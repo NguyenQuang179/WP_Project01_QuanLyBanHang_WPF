@@ -14,13 +14,17 @@
                                 CornerRadius="0 12 12 0"
                                 Margin="0 0 4 0">
                             <StackPanel Orientation="Horizontal">
-                                <!--<fa:ImageAwesome Icon="{TemplateBinding Content}" Width="16" Height="16" Foreground="Black" Margin="16 0 8 0"/>-->
-                                <TextBlock fa:Awesome.Content="Home"/>
-                                <TextBlock Text="{TemplateBinding Content}"
+                                <TextBlock Text="{TemplateBinding Content}" Width="20"
+                                           Foreground="Black"
+                                           FontWeight="DemiBold"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           Margin="16 0 8 0"
+                                           FontFamily="../../Fonts/fontawesome5.otf#Font Awesome 5 Free Solid"/>
+                                <TextBlock Text="{TemplateBinding Name}"
                                        Foreground="Black"
                                        VerticalAlignment="Center"
-                                       FontWeight="DemiBold"
-                                       Name="MenuText">
+                                       FontWeight="DemiBold">
                                 </TextBlock>
                             </StackPanel>
                         </Border>

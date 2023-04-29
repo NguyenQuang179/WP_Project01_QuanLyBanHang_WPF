@@ -407,6 +407,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             SaleFormatter = value => value.ToString("N");
                         }
                         ListBookReport = JsonConvert.DeserializeObject<ListOfBookSales>(listBookJson);
+                        ListBookReport.saleReport.RemoveAll(s => s._id.book.Count == 0);
                         Top5Book = (from book in ListBookReport.saleReport
                                     orderby book.totalQuantity descending
                                     select book).Take(5).ToList<BookSales>();

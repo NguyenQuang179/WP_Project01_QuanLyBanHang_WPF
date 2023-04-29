@@ -98,6 +98,7 @@
                                                 <Grid>
                                                     <Rectangle StrokeThickness="1"/>
                                                     <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                                                             FontFamily="../../Fonts/password.ttf#Password"
                                                              FontSize="12" Margin="1" 
                                                              BorderThickness="0" Background="Transparent"
                                                              VerticalContentAlignment="Center" Foreground="Black" x:Name="InputField"/>

@@ -30,10 +30,9 @@
                     BorderBrush="LightGray"
                     Margin="16">
                     <StackPanel Margin="16">
-                        <TextBlock Text="Báo Cáo Doanh Thu"
+                        <TextBlock Text="Revenue Report"
                                FontSize="20" FontWeight="DemiBold"
-
-                               Margin="0 0 0 16" />
+                               Margin="0 0 0 16"/>
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Center"
                                     Margin="0 0 0 16">
@@ -86,7 +85,6 @@
                             </StackPanel>
                         </StackPanel>
                         <lvc:CartesianChart Height="260"
-
                                         Series="{Binding SaleSeries}">
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Title="Dates" Labels="{Binding SaleLabels}">
@@ -105,7 +103,7 @@
                     BorderBrush="LightGray"
                     Margin="16">
                     <StackPanel Margin="16">
-                        <TextBlock Text="Báo Cáo Số Lượng Sản Phẩm"
+                        <TextBlock Text="Top 5 Best Seller"
                                FontSize="20" FontWeight="DemiBold"
                                Margin="0 0 0 16" />
                         <lvc:CartesianChart Height="240"
