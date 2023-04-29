@@ -19,90 +19,29 @@
             <StackPanel Margin="0 0 0 16">
                 <TextBlock Text="Sales Report"
                        FontSize="24" FontWeight="Bold"
-
-                       Margin="32 16 32 16"/>
-                <!--Column Chart-->
-
+                       Margin="32 16 32 26" />
+                <!--<Border Height="320"
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"
                     BorderBrush="LightGray"
                     Margin="16">
                     <StackPanel Margin="16">
-                        <TextBlock Text="Revenue Report Chart"
+                        <TextBlock Text="Báo Cáo Doanh Thu"
                                FontSize="20" FontWeight="DemiBold"
-
-                               Margin="0 0 0 16"/>
-                        <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Center"
-                                    Margin="0 0 0 16">
-                            <StackPanel Margin="32 0 0 0">
-                                <TextBlock Text="Search Mode:"
-                                           FontSize="16"
-                                           FontWeight="DemiBold"
-                                           HorizontalAlignment="Center"
-                                           Margin="0 0 0 8"/>
-                                <ComboBox Grid.Column="1"
-                                      Height="32"
-                                      Width="100" 
-                                      ItemsSource="{Binding ListDataMode, UpdateSourceTrigger=PropertyChanged}"
-                                      SelectedIndex="{Binding ChartColumnSelectedModeIndex, UpdateSourceTrigger=PropertyChanged}"
-                                      VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-                                </ComboBox>
-                            </StackPanel>
-                            <!--Min Date-->
-                            <StackPanel Margin="32 0 0 0">
-                                <TextBlock Text="Minimum Date:"
-                                           FontSize="16"
-                                           FontWeight="DemiBold"
-                                           Margin="0 0 0 8"/>
-                                <DatePicker SelectedDateFormat="Short"
-                                            SelectedDate="{Binding MinDate, UpdateSourceTrigger=PropertyChanged}"
-                                            Height="32"
-                                            VerticalContentAlignment="Center">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="SelectedDateChanged">
-                                            <i:InvokeCommandAction Command="{Binding CallData}"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </DatePicker>
-                            </StackPanel>
-
-                            <!--Max Date-->
-                            <StackPanel Margin="32 0 0 0">
-                                <TextBlock Text="Maximum Date:"
-                                           FontSize="16"
-                                           FontWeight="DemiBold"
-                                           Margin="0 0 0 8"/>
-                                <DatePicker SelectedDateFormat="Short"
-                                            SelectedDate="{Binding MaxDate, UpdateSourceTrigger=PropertyChanged}"
-                                            Height="32"
-                                            VerticalContentAlignment="Center">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="SelectedDateChanged">
-                                            <i:InvokeCommandAction Command="{Binding CallData}"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </DatePicker>
-                            </StackPanel>
-                        </StackPanel>
-                        <lvc:CartesianChart Height="260"
-
+                               Margin="0 0 0 16" />
+                        <lvc:CartesianChart Height="240"
                                         Series="{Binding SaleSeries}">
                             <lvc:CartesianChart.AxisX>
                                 <lvc:Axis Title="Dates" Labels="{Binding SaleLabels}">
-                                    <lvc:Axis.Separator>
-                                        <lvc:Separator Step="1"/>
-                                    </lvc:Axis.Separator>
                                 </lvc:Axis>
                             </lvc:CartesianChart.AxisX>
                             <lvc:CartesianChart.AxisY>
-                                <lvc:Axis Title="Revenue" MinValue="0" LabelFormatter="{Binding SaleFormatter}"></lvc:Axis>
+                                <lvc:Axis Title="Sales" MinValue="0" LabelFormatter="{Binding SaleFormatter}"></lvc:Axis>
                             </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
                     </StackPanel>
                 </Border>
-
                 <Border Height="320"
                     Background="White"
                     CornerRadius="12"
@@ -110,20 +49,20 @@
                     BorderBrush="LightGray"
                     Margin="16">
                     <StackPanel Margin="16">
-                        <TextBlock Text="Top 5 Best Seller Book"
+                        <TextBlock Text="Báo Cáo Số Lượng Sản Phẩm"
                                FontSize="20" FontWeight="DemiBold"
                                Margin="0 0 0 16" />
                         <lvc:CartesianChart Height="240"
                                         Series="{Binding ProductSeries}">
                             <lvc:CartesianChart.AxisX>
-                                <lvc:Axis Title="Sold Quantity" LabelFormatter="{Binding ProductFormatter}"></lvc:Axis>
+                                <lvc:Axis Title="Number Of Products" LabelFormatter="{Binding ProductFormatter}"></lvc:Axis>
                             </lvc:CartesianChart.AxisX>
                             <lvc:CartesianChart.AxisY>
-                                <lvc:Axis Title="Book Name" Labels="{Binding ProductLabels}"></lvc:Axis>
+                                <lvc:Axis Title="Product Name" Labels="{Binding ProductLabels}"></lvc:Axis>
                             </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
                     </StackPanel>
-                </Border>
+                </Border>-->
 
                 <Border Background="White"
                         Height="440"

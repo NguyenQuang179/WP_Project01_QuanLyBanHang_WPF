@@ -10,11 +10,16 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
     {
         public List<Book> listOfBook { get; set; }
 
+        public int numOfBooks { get; set; }
+
+        public int numOfPage { get; set; }
+
         public ProductListDataModel()
         {
-          //Do nothing
+            //Do nothing
         }
-        public  ProductListDataModel(List<Book> listBook)
+
+        public ProductListDataModel(List<Book> listBook)
         {
             listOfBook = listBook;
         }

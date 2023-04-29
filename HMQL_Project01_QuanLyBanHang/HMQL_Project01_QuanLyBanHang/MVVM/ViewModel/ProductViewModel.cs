@@ -326,7 +326,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             var dataImg = JsonConvert.DeserializeObject<Img>(imageStream);
 
                             ImagePath = BytesToImage.ConvertToImage(dataImg.data.data);
-
                         }
                         else
                         {
