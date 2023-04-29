@@ -71,51 +71,53 @@
                                 HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
 
-                        <ListView
+                        <StackPanel
                             Grid.Column="1"
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                             Margin="0 16 16 16"
-                            BorderBrush="Transparent"
                             x:Name="BookDetail">
 
                             <TextBlock
                                 Text="Name"
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="16"
+                                Margin="10 0 0 5">
                             </TextBlock>
 
                             <TextBox
                                 Name = "bookNameTextBlock"
-                                Text="{Binding Data.book.name, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding BookName, UpdateSourceTrigger=PropertyChanged}"
                                 d:Text="Book Name 01"
                                 FontSize="14" Height="Auto"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="30 0 0 5"
+                                BorderThickness="{Binding TextBoxBorderThickness}"
+                                IsReadOnly="{Binding IsTextReadOnly}">
                             </TextBox>
 
                             <TextBlock
                                 Text="Category"
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="16"
+                                Margin="10 0 0 5">
                             </TextBlock>
 
                             <TextBox
                                 Name = "bookCategoryTextBlock"
-                                Text="{Binding Data.book.category.name, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}"
                                 d:Text="Book Category 01"
                                 FontSize="14"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="30 0 0 5"
+                                BorderThickness="{Binding TextBoxBorderThickness}"
+                                IsReadOnly="{Binding IsTextReadOnly}">
                             </TextBox>
 
                             <TextBlock
                                 Text="Author"
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="16"
+                                Margin="10 0 0 5">
                             </TextBlock>
 
                             <TextBox
@@ -124,62 +126,65 @@
                                 d:Text="Book Author 01"
                                 FontSize="14"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="30 0 0 5"
+                                BorderThickness="{Binding TextBoxBorderThickness}"
+                                IsReadOnly="{Binding IsTextReadOnly}">
                             </TextBox>
 
                             <TextBlock
                                 Text="Published year"
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="16"
+                                Margin="10 0 0 5">
                             </TextBlock>
 
                             <TextBox
                                 Name = "bookPYTextBlock"
-                                Text="{Binding Data.book.publishedYear, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding PublishedYear, UpdateSourceTrigger=PropertyChanged}"
                                 d:Text="Book Author 01"
                                 FontSize="14"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="30 0 0 5"
+                                BorderThickness="{Binding TextBoxBorderThickness}"
+                                IsReadOnly="{Binding IsTextReadOnly}">
                             </TextBox>
 
                             <TextBlock
                                 Text="Price"
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="16"
+                                Margin="10 0 0 5">
                             </TextBlock>
 
                             <TextBox
                                 Name = "bookPriceTextBlock"
-                                Text="{Binding Data.book.price, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
                                 d:Text="Book Price 01"
                                 FontSize="14"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="30 0 0 5"
+                                BorderThickness="{Binding TextBoxBorderThickness}"
+                                IsReadOnly="{Binding IsTextReadOnly}">
                             </TextBox>
 
                             <TextBlock
                                 Text="Stock"
                                 FontWeight="Bold"
-                                FontSize="16">
+                                FontSize="16"
+                                Margin="10 0 0 5">
                             </TextBlock>
 
                             <TextBox
                                 Name = "bookStockTextBlock"
-                                Text="{Binding Data.book.stock, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding Stock, UpdateSourceTrigger=PropertyChanged}"
                                 d:Text="Book Stock 01"
                                 FontSize="14"
                                 TextWrapping="Wrap"
-                                Margin="10 0 0 0"
-                                BorderThickness="0 0 0 1"
-                                IsReadOnly="True">
+                                Margin="30 0 0 5"
+                                BorderThickness="{Binding TextBoxBorderThickness}"
+                                IsReadOnly="{Binding IsTextReadOnly}">
                             </TextBox>
-                        </ListView>
+                        </StackPanel>
 
                         <StackPanel
                             Grid.Column="2">

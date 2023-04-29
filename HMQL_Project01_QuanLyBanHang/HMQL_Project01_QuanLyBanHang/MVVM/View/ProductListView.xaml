@@ -26,12 +26,17 @@
                             Orientation="Horizontal">
                             <TextBox
                                 x:Name="searchTextBox"
+                                Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"
                                 Foreground="Black"
                                 BorderThickness="0"
                                 FontSize="14"
                                 Width="586"
                                 Margin="16 0 0 0"
-                                RenderTransformOrigin="0.5,0.5" Canvas.Left="10" Canvas.Top="6" VerticalAlignment="Center" />
+                                RenderTransformOrigin="0.5,0.5" Canvas.Left="10" Canvas.Top="6" VerticalAlignment="Center">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Key="Return" Command="{Binding UpdatePagingCommand}" />
+                                </TextBox.InputBindings>
+                            </TextBox>
                             <Border
                                 Background="Transparent"
                                 CornerRadius="12"

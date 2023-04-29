@@ -14,6 +14,8 @@ using HMQL_Project01_QuanLyBanHang.MVVM.Model;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.IO;
+using System.Windows.Shapes;
+using System.Windows.Controls;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
@@ -127,7 +129,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             }
         }
 
-        private bool isSaveEnabled = false;
+        private bool isSaveEnabled;
 
         public bool IsSaveEnabled
         {
@@ -136,6 +138,30 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 isSaveEnabled = value;
                 OnPropertyChanged(nameof(IsSaveEnabled));
+            }
+        }
+
+        private bool isTextReadOnly;
+
+        public bool IsTextReadOnly
+        {
+            get => isTextReadOnly;
+            set
+            {
+                isTextReadOnly = value;
+                OnPropertyChanged(nameof(IsTextReadOnly));
+            }
+        }
+
+        private string textBoxBorderThickness;
+
+        public string TextBoxBorderThickness
+        {
+            get => textBoxBorderThickness;
+            set
+            {
+                textBoxBorderThickness = value;
+                OnPropertyChanged(nameof(TextBoxBorderThickness));
             }
         }
 
@@ -167,6 +193,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public BitmapImage bitmapImage { get; set; }
 
+        public string Image_path = "";
+
         private static string SelectImage()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -180,13 +208,17 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             return ImagePath;
         }
 
-        public ProductViewModel(MainViewModel mainVM, string book_id)
+        public ProductViewModel(MainViewModel mainVM, string book_id, ProductListViewModel productlistVM)
         {
             BackGroundColorForUnusedButton = Brushes.LightGray;
 
             IsBrowseEnabled = false;
 
             IsSaveEnabled = false;
+
+            IsTextReadOnly = true;
+
+            TextBoxBorderThickness = "0 0 0 0";
 
             //MessageBox.Show($"Book id: {book_id}");
 
@@ -199,7 +231,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             BrowseImageCommand = new RelayCommand(o =>
             {
-                //ImagePath = SelectImage();
+                Image_path = SelectImage();
+                //MessageBox.Show(Image_path);
+                ImagePath = new BitmapImage(new Uri(Image_path));
             });
 
             EditBookCommand = new RelayCommand(o =>
@@ -208,14 +242,61 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 BackGroundColorForUnusedButton = (Brush)bc.ConvertFrom("#FF3A36DB");
                 IsBrowseEnabled = true;
                 IsSaveEnabled = true;
+                IsTextReadOnly = false;
+
+                TextBoxBorderThickness = "0 0 0 1";
             });
 
-            SaveBookCommand = new RelayCommand(o =>
+            SaveBookCommand = new RelayCommand(async o =>
             {
                 MessageBox.Show($"Save Button Click");
                 BackGroundColorForUnusedButton = Brushes.LightGray;
                 IsBrowseEnabled = false;
                 IsSaveEnabled = false;
+                IsTextReadOnly = true;
+                TextBoxBorderThickness = "0 0 0 0";
+
+                MessageBox.Show($"{BookName} {Author} {Price} {Stock}");
+                var uri = new Uri($"{ConnectionString.connectionString}/book/update/{book_id}");
+
+                try
+                {
+                    var client = new HttpClient();
+                    var formData = new MultipartFormDataContent();
+
+                    var fileStream = new FileStream(Image_path, FileMode.Open, FileAccess.Read);
+                    var fileName = System.IO.Path.GetFileName(Image_path);
+                    formData.Add(new StreamContent(fileStream), "file", fileName);
+
+                    formData.Add(new StringContent(BookName), "name");
+                    formData.Add(new StringContent(Author), "author");
+                    formData.Add(new StringContent(Category), "category_Name");
+                    formData.Add(new StringContent(PublishedYear), "publishedYear");
+                    formData.Add(new StringContent(Price.ToString()), "price");
+                    formData.Add(new StringContent(Stock.ToString()), "stock");
+                    // Send the request and get the response
+                    var response = await client.PutAsync(uri, formData);
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Handle the successful upload
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"Success {json}");
+                    }
+                    else
+                    {
+                        // Handle the failed upload
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"Failed {json}");
+                    }
+
+                    productlistVM.CallDataCommand.Execute(null);
+                    mainVM.ProductListViewCommand.Execute(null);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"exceptions {ex.Message}");
+                }
             });
 
             DeleteBookCommand = new RelayCommand(o =>
@@ -239,11 +320,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         Data = JsonConvert.DeserializeObject<rootBookDetail>(json);
                         if (Data.book.imagePath != null)
                         {
-                            var image_uri = new Uri($"{ConnectionString.connectionString}/getImg/{book_id}");
+                            var image_uri = new Uri($"{ConnectionString.connectionString}/getImg/{Data.book.imagePath}");
                             var responseImg = await client.GetAsync(image_uri);
                             var imageStream = await responseImg.Content.ReadAsStringAsync();
                             var dataImg = JsonConvert.DeserializeObject<Img>(imageStream);
-                            //ImagePath = dataImg.data.data;
+
+                            ImagePath = BytesToImage.ConvertToImage(dataImg.data.data);
+
                         }
                         else
                         {
@@ -251,6 +334,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         }
                         // Handle the successful upload
                         //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
+
+                        BookName = Data.book.name;
+                        Author = Data.book.author;
+                        Category = Data.book.category.name;
+                        PublishedYear = Data.book.publishedYear;
+                        Price = Data.book.price;
+                        Stock = Data.book.stock;
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
                 }
@@ -259,9 +349,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     MessageBox.Show(ex.Message);
                 }
             });
-            CallDataCommand.Execute(null);
 
-            //ImagePath = Data.book.imagePath;
+            CallDataCommand.Execute(null);
         }
     }
 }

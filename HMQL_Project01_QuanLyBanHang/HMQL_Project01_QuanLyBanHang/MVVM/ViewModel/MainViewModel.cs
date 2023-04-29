@@ -63,9 +63,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         //Product
         public ProductListViewModel ProductListVM { get; set; }
 
-        public ProductAddViewModel ProductAddVM { get; set; }
 
-        
+        public ProductAddViewModel ProductAddVM { get; set; }
 
         private object _currentView;
 
@@ -94,7 +93,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             //Product
             ProductListVM = new ProductListViewModel(this);
 
-            ProductAddVM = new ProductAddViewModel(this);
+            //ProductAddVM = new ProductAddViewModel(this);
 
             //ProductViewVM = new ProductViewModel(this);
 
@@ -162,10 +161,10 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 CurrentView = ProductListVM;
             });
 
-            ProductAddViewCommand = new RelayCommand(o =>
-            {
-                CurrentView = ProductAddVM;
-            });
+            //ProductAddViewCommand = new RelayCommand(o =>
+            //{
+            //    CurrentView = ProductAddVM;
+            //});
 
             //ProductViewCommand = new RelayCommand(o =>
             //{

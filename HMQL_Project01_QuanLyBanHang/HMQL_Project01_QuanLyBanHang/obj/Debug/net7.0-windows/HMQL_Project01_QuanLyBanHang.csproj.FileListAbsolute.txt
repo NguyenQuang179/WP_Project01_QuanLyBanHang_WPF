@@ -185,3 +185,4 @@ D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Pro
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\zh-Hans\Xceed.Wpf.AvalonDock.NET5.resources.dll
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\OrderAddBookView.g.cs
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\OrderAddBookView.baml
+

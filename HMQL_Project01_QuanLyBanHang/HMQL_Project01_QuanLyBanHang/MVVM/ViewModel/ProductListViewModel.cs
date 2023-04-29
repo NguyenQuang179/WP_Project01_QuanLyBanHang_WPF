@@ -38,7 +38,25 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand ItemClickCommand { get; set; }
 
+        public RelayCommand UpdateDataListCommand { get; set; }
+
+        public RelayCommand UpdatePageDataCommand { get; set; }
+
         public ProductViewModel ProductViewVM { get; set; }
+
+        public ProductAddViewModel ProductAddVM { get; set; }
+
+        private string searchValue;
+
+        public string SearchValue
+        {
+            get => searchValue;
+            set
+            {
+                searchValue = value;
+                OnPropertyChanged(nameof(SearchValue));
+            }
+        }
 
         public ProductListViewModel(MainViewModel mainVM)
         {
@@ -59,6 +77,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
                         // Handle the successful upload
                         //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
+                        //UpdatePagingCommand.Execute(null);
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
                 }
@@ -69,20 +88,87 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             });
             CallDataCommand.Execute(null);
 
+            UpdateDataListCommand = new RelayCommand(o =>
+            {
+                var uri = new Uri($"{ConnectionString.connectionString}/book/?name={SearchValue}");
+
+                try
+                {
+                    using var client = new HttpClient();
+                    var response = await client.GetAsync(uri);
+
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
+                        // Handle the successful upload
+                        //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
+                        //UpdatePagingCommand.Execute(null);
+                    }
+                    else { MessageBox.Show($"Fail To Call Data"); }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                //BookSales = ListBookReport.saleReport.Where(s => s._id.book[0].name.Contains(SearchValue)).ToList();
+                //for (int i = 0; i < BookSales.Count; i++)
+                //{
+                //    if (BookSales[i]._id.date == null)
+                //    {
+                //        BookSales[i]._id.date = $"Week {BookSales[i]._id.week} - In {BookSales[i]._id.year}";
+                //    }
+                //}
+                //CurPage = 1;
+                //TotalBook = BookSales.Count;
+                //TotalPage = TotalBook / RowPerPage + (TotalBook % RowPerPage == 0 ? 0 : 1);
+                //ListPagesSelectedIndex = CurPage - 1;
+                //var pages = new List<int>();
+                //for (int i = 1; i <= TotalPage; i++)
+                //{
+                //    pages.Add(i);
+                //}
+                //ListPages = pages;
+                //UpdatePageDataCommand.Execute(null);
+            });
+
+            //UpdatePageDataCommand = new RelayCommand(o =>
+            //{
+            //    int starIndex = (CurPage - 1) * RowPerPage;
+            //    if (CurPage < TotalPage)
+            //    {
+            //        CurPageData = BookSales.GetRange(starIndex, RowPerPage);
+            //    }
+            //    else
+            //    {
+            //        if (TotalBook == 0) CurPageData = BookSales.GetRange(starIndex, 0);
+            //        else CurPageData = BookSales.GetRange(starIndex, TotalBook - ((TotalPage - 1) * RowPerPage));
+            //    }
+            //});
+
             ItemClickCommand = new RelayCommand((param) =>
             {
-                string id = param.ToString();
-                //MessageBox.Show($"Item Clicked {id}");
+                if (param != null)
+                {
+                    string id = param.ToString();
+                    //MessageBox.Show($"Item Clicked {id}");
 
-                //mainVM.ProductViewCommand.Execute(null);
-                //ProductViewVM.CallDataFromListView.Execute(id);
-                ProductViewVM = new ProductViewModel(mainVM, id);
-                mainVM.CurrentView = ProductViewVM;
+                    //mainVM.ProductViewCommand.Execute(null);
+                    //ProductViewVM.CallDataFromListView.Execute(id);
+                    ProductViewVM = new ProductViewModel(mainVM, id, this);
+                    mainVM.CurrentView = ProductViewVM;
+                }
+                else
+                {
+                    //Do nothing
+                }
             });
 
             AddBookCommand = new RelayCommand(o =>
             {
-                mainVM.ProductAddViewCommand.Execute(null);
+                ProductAddVM = new ProductAddViewModel(mainVM, this);
+                mainVM.CurrentView = ProductAddVM;
             });
         }
     }
