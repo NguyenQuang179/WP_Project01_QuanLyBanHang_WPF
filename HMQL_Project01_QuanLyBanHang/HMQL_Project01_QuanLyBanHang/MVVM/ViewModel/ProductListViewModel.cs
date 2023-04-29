@@ -156,9 +156,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public bool isBackspaceProcessed = false;
 
-        private string rowPerPage;
+        private int rowPerPage;
 
-        public string RowPerPage
+        public int RowPerPage
         {
             get => rowPerPage;
             set
@@ -260,7 +260,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         {
             CurPageData = new List<Book>();
             Data = new ProductListDataModel();
-            RowPerPage = "10";
+            RowPerPage = 10;
             CallDataCommand = new RelayCommand(async o =>
             {
                 var uri = new Uri($"{ConnectionString.connectionString}/book/search");
@@ -306,8 +306,45 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             PageComboboxChangeCommand = new RelayCommand(o =>
             {
+                MessageBox.Show($"Current page: {CurPage}");
                 CurPage = ListPagesSelectedIndex + 1;
                 UpdatePageDataCommand.Execute(null);
+            });
+
+            UpdatePageDataCommand = new RelayCommand(async o =>
+            {
+                var uri = new Uri($"{ConnectionString.connectionString}/book/search?page={CurPage}");
+
+                try
+                {
+                    using var client = new HttpClient();
+                    var response = await client.GetAsync(uri);
+
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
+                        // Handle the successful upload
+                        //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
+                        //UpdatePagingCommand.Execute(null);
+                    }
+                    else { MessageBox.Show($"Fail To Call Data"); }
+
+                    CurPage = 1;
+                    TotalPages = Data.numOfPage;
+                    TotalBook = Data.numOfBooks;
+                    var pages = new List<int>();
+                    for (int i = 1; i <= TotalPages; i++)
+                    {
+                        pages.Add(i);
+                    }
+                    ListPages = pages;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             });
 
             BrowseFileCommand = new RelayCommand(o =>
@@ -362,6 +399,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             ApplySortCommand = new RelayCommand(async o =>
             {
+                MessageBox.Show($"{SearchValue} {PriceFrom} {PriceTo}");
                 string query_string = "";
 
                 if (SearchValue == "")
@@ -462,9 +500,30 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             UpdateDataListCommand = new RelayCommand(async o =>
             {
+                MessageBox.Show($"{SearchValue} {PriceFrom} {PriceTo}");
+
                 if (SearchValue != "")
                 {
-                    var uri = new Uri($"{ConnectionString.connectionString}/book/search?name={SearchValue}");
+                    string query_string = "";
+
+                    if (PriceFrom != "" && PriceTo != "")
+                    {
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}";
+                    }
+                    else if (PriceFrom != "" && PriceTo == "")
+                    {
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}";
+                    }
+                    else if (PriceFrom == "" && PriceTo != "")
+                    {
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}";
+                    }
+                    else
+                    {
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}";
+                    }
+
+                    var uri = new Uri(query_string);
 
                     try
                     {

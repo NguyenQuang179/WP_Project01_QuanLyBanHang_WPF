@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel"
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View" d:DataContext="{d:DesignInstance Type=viewmodel:ProductListViewModel}"
              mc:Ignorable="d"
@@ -439,18 +440,24 @@
                                 HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </Border>
 
-                        <ComboBox
-                            Width="50" Margin="10 10 5 10"
+                        <ComboBox Width="52" Margin="10 0 8 0"
                             ItemsSource="{Binding ListPages, UpdateSourceTrigger=PropertyChanged}"
-                            SelectedIndex="{Binding ListPagesSelectedIndex, UpdateSourceTrigger=PropertyChanged}">
+                            SelectedIndex="{Binding ListPagesSelectedIndex, UpdateSourceTrigger=PropertyChanged}"
+                            VerticalContentAlignment="Center"
+                            HorizontalContentAlignment="Center">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectedIndexChanged">
+                                    <i:InvokeCommandAction Command="{Binding PageComboboxChangeCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                         </ComboBox>
 
-                        <TextBlock
-                            Margin="0 0 10 0"
-                            FontWeight="DemiBold"
-                            VerticalAlignment="Center">
-                         <Run Text="/" />
-                         <Run Text="{Binding TotalPage}" />
+                        <TextBlock FontWeight="DemiBold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                   Margin="0 0 10 0">
+                                <Run Text="/" />
+                                <Run Text="{Binding TotalPage}" />
                         </TextBlock>
 
                         <Border

@@ -15,6 +15,7 @@
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgLiveCharts_Wpf Condition=" '$(PkgLiveCharts_Wpf)' == '' ">C:\Users\Admin\.nuget\packages\livecharts.wpf\0.9.7</PkgLiveCharts_Wpf>
+    <PkgFontAwesome_WPF Condition=" '$(PkgFontAwesome_WPF)' == '' ">C:\Users\Admin\.nuget\packages\fontawesome.wpf\4.7.0.9</PkgFontAwesome_WPF>
     <PkgFontAwesome Condition=" '$(PkgFontAwesome)' == '' ">C:\Users\Admin\.nuget\packages\fontawesome\4.7.0</PkgFontAwesome>
     <PkgExtended_Wpf_Toolkit Condition=" '$(PkgExtended_Wpf_Toolkit)' == '' ">C:\Users\Admin\.nuget\packages\extended.wpf.toolkit\4.5.0</PkgExtended_Wpf_Toolkit>
   </PropertyGroup>
