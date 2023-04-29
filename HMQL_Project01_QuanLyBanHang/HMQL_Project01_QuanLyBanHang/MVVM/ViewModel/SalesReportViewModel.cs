@@ -25,7 +25,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(Data));
             }
         }
+
         private RootObjectMonthYear dataMonthYear;
+
         public RootObjectMonthYear DataMonthYear
         {
             get => dataMonthYear;
@@ -238,6 +240,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         //Sale Series
         private SeriesCollection saleSeries;
+
         public SeriesCollection SaleSeries
         {
             get => saleSeries;
@@ -249,6 +252,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
 
         private List<string> saleLabels;
+
         public List<string> SaleLabels
         {
             get => saleLabels;
@@ -260,6 +264,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
 
         private Func<double, string> saleFormatter;
+
         public Func<double, string> SaleFormatter
         {
             get => saleFormatter;
@@ -269,7 +274,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(SaleFormatter));
             }
         }
+
         private int chartColumnSelectedModeIndex;
+
         public int ChartColumnSelectedModeIndex
         {
             get => chartColumnSelectedModeIndex;
@@ -282,7 +289,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
 
         private List<BookSales> top5Book;
-        public List <BookSales> Top5Book
+
+        public List<BookSales> Top5Book
         {
             get => top5Book;
             set
@@ -294,17 +302,19 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         //Product Series
         private SeriesCollection productSeries;
-        public SeriesCollection ProductSeries 
-        { 
-            get => productSeries; 
+
+        public SeriesCollection ProductSeries
+        {
+            get => productSeries;
             set
             {
                 productSeries = value;
                 OnPropertyChanged(nameof(ProductSeries));
-            } 
+            }
         }
 
         private List<string> productLabels;
+
         public List<string> ProductLabels
         {
             get => productLabels;
@@ -316,7 +326,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
 
         private Func<double, string> productFormatter;
-        public Func<double, string> ProductFormatter 
+
+        public Func<double, string> ProductFormatter
         {
             get => productFormatter;
             set
@@ -360,7 +371,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         var json = await response.Content.ReadAsStringAsync();
                         var listBookJson = await listBookResponse.Content.ReadAsStringAsync();
-                        if(ChartColumnSelectedModeIndex == 0 || ChartColumnSelectedModeIndex == 1)
+                        if (ChartColumnSelectedModeIndex == 0 || ChartColumnSelectedModeIndex == 1)
                         {
                             Data = JsonConvert.DeserializeObject<RootObject>(json);
                             SaleSeries = new SeriesCollection() { };
@@ -377,7 +388,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                                 SaleLabels.Add(Data.incomeReport[i]._id.date);
                             }
                             SaleFormatter = value => value.ToString("N");
-                        } 
+                        }
                         else
                         {
                             DataMonthYear = JsonConvert.DeserializeObject<RootObjectMonthYear>(json);
@@ -406,7 +417,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             Values = new ChartValues<double>()
                         });
                         ProductLabels = new List<string>();
-                        for(int i = 0; i < Top5Book.Count; i++)
+                        for (int i = 0; i < Top5Book.Count; i++)
                         {
                             ProductSeries[0].Values.Add((double)Top5Book[i].totalQuantity);
                             ProductLabels.Add(Top5Book[i]._id.book[0].name);
