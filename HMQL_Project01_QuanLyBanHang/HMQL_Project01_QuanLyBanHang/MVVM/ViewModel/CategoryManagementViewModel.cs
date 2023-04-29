@@ -172,16 +172,17 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     if (response.IsSuccessStatusCode)
                     {
                         var json = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show(json);
+                        MessageBox.Show("Delete Successfully");
                         //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
+                        //Bỏ cái này vô sau khi chạy API thành công
+                        CallData.Execute(null);
                     }
                     else
                     {
                         MessageBox.Show($"Fail To Delete Order");
                     }
                 }
-                //Bỏ cái này vô sau khi chạy API thành công
-                CallData.Execute(null);
+               
 
             });
 
