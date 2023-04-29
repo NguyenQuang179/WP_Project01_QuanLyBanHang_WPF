@@ -34,7 +34,8 @@
                                 Margin="16 0 0 0"
                                 RenderTransformOrigin="0.5,0.5" Canvas.Left="10" Canvas.Top="6" VerticalAlignment="Center">
                                 <TextBox.InputBindings>
-                                    <KeyBinding Key="Return" Command="{Binding UpdatePagingCommand}" />
+                                    <KeyBinding Key="Return" Command="{Binding UpdateDataListCommand}" />
+                                    <!--<KeyBinding Key="Backspace" Command="{Binding BackSpaceCommand}" />-->
                                 </TextBox.InputBindings>
                             </TextBox>
                             <Border
@@ -42,7 +43,7 @@
                                 CornerRadius="12"
                                 Width="Auto">
                                 <Border.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding SearchCommand}" />
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding EraseCommand}" />
                                 </Border.InputBindings>
                                 <TextBlock
                                 Text="✕"
@@ -59,7 +60,7 @@
                         Margin="10 16 32 0"
                         Grid.Column="1">
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding SearchCommand}" />
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding UpdateDataListCommand}" />
                         </Border.InputBindings>
                         <TextBlock
                             Margin="16 5 16 5"
@@ -101,6 +102,40 @@
                                 FontSize="12" FontWeight="Bold" Foreground="White"
                                 HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </Border>
+                        <Border
+                            Background="#FF3A36DB"
+                            CornerRadius="12"
+                            BorderBrush="Transparent"
+                            Width="75"
+                            Margin="10 0 10 0">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding BrowseFileCommand}" />
+                            </Border.InputBindings>
+                            <TextBlock
+
+                                Text="Browse"
+                                FontSize="12" FontWeight="Bold" Foreground="White"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <Border
+                            Background="#FF3A36DB"
+                            CornerRadius="12"
+                            BorderBrush="Transparent"
+                            Width="75"
+                            Margin="10 0 10 0">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding UploadFileCommand}" />
+                            </Border.InputBindings>
+                            <TextBlock
+                                Text="Upload"
+                                FontSize="12" FontWeight="Bold" Foreground="White"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+
+                        <TextBox
+                            Text="{Binding FilePath, UpdateSourceTrigger=PropertyChanged}"
+
+                            Width="200"></TextBox>
                     </StackPanel>
 
                     <Grid
@@ -298,6 +333,7 @@
                                         <TextBox
                                     Grid.Column="1"
                                     Name = "price_from_TextBox"
+                                    Text="{Binding PriceFrom}"
                                     HorizontalAlignment="Right"
                                     Margin="5 0 5 0"
                                     Width="100"
@@ -321,6 +357,7 @@
                                         <TextBox
                                     Grid.Column="1"
                                     Name = "price_to_TextBox"
+                                    Text="{Binding PriceTo}"
                                     HorizontalAlignment="Right"
                                     Margin="5 0 5 0"
                                     Width="100"
@@ -376,9 +413,13 @@
                                 FontWeight="DemiBold"
                                 VerticalAlignment="Center"
                                 TextAlignment="Center"
-                                Text="10"
+                                Text="{Binding RowPerPage, UpdateSourceTrigger=PropertyChanged}"
+                                d:Text="10"
                                 PreviewTextInput="PreviewTextInput"
                                     DataObject.Pasting="TextBoxPasting">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Key="Return" Command="{Binding UpdatePagingCommand}" />
+                                </TextBox.InputBindings>
                             </TextBox>
                         </Border>
 
@@ -398,14 +439,18 @@
                                 HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </Border>
 
-                        <ComboBox Width="50" Margin="10 10 5 10">
+                        <ComboBox
+                            Width="50" Margin="10 10 5 10"
+                            ItemsSource="{Binding ListPages, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedIndex="{Binding ListPagesSelectedIndex, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
 
                         <TextBlock
                             Margin="0 0 10 0"
                             FontWeight="DemiBold"
                             VerticalAlignment="Center">
-                            / 2
+                         <Run Text="/" />
+                         <Run Text="{Binding TotalPage}" />
                         </TextBlock>
 
                         <Border
@@ -423,6 +468,12 @@
                                 FontSize="12" FontWeight="Bold" Foreground="White"
                                 HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </Border>
+                        <TextBlock
+                            Margin="170 0 0 0"
+                            VerticalAlignment="Center"
+                            FontSize="12" FontWeight="DemiBold">
+                            <Run Text="Total Book:" />
+                            <Run Text=" " /><Run Text="{Binding TotalBook}" /></TextBlock>
                     </StackPanel>
                 </Grid>
             </StackPanel>
