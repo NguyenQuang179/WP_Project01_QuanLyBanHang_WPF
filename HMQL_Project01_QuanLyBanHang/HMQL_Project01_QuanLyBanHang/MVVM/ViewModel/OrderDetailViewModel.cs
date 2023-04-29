@@ -96,47 +96,47 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         }
 
 
-            public RelayCommand CallOrderDetailData { get; set; }
-            public RelayCommand OrderAddBookCreateViewCommand { get; set; }
+        private string deliDate;
+        public string DeliDate
+        {
+            get { return deliDate; }
+            set
+            {
+                deliDate = value;
+                OnPropertyChanged(nameof(DeliDate));
+            }
+        }
 
-            public RelayCommand ConfirmOrderDetailData { get; set; }
-            public RelayCommand DeleteBookDetailData { get; set; }
+        private long totalPrice;
+        public long TotalPrice
+        {
+            get { return totalPrice; }
+            set
+            {
+                totalPrice = value;
+                OnPropertyChanged(nameof(TotalPrice));
+            }
+        }
+
+        public RelayCommand CallOrderDetailData { get; set; }
+        public RelayCommand OrderAddBookCreateViewCommand { get; set; }
+
+        public RelayCommand ConfirmOrderDetailData { get; set; }
+        public RelayCommand DeleteBookDetailData { get; set; }
 
         public RelayCommand CancelCommand { get; set; }
         public RelayCommand UpdatePageDataCommand { get; set; }
 
         public OrderDetailViewModel(MainViewModel MainVM, String OrderID)
-            {
-            //orders = new ListOfOrder();
-
-            //SelectedOrder = null;
-            //BookDetailVM = null;
-
-            //BookAddVM = new OrderCreateViewModel();
-
-
-            //List<Book> ListOfBook;
-            //OrderDetailViewCommand = new RelayCommand((param) =>
-            //{
-            //    string id = param.ToString();
-            //    MessageBox.Show("ID IS:" + id);
-            //    OrderDetailVM = new OrderDetailViewModel(id);
-            //    MessageBox.Show("No Selected Order");
-            //    if (OrderDetailVM != null)
-            //        MainVM.CurrentView = OrderDetailVM;
-
-            //});
+        { 
 
             ConfirmOrderDetailData = new RelayCommand(async o =>
             {
-                //Update Order Detail API
-               // MessageBox.Show(OrderD.order.listOfBook.Count.ToString());
                 NewListOfBook newListOfBook = new NewListOfBook();
                 foreach (var bookInfo in OrderD.order.listOfBook)
                 {
                     newListOfBook.listOfBook.Add(new BookInOrder(bookInfo.book._id, bookInfo.quantity));
                 }
-                //MessageBox.Show(newListOfBook.listOfBook.Count.ToString());
 
 
                 try
@@ -191,9 +191,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
                 if (indexToRemove != -1)
                 {
-                    // Remove the book from curList
-                    curList.RemoveAt(indexToRemove);
+                    TotalPrice = TotalPrice - (curList[indexToRemove].quantity * curList[indexToRemove].book.price);
+                   // Remove the book from curList
+                   curList.RemoveAt(indexToRemove);
                     MessageBox.Show("Book has been Deleted, Please Refresh");
+                   
                 }
                 else
                 {
@@ -232,16 +234,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             DateTime datetime = DateTime.Now;
                             datetime = DateTime.Parse(OrderD.order.date);
                             newdate = datetime.ToString("dd/MM/y");
-                            OrderD.order.date = newdate;
-                            //MessageBox.Show($"{OrderD.order.date}");
+                            DeliDate = newdate;
+                            TotalPrice = OrderD.order.totalPrice;
 
-                            //Process Price
-                            //for (int i = 0; i < orderD.order.listOfBook.Count; i++)
-                            //{
-                            //    bookTotalPrice bTP = new bookTotalPrice();
-                            //    bTP.Price = orderD.order.listOfBook[i].book.price;
-                            //    bTP.Quantity = orderD.order.listOfBook[i].quantity;
-                            //}
                         }
                         else { MessageBox.Show($"Fail To Call Data"); }
                     }
@@ -256,17 +251,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             UpdatePageDataCommand = new RelayCommand(async(o) =>
             {
                 var uri = new Uri($"{ConnectionString.connectionString}/order//order/detail/" + OrderID);
-                //int starIndex = (CurPage - 1) * RowPerPage;
-                //if (CurPage < TotalPage)
-                //{
-                //    CurPageData = BookSales.GetRange(starIndex, RowPerPage);
-                //}
-                //else
-                //{
-                //    if (TotalBook == 0) CurPageData = BookSales.GetRange(starIndex, 0);
-                //    else CurPageData = BookSales.GetRange(starIndex, TotalBook - ((TotalPage - 1) * RowPerPage));
-                //}
-                //add count for page
+               
                 try
                 {
                     using var client = new HttpClient();
@@ -278,9 +263,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         var json = await response.Content.ReadAsStringAsync();
                         OrderD = JsonConvert.DeserializeObject<OrderDetails>(json);
-                        string newdate = "";
-                        DateTime datetime = DateTime.Now;
-                        //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
+                        
+
+                   
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
                 }

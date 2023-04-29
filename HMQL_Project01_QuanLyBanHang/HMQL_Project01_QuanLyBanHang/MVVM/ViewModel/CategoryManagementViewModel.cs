@@ -186,49 +186,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             });
 
-            //DeleteDataCommand = new RelayCommand(async (param) =>
-            //{
-            //    string categoryID = param as string;
-            //    MessageBox.Show(categoryID);
-            //    //List<Order> curList = Orders.listOfOrder;
-            //    //// Find the index of the book to remove
-
-            //    //string orderId = param as string;
-            //    //if (orderId == null)
-            //    //{
-            //    //    //show error
-            //    //    MessageBox.Show("Invalid Order ID");
-            //    //    return;
-            //    //}
-            //    //// Find the index of the book to remove
-            //    //int indexToRemove = curList.FindIndex(b => b._id == orderId);
-
-
-            //    //if (indexToRemove != -1)
-            //    //{
-            //    //    // Remove the book from curList
-            //    //    using var client = new HttpClient();
-            //    //    var uri = new Uri($"{ConnectionString.connectionString}/order/delete/{orderId}");
-            //    //    var response = await client.DeleteAsync(uri);
-
-            //    //    // Check if the upload was successful
-            //    //    if (response.IsSuccessStatusCode)
-            //    //    {
-            //    //        var json = await response.Content.ReadAsStringAsync();
-            //    //        MessageBox.Show(json);
-            //    //        //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
-            //    //    }
-            //    //    else { MessageBox.Show($"Fail To Delete Order"); }
-            //    //    TotalOrder--;
-            //    //    UpdatePageDataCommand.Execute(null);
-
-            //    //}
-            //    //else
-            //    //{
-            //    //    //show error
-            //    //    MessageBox.Show("No Order Selected");
-            //    //}
-            //});
+         
 
             CallData = new RelayCommand(async o =>
             {

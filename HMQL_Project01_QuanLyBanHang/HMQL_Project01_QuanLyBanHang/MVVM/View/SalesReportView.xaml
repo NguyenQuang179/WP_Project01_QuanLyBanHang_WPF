@@ -120,7 +120,7 @@
                             </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
                     </StackPanel>
-                </Border>-->
+                </Border>
 
                 <Border Background="White"
                         Height="440"

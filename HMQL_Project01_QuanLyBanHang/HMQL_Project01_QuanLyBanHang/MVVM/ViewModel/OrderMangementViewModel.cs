@@ -165,12 +165,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             TotalOrder = 0;
             TotalPage = 1;
             ListPages = new List<int>();
-            //CurPageData = new List<BookSales>();
-            //ListBookReport = new ListOfBookSales();
-            //ListDataMode = new List<string> { "Day", "Week", "Month", "Year" };
-            //SelectedModeIndex = 0;
-            //BookSales = new List<BookSales>();
-            //SearchValue = "";
+        
             MinDate = "";
             MaxDate = DateTime.Now.ToString("MM/dd/yyyy");
 
@@ -203,7 +198,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         var json = await response.Content.ReadAsStringAsync();
                         MessageBox.Show("Delete Order Sucessfuly");
-                        //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
+                       
                     }
                     else { MessageBox.Show($"Fail To Delete Order"); }
                     TotalOrder--;
@@ -221,9 +216,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 if (param != null) { 
                     id = param.ToString();
-                //MessageBox.Show("ID IS:" + id);
+
                 OrderDetailVM = new OrderDetailViewModel(MainVM, id);
-                //MessageBox.Show("No Selected Order");
 
                 MainVM.CurrentView = OrderDetailVM;
                 }
@@ -341,7 +335,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             newdate = datetime.ToString("dd/MM/y hh:mm tt");
                             Orders.listOfOrder[i].date = newdate;
                         }
-                        //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
                 }
@@ -365,17 +358,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             UpdatePageDataCommand = new RelayCommand(async (o) =>
             {
                 var uri = new Uri($"{ConnectionString.connectionString}/order/search?minDate={MinDate}&maxDate={MaxDate}&page={CurPage}&itemPerPage={RowPerPage}");
-                //int starIndex = (CurPage - 1) * RowPerPage;
-                //if (CurPage < TotalPage)
-                //{
-                //    CurPageData = BookSales.GetRange(starIndex, RowPerPage);
-                //}
-                //else
-                //{
-                //    if (TotalBook == 0) CurPageData = BookSales.GetRange(starIndex, 0);
-                //    else CurPageData = BookSales.GetRange(starIndex, TotalBook - ((TotalPage - 1) * RowPerPage));
-                //}
-                //add count for page
+           
                 try
                 {
                     using var client = new HttpClient();

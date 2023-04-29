@@ -32,6 +32,28 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(OrderD));
             }
         }
+
+        private string deliDate;
+        public string DeliDate
+        {
+            get { return deliDate; }
+            set
+            {
+                deliDate = value;
+                OnPropertyChanged(nameof(DeliDate));
+            }
+        }
+
+        private long totalPrice;
+        public long TotalPrice
+        {
+            get { return totalPrice; }
+            set
+            {
+                totalPrice = value;
+                OnPropertyChanged(nameof(TotalPrice));
+            }
+        }
         public RelayCommand CancelCommand { get; set; }
 
         public RelayCommand CallOrderDetailData { get; set; }
@@ -134,7 +156,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 if (indexToRemove != -1)
                 {
                     // Remove the book from curList
+                    TotalPrice = TotalPrice - (curList[indexToRemove].quantity * curList[indexToRemove].book.price);
                     curList.RemoveAt(indexToRemove);
+                    MessageBox.Show("Book has been Deleted, Please Refresh");
 
                 }
                 else
@@ -153,42 +177,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             CallOrderDetailData = new RelayCommand(async o =>
             {
+                //Get Data
                 OrderD = new OrderDetails();
                 OrderD.order.totalPrice = 0;
-                //var uri = new Uri($"{ConnectionString.connectionString}/order/detail/" + OrderID);
-                ////add count for page
-                //try
-                //{
-                //    using var client = new HttpClient();
-                //    var response = await client.GetAsync(uri);
+                TotalPrice = totalPrice;
 
-
-                //    // Check if the upload was successful
-                //    if (response.IsSuccessStatusCode)
-                //    {
-                //        var json = await response.Content.ReadAsStringAsync();
-                //        OrderD = JsonConvert.DeserializeObject<OrderDetails>(json);
-                //        string newdate = "";
-                //        DateTime datetime = DateTime.Now;
-                //        datetime = DateTime.Parse(OrderD.order.date);
-                //        newdate = datetime.ToString("dd/MM/y");
-                //        OrderD.order.date = newdate;
-                //        MessageBox.Show($"{OrderD.order.date}");
-
-                //        //Process Price
-                //        //for (int i = 0; i < orderD.order.listOfBook.Count; i++)
-                //        //{
-                //        //    bookTotalPrice bTP = new bookTotalPrice();
-                //        //    bTP.Price = orderD.order.listOfBook[i].book.price;
-                //        //    bTP.Quantity = orderD.order.listOfBook[i].quantity;
-                //        //}
-                //    }
-                //    else { MessageBox.Show($"Fail To Call Data"); }
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show(ex.Message);
-                //}
             });
 
             CallOrderDetailData.Execute(null);

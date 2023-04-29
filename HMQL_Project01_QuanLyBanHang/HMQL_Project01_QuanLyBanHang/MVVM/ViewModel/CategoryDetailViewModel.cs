@@ -62,25 +62,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public CategoryDetailViewModel(MainViewModel MainVM, String CategoryID)
         {
-            //orders = new ListOfOrder();
-
-            //SelectedOrder = null;
-            //BookDetailVM = null;
-
-            //BookAddVM = new OrderCreateViewModel();
-
-
-            //List<Book> ListOfBook;
-            //OrderDetailViewCommand = new RelayCommand((param) =>
-            //{
-            //    string id = param.ToString();
-            //    MessageBox.Show("ID IS:" + id);
-            //    OrderDetailVM = new OrderDetailViewModel(id);
-            //    MessageBox.Show("No Selected Order");
-            //    if (OrderDetailVM != null)
-            //        MainVM.CurrentView = OrderDetailVM;
-
-            //});
+           
 
             ConfirmCategoryDetailData = new RelayCommand(async o =>
             {
@@ -94,8 +76,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         var client = new HttpClient();
                         CategoryName newCategory = new CategoryName();
                         newCategory.name = categoryName;
-                        var jsonSended = JsonConvert.SerializeObject(newCategory);
-                        //MessageBox.Show(jsonSended);
+                        var jsonSended = JsonConvert.SerializeObject(newCategory);   
                         var content = new StringContent(jsonSended, Encoding.UTF8, "application/json");
                         // Send the request and get the response
                         var response = await client.PutAsync(uri, content);
@@ -185,13 +166,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         CategoryD = JsonConvert.DeserializeObject<ListBookCategory>(json);
                         CategoryName = CategoryD.categoryDetail.name;
 
-                        //Process Price
-                        //for (int i = 0; i < CategoryD.listOfBook.Count; i++)
-                        //{
-                        //    bookTotalPrice bTP = new bookTotalPrice();
-                        //    bTP.Price = CategoryD.listOfBook[i].book.price;
-                        //    bTP.Quantity = CategoryD.listOfBook[i].quantity;
-                        //}
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
                 }
@@ -206,17 +180,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             UpdatePageDataCommand = new RelayCommand(async (o) =>
             {
                 var uri = new Uri($"{ConnectionString.connectionString}/order//order/detail/" + CategoryID);
-                //int starIndex = (CurPage - 1) * RowPerPage;
-                //if (CurPage < TotalPage)
-                //{
-                //    CurPageData = BookSales.GetRange(starIndex, RowPerPage);
-                //}
-                //else
-                //{
-                //    if (TotalBook == 0) CurPageData = BookSales.GetRange(starIndex, 0);
-                //    else CurPageData = BookSales.GetRange(starIndex, TotalBook - ((TotalPage - 1) * RowPerPage));
-                //}
-                //add count for page
+               
+  
                 try
                 {
                     using var client = new HttpClient();
@@ -230,7 +195,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         CategoryD = JsonConvert.DeserializeObject<ListBookCategory>(json);
                         CategoryName = CategoryD.categoryDetail.name;
 
-                        //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
+                        
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
                 }

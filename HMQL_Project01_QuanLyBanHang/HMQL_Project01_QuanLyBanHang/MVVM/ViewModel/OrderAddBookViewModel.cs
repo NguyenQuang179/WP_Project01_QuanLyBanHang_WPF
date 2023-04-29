@@ -165,11 +165,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             });
             CallDataCommand.Execute(null);
 
-            //ItemClickCommand = new RelayCommand((param) =>
-            //{
-            //    string id = param.ToString();
-            //    System.Windows.MessageBox.Show($"Item Clicked {id}");
-            //});
+
 
             AddBookCommand = new RelayCommand(o =>
             {
@@ -184,13 +180,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 if (IsAddBookForEditingOrder)
                 {
                     curList = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.listOfBook;
-                    totalPrice = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.totalPrice;
+                    totalPrice = MainVM.OrderManagementVM.OrderDetailVM.TotalPrice;
                     lastView = MainVM.OrderManagementVM.OrderDetailVM;
                 }
                 else
                 {
                     curList = MainVM.OrderManagementVM.OrderCreateVM.OrderD.order.listOfBook;
-                    totalPrice = MainVM.OrderManagementVM.OrderCreateVM.OrderD.order.totalPrice;
+                    totalPrice = MainVM.OrderManagementVM.OrderCreateVM.TotalPrice;
                     lastView = MainVM.OrderManagementVM.OrderCreateVM;
                 }
                 foreach (var newBookOrder in bookOrderInfoList)
@@ -224,24 +220,25 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         quantity = b.Quantity
                     })
                     .ToList();
-                //System.Windows.MessageBox.Show(selectedBooks.ToString());
+
 
                 if (selectedBooks.Any())
                 {
                     List<BookInOrderForDetails> curList;
                     long totalPrice;
                     Object lastView;
+                   
                     //Get Current Order Detail Book List
                     if (IsAddBookForEditingOrder)
                     {
                         curList = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.listOfBook;
-                        totalPrice = MainVM.OrderManagementVM.OrderDetailVM.OrderD.order.totalPrice;
+                        totalPrice = MainVM.OrderManagementVM.OrderDetailVM.TotalPrice;
                         lastView = MainVM.OrderManagementVM.OrderDetailVM;
                     }
                     else
                     {
                         curList = MainVM.OrderManagementVM.OrderCreateVM.OrderD.order.listOfBook;
-                        totalPrice = MainVM.OrderManagementVM.OrderCreateVM.OrderD.order.totalPrice;
+                        totalPrice = MainVM.OrderManagementVM.OrderCreateVM.TotalPrice;
                         lastView = MainVM.OrderManagementVM.OrderCreateVM;
                     }
 
@@ -278,8 +275,18 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     SearchValue = "";
                     CallDataCommand.Execute(null);
                     totalPrice = tempPrice + totalPrice;
+
+                    if (IsAddBookForEditingOrder)
+                         MainVM.OrderManagementVM.OrderDetailVM.TotalPrice = totalPrice;
+                    else
+
+                        MainVM.OrderManagementVM.OrderCreateVM.TotalPrice = totalPrice;
                     MainVM.CurrentView = lastView;
 
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Please Select An Item");
                 }
             });
         }
