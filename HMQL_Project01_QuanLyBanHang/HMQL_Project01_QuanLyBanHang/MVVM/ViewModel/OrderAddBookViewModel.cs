@@ -76,7 +76,17 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public bool IsAddBookForEditingOrder { get; set; }
 
         private OrderDetails orderD;
-        
+
+        private string searchValue;
+        public string SearchValue
+        {
+            get => searchValue;
+            set
+            {
+                searchValue = value;
+                OnPropertyChanged(nameof(SearchValue));
+            }
+        }
         public RelayCommand ConfirmBookSelectionCommand { get; set; }
         public RelayCommand SearchCommand { get; set; }
         public RelayCommand ApplySortCommand { get; set; }
@@ -131,7 +141,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             
             CallDataCommand = new RelayCommand(async o =>
             {
-                var uri = new Uri($"{ConnectionString.connectionString}/book/search?page=1&itemPerPage=10000000");
+                var uri = new Uri($"{ConnectionString.connectionString}/book/search?page=1&itemPerPage=10000000&name={SearchValue}");
 
                 try
                 {
@@ -145,7 +155,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
                         // Handle the successful upload
                         bookOrderInfoList = Data.listOfBook.Select(book => new BookItemOrderInfo(book)).ToList();
-                        System.Windows.MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
+                        //System.Windows.MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
                     }
                     else { System.Windows.MessageBox.Show($"Fail To Call Data"); }
                 }
@@ -156,11 +166,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             });
             CallDataCommand.Execute(null);
 
-            ItemClickCommand = new RelayCommand((param) =>
-            {
-                string id = param.ToString();
-                System.Windows.MessageBox.Show($"Item Clicked {id}");
-            });
+            //ItemClickCommand = new RelayCommand((param) =>
+            //{
+            //    string id = param.ToString();
+            //    System.Windows.MessageBox.Show($"Item Clicked {id}");
+            //});
 
             AddBookCommand = new RelayCommand(o =>
             {
@@ -215,7 +225,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         quantity = b.Quantity
                     })
                     .ToList();
-                System.Windows.MessageBox.Show(selectedBooks.ToString());
+                //System.Windows.MessageBox.Show(selectedBooks.ToString());
 
                 if (selectedBooks.Any())
                 {
@@ -258,6 +268,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
                     }
                     //SetAll Selected to false;
+                    //Reset Everything
                     foreach(var newBookOrder in bookOrderInfoList)
                     {
                         newBookOrder.Quantity = 1;
@@ -265,6 +276,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             continue;
                         newBookOrder.IsSelected = false;
                     }
+                    SearchValue = "";
+                    CallDataCommand.Execute(null);
                     totalPrice = tempPrice + totalPrice;
                     MainVM.CurrentView = lastView;
 

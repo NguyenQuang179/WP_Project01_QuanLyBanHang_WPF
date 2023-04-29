@@ -136,7 +136,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 if (param != null)
                 {
                     id = param.ToString();
-                    MessageBox.Show("ID IS:" + id);
+                    //MessageBox.Show("ID IS:" + id);
                     CategoryDetailVM = new CategoryDetailViewModel(MainVM, id);
                     //MessageBox.Show("No Selected Order");
                     MainVM.CurrentView = CategoryDetailVM;
