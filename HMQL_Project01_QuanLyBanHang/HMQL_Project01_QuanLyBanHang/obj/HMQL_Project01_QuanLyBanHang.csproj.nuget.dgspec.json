@@ -57,6 +57,10 @@
               "target": "Package",
               "version": "[4.7.0, )"
             },
+            "FontAwesome.WPF": {
+              "target": "Package",
+              "version": "[4.7.0.9, )"
+            },
             "LiveCharts.Wpf": {
               "target": "Package",
               "version": "[0.9.7, )"

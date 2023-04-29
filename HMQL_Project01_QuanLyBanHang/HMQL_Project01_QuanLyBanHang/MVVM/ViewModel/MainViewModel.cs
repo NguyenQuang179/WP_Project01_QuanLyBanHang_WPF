@@ -21,8 +21,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand ExitWindowCommand { get; set; }
 
-        public RelayCommand HomeViewCommand { get; set; }
-
         public RelayCommand DashboardViewCommand { get; set; }
 
         public RelayCommand SalesReportViewCommand { get; set; }
@@ -46,8 +44,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand ProductViewCommand { get; set; }
 
-        public HomeViewModel HomeVM { get; set; }
-
         public DashboardViewModel DashboardVM { get; set; }
 
         public SalesReportViewModel SalesReportVM { get; set; }
@@ -64,7 +60,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         //Product
         public ProductListViewModel ProductListVM { get; set; }
 
-
         public ProductAddViewModel ProductAddVM { get; set; }
 
         private object _currentView;
@@ -79,10 +74,59 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             }
         }
 
+        private bool dashboardIsSelected;
+        public bool DashboardIsSelected
+        {
+            get => dashboardIsSelected;
+            set
+            {
+                dashboardIsSelected = value;
+                OnPropertyChanged(nameof(DashboardIsSelected));
+            }
+        }
+        private bool productIsSelected;
+        public bool ProductIsSelected
+        {
+            get => productIsSelected;
+            set
+            {
+                productIsSelected = value;
+                OnPropertyChanged(nameof(ProductIsSelected));
+            }
+        }
+        private bool categoryIsSelected;
+        public bool CategoryIsSelected
+        {
+            get => categoryIsSelected;
+            set
+            {
+                categoryIsSelected = value;
+                OnPropertyChanged(nameof(CategoryIsSelected));
+            }
+        }
+        private bool orderIsSelected;
+        public bool OrderIsSelected
+        {
+            get => orderIsSelected;
+            set
+            {
+                orderIsSelected = value;
+                OnPropertyChanged(nameof(OrderIsSelected));
+            }
+        }
+        private bool salesReportIsSelected;
+        public bool SalesReportIsSelected
+        {
+            get => salesReportIsSelected;
+            set
+            {
+                salesReportIsSelected = value;
+                OnPropertyChanged(nameof(SalesReportIsSelected));
+            }
+        }
+
         public MainViewModel()
         {
-            HomeVM = new HomeViewModel();
-
             DashboardVM = new DashboardViewModel(this);
 
             SalesReportVM = new SalesReportViewModel();
@@ -94,11 +138,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             //Product
             ProductListVM = new ProductListViewModel(this);
 
-            //ProductAddVM = new ProductAddViewModel(this);
-
-            //ProductViewVM = new ProductViewModel(this);
-
             CurrentView = DashboardVM;
+
+            DashboardIsSelected = true;
+            ProductIsSelected = false; 
+            CategoryIsSelected = false;
+            OrderIsSelected = false;
+            SalesReportIsSelected = false;
 
             DragWindowCommand = new RelayCommand(o =>
             {
@@ -127,39 +173,41 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 Application.Current.Shutdown();
             });
 
-            HomeViewCommand = new RelayCommand(o =>
-            {
-                CurrentView = HomeVM;
-            });
-
             DashboardViewCommand = new RelayCommand(o =>
             {
                 CurrentView = DashboardVM;
+                DashboardIsSelected = true;
                 DashboardVM.CallData.Execute(null);
             });
 
             SalesReportViewCommand = new RelayCommand(o =>
             {
                 CurrentView = SalesReportVM;
+                SalesReportIsSelected = true;
+                SalesReportVM.CallData.Execute(null);
             });
             //Order
             OrderManagementViewCommand = new RelayCommand(o =>
             {
                 CurrentView = OrderManagementVM;
+                OrderIsSelected = true;
             });
             OrderAddBookViewCommand = new RelayCommand(o =>
             {
                 CurrentView = OrderAddBookVM;
+                OrderIsSelected = true;
             });
             //Category
             CategoryManagementViewCommand = new RelayCommand(o =>
             {
                 CurrentView = CategoryManagementVM;
+                CategoryIsSelected = true;
             });
             //Product
             ProductListViewCommand = new RelayCommand(o =>
             {
                 CurrentView = ProductListVM;
+                ProductIsSelected = true;
             });
 
             //ProductAddViewCommand = new RelayCommand(o =>

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:DashboardViewModel}"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
              d:DesignHeight="544" d:DesignWidth="776">
 
@@ -35,8 +36,9 @@
                                 <ColumnDefinition Width="6*" />
                             </Grid.ColumnDefinitions>
                             <Border Height="48" Width="48"
-                                Background="LightBlue"
+                                Background="#FF3A36DB"
                                 CornerRadius="100">
+                                <fa:ImageAwesome Icon="Book" Width="20" Height="20" Foreground="White"/>
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Data.numOfBooks}" d:Text="187"
@@ -60,8 +62,9 @@
                                 <ColumnDefinition Width="6*" />
                             </Grid.ColumnDefinitions>
                             <Border Height="48" Width="48"
-                                Background="LightBlue"
+                                Background="#FF3A36DB"
                                 CornerRadius="100">
+                                <fa:ImageAwesome Icon="ShoppingBasket" Width="20" Height="20" Foreground="White"/>
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding NumOrder}" d:Text="30"
@@ -104,8 +107,9 @@
                                 <ColumnDefinition Width="6*" />
                             </Grid.ColumnDefinitions>
                             <Border Height="48" Width="48"
-                                Background="LightBlue"
+                                Background="#FF3A36DB"
                                 CornerRadius="100">
+                                <fa:ImageAwesome Icon="BarChart" Width="20" Height="20" Foreground="White"/>
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <TextBlock Text="Sales Report" TextWrapping="Wrap" Padding="0 0 8 0"
@@ -118,7 +122,7 @@
                 <!--Top 5-->
                 <Border Background="White"
                         CornerRadius="12"
-                        Margin="16 32 16 16"
+                        Margin="16 32 16 0"
                         Padding="16">
                     <StackPanel>
                         <TextBlock Text="About To Runout"

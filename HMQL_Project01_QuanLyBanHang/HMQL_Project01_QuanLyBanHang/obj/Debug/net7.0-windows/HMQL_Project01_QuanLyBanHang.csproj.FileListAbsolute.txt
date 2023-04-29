@@ -119,6 +119,7 @@ D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Pro
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\Xceed.Wpf.AvalonDock.Themes.Metro.NET5.dll
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\Xceed.Wpf.AvalonDock.Themes.VS2010.NET5.dll
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\Xceed.Wpf.Toolkit.NET5.dll
+D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\FontAwesome.WPF.dll
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\LiveCharts.dll
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\LiveCharts.Wpf.dll
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
