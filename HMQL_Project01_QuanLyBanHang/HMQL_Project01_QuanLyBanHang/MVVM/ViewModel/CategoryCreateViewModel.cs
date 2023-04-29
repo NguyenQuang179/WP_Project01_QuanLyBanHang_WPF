@@ -51,30 +51,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public CategoryCreateViewModel(MainViewModel MainVM)
         {
-            //orders = new ListOfOrder();
-
-            //SelectedOrder = null;
-            //BookDetailVM = null;
-
-            //BookAddVM = new OrderCreateViewModel();
-
-
-            //List<Book> ListOfBook;
-            //OrderDetailViewCommand = new RelayCommand((param) =>
-            //{
-            //    string id = param.ToString();
-            //    MessageBox.Show("ID IS:" + id);
-            //    OrderDetailVM = new OrderDetailViewModel(id);
-            //    MessageBox.Show("No Selected Order");
-            //    if (OrderDetailVM != null)
-            //        MainVM.CurrentView = OrderDetailVM;
-
-            //});
+           
 
             ConfirmNewCategoryData = new RelayCommand(async o =>
             {
                 string name = CategoryName;
-                //MessageBox.Show(CategoryName);
+             
                 if (CategoryName != null)
                 {
                     try
@@ -84,7 +66,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         CategoryName newCategory = new CategoryName();
                         newCategory.name = categoryName;
                         var jsonSended = JsonConvert.SerializeObject(newCategory);
-                        //MessageBox.Show(jsonSended);
                         var content = new StringContent(jsonSended, Encoding.UTF8, "application/json");
                         // Send the request and get the response
                         var response = await client.PostAsync(uri, content);
@@ -120,11 +101,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
 
 
-            //OrderAddBookCreateViewCommand = new RelayCommand(o =>
-            //{
-            //    MainVM.OrderAddBookVM.IsAddBookForEditingOrder = true;
-            //    MainVM.OrderAddBookViewCommand.Execute(MainVM);
-            //});
+
             CancelCommand = new RelayCommand(o =>
             {
                 MainVM.CategoryManagementVM.CategoryCreateVM = null;
@@ -132,17 +109,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             });
 
 
-            CallOrderDetailData = new RelayCommand(async o =>
-            {
 
-            });
-
-            CallOrderDetailData.Execute(null);
-
-            UpdatePageDataCommand = new RelayCommand(async (o) =>
-            {
-
-            });
         }
     }
 }
