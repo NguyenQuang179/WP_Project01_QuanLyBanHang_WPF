@@ -4,243 +4,370 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.View"
-            
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:viewmodel="clr-namespace:HMQL_Project01_QuanLyBanHang.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CategoryManagementViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="1544" d:DesignWidth="776">
-
-
-
+             d:DesignHeight="544" d:DesignWidth="776">
+    
     <Grid>
-
         <Border Background="#FFF1F4FA"
                 CornerRadius="24"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel >
+            <StackPanel>
                 <TextBlock Text="Category Management"
                        FontSize="24" FontWeight="Bold" 
                        Margin="32 16 32 0"/>
-                <StackPanel Orientation="Horizontal">
-  
-                <Border Height="100"     
-                    HorizontalAlignment="Left"
-                    Background="White"
-                    CornerRadius="12"
-                    BorderThickness="1"
-                    BorderBrush="LightGray"
-                    Margin="16" Width="277">
-                    <DockPanel Margin="16">
-                        <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
-                            <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
+                <Border Background="White"
+                        Height="440"
+                        CornerRadius="12"
+                        BorderThickness="1"
+                        BorderBrush="LightGray"
+                        Margin="16">
+                    <Grid Margin="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="52"/>
+                        </Grid.RowDefinitions>
 
-                            <Rectangle Width="20" Height="20" Canvas.Left="18" Canvas.Top="18">
-                                <Rectangle.Fill>
-                                    <SolidColorBrush Color="#2FE5A7"/>
-                                </Rectangle.Fill>
-                                <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="../../Images/OrderManagementSVG/truck-solid.png"/>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                        </Canvas>
+                        <!--Search Bar & Combobox-->
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <TextBlock Text="Search:"
+                                           FontSize="16"
+                                           FontWeight="DemiBold"
+                                           Margin="0 0 0 8"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox  Width="200" Height="32" 
+                                              VerticalAlignment="Center"
+                                              VerticalContentAlignment="Center">
+                                        <TextBox.Style>
+                                            <Style TargetType="{x:Type TextBox}">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border CornerRadius="6"
+                                                            Background="Transparent"
+                                                            BorderBrush="Black"
+                                                            BorderThickness="1"
+                                                            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                                                                <Grid>
+                                                                    <Rectangle StrokeThickness="1"/>
+                                                                    <TextBox Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"
+                                                                             FontSize="12" Margin="8 0 8 0" 
+                                                                             BorderThickness="0" Background="Transparent"
+                                                                             VerticalContentAlignment="Center" Foreground="Black" x:Name="InputField">
+                                                                        <TextBox.InputBindings>
+                                                                            <KeyBinding Key="Return" Command="{Binding CallData}"/>
+                                                                        </TextBox.InputBindings>
+                                                                    </TextBox>
+                                                                    <!--Placeholder-->
+                                                                    <TextBlock IsHitTestVisible="False" Text="Search book title"
+                                                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                               Margin="10 0 8 0" FontSize="12" Foreground="DarkGray"
+                                                               Grid.Column="1">
+                                                                        <TextBlock.Style>
+                                                                            <Style TargetType="TextBlock">
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding Text, ElementName = InputField}" Value="">
+                                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                                            </Style>
+                                                                        </TextBlock.Style>
+                                                                    </TextBlock>
+                                                                </Grid>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                    <Border Height="32"
+                                            Width="32"
+                                            Background="#FF3A36DB"
+                                            CornerRadius="6"
+                                            Cursor="Hand"
+                                            Margin="8 0 0 0">
+                                        <Image Height="16" Width="16"
+                                               Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png"/>
+                                        <Border.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick" Command="{Binding CallData}"/>
+                                        </Border.InputBindings>
+                                    </Border>
+                                    <Border Height="32" Width="120"
+                                            Background="#FF3A36DB"
+                                            CornerRadius="6"
+                                            VerticalAlignment="Center"
+                                            Margin="16 0 0 0">
+                                        <TextBlock Text="Add New Category"
+                                                   Foreground="White"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                        <Border.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick"
+                                                Command="{Binding CategoryCreateViewCommand}"/>
+                                        </Border.InputBindings>
+                                    </Border>
+                                    <Border Height="32" Width="120"
+                                            Background="#FF3A36DB"
+                                            CornerRadius="6"
+                                            VerticalAlignment="Center"
+                                            Margin="16 0 0 0"
+                                            IsEnabled="False">
+                                        <TextBlock Text="Delete Category"
+                                                   Foreground="White"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
 
-                        <TextBlock Text="20+"
-                               FontSize="22" FontWeight="DemiBold"
-                               Margin="0 12 0 0" DockPanel.Dock="Top"/>
-                        <TextBlock Text="Đơn hàng trong 1 tháng"
-                               FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
-                               Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
-                    </DockPanel>
-                </Border>
+                        <!--Data AlternationCount="{Binding Data.listOfCategory.Count}">-->
+                        <DataGrid Grid.Row="1" x:Name="CategoryDataGrid"
+                                  Background="Transparent" GridLinesVisibility="None" 
+                                  AutoGenerateColumns="False" CanUserAddRows="False" SelectedItem="{Binding SelectedCategory}"
+                                  CanUserResizeColumns="False"  AlternationCount="2"
+                                  CanUserReorderColumns="False"
+                                  IsReadOnly="True"
+                                  ItemsSource="{Binding Data.listOfCategory}">
+                            <DataGrid.InputBindings>
+                                <MouseBinding MouseAction="LeftClick"
+                                          Command="{Binding CategoryDetailViewCommand}"
+                                          CommandParameter="{Binding SelectedItem._id, ElementName=CategoryDataGrid}"/>
+                            </DataGrid.InputBindings>
 
-                <Border Height="100"     
-                    HorizontalAlignment="Left"
-                    Background="White"
-                    CornerRadius="12"
-                    BorderThickness="1"
-                    BorderBrush="LightGray"
-                    Margin="16" Width="277">
-                    <DockPanel Margin="16">
-                        <Canvas Width="56" Height="56" DockPanel.Dock="Left" Margin="0 0 16 0">
-                            <Ellipse Width="56" Height="56" Fill="#4D2FE5A7"/>
-
-                            <Rectangle Width="20" Height="20" Canvas.Left="18" Canvas.Top="18">
-                                <Rectangle.Fill>
-                                    <SolidColorBrush Color="#2FE5A7"/>
-                                </Rectangle.Fill>
-                                <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="../../Images/OrderManagementSVG/truck-solid.png"/>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                        </Canvas>
-
-                        <TextBlock Text="20+"
-                               FontSize="22" FontWeight="DemiBold"
-                               Margin="0 12 0 0" DockPanel.Dock="Top"/>
-                        <TextBlock Text="Đơn hàng trong 1 tháng"
-                               FontSize="14" FontWeight="SemiBold" Foreground="#788B9A"
-                               Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
-                    </DockPanel>
-                </Border>
-
-
-                </StackPanel>
-
-                <WrapPanel  Margin=" 16 4 16 4">
-                    <!--Search Textbox-->
-                    <Grid Width="300" HorizontalAlignment="Left">
-                        <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False" />
-
-                        <TextBox Name="textBoxSearch"/>
-
-                        <Image Source="../../Images/OrderManagementSVG/truck-solid.png" Width="15" Height="15" 
-                               VerticalAlignment="Center" Margin="0 0 15 0" HorizontalAlignment="Right" />
-                    </Grid>
-                    <!--Filter by Status-->
-                    <!--SelectionChanged=""-->
-                    <!--Refresh Button-->
-                    <Border
-                        Background="#FFFFFF"
-                        CornerRadius="4">
-                        <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
-                        </Border.InputBindings>
-                        <TextBlock Text="Refresh" 
-                               FontSize="12" FontWeight="DemiBold" Foreground="#000000"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-
-                    <!--Sign In Button-->
-                    <Border
-                        Background="#FF3A36DB"
-                        CornerRadius="4">
-                        <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding LoginCommand}"/>
-                        </Border.InputBindings>
-                        <TextBlock Text="Add Order" 
-                               FontSize="12" FontWeight="DemiBold" Foreground="White"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-
-                </WrapPanel>
-
-
-                <Border Height="320"
-                    Background="White"
-                    CornerRadius="12"
-                    BorderThickness="1"
-                    BorderBrush="LightGray"
-                    Margin="16">
-
-                    <DataGrid Grid.Row="10" FontSize="12" FontWeight="SemiBold" 
-                              HorizontalAlignment="Center" Margin="0 10 0 0" BorderThickness="0" AlternatingRowBackground="#788B9A">
-                        <DataGrid.CellStyle>
-                            <Style TargetType="{x:Type DataGridCell}">
-                                <Setter Property="Background" Value="#F1F1F1" />
-                                <Setter Property="BorderBrush" Value="#E0E0E0" />
-                                <Setter Property="BorderThickness" Value="1" />
-                                <Setter Property="Padding" Value="5" />
-                            </Style>
-                        </DataGrid.CellStyle>
-
-
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Order ID" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Customer" IsReadOnly="True" CanUserResize="False" Width="*"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Delivery Date" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Payment Type" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
-                            <DataGridTemplateColumn Header ="Status" IsReadOnly="True" CanUserResize="False" Width="auto">
-                                <DataGridTemplateColumn.CellTemplate >
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Border Width="50" Height="25" CornerRadius="4" Margin="0 0 10 0" Background="Blue">
-                                                <TextBlock Text="In Progress" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Items Ordered" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Total Amount" IsReadOnly="True" CanUserResize="False" Width="auto"></DataGridTextColumn>
-                            <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button>
-                                                <Image Source="../../Images/OrderManagementSVG/truck-solid.png" Width="15" Height="15" 
-                                        VerticalAlignment="Center" Margin="0 0 15 0" HorizontalAlignment="Right" />
-                                            </Button>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-
-
-                        <DataGrid ItemsSource="{Binding orders}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Order ID" Binding="{Binding OrderId}" />
-                                <DataGridTextColumn Header="Customer" Binding="{Binding Customer}" />
-                                <DataGridTextColumn Header="Delivery Date" Binding="{Binding DeliveryDate}" />
-                                <DataGridTextColumn Header="Payment Type" Binding="{Binding PaymentType}" />
-                                <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
-                                <DataGridTextColumn Header="Items Ordered" Binding="{Binding ItemsOrdered}" />
-                                <DataGridTextColumn Header="Total Amount" Binding="{Binding TotalAmount}" />
+                                <!--<DataGridTextColumn Header="Index" 
+                                                    Width="44"
+                                                    Binding="{Binding AlternationIndex, RelativeSource={RelativeSource AncestorType=DataGridRow}}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
 
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="10" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>-->
+                                <DataGridTextColumn Header="Category ID"
+                                                    Binding="{Binding _id}"
+                                                    Width="3*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="10" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Category Name" 
+                                                    Binding="{Binding name}"
+                                                    Width="3*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="10" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Number Of Books" 
+                                                    Binding="{Binding listOfBook.Count}"
+                                                    Width="3*">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="12" />
+                                            <Setter Property="FontWeight" Value="SemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="0 10 0 10"/>
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                            <Setter Property="FontSize" Value="10" />
+
+                                            <Setter Property="FontWeight" Value="DemiBold" />
+
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
                             </DataGrid.Columns>
-                            <DataGrid.RowDetailsTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding OrderDetails}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGrid.RowDetailsTemplate>
-                            <DataGrid.RowHeaderTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="+" Margin="0 0 4 0" />
-                                </DataTemplate>
-                            </DataGrid.RowHeaderTemplate>
                             <DataGrid.RowStyle>
-                                <Style TargetType="DataGridRow">
-                                    <Setter Property="Background" Value="White" />
+                                <Style TargetType="{x:Type DataGridRow}">
+
                                     <Style.Triggers>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="#FFF1F4FA" />
+
+                                        <Trigger Property="AlternationIndex" Value="1">
+                                            <Setter Property="Background" Value="#F1F4FA"/>
+
                                         </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#000000"/>
+
+                                        </Trigger>
+
+                                        <Trigger Property="IsSelected" Value="True">
+
+                                            <Setter Property="Background" Value="#2E29ED"/>
+                                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                                        </Trigger>
+
+
                                     </Style.Triggers>
+
+                                    <Setter Property="Foreground" Value="#788B9A"/>
                                 </Style>
                             </DataGrid.RowStyle>
-
                         </DataGrid>
 
-                    </DataGrid
-                              >
+                        <!--Paging-->
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <!--Row Per Page-->
+                            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                <TextBlock Text="Rows Per Page:"
+                                           FontSize="12" FontWeight="DemiBold"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 8 0"/>
+                                <TextBox Height="32" Width="56"
+                                         FontWeight="DemiBold"
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center"
+                                         Cursor="Hand">
+                                    <TextBox.Style>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type TextBox}">
+                                                        <Border CornerRadius="6"
+                                                            Background="Transparent"
+                                                            BorderBrush="Black"
+                                                            BorderThickness="1"
+                                                            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                                                            <Grid>
+                                                                <Rectangle StrokeThickness="1"/>
+                                                                <TextBox Text="{Binding RowPerPage, UpdateSourceTrigger=PropertyChanged}"
+                                                                         FontSize="12"
+                                                                         BorderThickness="0" Background="Transparent"
+                                                                         VerticalContentAlignment="Center"
+                                                                         HorizontalContentAlignment="Center"
+                                                                         Foreground="Black" x:Name="InputField">
+                                                                    <TextBox.InputBindings>
+                                                                        <KeyBinding Key="Return" Command="{Binding CallData}"/>
+                                                                    </TextBox.InputBindings>
+                                                                </TextBox>
+                                                            </Grid>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </StackPanel>
+                            <!--Paging Button-->
+                            <StackPanel Grid.Column="1"
+                                        Orientation="Horizontal"
+                                        Height="32"
+                                        HorizontalAlignment="Center">
+                                <Border Width="56"
+                                    Background="#FF3A36DB"
+                                    CornerRadius="4"
+                                    Margin="0 0 8 0">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding PrevPageCommand}"/>
+                                    </Border.InputBindings>
+                                    <TextBlock Text="Prev"
+                                           FontWeight="DemiBold"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                                </Border>
+                                <ComboBox Width="52" Margin="0 0 8 0"
+                                      ItemsSource="{Binding ListPages, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedIndex="{Binding ListPagesSelectedIndex, UpdateSourceTrigger=PropertyChanged}"
+                                      VerticalContentAlignment="Center"
+                                      HorizontalContentAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectedIndexChanged">
+                                            <i:InvokeCommandAction Command="{Binding PageComboboxChangeCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
+                                <TextBlock FontWeight="DemiBold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left">
+                                <Run Text="/"/>
+                                <Run Text="{Binding TotalPage}"/>
+                                </TextBlock>
+                                <Border Width="56"
+                                    Background="#FF3A36DB"
+                                    CornerRadius="4"
+                                    Margin="8 0 0 0">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding NextPageCommand}"/>
+                                    </Border.InputBindings>
+                                    <TextBlock Text="Next"
+                                           FontWeight="DemiBold"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                                </Border>
+                            </StackPanel>
+                            <!--Total Book Info-->
+                            <TextBlock Grid.Column="2"
+                                       FontSize="12" FontWeight="DemiBold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right"
+                                       Margin="0 0 16 0">
+                                <Run Text="Total Category:"/>
+                                <Run Text="{Binding TotalCategory}"/>
+                            </TextBlock>
+                        </Grid>
+                    </Grid>
                 </Border>
-
-
-                <DockPanel>
-                    <TextBlock x:Name="infoTextBlock" Text="1-10 of 100 pages." VerticalAlignment="Center"
-                           DockPanel.Dock="Left"
-                       FontSize="16" FontWeight="SemiBold" 
-                       Margin="16 0 0 0"/>
-                    <WrapPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Margin=" 4 4 16 4">
-                        <TextBlock Text="Current Page"
-                       FontSize="20" FontWeight="SemiBold" 
-                       Margin="0 0 8 0"/>
-                        <!--SelectionChanged=""-->
-                        <ComboBox  
-                      x:Name="currentPageComboBox" 
-                      Width="50">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock><Run Text="{Binding Item1, Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding Item2, Mode=OneWay}"/></TextBlock>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </WrapPanel>
-                </DockPanel>
-
-
             </StackPanel>
-
         </ScrollViewer>
     </Grid>
 </UserControl>

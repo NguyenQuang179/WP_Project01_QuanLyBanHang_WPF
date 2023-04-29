@@ -26,6 +26,9 @@
                         CornerRadius="12"
                         Margin="0 0 32 0"
                         BorderBrush="LightGray" BorderThickness="1">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding ProductViewCommand}" />
+                        </Border.InputBindings>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="4*" />
@@ -38,7 +41,7 @@
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Data.numOfBooks}" d:Text="187"
                                        Foreground="Black" FontSize="16" FontWeight="Bold" />
-                                <TextBlock Text="Sản Phẩm"
+                                <TextBlock Text="Total Books"
                                        Foreground="#CC000000" FontSize="12" FontWeight="Medium" />
                             </StackPanel>
                         </Grid>
@@ -49,7 +52,7 @@
                         Margin="0 0 32 0"
                         BorderBrush="LightGray" BorderThickness="1">
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding OrderCardClickCommand}" />
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding CategoryViewCommand}" />
                         </Border.InputBindings>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -63,7 +66,7 @@
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding NumOrder}" d:Text="30"
                                        Foreground="Black" FontSize="16" FontWeight="Bold" />
-                                <TextBlock Text="Đơn hàng mới"
+                                <TextBlock Text="Orders In This"
                                        Foreground="#CC000000" FontSize="12" FontWeight="Medium" />
                                 <ComboBox Margin="0 0 32 0">
                                     <ComboBox.Resources>
@@ -72,12 +75,12 @@
                                             <Setter Property="BorderBrush" Value="Transparent" />
                                         </Style>
                                     </ComboBox.Resources>
-                                    <ComboBoxItem Content="Tuần" IsSelected="{Binding WeekOrderIsSelected}">
+                                    <ComboBoxItem Content="Week" IsSelected="{Binding WeekOrderIsSelected}">
                                         <ComboBoxItem.InputBindings>
                                             <MouseBinding MouseAction="LeftClick" Command="{Binding ChooseWeek}" />
                                         </ComboBoxItem.InputBindings>
                                     </ComboBoxItem>
-                                    <ComboBoxItem Content="Tháng" IsSelected="{Binding MonthOrderIsSelected}">
+                                    <ComboBoxItem Content="Month" IsSelected="{Binding MonthOrderIsSelected}">
                                         <ComboBoxItem.InputBindings>
                                             <MouseBinding MouseAction="LeftClick" Command="{Binding ChooseMonth}" />
                                         </ComboBoxItem.InputBindings>
@@ -105,7 +108,7 @@
                                 CornerRadius="100">
                             </Border>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <TextBlock Text="Báo Cáo Thống Kê" TextWrapping="Wrap" Padding="0 0 8 0"
+                                <TextBlock Text="Sales Report" TextWrapping="Wrap" Padding="0 0 8 0"
                                        Foreground="Black" FontSize="16" FontWeight="Bold" />
                             </StackPanel>
                         </Grid>
@@ -169,11 +172,11 @@
                                             <Grid Width="700"
                                               Margin="0 0 0 -2"
                                               Background="Transparent">
-                                                <Grid.InputBindings>
+                                                <!--<Grid.InputBindings>
                                                     <MouseBinding MouseAction="LeftClick"
                                                               Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=DataContext.ItemClickCommand}"
                                                               CommandParameter="{Binding _id}" />
-                                                </Grid.InputBindings>
+                                                </Grid.InputBindings>-->
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="3*" />
                                                     <ColumnDefinition Width="3*" />
