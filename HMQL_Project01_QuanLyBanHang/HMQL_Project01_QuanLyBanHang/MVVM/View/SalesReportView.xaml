@@ -22,7 +22,7 @@
 
                        Margin="32 16 32 16"/>
                 <!--Column Chart-->
-
+                <Border Height="420"
                     Background="White"
                     CornerRadius="12"
                     BorderThickness="1"

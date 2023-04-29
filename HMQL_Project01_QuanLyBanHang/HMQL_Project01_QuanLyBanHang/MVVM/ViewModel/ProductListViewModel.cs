@@ -88,7 +88,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             });
             CallDataCommand.Execute(null);
 
-            UpdateDataListCommand = new RelayCommand(o =>
+            UpdateDataListCommand = new RelayCommand(async o =>
             {
                 var uri = new Uri($"{ConnectionString.connectionString}/book/?name={SearchValue}");
 

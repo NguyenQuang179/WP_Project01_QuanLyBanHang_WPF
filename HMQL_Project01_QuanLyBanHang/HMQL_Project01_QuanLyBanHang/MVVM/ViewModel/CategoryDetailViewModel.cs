@@ -50,7 +50,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public RelayCommand CancelCommand { get; set; }
         public RelayCommand UpdatePageDataCommand { get; set; }
 
-        public CategoryDetailViewModel(MainViewModel MainVM, String OrderID)
+        public CategoryDetailViewModel(MainViewModel MainVM, String CategoryID)
         {
             //orders = new ListOfOrder();
 
@@ -76,52 +76,44 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 string name = CategoryName;
                 MessageBox.Show(CategoryName);
-
-                ////Update Order Detail API
-                //MessageBox.Show(CategoryD.listOfBook.Count.ToString());
-                //NewListOfBook newListOfBook = new NewListOfBook();
-                //foreach (var bookInfo in CategoryD.listOfBook)
-                //{
-                //    newListOfBook.listOfBook.Add(new BookInOrder(bookInfo.book._id));
-                //}
-                //MessageBox.Show(newListOfBook.listOfBook.Count.ToString());
-
-
-                //try
-                //{
-                //    var uri = new Uri($"{ConnectionString.connectionString}/order/update/{CategoryD._id}");
-                //    var client = new HttpClient();
-                //    var jsonSended = JsonConvert.SerializeObject(newListOfBook);
-                //    MessageBox.Show(jsonSended);
-                //    var content = new StringContent(jsonSended, Encoding.UTF8, "application/json");
-                //    // Send the request and get the response
-                //    var response = await client.PutAsync(uri, content);
-                //    // Check if the upload was successful
-                //    if (response.IsSuccessStatusCode)
-                //    {
-                //        // Handle the successful upload
-                //        var json = await response.Content.ReadAsStringAsync();
-
-                //        MessageBox.Show(json);
-                //        MainVM.OrderManagementVM.OrderDetailVM = null;
-                //        MainVM.OrderManagementVM.UpdatePageDataCommand.Execute(null);
-                //        MainVM.OrderManagementVM.TotalOrder++;
-                //        MainVM.CurrentView = MainVM.OrderManagementVM;
-                //    }
-                //    else
-                //    {
-                //        // Handle the failed upload
-                //        var json = await response.Content.ReadAsStringAsync();
-                //        MessageBox.Show(json);
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show(ex.Message);
-                //}
-                //Bỏ cái này vô sau khi chạy API thành công
-                MainVM.CategoryManagementVM.CallData.Execute(null);
-                MainVM.CurrentView = MainVM.CategoryManagementVM;
+                if (categoryName != null)
+                {
+                    try
+                    {
+                        var uri = new Uri($"{ConnectionString.connectionString}/category/update/{CategoryID}");
+                        var client = new HttpClient();
+                        CategoryName newCategory = new CategoryName();
+                        newCategory.name = categoryName;
+                        var jsonSended = JsonConvert.SerializeObject(newCategory);
+                        MessageBox.Show(jsonSended);
+                        var content = new StringContent(jsonSended, Encoding.UTF8, "application/json");
+                        // Send the request and get the response
+                        var response = await client.PutAsync(uri, content);
+                        // Check if the upload was successful
+                        if (response.IsSuccessStatusCode)
+                        {
+                            // Handle the successful upload
+                            var json = await response.Content.ReadAsStringAsync();
+                            MessageBox.Show(json);
+                        }
+                        else
+                        {
+                            // Handle the failed upload
+                            var json = await response.Content.ReadAsStringAsync();
+                            MessageBox.Show(json);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    MainVM.CategoryManagementVM.CallData.Execute(null);
+                    MainVM.CurrentView = MainVM.CategoryManagementVM;
+                }
+                else
+                {
+                    MessageBox.Show("Bạn phải nhập tên thể loại mới!");
+                }
             });
 
             DeleteBookDetailData = new RelayCommand((param) =>
@@ -158,7 +150,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 MainVM.OrderAddBookVM.IsAddBookForEditingOrder = true;
                 MainVM.OrderAddBookViewCommand.Execute(MainVM);
             });
-            CancelCommand = new RelayCommand(o => {
+            CancelCommand = new RelayCommand(o =>
+            {
                 MainVM.CategoryManagementVM.CategoryDetailVM = null;
                 MainVM.CurrentView = MainVM.CategoryManagementVM;
             });
@@ -166,7 +159,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             CallOrderDetailData = new RelayCommand(async o =>
             {
-                var uri = new Uri($"{ConnectionString.connectionString}/category/showbook/" + OrderID);
+                var uri = new Uri($"{ConnectionString.connectionString}/category/showbook/" + CategoryID);
                 //add count for page
                 try
                 {
@@ -179,7 +172,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         var json = await response.Content.ReadAsStringAsync();
                         CategoryD = JsonConvert.DeserializeObject<ListBookCategory>(json);
-                        if(CategoryD.listOfBook.Count > 0)
+                        if (CategoryD.listOfBook.Count > 0)
                             CategoryName = CategoryD.listOfBook[0].category.name;
                         //Process Price
                         //for (int i = 0; i < CategoryD.listOfBook.Count; i++)
@@ -201,7 +194,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             UpdatePageDataCommand = new RelayCommand(async (o) =>
             {
-                var uri = new Uri($"{ConnectionString.connectionString}/order//order/detail/" + OrderID);
+                var uri = new Uri($"{ConnectionString.connectionString}/order//order/detail/" + CategoryID);
                 //int starIndex = (CurPage - 1) * RowPerPage;
                 //if (CurPage < TotalPage)
                 //{

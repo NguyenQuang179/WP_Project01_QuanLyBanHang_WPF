@@ -121,7 +121,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public CategoryDetailViewModel CategoryDetailVM { get; set; }
         public CategoryCreateViewModel CategoryCreateVM { get; set; }
 
-        public CategoryManagementViewModel(MainViewModel MainVM) {
+        public CategoryManagementViewModel(MainViewModel MainVM)
+        {
             CurPage = 1;
             TotalPage = 1;
             ListPagesSelectedIndex = CurPage - 1;
@@ -151,12 +152,37 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             DeleteDataCommand = new RelayCommand(async (param) =>
             {
                 string categoryID = param as string;
-                MessageBox.Show(categoryID);
                 //Delete Chosen Category, nhớ check null cho categoryID
+                if (categoryID == null)
+                {
+                    //show error
+                    MessageBox.Show("Invalid Order ID");
+                    return;
+                }
+                // Find the index of the book to remove
 
+                else
+                {
+                    // Remove the category from curList
+                    using var client = new HttpClient();
+                    var uri = new Uri($"{ConnectionString.connectionString}/category/delete/{categoryID}");
+                    var response = await client.DeleteAsync(uri);
+
+                    // Check if the upload was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show(json);
+                        //MessageBox.Show($"{Orders.listOfOrder.Count} {newdate}");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Fail To Delete Order");
+                    }
+                }
                 //Bỏ cái này vô sau khi chạy API thành công
                 CallData.Execute(null);
-              
+
             });
 
             //DeleteDataCommand = new RelayCommand(async (param) =>
@@ -226,9 +252,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         }
                         ListPages = pages;
                     }
-                    else 
-                    { 
-                        MessageBox.Show($"Fail To Call Data"); 
+                    else
+                    {
+                        MessageBox.Show($"Fail To Call Data");
                     }
                 }
                 catch (Exception ex)

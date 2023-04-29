@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.Model
 {
+    class CategoryName
+    {
+        public string name { get; set; }
+    }
     class Category
     {
         public string _id { get; set; }
