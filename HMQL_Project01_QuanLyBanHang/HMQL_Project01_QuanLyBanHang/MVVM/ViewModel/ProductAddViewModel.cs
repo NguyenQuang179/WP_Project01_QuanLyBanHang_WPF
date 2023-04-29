@@ -12,14 +12,15 @@ using System.Net.Http;
 using System.IO;
 using System.Security.Policy;
 using Microsoft.Win32;
+using System.Windows.Media.Imaging;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
     internal class ProductAddViewModel : ObservableObject
     {
-        private string _imagePath;
+        private BitmapImage _imagePath;
 
-        public string ImagePath
+        public BitmapImage ImagePath
         {
             get { return _imagePath; }
             set
@@ -107,6 +108,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand BrowseImageCommand { get; set; }
 
+        public string Image_path = "";
+
         private static string SelectImage()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -120,7 +123,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             return ImagePath;
         }
 
-        public ProductAddViewModel(MainViewModel mainVM)
+        public ProductAddViewModel(MainViewModel mainVM, ProductListViewModel productlistVM)
         {
             BackCommand = new RelayCommand(o =>
             {
@@ -129,7 +132,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             BrowseImageCommand = new RelayCommand(o =>
             {
-                ImagePath = SelectImage();
+                Image_path = SelectImage();
+                //MessageBox.Show(Image_path);
+                ImagePath = new BitmapImage(new Uri(Image_path));
             });
 
             AddBookToAPICommand = new RelayCommand(async o =>
@@ -141,6 +146,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     var client = new HttpClient();
                     var formData = new MultipartFormDataContent();
+
+                    var fileStream = new FileStream(Image_path, FileMode.Open, FileAccess.Read);
+                    var fileName = System.IO.Path.GetFileName(Image_path);
+                    formData.Add(new StreamContent(fileStream), "file", fileName);
+
                     formData.Add(new StringContent(BookName), "name");
                     formData.Add(new StringContent(Author), "author");
                     formData.Add(new StringContent(Category), "category_Name");
@@ -154,18 +164,21 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         // Handle the successful upload
                         var json = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show(json);
+                        MessageBox.Show($"Success {json}");
                     }
                     else
                     {
                         // Handle the failed upload
                         var json = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show(json);
+                        MessageBox.Show($"Failed {json}");
                     }
+
+                    productlistVM.CallDataCommand.Execute(null);
+                    mainVM.ProductListViewCommand.Execute(null);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show($"Exceptions {ex.Message}");
                 }
             });
         }

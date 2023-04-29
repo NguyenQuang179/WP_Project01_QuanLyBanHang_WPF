@@ -193,6 +193,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public BitmapImage bitmapImage { get; set; }
 
+        public string Image_path = "";
+
         private static string SelectImage()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -229,7 +231,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             BrowseImageCommand = new RelayCommand(o =>
             {
-                ImagePath = new BitmapImage(new Uri(SelectImage()));
+                Image_path = SelectImage();
+                //MessageBox.Show(Image_path);
+                ImagePath = new BitmapImage(new Uri(Image_path));
             });
 
             EditBookCommand = new RelayCommand(o =>
@@ -259,6 +263,11 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     var client = new HttpClient();
                     var formData = new MultipartFormDataContent();
+
+                    var fileStream = new FileStream(Image_path, FileMode.Open, FileAccess.Read);
+                    var fileName = System.IO.Path.GetFileName(Image_path);
+                    formData.Add(new StreamContent(fileStream), "file", fileName);
+
                     formData.Add(new StringContent(BookName), "name");
                     formData.Add(new StringContent(Author), "author");
                     formData.Add(new StringContent(Category), "category_Name");
