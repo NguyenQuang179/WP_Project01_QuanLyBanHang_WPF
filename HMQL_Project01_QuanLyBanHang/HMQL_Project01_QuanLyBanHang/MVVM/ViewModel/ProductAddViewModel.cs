@@ -147,9 +147,12 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     var client = new HttpClient();
                     var formData = new MultipartFormDataContent();
 
-                    var fileStream = new FileStream(Image_path, FileMode.Open, FileAccess.Read);
-                    var fileName = System.IO.Path.GetFileName(Image_path);
-                    formData.Add(new StreamContent(fileStream), "file", fileName);
+                    if (Image_path != null)
+                    {
+                        var fileStream = new FileStream(Image_path, FileMode.Open, FileAccess.Read);
+                        var fileName = System.IO.Path.GetFileName(Image_path);
+                        formData.Add(new StreamContent(fileStream), "file", fileName);
+                    }
 
                     formData.Add(new StringContent(BookName), "name");
                     formData.Add(new StringContent(Author), "author");

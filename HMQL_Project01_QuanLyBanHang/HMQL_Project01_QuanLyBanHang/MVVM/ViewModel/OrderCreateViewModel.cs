@@ -15,6 +15,7 @@ using System.Windows.Controls;
 using HMQL_Project01_QuanLyBanHang.MVVM.View;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Net.Mail;
 
 namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 {
@@ -54,6 +55,17 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 OnPropertyChanged(nameof(TotalPrice));
             }
         }
+
+        private long bookQuantity;
+        public long BookQuantity
+        {
+            get { return bookQuantity; }
+            set
+            {
+                bookQuantity = value;
+                OnPropertyChanged(nameof(bookQuantity));
+            }
+        }
         public RelayCommand CancelCommand { get; set; }
 
         public RelayCommand CallOrderDetailData { get; set; }
@@ -61,27 +73,19 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand ConfirmOrderDetailData { get; set; }
         public RelayCommand DeleteBookDetailData { get; set; }
+
         public OrderCreateViewModel(MainViewModel MainVM)
         {
-            //orders = new ListOfOrder();
+            void UpdateBookQuantityCommand(List<BookInOrderForDetails> curList)
+            {
 
-            //SelectedOrder = null;
-            //BookDetailVM = null;
-
-            //BookAddVM = new OrderCreateViewModel();
-
-
-            //List<Book> ListOfBook;
-            //OrderDetailViewCommand = new RelayCommand((param) =>
-            //{
-            //    string id = param.ToString();
-            //    MessageBox.Show("ID IS:" + id);
-            //    OrderDetailVM = new OrderDetailViewModel(id);
-            //    MessageBox.Show("No Selected Order");
-            //    if (OrderDetailVM != null)
-            //        MainVM.CurrentView = OrderDetailVM;
-
-            //});
+                int count = 0;
+                foreach(var books in curList)
+                {
+                    count += books.quantity;
+                }
+                BookQuantity = count;
+            }
 
             ConfirmOrderDetailData = new RelayCommand(async o =>
             {
@@ -158,6 +162,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     // Remove the book from curList
                     TotalPrice = TotalPrice - (curList[indexToRemove].quantity * curList[indexToRemove].book.price);
                     curList.RemoveAt(indexToRemove);
+                    UpdateBookQuantityCommand(curList);
                     MessageBox.Show("Book has been Deleted, Please Refresh");
 
                 }

@@ -118,6 +118,16 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             }
         }
 
+        private long bookQuantity;
+        public long BookQuantity
+        {
+            get { return bookQuantity; }
+            set
+            {
+                bookQuantity = value;
+                OnPropertyChanged(nameof(bookQuantity));
+            }
+        }
         public RelayCommand CallOrderDetailData { get; set; }
         public RelayCommand OrderAddBookCreateViewCommand { get; set; }
 
@@ -128,7 +138,18 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public RelayCommand UpdatePageDataCommand { get; set; }
 
         public OrderDetailViewModel(MainViewModel MainVM, String OrderID)
-        { 
+        {
+
+            void UpdateBookQuantityCommand(List<BookInOrderForDetails> curList)
+            {
+
+                int count = 0;
+                foreach (var books in curList)
+                {
+                    count += books.quantity;
+                }
+                BookQuantity = count;
+            }
 
             ConfirmOrderDetailData = new RelayCommand(async o =>
             {
@@ -194,6 +215,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     TotalPrice = TotalPrice - (curList[indexToRemove].quantity * curList[indexToRemove].book.price);
                    // Remove the book from curList
                    curList.RemoveAt(indexToRemove);
+                    UpdateBookQuantityCommand(curList);
                     MessageBox.Show("Book has been Deleted, Please Refresh");
                    
                 }
@@ -236,6 +258,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             newdate = datetime.ToString("dd/MM/y");
                             DeliDate = newdate;
                             TotalPrice = OrderD.order.totalPrice;
+                            UpdateBookQuantityCommand(OrderD.order.listOfBook);
 
                         }
                         else { MessageBox.Show($"Fail To Call Data"); }
@@ -263,9 +286,9 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         var json = await response.Content.ReadAsStringAsync();
                         OrderD = JsonConvert.DeserializeObject<OrderDetails>(json);
-                        
+                        UpdateBookQuantityCommand(OrderD.order.listOfBook);
 
-                   
+
                     }
                     else { MessageBox.Show($"Fail To Call Data"); }
                 }
