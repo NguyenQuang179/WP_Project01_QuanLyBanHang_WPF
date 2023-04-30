@@ -245,19 +245,6 @@
 
                                     <DataGridTextColumn Header="Stock" Binding="{Binding stock}" Width="*" CanUserResize="False" IsReadOnly="True">
                                     </DataGridTextColumn>
-
-                                    <DataGridTemplateColumn Header="" IsReadOnly="True" Width="Auto">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Button Width="20" Height="20" HorizontalAlignment="Center">
-                                                        <Image Source="../../Images/OrderManagementSVG/trash-can-solid.png" Width="10" Height="10"
-                                        VerticalAlignment="Center" Margin="0 0 0 0" HorizontalAlignment="Center" />
-                                                    </Button>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
 
                                 <DataGrid.CellStyle>
@@ -334,6 +321,7 @@
                                         <TextBox
                                     Grid.Column="1"
                                     Name = "price_from_TextBox"
+                                    MaxLength="6"
                                     Text="{Binding PriceFrom}"
                                     HorizontalAlignment="Right"
                                     Margin="5 0 5 0"
@@ -358,6 +346,7 @@
                                         <TextBox
                                     Grid.Column="1"
                                     Name = "price_to_TextBox"
+                                    MaxLength="6"
                                     Text="{Binding PriceTo}"
                                     HorizontalAlignment="Right"
                                     Margin="5 0 5 0"
