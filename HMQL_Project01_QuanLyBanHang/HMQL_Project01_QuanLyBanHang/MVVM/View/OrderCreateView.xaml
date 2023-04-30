@@ -54,22 +54,9 @@
 
                         </DockPanel>
                     </Border>
-                    <WrapPanel  Margin=" 16 4 16 4" HorizontalAlignment="Stretch">
+                    <WrapPanel  Margin=" 16 4 16 4" HorizontalAlignment="Right">
                         <!--Search Textbox-->
-                        <Border>
-                            <Border.Effect>
-                                <DropShadowEffect Opacity="0.3" Direction="300" />
-                            </Border.Effect>
-
-                            <Grid Width="300" HorizontalAlignment="Left" Margin=" 0 0 0 0">
-                                <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False" />
-
-                                <TextBox Name="textBoxSearch"/>
-
-                                <Image Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png" Width="15" Height="15" 
-                               VerticalAlignment="Center" Margin="0 0 15 0" HorizontalAlignment="Right" />
-                            </Grid>
-                        </Border>
+                       
                         <!--Filter by Status-->
                         <!--SelectionChanged=""-->
                         <Border>

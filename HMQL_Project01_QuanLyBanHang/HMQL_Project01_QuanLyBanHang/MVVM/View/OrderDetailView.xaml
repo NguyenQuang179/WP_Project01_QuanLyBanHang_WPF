@@ -59,29 +59,8 @@
                         </DockPanel>
                     </Border>
 
-                    <WrapPanel  Margin=" 16 4 16 4" HorizontalAlignment="Stretch">
-                        <!--Search Textbox-->
-                        <Border>
-                            <Border.Effect>
-                                <DropShadowEffect Opacity="0.3" Direction="300" />
-                            </Border.Effect>
-
-                            <Grid Width="300" HorizontalAlignment="Left" Margin=" 0 0 0 0">
-                                <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False" />
-
-                                <TextBox Name="textBoxSearch"/>
-
-                                <Image Source="../../Images/OrderManagementSVG/magnifying-glass-solid.png" Width="15" Height="15" 
-                               VerticalAlignment="Center" Margin="0 0 15 0" HorizontalAlignment="Right" />
-                            </Grid>
-                        </Border>
-                        <!--Filter by Status-->
-                        <!--SelectionChanged=""-->
-                        <Border>
-                            <Border.Effect>
-                                <DropShadowEffect  Opacity="0.3" Direction="300"  />
-                            </Border.Effect>
-                        </Border>
+                    <WrapPanel  Margin=" 16 4 16 4" HorizontalAlignment="Right">
+                        
 
                         <!--Delete Selected Order Button-->
                         <Border
@@ -238,28 +217,7 @@
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-                                <!--<DataGridTextColumn Header="Total Price" Binding="{Binding totalPrice}" 
-                                                IsReadOnly="True" CanUserResize="False"
-                                                Width="1*">
-                                    <DataGridTextColumn.HeaderStyle>
-                                        <Style TargetType="DataGridColumnHeader">
-                                            <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                            <Setter Property="FontSize" Value="12" />
-                                            <Setter Property="FontWeight" Value="SemiBold" />
-
-                                        </Style>
-                                    </DataGridTextColumn.HeaderStyle>
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Margin" Value="0 10 0 10"/>
-                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                            <Setter Property="FontSize" Value="10" />
-
-                                            <Setter Property="FontWeight" Value="DemiBold" />
-                                           
-                                        </Style>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>-->
+                     
 
                                
                             </DataGrid.Columns>
@@ -296,27 +254,7 @@
                     </Border>
 
 
-                    <!--<DockPanel>
-                        <TextBlock x:Name="infoTextBlock" Text="1-10 of 100 pages." VerticalAlignment="Center"
-                           DockPanel.Dock="Left"
-                       FontSize="16" FontWeight="SemiBold" 
-                       Margin="16 0 0 0"/>
-                        <WrapPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Margin=" 4 4 16 4">
-                            <TextBlock Text="Current Page"
-                       FontSize="20" FontWeight="SemiBold" 
-                       Margin="0 0 8 0"/>
-                            --><!--SelectionChanged=""--><!--
-                            <ComboBox  
-                      x:Name="currentPageComboBox" 
-                      Width="50">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock><Run Text="{Binding Item1, Mode=OneWay}"/><Run Text=" / "/><Run Text="{Binding Item2, Mode=OneWay}"/></TextBlock>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                        </WrapPanel>
-                    </DockPanel>-->
+
 
 
                 </StackPanel>
