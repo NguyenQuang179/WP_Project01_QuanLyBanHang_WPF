@@ -180,8 +180,6 @@ D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Pro
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\SalesReportView.baml
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\MVVM\View\SignUpView.baml
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.g.resources
-D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.Properties.Resources.resources
-D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.csproj.GenerateResource.cache
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.GeneratedMSBuildEditorConfig.editorconfig
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.AssemblyInfoInputs.cache
 D:\Study\3rd Year\HK2\Windows\Project_01\WP_Project01_QuanLyBanHang_WPF\HMQL_Project01_QuanLyBanHang\HMQL_Project01_QuanLyBanHang\obj\Debug\net7.0-windows\HMQL_Project01_QuanLyBanHang.AssemblyInfo.cs
