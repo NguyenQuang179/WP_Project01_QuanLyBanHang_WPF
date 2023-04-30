@@ -259,6 +259,10 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             CurPageData = new List<Book>();
             Data = new ProductListDataModel();
             RowPerPage = "10";
+            SearchValue = "";
+            PriceFrom = "";
+            PriceTo = "";
+
             CallDataCommand = new RelayCommand(async o =>
             {
                 var uri = new Uri($"{ConnectionString.connectionString}/book/search");
@@ -437,12 +441,16 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     if (response.IsSuccessStatusCode)
                     {
                         var json = await response.Content.ReadAsStringAsync();
+
                         Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
                         // Handle the successful upload
                         //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
                         //UpdatePagingCommand.Execute(null);
                     }
-                    else { MessageBox.Show($"Fail To Call Data"); }
+                    else
+                    {
+                        MessageBox.Show($"No Books meet the filter");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -640,7 +648,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             ApplySortCommand = new RelayCommand(async o =>
             {
-                MessageBox.Show($"{SearchValue} {PriceFrom} {PriceTo}");
+                //MessageBox.Show($"{SearchValue} {PriceFrom} {PriceTo}");
                 string query_string = "";
 
                 if (SearchValue == "")
@@ -683,6 +691,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 }
 
                 var uri = new Uri(query_string);
+                MessageBox.Show(query_string);
 
                 try
                 {
@@ -694,12 +703,16 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         var json = await response.Content.ReadAsStringAsync();
                         Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
-                        // Handle the successful upload
-                        //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
-                        //UpdatePagingCommand.Execute(null);
                     }
-                    else { MessageBox.Show($"Fail To Call Data"); }
-                    ListPagesSelectedIndex = 0;
+                    else
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        MessageBox.Show($"{json}");
+                    }
+                    if (Data.listOfBook.Count != 0)
+                    {
+                        ListPagesSelectedIndex = 0;
+                    }
                     TotalPages = Data.numOfPage;
                     TotalBook = Data.numOfBooks;
                     var pages = new List<int>();
@@ -711,7 +724,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show($"Exception: {ex.Message}");
                 }
             });
 
@@ -750,7 +763,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             UpdateDataListCommand = new RelayCommand(async o =>
             {
-                MessageBox.Show($"{SearchValue} {PriceFrom} {PriceTo}");
+                //MessageBox.Show($"{SearchValue} {PriceFrom} {PriceTo}");
 
                 if (SearchValue != "")
                 {
@@ -791,7 +804,10 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                             //UpdatePagingCommand.Execute(null);
                         }
                         else { MessageBox.Show($"Fail To Call Data"); }
-                        ListPagesSelectedIndex = 0;
+                        if (Data.listOfBook.Count != 0)
+                        {
+                            ListPagesSelectedIndex = 0;
+                        }
                         TotalPages = Data.numOfPage;
                         TotalBook = Data.numOfBooks;
                         var pages = new List<int>();
