@@ -277,10 +277,29 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     totalPrice = tempPrice + totalPrice;
 
                     if (IsAddBookForEditingOrder)
-                         MainVM.OrderManagementVM.OrderDetailVM.TotalPrice = totalPrice;
-                    else
+                    {
+                        int bookCount = 0;
+                        foreach (var books in curList)
+                        {
+                            bookCount += books.quantity;
+                        }
 
+                        MainVM.OrderManagementVM.OrderDetailVM.BookQuantity = bookCount;
+                        MainVM.OrderManagementVM.OrderDetailVM.TotalPrice = totalPrice;
+                        
+                    }
+                    else
+                    {
+                        int bookCount = 0;
+                        foreach (var books in curList)
+                        {
+                            bookCount += books.quantity;
+                        }
+                        
                         MainVM.OrderManagementVM.OrderCreateVM.TotalPrice = totalPrice;
+                        MainVM.OrderManagementVM.OrderCreateVM.BookQuantity = bookCount;
+                    }
+                        
                     MainVM.CurrentView = lastView;
 
                 }

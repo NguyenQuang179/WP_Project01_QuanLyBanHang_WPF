@@ -481,10 +481,10 @@
                                 </Rectangle>
                             </Canvas>
 
-                            <TextBlock Text="10 Books"
+                            <TextBlock Text="{Binding BookQuantity, StringFormat={}{0} Books}"
                                FontSize="18" FontWeight="DemiBold"
                                Margin="0 12 0 0" DockPanel.Dock="Top"/>
-                            <TextBlock Text="Number Of Items"
+                            <TextBlock Text="Quantity Order"
                                FontSize="12" FontWeight="SemiBold" Foreground="#788B9A"
                                Margin="0 0 0 0" DockPanel.Dock="Bottom"/>
                         </DockPanel>
