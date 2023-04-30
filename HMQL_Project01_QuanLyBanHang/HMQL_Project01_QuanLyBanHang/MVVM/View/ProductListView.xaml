@@ -36,7 +36,6 @@
                                 RenderTransformOrigin="0.5,0.5" Canvas.Left="10" Canvas.Top="6" VerticalAlignment="Center">
                                 <TextBox.InputBindings>
                                     <KeyBinding Key="Return" Command="{Binding UpdateDataListCommand}" />
-                                    <!--<KeyBinding Key="Backspace" Command="{Binding BackSpaceCommand}" />-->
                                 </TextBox.InputBindings>
                             </TextBox>
                             <Border

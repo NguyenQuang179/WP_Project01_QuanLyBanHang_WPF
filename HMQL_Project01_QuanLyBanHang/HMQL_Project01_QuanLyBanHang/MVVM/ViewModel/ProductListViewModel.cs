@@ -50,8 +50,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
         public RelayCommand UpdatePageDataCommand { get; set; }
 
-        public RelayCommand BackSpaceCommand { get; set; }
-
         public RelayCommand ApplySorting { get; set; }
 
         public ProductViewModel ProductViewVM { get; set; }
@@ -244,10 +242,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
         public RelayCommand UpdatePagingCommand { get; set; }
         public RelayCommand BrowseFileCommand { get; set; }
         public RelayCommand UploadFileCommand { get; set; }
-
-        //public RelayCommand UpdatePagingCommand { get; set; }
-
-        //public RelayCommand ListPagesSelectedIndex { get; set; }
 
         public RelayCommand PageComboboxChangeCommand { get; set; }
 
@@ -459,35 +453,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 }
             });
 
-            //UpdatePageDataCommand = new RelayCommand(async o =>
-            //{
-            //    var uri = new Uri($"{ConnectionString.connectionString}/book/search?page={CurPage}&itemPerPage={RowPerPage}");
-
-            //    try
-            //    {
-            //        using var client = new HttpClient();
-            //        var response = await client.GetAsync(uri);
-
-            //        // Check if the upload was successful
-            //        if (response.IsSuccessStatusCode)
-            //        {
-            //            var json = await response.Content.ReadAsStringAsync();
-            //            Data = JsonConvert.DeserializeObject<ProductListDataModel>(json);
-            //            // Handle the successful upload
-            //            //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");
-            //            //UpdatePagingCommand.Execute(null);
-            //        }
-            //        else { MessageBox.Show($"Fail To Call Data"); }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message);
-            //    }
-            //});
-
             PrevPageCommand = new RelayCommand(async o =>
             {
-                //MessageBox.Show($"{ConnectionString.connectionString}/book/search?page={CurPage - 1}");
                 if (CurPage > 1)
                 {
                     CurPage--;
@@ -561,8 +528,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             NextPageCommand = new RelayCommand(async o =>
             {
-                //MessageBox.Show($"{ConnectionString.connectionString}/book/search?page={CurPage + 1}");
-
                 if (CurPage < TotalPages)
                 {
                     CurPage++;
@@ -649,7 +614,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             UploadFileCommand = new RelayCommand(async o =>
             {
-
                 var uri = new Uri($"{ConnectionString.connectionString}/uploadExcel");
 
                 try
@@ -686,7 +650,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             ApplySortCommand = new RelayCommand(async o =>
             {
-                //MessageBox.Show($"{SearchValue} {PriceFrom} {PriceTo}");
                 string query_string = "";
 
                 if (SearchValue == "")
@@ -764,39 +727,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     MessageBox.Show($"Exception: {ex.Message}");
                 }
-            });
-
-            BackSpaceCommand = new RelayCommand(o =>
-            {
-                //if (SearchValue != "")
-                //{
-                //    if (!isBackspaceProcessed)
-                //    {
-                //        // Simulate backspace key press to delete one character
-                //        //Keyboard.Focus(Keyboard.FocusedElement);
-                //        //var backspaceEvent = new KeyEventArgs(
-                //        //    Keyboard.PrimaryDevice,
-                //        //    PresentationSource.FromVisual((Visual)Keyboard.FocusedElement),
-                //        //    0,
-                //        //    Key.Back);
-                //        //backspaceEvent.RoutedEvent = Keyboard.KeyDownEvent;
-                //        //InputManager.Current.ProcessInput(backspaceEvent);
-
-                //        //// Set the flag to indicate that the backspace key has been processed
-                //        //isBackspaceProcessed = true;
-
-                //        // Add additional functionality here
-                //        // ...
-                //    }
-                //    if (SearchValue != "")
-                //    {
-                //        CallDataCommand.Execute(null);
-                //    }
-                //}
-                //else
-                //{
-                //    CallDataCommand.Execute(null);
-                //}
             });
 
             UpdateDataListCommand = new RelayCommand(async o =>
