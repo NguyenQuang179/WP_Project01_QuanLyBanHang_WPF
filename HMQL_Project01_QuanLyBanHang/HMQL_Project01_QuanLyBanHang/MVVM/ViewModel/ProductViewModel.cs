@@ -238,7 +238,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             EditBookCommand = new RelayCommand(o =>
             {
-                MessageBox.Show($"Edit Button Click");
+                //MessageBox.Show($"Edit Button Click");
                 BackGroundColorForUnusedButton = (Brush)bc.ConvertFrom("#FF3A36DB");
                 IsBrowseEnabled = true;
                 IsSaveEnabled = true;
@@ -249,24 +249,26 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             SaveBookCommand = new RelayCommand(async o =>
             {
-                MessageBox.Show($"Save Button Click");
+                //MessageBox.Show($"Save Button Click");
                 BackGroundColorForUnusedButton = Brushes.LightGray;
                 IsBrowseEnabled = false;
                 IsSaveEnabled = false;
                 IsTextReadOnly = true;
                 TextBoxBorderThickness = "0 0 0 0";
 
-                MessageBox.Show($"{BookName} {Author} {Price} {Stock}");
+                //MessageBox.Show($"{BookName} {Author} {Price} {Stock}");
                 var uri = new Uri($"{ConnectionString.connectionString}/book/update/{book_id}");
 
                 try
                 {
                     var client = new HttpClient();
                     var formData = new MultipartFormDataContent();
-
-                    var fileStream = new FileStream(Image_path, FileMode.Open, FileAccess.Read);
-                    var fileName = System.IO.Path.GetFileName(Image_path);
-                    formData.Add(new StreamContent(fileStream), "file", fileName);
+                    if (Image_path != null)
+                    {
+                        var fileStream = new FileStream(Image_path, FileMode.Open, FileAccess.Read);
+                        var fileName = System.IO.Path.GetFileName(Image_path);
+                        formData.Add(new StreamContent(fileStream), "file", fileName);
+                    }
 
                     formData.Add(new StringContent(BookName), "name");
                     formData.Add(new StringContent(Author), "author");
@@ -281,13 +283,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         // Handle the successful upload
                         var json = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show($"Success {json}");
+                        //MessageBox.Show($"Success {json}");
                     }
                     else
                     {
                         // Handle the failed upload
                         var json = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show($"Failed {json}");
+                        //MessageBox.Show($"Failed {json}");
                     }
 
                     productlistVM.CallDataCommand.Execute(null);
@@ -303,7 +305,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 //MessageBox.Show($"Delete Button Click");
 
-                MessageBox.Show($"{BookName} {Author} {Price} {Stock}");
+                //MessageBox.Show($"{BookName} {Author} {Price} {Stock}");
                 var uri = new Uri($"{ConnectionString.connectionString}/book/delete/{book_id}");
 
                 try
@@ -328,13 +330,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         // Handle the successful upload
                         var json = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show($"Success {json}");
+                        //MessageBox.Show($"Success {json}");
                     }
                     else
                     {
                         // Handle the failed upload
                         var json = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show($"Failed {json}");
+                        //MessageBox.Show($"Failed {json}");
                     }
 
                     productlistVM.CallDataCommand.Execute(null);

@@ -323,7 +323,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         }
                         else
                         {
-                            return;
+                            query_string = $"{ConnectionString.connectionString}/book/search?itemPerPage={RowPerPage}";
                         }
                     }
                     else
@@ -342,7 +342,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         }
                         else
                         {
-                            return;
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
                         }
                     }
 
@@ -402,7 +402,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     }
                     else
                     {
-                        return;
+                        query_string = $"{ConnectionString.connectionString}/book/search?itemPerPage={RowPerPage}";
                     }
                 }
                 else
@@ -421,7 +421,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     }
                     else
                     {
-                        return;
+                        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
                     }
                 }
 
@@ -477,7 +477,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         }
                         else
                         {
-                            return;
+                            query_string = $"{ConnectionString.connectionString}/book/search?itemPerPage={RowPerPage}";
                         }
                     }
                     else
@@ -496,7 +496,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         }
                         else
                         {
-                            return;
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
                         }
                     }
 
@@ -550,7 +550,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         }
                         else
                         {
-                            return;
+                            query_string = $"{ConnectionString.connectionString}/book/search?itemPerPage={RowPerPage}";
                         }
                     }
                     else
@@ -569,7 +569,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         }
                         else
                         {
-                            return;
+                            query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
                         }
                     }
 
@@ -668,7 +668,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     }
                     else
                     {
-                        return;
+                        query_string = $"{ConnectionString.connectionString}/book/search?&itemPerPage={RowPerPage}";
                     }
                 }
                 else
