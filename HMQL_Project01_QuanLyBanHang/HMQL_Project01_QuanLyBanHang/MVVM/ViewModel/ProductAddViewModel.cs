@@ -139,7 +139,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             AddBookToAPICommand = new RelayCommand(async o =>
             {
-                MessageBox.Show($"{BookName} {Author} {Price} {Stock}");
+                //MessageBox.Show($"{BookName} {Author} {Price} {Stock}");
                 var uri = new Uri($"{ConnectionString.connectionString}/book/add");
 
                 try
