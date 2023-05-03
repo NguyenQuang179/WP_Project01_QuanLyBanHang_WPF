@@ -614,7 +614,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             UploadFileCommand = new RelayCommand(async o =>
             {
-                if (FilePath == null)
+                if (FilePath != "")
                 {
                     MessageBox.Show("Bạn phải chọn file excel trước khi upload!");
                     return;
