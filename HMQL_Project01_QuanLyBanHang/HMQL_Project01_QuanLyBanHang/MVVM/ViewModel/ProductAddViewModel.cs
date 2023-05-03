@@ -139,7 +139,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             AddBookToAPICommand = new RelayCommand(async o =>
             {
-                MessageBox.Show($"{BookName} {Author} {Price} {Stock}");
+                //MessageBox.Show($"{BookName} {Author} {Price} {Stock}");
                 var uri = new Uri($"{ConnectionString.connectionString}/book/add");
 
                 try
@@ -147,7 +147,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     var client = new HttpClient();
                     var formData = new MultipartFormDataContent();
 
-                    if (Image_path != null)
+                    if (Image_path != "")
                     {
                         var fileStream = new FileStream(Image_path, FileMode.Open, FileAccess.Read);
                         var fileName = System.IO.Path.GetFileName(Image_path);
