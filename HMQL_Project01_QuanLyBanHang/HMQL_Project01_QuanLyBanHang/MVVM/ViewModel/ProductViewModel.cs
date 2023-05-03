@@ -284,13 +284,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         // Handle the successful upload
                         var json = await response.Content.ReadAsStringAsync();
-                        //MessageBox.Show($"Success {json}");
+                        MessageBox.Show($"Success {json}");
                     }
                     else
                     {
                         // Handle the failed upload
                         var json = await response.Content.ReadAsStringAsync();
-                        //MessageBox.Show($"Failed {json}");
+                        MessageBox.Show($"Failed {json}");
                     }
 
                     productlistVM.CallDataCommand.Execute(null);
@@ -313,17 +313,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     var client = new HttpClient();
                     var formData = new MultipartFormDataContent();
-
-                    //var fileStream = new FileStream(Image_path, FileMode.Open, FileAccess.Read);
-                    //var fileName = System.IO.Path.GetFileName(Image_path);
-                    //formData.Add(new StreamContent(fileStream), "file", fileName);
-
-                    //formData.Add(new StringContent(BookName), "name");
-                    //formData.Add(new StringContent(Author), "author");
-                    //formData.Add(new StringContent(Category), "category_Name");
-                    //formData.Add(new StringContent(PublishedYear), "publishedYear");
-                    //formData.Add(new StringContent(Price.ToString()), "price");
-                    //formData.Add(new StringContent(Stock.ToString()), "stock");
                     // Send the request and get the response
                     var response = await client.DeleteAsync(uri);
                     // Check if the upload was successful
@@ -331,13 +320,13 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     {
                         // Handle the successful upload
                         var json = await response.Content.ReadAsStringAsync();
-                        //MessageBox.Show($"Success {json}");
+                        MessageBox.Show($"Success {json}");
                     }
                     else
                     {
                         // Handle the failed upload
                         var json = await response.Content.ReadAsStringAsync();
-                        //MessageBox.Show($"Failed {json}");
+                        MessageBox.Show($"Failed {json}");
                     }
 
                     productlistVM.CallDataCommand.Execute(null);
@@ -374,7 +363,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                         }
                         else
                         {
-                            MessageBox.Show($"Picture image is null");
+                            //MessageBox.Show($"Picture image is null");
                         }
                         // Handle the successful upload
                         //MessageBox.Show($"Success Call Data {Data.listOfBook.Count}");

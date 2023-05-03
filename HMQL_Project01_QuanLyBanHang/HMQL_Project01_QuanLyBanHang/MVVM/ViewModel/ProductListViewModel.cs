@@ -307,45 +307,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     string query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
 
-                    //if (SearchValue == "")
-                    //{
-                    //    if (PriceFrom != "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom != "" && PriceTo == "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom == "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?mmaxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?itemPerPage={RowPerPage}";
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    if (PriceFrom != "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom != "" && PriceTo == "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom == "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
-                    //    }
-                    //}
-
                     var uri = new Uri(query_string);
 
                     try
@@ -386,45 +347,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
                 string query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
 
-                //if (SearchValue == "")
-                //{
-                //    if (PriceFrom != "" && PriceTo != "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                //    }
-                //    else if (PriceFrom != "" && PriceTo == "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
-                //    }
-                //    else if (PriceFrom == "" && PriceTo != "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?mmaxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                //    }
-                //    else
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?itemPerPage={RowPerPage}";
-                //    }
-                //}
-                //else
-                //{
-                //    if (PriceFrom != "" && PriceTo != "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                //    }
-                //    else if (PriceFrom != "" && PriceTo == "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
-                //    }
-                //    else if (PriceFrom == "" && PriceTo != "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                //    }
-                //    else
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
-                //    }
-                //}
-
                 var uri = new Uri(query_string);
 
                 try
@@ -461,45 +383,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
                     string query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
 
-                    //if (SearchValue == "")
-                    //{
-                    //    if (PriceFrom != "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom != "" && PriceTo == "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom == "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?mmaxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?itemPerPage={RowPerPage}";
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    if (PriceFrom != "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom != "" && PriceTo == "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom == "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
-                    //    }
-                    //}
-
                     var uri = new Uri(query_string);
 
                     try
@@ -533,45 +416,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                     CurPage++;
 
                     string query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-
-                    //if (SearchValue == "")
-                    //{
-                    //    if (PriceFrom != "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom != "" && PriceTo == "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom == "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?mmaxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?itemPerPage={RowPerPage}";
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    if (PriceFrom != "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom != "" && PriceTo == "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else if (PriceFrom == "" && PriceTo != "")
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&page={CurPage}&itemPerPage={RowPerPage}";
-                    //    }
-                    //    else
-                    //    {
-                    //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
-                    //    }
-                    //}
 
                     var uri = new Uri(query_string);
 
@@ -658,45 +502,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
             {
                 string query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
 
-                //if (SearchValue == "")
-                //{
-                //    if (PriceFrom != "" && PriceTo != "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
-                //    }
-                //    else if (PriceFrom != "" && PriceTo == "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?minPrice={PriceFrom}&itemPerPage={RowPerPage}";
-                //    }
-                //    else if (PriceFrom == "" && PriceTo != "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?maxPrice={PriceTo}&itemPerPage={RowPerPage}";
-                //    }
-                //    else
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?&itemPerPage={RowPerPage}";
-                //    }
-                //}
-                //else
-                //{
-                //    if (PriceFrom != "" && PriceTo != "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
-                //    }
-                //    else if (PriceFrom != "" && PriceTo == "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&itemPerPage={RowPerPage}";
-                //    }
-                //    else if (PriceFrom == "" && PriceTo != "")
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
-                //    }
-                //    else
-                //    {
-                //        query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
-                //    }
-                //}
-
                 var uri = new Uri(query_string);
                 //MessageBox.Show(query_string);
 
@@ -742,23 +547,6 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 if (SearchValue != "")
                 {
                     string query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
-
-                    //if (PriceFrom != "" && PriceTo != "")
-                    //{
-                    //    query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
-                    //}
-                    //else if (PriceFrom != "" && PriceTo == "")
-                    //{
-                    //    query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&minPrice={PriceFrom}&itemPerPage={RowPerPage}";
-                    //}
-                    //else if (PriceFrom == "" && PriceTo != "")
-                    //{
-                    //    query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&maxPrice={PriceTo}&itemPerPage={RowPerPage}";
-                    //}
-                    //else
-                    //{
-                    //    query_string = $"{ConnectionString.connectionString}/book/search?name={SearchValue}&itemPerPage={RowPerPage}";
-                    //}
 
                     var uri = new Uri(query_string);
 

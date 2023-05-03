@@ -244,6 +244,9 @@
 
                                     <DataGridTextColumn Header="Stock" Binding="{Binding stock}" Width="*" CanUserResize="False" IsReadOnly="True">
                                     </DataGridTextColumn>
+
+                                    <DataGridTextColumn Header="Price" Binding="{Binding price}" Width="*" CanUserResize="False" IsReadOnly="True">
+                                    </DataGridTextColumn>
                                 </DataGrid.Columns>
 
                                 <DataGrid.CellStyle>
@@ -320,7 +323,7 @@
                                         <TextBox
                                     Grid.Column="1"
                                     Name = "price_from_TextBox"
-                                    MaxLength="6"
+
                                     Text="{Binding PriceFrom}"
                                     HorizontalAlignment="Right"
                                     Margin="5 0 5 0"
@@ -345,7 +348,7 @@
                                         <TextBox
                                     Grid.Column="1"
                                     Name = "price_to_TextBox"
-                                    MaxLength="6"
+
                                     Text="{Binding PriceTo}"
                                     HorizontalAlignment="Right"
                                     Margin="5 0 5 0"
