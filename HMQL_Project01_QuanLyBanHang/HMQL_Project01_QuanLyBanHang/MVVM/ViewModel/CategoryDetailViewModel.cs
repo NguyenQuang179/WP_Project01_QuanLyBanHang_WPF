@@ -151,7 +151,7 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
 
             CallOrderDetailData = new RelayCommand(async o =>
             {
-                var uri = new Uri($"{ConnectionString.connectionString}/category/showbook/{CategoryID}?name={SearchValue}");
+                var uri = new Uri($"{ConnectionString.connectionString}/category/showbook/{CategoryID}?itemPerPage=100000");
                 //add count for page
                 try
                 {

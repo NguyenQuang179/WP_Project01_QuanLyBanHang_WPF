@@ -109,7 +109,7 @@
                     BorderBrush="LightGray"
                     Margin="16" Width="500">
 
-                        <DataGrid Grid.Row="10" x:Name="OrderDataGrid"
+                        <DataGrid x:Name="OrderDataGrid"
                               GridLinesVisibility="None" 
                               SelectedItem="{Binding SelectedOrder}"
                               HorizontalAlignment="Center" Margin="12" BorderThickness="0" 
