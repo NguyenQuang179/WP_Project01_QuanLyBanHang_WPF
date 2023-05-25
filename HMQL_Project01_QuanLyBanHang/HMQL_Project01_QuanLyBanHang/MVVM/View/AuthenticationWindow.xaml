@@ -11,7 +11,8 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        Icon="../../Images/icon.ico">
     <Window.DataContext>
         <viewModel:AuthenticationViewModel/>
     </Window.DataContext>

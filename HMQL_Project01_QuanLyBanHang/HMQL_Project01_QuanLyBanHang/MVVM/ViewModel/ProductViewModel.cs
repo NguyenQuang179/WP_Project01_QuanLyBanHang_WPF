@@ -263,7 +263,8 @@ namespace HMQL_Project01_QuanLyBanHang.MVVM.ViewModel
                 {
                     var client = new HttpClient();
                     var formData = new MultipartFormDataContent();
-                    if (Image_path != null)
+
+                    if (Image_path != "")
                     {
                         var fileStream = new FileStream(Image_path, FileMode.Open, FileAccess.Read);
                         var fileName = System.IO.Path.GetFileName(Image_path);

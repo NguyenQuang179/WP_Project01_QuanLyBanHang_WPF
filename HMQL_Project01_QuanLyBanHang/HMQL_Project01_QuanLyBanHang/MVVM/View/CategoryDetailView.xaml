@@ -18,7 +18,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
 
             <DockPanel>
-                <TextBlock DockPanel.Dock ="Top" Text="Order Detail"
+                <TextBlock DockPanel.Dock ="Top" Text="Category Detail"
                        FontSize="24" FontWeight="Bold" 
                        Margin="32 16 32 0"/>
                 <StackPanel DockPanel.Dock="Left">
@@ -44,7 +44,7 @@
                                 </Rectangle>
                             </Canvas>
 
-                            <TextBlock Text="Create New Category"
+                            <TextBlock Text="Change Category Name"
                                FontSize="18" FontWeight="DemiBold"
                                Margin="0 0 0 0" DockPanel.Dock="Top"/>
                             <WrapPanel DockPanel.Dock="Bottom" Orientation="Vertical">
@@ -68,7 +68,7 @@
                     BorderBrush="LightGray"
                     Margin="16">
 
-                        <DataGrid Grid.Row="10" x:Name="OrderDataGrid"
+                        <DataGrid x:Name="OrderDataGrid"
                               GridLinesVisibility="None" 
                               SelectedItem="{Binding SelectedOrder}"
                               HorizontalAlignment="Stretch" Margin="12" BorderThickness="0" 
